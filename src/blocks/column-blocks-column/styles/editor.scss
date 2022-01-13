@@ -1,0 +1,21 @@
+.ubl-blocks-cw-column {
+  .ubl-blocks-cw-column-wrap {
+    position: relative;
+    overflow: auto;
+    .ubl-blocks-cw-column-overlay {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+    }
+    .ubl-blocks-cw-column-content {
+      // position: relative;
+      z-index: 1000;
+    }
+  }
+}
+// .ubl-blocks-column-wrapper-2-content {
+//   .ubl-blocks-cw-column-content-resizeable {
+//   }
+// }

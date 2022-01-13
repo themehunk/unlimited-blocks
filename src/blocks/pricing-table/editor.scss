@@ -1,0 +1,246 @@
+/* full */
+.themehunk-icon-block {
+  display: flex;
+  > div {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    flex-direction: row-reverse;
+    .text-container {
+      min-width: 50px;
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+        word-break: break-all;
+        line-height: 1;
+        a {
+          text-decoration: none;
+          color: inherit;
+          cursor: pointer;
+        }
+      }
+    }
+    .icon-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+/* pricing table section */
+.pricing-table-top {
+  background-color: #22bbf6;
+  color: white;
+  padding: 8px 0;
+}
+
+// font-family: ;
+.pricing-table-wrapper {
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 400px;
+  margin: auto;
+  p,
+  h3 {
+    margin: 0;
+    line-height: 1;
+    letter-spacing: 1px;
+    a {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+  }
+  .pricing-table-top p {
+    font-size: 18px;
+    margin: 10px 0 0 0;
+    color: white;
+  }
+  .pricing-table-top {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      font-size: 23px;
+      color: white;
+      margin: 0;
+    }
+  }
+
+  // text-align: left;
+  // padding: 15px;
+  // & > div {
+  //   font-size: 19px;
+  //   margin: 10px 0;
+  // }
+  // & > div > p {
+  //   margin: inherit;
+  //   font-size: inherit;
+  //   font-family: inherit;
+  // }
+
+  .pricing-table-middle {
+    padding: 15px;
+    .middle-sections {
+      > div {
+        display: flex;
+        align-items: center;
+        .icon {
+          margin-right: 12px;
+        }
+        .text {
+          span {
+            display: block;
+            line-height: 1;
+            text-align: left;
+          }
+        }
+        &.underline {
+          display: block;
+          height: 2px;
+          width: 40%;
+          background-color: red;
+        }
+      }
+    }
+  }
+  div.price_ {
+    font-size: 19px;
+    display: flex;
+    margin: 10px auto;
+    box-sizing: content-box;
+    align-items: center;
+    p {
+      font-family: inherit;
+      font-size: inherit;
+      line-height: 1;
+      color: inherit;
+      margin: 0;
+    }
+    > p {
+      padding: 6px;
+    }
+    > div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      > p {
+        margin: 0;
+      }
+      &.rasied {
+        align-items: unset;
+        > p {
+          margin-left: 2px;
+          &:first-child {
+            font-size: 8px;
+            margin: 0;
+          }
+        }
+      }
+    }
+    &.inline_ {
+      width: fit-content;
+      > p {
+        padding: 0;
+      }
+    }
+    &.box_ {
+      height: 100px;
+      width: 100px;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border-radius: 50%;
+      background-color: green;
+    }
+  }
+  .link_button p {
+    line-height: 1;
+    display: flex;
+    margin: 10px auto;
+    width: fit-content;
+    background-color: #49bbf6;
+    color: white;
+    border-radius: 6px;
+    border: none;
+    padding: 0;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    a {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      // height: 100%;
+      // position: absolute;
+      // top: 0;
+      // left: 0;
+      // width: 100%;
+      // display: flex;
+      // justify-content: center;
+      // align-items: center;
+    }
+  }
+  .bottom-text {
+    font-size: 13px;
+  }
+}
+.pricing-table-bottom {
+  padding: 20px 0;
+}
+/* full */
+.THK-font-family-wrapper {
+  margin: 10px 0;
+  select {
+    width: 100%;
+  }
+  .font-family-drop-down {
+    border-radius: 5px;
+    border: 1px solid #eaeaea;
+    color: #6b6b6b;
+    .font-family-show {
+      padding: 10px;
+    }
+    .family-items {
+      height: 272px;
+      overflow: auto;
+      display: none;
+      span {
+        padding: 10px;
+        line-height: 1;
+        display: block;
+        border-bottom: 1px solid #eaeaea;
+        cursor: pointer;
+        &:first-child {
+          border-top: 1px solid #eaeaea;
+        }
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+    &.active {
+      .family-items {
+        display: block;
+      }
+    }
+  }
+}
+
+// .ubl-blocks-linkbtn {
+//   .block-editor-url-input {
+//     margin: 0;
+//     input {
+//       width: 100%;
+//       border: 1px solid #2a7cba;
+//     }
+//   }
+// }

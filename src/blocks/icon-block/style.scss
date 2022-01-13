@@ -1,0 +1,33 @@
+.wppgt-block-2-icon i {
+  display: block;
+}
+
+/* full */
+.themehunk-icon-block {
+  display: flex;
+  & > div {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    .icon-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .text-container {
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+      word-break: break-all;
+      line-height: 1 !important;
+      a {
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+      }
+    }
+  }
+}

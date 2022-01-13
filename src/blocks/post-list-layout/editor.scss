@@ -1,0 +1,210 @@
+.ubl-block-select {
+  margin-bottom: 10px;
+  width: 100%;
+}
+.ubl-multiple-select {
+  select[multiple] {
+    padding: 0 !important;
+    height: 200px !important;
+    option {
+      display: block;
+      padding: 10px;
+      border-bottom: 1px solid #dedede;
+      background: #efefef;
+      &:checked {
+        background: #efefef !important;
+      }
+    }
+  }
+}
+.ubl-block-post {
+  * {
+    font-family: "Catamaran-Regular", sans-serif;
+  }
+  &.list-layout {
+    // max-width: 610px;
+    margin: auto;
+    .image-align-left {
+      .post-wrapper {
+        display: flex;
+        .featured-image {
+          width: 48%;
+          margin-right: 2%;
+        }
+        .post-content {
+          width: 50%;
+        }
+      }
+    }
+    .image-align-right {
+      .post-wrapper {
+        display: flex;
+        flex-direction: row-reverse;
+        .featured-image {
+          width: 48%;
+          margin-left: 2%;
+        }
+        .post-content {
+          width: 50%;
+        }
+      }
+    }
+  }
+  .column-count:not(.column-count-1) {
+    &.left-border {
+      article {
+        margin: 18px 0;
+      }
+      article > .post-wrapper {
+        border-left: 4px solid;
+        padding-left: 10px;
+      }
+      article:nth-child(n + 1) > .post-wrapper {
+        border-color: #eb952a;
+      }
+      article:nth-child(n + 2) > .post-wrapper {
+        border-color: #959595;
+      }
+      article:nth-child(n + 3) > .post-wrapper {
+        border-color: #1e73be;
+      }
+      article:nth-child(n + 4) > .post-wrapper {
+        border-color: #e6543d;
+      }
+      article:nth-child(n + 5) > .post-wrapper {
+        border-color: #8bd623;
+      }
+      article:nth-child(n + 6) > .post-wrapper {
+        border-color: #dc51a0;
+      }
+    }
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    .featured-image {
+      width: 100%;
+      position: relative;
+      height: 168px;
+      margin-bottom: 6px;
+      img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  @for $i from 2 through 6 {
+    .column-count-#{$i} {
+      > article {
+        width: calc(100% / #{$i});
+        padding: 10px;
+      }
+    }
+  }
+
+  .column-count.column-count-1 {
+    .featured-image img {
+      width: 100%;
+    }
+  }
+}
+.block-post-article {
+  .post-content {
+    .post-heading {
+      margin: 5px 0;
+      line-height: 1.2;
+      font-weight: 600;
+    }
+    .post-meta-all {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      .slash {
+        color: #cec4c4;
+        margin: 1px 5px;
+      }
+    }
+    p,
+    h1,
+    h2,
+    h3 {
+      line-height: 1;
+      margin: 0 0 6px 0;
+      letter-spacing: 1px;
+    }
+    p {
+      .read-more {
+        color: #45a6e0;
+      }
+      &.post-author {
+        font-size: 13px;
+        letter-spacing: 1.2px;
+      }
+      &.post-date,
+      &.post-date-last-modified {
+        letter-spacing: 0.5px;
+        font-size: 14px;
+        display: flex;
+      }
+      &.post-category {
+        display: flex;
+        flex-wrap: wrap;
+        span {
+          margin: 1px 6px;
+          padding: 3px 5px;
+          color: white;
+          background: #ff5e00;
+          font-size: 12px;
+          text-transform: capitalize;
+          font-weight: 500;
+          line-height: 1;
+          &:nth-child(n + 1) {
+            background: #1a609c;
+          }
+          &:nth-child(2n + 1) {
+            background: #9e710c;
+          }
+          &:nth-child(3n + 1) {
+            background: #6a7f6a;
+          }
+          &:first-child {
+            margin: 1px 0;
+          }
+        }
+      }
+      &.post-tags {
+        display: flex;
+        flex-wrap: wrap;
+        span {
+          border: 1px solid;
+          margin: 1px 7px;
+          font-size: 13px;
+          padding: 1px 11px;
+          &:first-child {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+.ubl-block-post-title {
+  display: flex;
+  margin: 6px 0;
+  border-bottom: 2px solid;
+  h4 {
+    font-family: "Catamaran-Regular", sans-serif;
+    text-align: center;
+    line-height: 1.5;
+    margin: 0 0 -2px 0 !important;
+    letter-spacing: 1px;
+    font-weight: 600;
+    min-width: fit-content;
+    padding: 0 8px;
+  }
+}

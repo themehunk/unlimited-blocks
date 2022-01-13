@@ -1,0 +1,240 @@
+/* div {
+  color: #5e2f2f;
+} */
+.wppgt-block-2-icon i {
+  display: block;
+}
+.wp-block-wpgt-blocks-test-block {
+  background-color: #ded8d8;
+}
+.wp-block-wpgt-blocks-block-column-parent:not(.column-count-1) {
+  display: flex;
+  flex-wrap: wrap;
+}
+.wp-block-wpgt-blocks-block-column-parent.column-count-2
+  .wp-block-wpgt-blocks-icon-image-content {
+  width: calc(50% - 20px);
+  margin: 10px;
+}
+.wp-block-wpgt-blocks-block-column-parent.column-count-3
+  .wp-block-wpgt-blocks-icon-image-content {
+  width: calc(100% / 3 - 30px);
+  margin: 10px;
+}
+.wp-block-wpgt-blocks-block-column-parent.column-count-4
+  .wp-block-wpgt-blocks-icon-image-content {
+  width: calc(100% / 4 - 40px);
+  margin: 10px;
+}
+
+/* full */
+.wp-block-wpgt-blocks-block-column-parent.full-width.column-count-2
+  .wp-block-wpgt-blocks-icon-image-content {
+  width: 50%;
+  margin: 0;
+}
+.wp-block-wpgt-blocks-block-column-parent.full-width.column-count-3
+  .wp-block-wpgt-blocks-icon-image-content {
+  width: calc(100% / 3);
+  margin: 0;
+}
+.wp-block-wpgt-blocks-block-column-parent.full-width.column-count-4
+  .wp-block-wpgt-blocks-icon-image-content {
+  width: calc(100% / 4);
+  margin: 0;
+}
+
+/* full */
+.themehunk-icon-block {
+  display: flex;
+}
+.themehunk-icon-block > div {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+}
+.themehunk-icon-block > div .icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.themehunk-icon-block .text-container h1,
+.themehunk-icon-block .text-container h2,
+.themehunk-icon-block .text-container h3,
+.themehunk-icon-block .text-container p {
+  margin: 0;
+  word-break: break-all;
+  line-height: 1;
+}
+/* service section */
+.service-section-wrapper {
+  text-align: center;
+}
+.service-section-wrapper .service-image-icon .icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: fit-content;
+  padding: 18px 0 10px 0;
+}
+.service-section-wrapper .service-image-icon .service-image-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.service-section-wrapper .service-image-icon img {
+  width: 30%;
+}
+.service-section-wrapper .service-title-description > div h1,
+.service-section-wrapper .service-title-description > div p {
+  margin: 0;
+  line-height: 1;
+  letter-spacing: 1px;
+  margin-top: 12px;
+}
+.service-section-wrapper .service-title-description > div h1 {
+  font-size: 20px;
+}
+.service-section-wrapper .service-title-description > div p {
+  font-size: 16px;
+  padding-bottom: 18px;
+}
+/* pricing table section */
+.wp-block-wpgt-blocks-pricing-table-section .pricing-table-wrapper {
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  padding: 0 0 20px 0;
+  overflow: hidden;
+}
+.pricing-table-top {
+  background-color: #22bbf6;
+  /* color: white; */
+  padding: 16px;
+  /* border-radius: 12px 12px 0 0; */
+}
+.wp-block-wpgt-blocks-pricing-table-section
+  .pricing-table-wrapper
+  .pricing-table-top
+  p {
+  font-size: 18px;
+  margin: 10px 0 0 0;
+}
+.wp-block-wpgt-blocks-pricing-table-section
+  .pricing-table-wrapper
+  .pricing-table-top
+  h3 {
+  font-size: 23px;
+}
+.wp-block-wpgt-blocks-pricing-table-section .pricing-table-wrapper p,
+.wp-block-wpgt-blocks-pricing-table-section .pricing-table-wrapper h3 {
+  margin: 0;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+.wp-block-wpgt-blocks-pricing-table-section
+  .pricing-table-wrapper
+  .pricing-table-middle {
+  text-align: left;
+  padding: 15px;
+}
+.wp-block-wpgt-blocks-pricing-table-section
+  .pricing-table-wrapper
+  .pricing-table-middle
+  > p
+  > p {
+  margin: 10px 0;
+  font-size: 19px;
+  display: flex;
+  align-items: center;
+}
+.wp-block-wpgt-blocks-pricing-table-section
+  .pricing-table-wrapper
+  .pricing-table-middle
+  div
+  > p:before {
+  content: "\f00c";
+  display: inline-block;
+  /* background: #e1ebf1; */
+  line-height: 26px;
+  width: 26px;
+  text-align: center;
+  border-radius: 50%;
+  margin-right: 5px;
+  font-size: 11px;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #49bbf6;
+}
+.wp-block-wpgt-blocks-pricing-table-section .pricing-table-wrapper .price_ p {
+  font-size: 19px;
+}
+.wp-block-wpgt-blocks-pricing-table-section
+  .pricing-table-wrapper
+  .link_button
+  a {
+  white-space: pre-wrap;
+  line-height: 1;
+  display: block;
+  margin: 10px auto;
+  width: fit-content;
+  padding: 8px 15px;
+  background-color: #49bbf6;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.wp-block-wpgt-blocks-pricing-table-section
+  .pricing-table-wrapper
+  .bottom-text {
+  font-size: 13px;
+}
+
+.wp-block-wpgt-blocks-pricing-table-section:not(.column-count-1) {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.wp-block-wpgt-blocks-pricing-table-section.column-count-2
+  .wp-block-wpgt-blocks-pricing-table-table {
+  width: calc(50% - 20px);
+  margin: 10px;
+}
+.wp-block-wpgt-blocks-pricing-table-section.column-count-3
+  .wp-block-wpgt-blocks-pricing-table-table {
+  width: calc(100% / 3 - 30px);
+  margin: 10px;
+}
+.wp-block-wpgt-blocks-pricing-table-section.column-count-4
+  .wp-block-wpgt-blocks-pricing-table-table {
+  width: calc(100% / 4 - 40px);
+  margin: 10px;
+}
+/* full width */
+.wp-block-wpgt-blocks-pricing-table-section.full-width.column-count-2
+  .wp-block-wpgt-blocks-pricing-table-table {
+  width: calc(50%);
+  margin: 0;
+}
+.wp-block-wpgt-blocks-pricing-table-section.full-width.column-count-3
+  .wp-block-wpgt-blocks-pricing-table-table {
+  width: calc(100% / 3);
+  margin: 0;
+}
+.wp-block-wpgt-blocks-pricing-table-section.full-width.column-count-4
+  .wp-block-wpgt-blocks-pricing-table-table {
+  width: calc(100% / 4);
+  margin: 0;
+}
+/* full width */
+/* for align left and right  */
+.wp-block-wpgt-blocks-block-column-parent.alignleft,
+.wp-block-wpgt-blocks-pricing-table-section.alignleft,
+.wp-block-wpgt-blocks-block-column-parent.alignright,
+.wp-block-wpgt-blocks-pricing-table-section.alignright{
+  position: unset!important;
+  margin: unset!important;
+  min-width: 700px;
+}

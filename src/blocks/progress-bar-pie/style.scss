@@ -1,0 +1,29 @@
+.ubl-block-pie-circle {
+  text-align: -webkit-center;
+  .pie-circle_ {
+    position: relative;
+    svg {
+      display: block;
+      transform: rotate(-90deg);
+    }
+    .text-sction {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      span.title_ {
+        font-weight: bold;
+        letter-spacing: 1px;
+        color: black;
+      }
+    }
+  }
+}
+.wp-block-unlimited-blocks-progress-bar-pie {
+  margin: 28px 0;
+}
