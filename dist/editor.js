@@ -7043,7 +7043,7 @@ var Edit = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this3 = this;
 
-      // console.log("pppp", this.props);
+      console.log("block column block class name ", this.props);
       var clickSyncBlock = document.getElementById(this.props.attributes.blockId);
 
       if (clickSyncBlock) {
@@ -7733,6 +7733,10 @@ registerBlockType("unlimited-blocks/ubl-column-block-column", {
         orgWidth: 0 // maxWidth: 0,
 
       }
+    },
+    additionalClassNames: {
+      type: "object",
+      default: {}
     }
   },
 

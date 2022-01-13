@@ -41,7 +41,6 @@ registerBlockType("unlimited-blocks/ubl-column-block-column", {
         backgroundImageGradient:
           "radial-gradient(rgba(6,147,227,1) 38%,rgb(155,81,224) 80%)",
         backgroundOpacity: 1,
-
         // border
         borderEnable: false,
         borderStyle: "solid",
@@ -84,6 +83,10 @@ registerBlockType("unlimited-blocks/ubl-column-block-column", {
         orgWidth: 0,
         // maxWidth: 0,
       },
+    },
+    additionalClassNames: {
+      type: "object",
+      default: {},
     },
   },
   /* Render the block in the editor. */

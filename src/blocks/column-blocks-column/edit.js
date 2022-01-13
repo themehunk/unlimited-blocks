@@ -184,7 +184,7 @@ class Edit extends Component {
   }
 
   render() {
-    // console.log("pppp", this.props);
+    console.log("block column block class name ", this.props);
 
     let clickSyncBlock = document.getElementById(this.props.attributes.blockId);
     if (clickSyncBlock) {
@@ -562,117 +562,7 @@ class Edit extends Component {
                 this.updateStyle(true, true, saveObj);
               }}
             />
-            {/* <p>
-              <strong>{__("Padding", "unlimited-blocks")}</strong>
-            </p>
-            <div className="range-and-title-inline">
-              <p className="title-inline">
-                <strong>{__("Top", "unlimited-blocks")}</strong>
-              </p>
-              <RangeControl
-                value={styles.paddingTop}
-                min={0}
-                max={100}
-                onChange={(e) => {
-                  this.updateStyle("paddingTop", e);
-                }}
-              />
-            </div>
-            <div className="range-and-title-inline">
-              <p className="title-inline">
-                <strong>{__("Bottom", "unlimited-blocks")}</strong>
-              </p>
-              <RangeControl
-                value={styles.paddingBottom}
-                min={0}
-                max={100}
-                onChange={(e) => {
-                  this.updateStyle("paddingBottom", e);
-                }}
-              />
-            </div>
-            <div className="range-and-title-inline">
-              <p className="title-inline">
-                <strong>{__("Left", "unlimited-blocks")}</strong>
-              </p>
-              <RangeControl
-                value={styles.paddingLeft}
-                min={0}
-                max={100}
-                onChange={(e) => {
-                  this.updateStyle("paddingLeft", e);
-                }}
-              />
-            </div>
-            <div className="range-and-title-inline">
-              <p className="title-inline">
-                <strong>{__("Right", "unlimited-blocks")}</strong>
-              </p>
-              <RangeControl
-                value={styles.paddingRight}
-                min={0}
-                max={100}
-                onChange={(e) => {
-                  this.updateStyle("paddingRight", e);
-                }}
-              />
-            </div> */}
-            {/* -----------------------margin--------------- */}
-            {/* <p>
-              <strong>{__("Margin", "unlimited-blocks")}</strong>
-            </p>
-            <div className="range-and-title-inline">
-              <p className="title-inline">
-                <strong>{__("Top", "unlimited-blocks")}</strong>
-              </p>
-              <RangeControl
-                value={styles.marginTop}
-                min={0}
-                max={100}
-                onChange={(e) => {
-                  this.updateStyle("marginTop", e);
-                }}
-              />
-            </div>
-            <div className="range-and-title-inline">
-              <p className="title-inline">
-                <strong>{__("Bottom", "unlimited-blocks")}</strong>
-              </p>
-              <RangeControl
-                value={styles.marginBottom}
-                min={0}
-                max={100}
-                onChange={(e) => {
-                  this.updateStyle("marginBottom", e);
-                }}
-              />
-            </div>
-            <div className="range-and-title-inline">
-              <p className="title-inline">
-                <strong>{__("Left", "unlimited-blocks")}</strong>
-              </p>
-              <RangeControl
-                value={styles.marginLeft}
-                min={0}
-                max={100}
-                onChange={(e) => {
-                  this.updateStyle("marginLeft", e);
-                }}
-              />
-            </div>
-            <div className="range-and-title-inline">
-              <p className="title-inline">
-                <strong>{__("Right", "unlimited-blocks")}</strong>
-              </p>
-              <RangeControl
-                value={styles.marginRight}
-                min={0}
-                max={100}
-                onChange={(e) => {
-                  this.updateStyle("marginRight", e);
-                }}
-              />
-            </div> */}
+            
           </PanelBody>
           <PanelBody
             title={__("Background", "unlimited-blocks")}
