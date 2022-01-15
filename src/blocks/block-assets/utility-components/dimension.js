@@ -148,11 +148,24 @@ export default Dimension;
 
 {
   /* <Dimension
-              value={{ top: 10, right: 10, bottom: 10, left: 10 }}
-              isLink={true}
-              changeme={(val_) => {
-                console.log("val_ from out", val_);
+              value={{
+                top: styles.paddingTop,
+                right: styles.paddingRight,
+                bottom: styles.paddingBottom,
+                left: styles.paddingLeft,
               }}
-              label={"padding"}
+              isLink={styles.paddingLink}
+              changeme={(val_) => {
+                let saveObj = {
+                  paddingTop: val_.top,
+                  paddingRight: val_.right,
+                  paddingBottom: val_.bottom,
+                  paddingLeft: val_.left,
+                };
+                if ("isLink" in val_) {
+                  saveObj.paddingLink = val_.isLink;
+                }
+                this.updateStyle(true, true, saveObj);
+              }}
             /> */
 }

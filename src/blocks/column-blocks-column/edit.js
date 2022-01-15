@@ -24,6 +24,10 @@ import {
 import { UBLGraDientColors } from "../block-assets/post-functions";
 import BasicToggleNav from "../block-assets/utility-components/BasicToggleNav";
 import Dimension from "../block-assets/utility-components/dimension";
+import {
+  Animation,
+  setAnimationClass,
+} from "../block-assets/utility-components/animations/index";
 class Edit extends Component {
   constructor() {
     super(...arguments);
@@ -184,9 +188,10 @@ class Edit extends Component {
   }
 
   render() {
-    // console.log("pppp", this.props);
+    // console.log("block column block class name ", this.props);
 
-    let clickSyncBlock = document.getElementById(this.props.attributes.blockId);
+    const { attributes, setAttributes } = this.props;
+    let clickSyncBlock = document.getElementById(attributes.blockId);
     if (clickSyncBlock) {
       clickSyncBlock =
         clickSyncBlock.getAttribute("data-type") ==
@@ -201,7 +206,6 @@ class Edit extends Component {
       });
     }
 
-    const { attributes, setAttributes } = this.props;
     let { width, styles } = attributes;
     // wrapper style
     let wrapperStyles = {
@@ -265,7 +269,11 @@ class Edit extends Component {
       };
       wrapperStyles = { ...wrapperStyles, ...{ width: 100 + "%" } };
     }
-
+    let WrapperClass = "ubl-blocks-cw-column-wrap";
+    WrapperClass = setAnimationClass(
+      attributes.additionalClassNames,
+      WrapperClass
+    );
     return (
       <>
         <InspectorControls key="inspector">
@@ -293,6 +301,17 @@ class Edit extends Component {
             title={__("Layouts", "unlimited-blocks")}
             initialOpen={false}
           >
+            <p>
+              <strong>{__("Animation", "unlimited-blocks")}</strong>
+            </p>
+
+            <Animation
+              value={attributes.additionalClassNames}
+              change={(animate) => {
+                setAttributes({ additionalClassNames: animate });
+              }}
+            />
+
             <p>
               <strong>{__("Width", "unlimited-blocks")}</strong>
             </p>
@@ -562,117 +581,6 @@ class Edit extends Component {
                 this.updateStyle(true, true, saveObj);
               }}
             />
-            {/* <p>
-              <strong>{__("Padding", "unlimited-blocks")}</strong>
-            </p>
-            <div className="range-and-title-inline">
-              <p className="title-inline">
-                <strong>{__("Top", "unlimited-blocks")}</strong>
-              </p>
-              <RangeControl
-                value={styles.paddingTop}
-                min={0}
-                max={100}
-                onChange={(e) => {
-                  this.updateStyle("paddingTop", e);
-                }}
-              />
-            </div>
-            <div className="range-and-title-inline">
-              <p className="title-inline">
-                <strong>{__("Bottom", "unlimited-blocks")}</strong>
-              </p>
-              <RangeControl
-                value={styles.paddingBottom}
-                min={0}
-                max={100}
-                onChange={(e) => {
-                  this.updateStyle("paddingBottom", e);
-                }}
-              />
-            </div>
-            <div className="range-and-title-inline">
-              <p className="title-inline">
-                <strong>{__("Left", "unlimited-blocks")}</strong>
-              </p>
-              <RangeControl
-                value={styles.paddingLeft}
-                min={0}
-                max={100}
-                onChange={(e) => {
-                  this.updateStyle("paddingLeft", e);
-                }}
-              />
-            </div>
-            <div className="range-and-title-inline">
-              <p className="title-inline">
-                <strong>{__("Right", "unlimited-blocks")}</strong>
-              </p>
-              <RangeControl
-                value={styles.paddingRight}
-                min={0}
-                max={100}
-                onChange={(e) => {
-                  this.updateStyle("paddingRight", e);
-                }}
-              />
-            </div> */}
-            {/* -----------------------margin--------------- */}
-            {/* <p>
-              <strong>{__("Margin", "unlimited-blocks")}</strong>
-            </p>
-            <div className="range-and-title-inline">
-              <p className="title-inline">
-                <strong>{__("Top", "unlimited-blocks")}</strong>
-              </p>
-              <RangeControl
-                value={styles.marginTop}
-                min={0}
-                max={100}
-                onChange={(e) => {
-                  this.updateStyle("marginTop", e);
-                }}
-              />
-            </div>
-            <div className="range-and-title-inline">
-              <p className="title-inline">
-                <strong>{__("Bottom", "unlimited-blocks")}</strong>
-              </p>
-              <RangeControl
-                value={styles.marginBottom}
-                min={0}
-                max={100}
-                onChange={(e) => {
-                  this.updateStyle("marginBottom", e);
-                }}
-              />
-            </div>
-            <div className="range-and-title-inline">
-              <p className="title-inline">
-                <strong>{__("Left", "unlimited-blocks")}</strong>
-              </p>
-              <RangeControl
-                value={styles.marginLeft}
-                min={0}
-                max={100}
-                onChange={(e) => {
-                  this.updateStyle("marginLeft", e);
-                }}
-              />
-            </div>
-            <div className="range-and-title-inline">
-              <p className="title-inline">
-                <strong>{__("Right", "unlimited-blocks")}</strong>
-              </p>
-              <RangeControl
-                value={styles.marginRight}
-                min={0}
-                max={100}
-                onChange={(e) => {
-                  this.updateStyle("marginRight", e);
-                }}
-              />
-            </div> */}
           </PanelBody>
           <PanelBody
             title={__("Background", "unlimited-blocks")}
@@ -889,7 +797,7 @@ class Edit extends Component {
             className="ubl-blocks-cw-column"
             style={verticleStyle}
           >
-            <div className="ubl-blocks-cw-column-wrap" style={wrapperStyles}>
+            <div className={WrapperClass} style={wrapperStyles}>
               <div
                 className="ubl-blocks-cw-column-overlay"
                 style={overlLayColor}

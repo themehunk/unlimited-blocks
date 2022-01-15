@@ -28,6 +28,12 @@ import {
   __experimentalGradientPicker as GradientPicker,
 } from "@wordpress/components";
 import { UBLGraDientColors } from "./../block-assets/post-functions";
+import BasicToggleNav from "../block-assets/utility-components/BasicToggleNav";
+import Dimension from "../block-assets/utility-components/dimension";
+import {
+  Animation,
+  setAnimationClass,
+} from "../block-assets/utility-components/animations/index";
 const columnOptions = [
   {
     class_: "100",
@@ -90,6 +96,7 @@ class Edit extends Component {
       selectLayout: true,
       initWidthJson: false,
       chooseBorderORShadow: "border",
+      openPanel: "layout",
     };
   }
   componentDidUpdate(prevProps) {
@@ -185,10 +192,14 @@ class Edit extends Component {
       this.setState({ initWidthJson: this.props.attributes.listStyle.columns });
     }
   }
-  updateStyle = (key_, value) => {
+  updateStyle = (key_, value, multiple = false) => {
     const { attributes, setAttributes } = this.props;
     let getStyle = { ...attributes.styles };
-    getStyle[key_] = value;
+    if (multiple) {
+      getStyle = { ...getStyle, ...multiple };
+    } else {
+      getStyle[key_] = value;
+    }
     setAttributes({ styles: getStyle });
   };
   render() {
@@ -271,6 +282,15 @@ class Edit extends Component {
         contentWidthApply.width = contentWidth.width + "%";
       }
     }
+    /**
+     * wrapper class
+     *
+     **/
+    let WrapperClass = "ubl-blocks-column-wrapper-2";
+    WrapperClass = setAnimationClass(
+      attributes.additionalClassNames,
+      WrapperClass
+    );
     /* Show the layout placeholder. */
     if (attributes.columns == 0) {
       return [
@@ -335,552 +355,545 @@ class Edit extends Component {
         <InspectorControls key="inspector">
           {attributes.columns > 0 && (
             <>
-              <PanelBody
-                title={__("Layouts", "unlimited-blocks")}
-                initialOpen={false}
-              >
-                <RangeControl
-                  label={__("Columns", "unlimited-blocks")}
-                  // help={}
-                  value={attributes.columns}
-                  onChange={(value) =>
-                    this.props.setAttributes({ columns: value })
-                  }
-                  min={1}
-                  max={6}
-                  step={1}
-                />
-                {/* contentWidth */}
-                <p>
-                  <strong>{__("Inner Width", "unlimited-blocks")}</strong>
-                </p>
-                <ToggleControl
-                  label={
-                    contentWidth.enable
-                      ? __("Custom Width", "unlimited-blocks")
-                      : __("Full Width", "unlimited-blocks")
-                  }
-                  checked={contentWidth.enable}
-                  onChange={(e) => {
-                    let setWidth = { ...contentWidth };
-                    setWidth["enable"] = e;
-                    this.props.setAttributes({ contentWidth: setWidth });
+              <PanelBody initialOpen={true}>
+                <BasicToggleNav
+                  value={this.state.openPanel}
+                  navItem={[
+                    {
+                      name: "layout",
+                      title: "Layout",
+                      icon: "dashicons dashicons-editor-table",
+                    },
+                    {
+                      name: "style",
+                      title: "Style",
+                      icon: "dashicons dashicons-admin-customizer",
+                    },
+                  ]}
+                  clickme={(value_) => {
+                    this.setState({ openPanel: value_ });
                   }}
                 />
-                {contentWidth.enable && (
-                  <>
-                    <label className="normal-label with-radio">
-                      {__("Width", "unlimited-blocks")}
-                      <div className="parameter-toggle">
-                        <span
-                          className={
-                            contentWidth.parameter == "%" ? "selected" : null
-                          }
-                          onClick={() => {
-                            let setWidth = { ...contentWidth };
-                            setWidth["parameter"] = "%";
-                            this.props.setAttributes({
-                              contentWidth: setWidth,
-                            });
-                          }}
-                        >
-                          %
-                        </span>
-                        <span
-                          className={
-                            contentWidth.parameter == "px" ? "selected" : null
-                          }
-                          onClick={() => {
-                            let setWidth = { ...contentWidth };
-                            setWidth["parameter"] = "px";
-                            this.props.setAttributes({
-                              contentWidth: setWidth,
-                            });
-                          }}
-                        >
-                          px
-                        </span>
-                      </div>
-                    </label>
+              </PanelBody>
+              {this.state.openPanel == "layout" ? (
+                <>
+                  <PanelBody
+                    title={__("Column & Layout", "unlimited-blocks")}
+                    initialOpen={true}
+                  >
                     <RangeControl
-                      value={
-                        contentWidth.parameter == "%"
-                          ? contentWidth.width
-                          : contentWidth.widthPx
+                      label={__("Columns", "unlimited-blocks")}
+                      // help={}
+                      value={attributes.columns}
+                      onChange={(value) =>
+                        this.props.setAttributes({ columns: value })
                       }
-                      onChange={(value) => {
-                        let setWidth = { ...contentWidth };
-                        if (contentWidth.parameter == "%") {
-                          setWidth["width"] = value;
-                        } else {
-                          setWidth["widthPx"] = value;
-                        }
-
-                        this.props.setAttributes({ contentWidth: setWidth });
-                      }}
-                      min={contentWidth.parameter == "%" ? 1 : 200}
-                      max={contentWidth.parameter == "%" ? 100 : 1600}
+                      min={1}
+                      max={6}
+                      step={1}
                     />
-                  </>
-                )}
-              </PanelBody>
-
-              <PanelBody
-                title={__("Background", "unlimited-blocks")}
-                initialOpen={false}
-              >
-                <div className="ubl-multiple-select">
-                  <SelectControl
-                    value={styles.backgroundType}
-                    onChange={(choosen) => {
-                      this.updateStyle("backgroundType", choosen);
-                    }}
-                    options={[
-                      {
-                        value: "none",
-                        label: __("None", "unlimited-blocks"),
-                      },
-                      {
-                        value: "color",
-                        label: __("Color", "unlimited-blocks"),
-                      },
-                      {
-                        value: "image",
-                        label: __("Image", "unlimited-blocks"),
-                      },
-                    ]}
-                  />
-                </div>
-                {styles.backgroundType == "image" && (
-                  <>
+                    {/* contentWidth */}
                     <p>
-                      <strong>
-                        {__("Background image", "unlimited-blocks")}
-                      </strong>
+                      <strong>{__("Inner Width", "unlimited-blocks")}</strong>
                     </p>
-                    <MediaUpload
-                      allowedType="image"
-                      onSelect={(newImage) => {
-                        this.updateStyle(
-                          "backgroundImage",
-                          newImage.sizes.full.url
-                        );
-                      }}
-                      value={styles.backgroundImage}
-                      render={({ open }) => (
-                        <div
-                          onClick={open}
-                          className={`ubl-block-image-uploader ${
-                            "" == styles.backgroundImage && "blank"
-                          }`}
-                        >
-                          <div>
-                            <i className="fas fa-plus"></i>
-                          </div>
-                          <img src={styles.backgroundImage} />
-                        </div>
-                      )}
-                    />
-                    {styles.backgroundImage != "" && (
-                      <div className="flex-section">
-                        <p>{__("Background Size", "unlimited-blocks")}</p>
-                        <select
-                          value={styles.backgroundImageSize}
-                          onChange={(e) => {
-                            this.updateStyle(
-                              "backgroundImageSize",
-                              e.target.value
-                            );
-                          }}
-                        >
-                          <option value="auto">
-                            {__("Auto", "unlimited-blocks")}
-                          </option>
-                          <option value="cover">
-                            {__("Cover", "unlimited-blocks")}
-                          </option>
-                          <option value="contain">
-                            {__("Contain", "unlimited-blocks")}
-                          </option>
-                        </select>
-                      </div>
-                    )}
-                  </>
-                )}
-
-                {(styles.backgroundType == "color" ||
-                  styles.backgroundType == "image") && (
-                  <>
-                    <p>
-                      <strong>
-                        {styles.backgroundType == "image" &&
-                        styles.backgroundImage != ""
-                          ? __("Overlay Color", "unlimited-blocks")
-                          : __("Background Color", "unlimited-blocks")}
-                      </strong>
-                    </p>
-
-                    <div class="ubl-switcher-button-section">
-                      <span
-                        onClick={() =>
-                          this.updateStyle("backgroundColorType", "color")
-                        }
-                        className={
-                          styles.backgroundColorType == "color"
-                            ? "selected"
-                            : ""
-                        }
-                      >
-                        {__("Solid", "unlimited-blocks")}
-                      </span>
-                      <span
-                        onClick={() =>
-                          this.updateStyle("backgroundColorType", "gradient")
-                        }
-                        className={
-                          styles.backgroundColorType == "gradient"
-                            ? "selected"
-                            : ""
-                        }
-                      >
-                        {__("Gradient", "unlimited-blocks")}
-                      </span>
-                    </div>
-
-                    {"color" == styles.backgroundColorType ? (
-                      <ColorPicker
-                        color={styles.backgroundColor}
-                        onChangeComplete={(colorBg) => {
-                          let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                          this.updateStyle("backgroundColor", color);
-                        }}
-                      />
-                    ) : (
-                      <GradientPicker
-                        disableCustomGradients={false}
-                        value={styles.backgroundImageGradient}
-                        gradients={UBLGraDientColors}
-                        onChange={(newGradient) => {
-                          this.updateStyle(
-                            "backgroundImageGradient",
-                            newGradient
-                          );
-                        }}
-                      />
-                    )}
-                    <RangeControl
-                      label={__("Opacity", "unlimited-blocks")}
-                      value={styles.backgroundOpacity}
-                      min={0}
-                      max={1}
-                      step={0.1}
-                      onChange={(e) => {
-                        this.updateStyle("backgroundOpacity", e);
-                      }}
-                    />
-                  </>
-                )}
-              </PanelBody>
-              <PanelBody
-                title={__("Spacing", "unlimited-blocks")}
-                initialOpen={false}
-              >
-                <p>
-                  <strong>{__("Padding", "unlimited-blocks")}</strong>
-                </p>
-                <div className="range-and-title-inline">
-                  <p className="title-inline">
-                    <strong>{__("Top", "unlimited-blocks")}</strong>
-                  </p>
-                  <RangeControl
-                    value={styles.paddingTop}
-                    min={0}
-                    max={100}
-                    onChange={(e) => {
-                      this.updateStyle("paddingTop", e);
-                    }}
-                  />
-                </div>
-                <div className="range-and-title-inline">
-                  <p className="title-inline">
-                    <strong>{__("Bottom", "unlimited-blocks")}</strong>
-                  </p>
-                  <RangeControl
-                    value={styles.paddingBottom}
-                    min={0}
-                    max={100}
-                    onChange={(e) => {
-                      this.updateStyle("paddingBottom", e);
-                    }}
-                  />
-                </div>
-                <div className="range-and-title-inline">
-                  <p className="title-inline">
-                    <strong>{__("Left", "unlimited-blocks")}</strong>
-                  </p>
-                  <RangeControl
-                    value={styles.paddingLeft}
-                    min={0}
-                    max={100}
-                    onChange={(e) => {
-                      this.updateStyle("paddingLeft", e);
-                    }}
-                  />
-                </div>
-                <div className="range-and-title-inline">
-                  <p className="title-inline">
-                    <strong>{__("Right", "unlimited-blocks")}</strong>
-                  </p>
-                  <RangeControl
-                    value={styles.paddingRight}
-                    min={0}
-                    max={100}
-                    onChange={(e) => {
-                      this.updateStyle("paddingRight", e);
-                    }}
-                  />
-                </div>
-                {/* -----------------------margin--------------- */}
-                <p>
-                  <strong>{__("Margin", "unlimited-blocks")}</strong>
-                </p>
-                <div className="range-and-title-inline">
-                  <p className="title-inline">
-                    <strong>{__("Top", "unlimited-blocks")}</strong>
-                  </p>
-                  <RangeControl
-                    value={styles.marginTop}
-                    min={0}
-                    max={100}
-                    onChange={(e) => {
-                      this.updateStyle("marginTop", e);
-                    }}
-                  />
-                </div>
-                <div className="range-and-title-inline">
-                  <p className="title-inline">
-                    <strong>{__("Bottom", "unlimited-blocks")}</strong>
-                  </p>
-                  <RangeControl
-                    value={styles.marginBottom}
-                    min={0}
-                    max={100}
-                    onChange={(e) => {
-                      this.updateStyle("marginBottom", e);
-                    }}
-                  />
-                </div>
-                <div className="range-and-title-inline">
-                  <p className="title-inline">
-                    <strong>{__("Left", "unlimited-blocks")}</strong>
-                  </p>
-                  <RangeControl
-                    value={styles.marginLeft}
-                    min={0}
-                    max={100}
-                    onChange={(e) => {
-                      this.updateStyle("marginLeft", e);
-                    }}
-                  />
-                </div>
-                <div className="range-and-title-inline">
-                  <p className="title-inline">
-                    <strong>{__("Right", "unlimited-blocks")}</strong>
-                  </p>
-                  <RangeControl
-                    value={styles.marginRight}
-                    min={0}
-                    max={100}
-                    onChange={(e) => {
-                      this.updateStyle("marginRight", e);
-                    }}
-                  />
-                </div>
-              </PanelBody>
-              <PanelBody
-                title={__("Border and Box Shadow", "unlimited-blocks")}
-                initialOpen={false}
-              >
-                <div class="ubl-switcher-button-section">
-                  <span
-                    onClick={() =>
-                      this.setState({ chooseBorderORShadow: "border" })
-                    }
-                    className={
-                      this.state.chooseBorderORShadow == "border"
-                        ? "selected"
-                        : ""
-                    }
-                  >
-                    {__("Border", "unlimited-blocks")}
-                  </span>
-                  <span
-                    onClick={() =>
-                      this.setState({ chooseBorderORShadow: "boxshadow" })
-                    }
-                    className={
-                      this.state.chooseBorderORShadow == "boxshadow"
-                        ? "selected"
-                        : ""
-                    }
-                  >
-                    {__("Box Shadow", "unlimited-blocks")}
-                  </span>
-                </div>
-                {this.state.chooseBorderORShadow == "boxshadow" ? (
-                  <>
                     <ToggleControl
                       label={
-                        styles.shadowEnable
-                          ? __("Enable", "unlimited-blocks")
-                          : __("Disable", "unlimited-blocks")
+                        contentWidth.enable
+                          ? __("Custom Width", "unlimited-blocks")
+                          : __("Full Width", "unlimited-blocks")
                       }
-                      checked={styles.shadowEnable}
-                      onChange={(e) => this.updateStyle("shadowEnable", e)}
+                      checked={contentWidth.enable}
+                      onChange={(e) => {
+                        let setWidth = { ...contentWidth };
+                        setWidth["enable"] = e;
+                        this.props.setAttributes({ contentWidth: setWidth });
+                      }}
                     />
-                    {styles.shadowEnable && (
+                    {contentWidth.enable && (
                       <>
-                        <div className="range-and-title-inline">
-                          <p className="title-inline">
-                            <strong>{__("X", "unlimited-blocks")}</strong>
-                          </p>
-                          <RangeControl
-                            value={styles.shadowOffsetX}
-                            min={0}
-                            max={20}
-                            onChange={(e) => {
-                              this.updateStyle("shadowOffsetX", e);
-                            }}
-                          />
-                        </div>
-                        <div className="range-and-title-inline">
-                          <p className="title-inline">
-                            <strong>{__("Y", "unlimited-blocks")}</strong>
-                          </p>
-                          <RangeControl
-                            value={styles.shadowOffsetY}
-                            min={0}
-                            max={20}
-                            onChange={(e) => {
-                              this.updateStyle("shadowOffsetY", e);
-                            }}
-                          />
-                        </div>
-                        <div className="range-and-title-inline">
-                          <p className="title-inline">
-                            <strong>{__("Blur", "unlimited-blocks")}</strong>
-                          </p>
-                          <RangeControl
-                            value={styles.shadowBlur}
-                            min={0}
-                            max={20}
-                            onChange={(e) => {
-                              this.updateStyle("shadowBlur", e);
-                            }}
-                          />
-                        </div>
-                        <div className="range-and-title-inline">
-                          <p className="title-inline">
-                            <strong>{__("Spread", "unlimited-blocks")}</strong>
-                          </p>
-                          <RangeControl
-                            value={styles.shadowSpread}
-                            min={0}
-                            max={20}
-                            onChange={(e) => {
-                              this.updateStyle("shadowSpread", e);
-                            }}
-                          />
-                        </div>
+                        <label className="normal-label with-radio">
+                          {__("Width", "unlimited-blocks")}
+                          <div className="parameter-toggle">
+                            <span
+                              className={
+                                contentWidth.parameter == "%"
+                                  ? "selected"
+                                  : null
+                              }
+                              onClick={() => {
+                                let setWidth = { ...contentWidth };
+                                setWidth["parameter"] = "%";
+                                this.props.setAttributes({
+                                  contentWidth: setWidth,
+                                });
+                              }}
+                            >
+                              %
+                            </span>
+                            <span
+                              className={
+                                contentWidth.parameter == "px"
+                                  ? "selected"
+                                  : null
+                              }
+                              onClick={() => {
+                                let setWidth = { ...contentWidth };
+                                setWidth["parameter"] = "px";
+                                this.props.setAttributes({
+                                  contentWidth: setWidth,
+                                });
+                              }}
+                            >
+                              px
+                            </span>
+                          </div>
+                        </label>
+                        <RangeControl
+                          value={
+                            contentWidth.parameter == "%"
+                              ? contentWidth.width
+                              : contentWidth.widthPx
+                          }
+                          onChange={(value) => {
+                            let setWidth = { ...contentWidth };
+                            if (contentWidth.parameter == "%") {
+                              setWidth["width"] = value;
+                            } else {
+                              setWidth["widthPx"] = value;
+                            }
+
+                            this.props.setAttributes({
+                              contentWidth: setWidth,
+                            });
+                          }}
+                          min={contentWidth.parameter == "%" ? 1 : 200}
+                          max={contentWidth.parameter == "%" ? 100 : 1600}
+                        />
+                      </>
+                    )}
+                  </PanelBody>
+                  <PanelBody
+                    title={__("Spacing", "unlimited-blocks")}
+                    initialOpen={false}
+                  >
+                    <p>
+                      <strong>{__("Padding", "unlimited-blocks")}</strong>
+                    </p>
+                    <Dimension
+                      value={{
+                        top: styles.paddingTop,
+                        right: styles.paddingRight,
+                        bottom: styles.paddingBottom,
+                        left: styles.paddingLeft,
+                      }}
+                      isLink={styles.paddingLink}
+                      changeme={(val_) => {
+                        let saveObj = {
+                          paddingTop: val_.top,
+                          paddingRight: val_.right,
+                          paddingBottom: val_.bottom,
+                          paddingLeft: val_.left,
+                        };
+                        if ("isLink" in val_) {
+                          saveObj.paddingLink = val_.isLink;
+                        }
+                        this.updateStyle(true, true, saveObj);
+                      }}
+                    />
+                    {/* -----------------------margin--------------- */}
+                    <p>
+                      <strong>{__("Margin", "unlimited-blocks")}</strong>
+                    </p>
+                    <Dimension
+                      value={{
+                        top: styles.marginTop,
+                        right: styles.marginRight,
+                        bottom: styles.marginBottom,
+                        left: styles.marginLeft,
+                      }}
+                      isLink={styles.marginLink}
+                      changeme={(val_) => {
+                        let saveObj = {
+                          marginTop: val_.top,
+                          marginRight: val_.right,
+                          marginBottom: val_.bottom,
+                          marginLeft: val_.left,
+                        };
+                        if ("isLink" in val_) {
+                          saveObj.marginLink = val_.isLink;
+                        }
+                        this.updateStyle(true, true, saveObj);
+                      }}
+                    />
+                  </PanelBody>
+                </>
+              ) : (
+                <>
+                  <PanelBody
+                    title={__("Background", "unlimited-blocks")}
+                    initialOpen={false}
+                  >
+                    <div className="ubl-multiple-select">
+                      <SelectControl
+                        value={styles.backgroundType}
+                        onChange={(choosen) => {
+                          this.updateStyle("backgroundType", choosen);
+                        }}
+                        options={[
+                          {
+                            value: "none",
+                            label: __("None", "unlimited-blocks"),
+                          },
+                          {
+                            value: "color",
+                            label: __("Color", "unlimited-blocks"),
+                          },
+                          {
+                            value: "image",
+                            label: __("Image", "unlimited-blocks"),
+                          },
+                        ]}
+                      />
+                    </div>
+                    {styles.backgroundType == "image" && (
+                      <>
                         <p>
                           <strong>
-                            {__("Shadow Color", "unlimited-blocks")}
+                            {__("Background image", "unlimited-blocks")}
                           </strong>
                         </p>
-                        <ColorPicker
-                          color={styles.shadowColor}
-                          onChangeComplete={(colorBg) => {
-                            let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                            this.updateStyle("shadowColor", color);
+                        <MediaUpload
+                          allowedType="image"
+                          onSelect={(newImage) => {
+                            this.updateStyle(
+                              "backgroundImage",
+                              newImage.sizes.full.url
+                            );
+                          }}
+                          value={styles.backgroundImage}
+                          render={({ open }) => (
+                            <div
+                              onClick={open}
+                              className={`ubl-block-image-uploader ${
+                                "" == styles.backgroundImage && "blank"
+                              }`}
+                            >
+                              <div>
+                                <i className="fas fa-plus"></i>
+                              </div>
+                              <img src={styles.backgroundImage} />
+                            </div>
+                          )}
+                        />
+                        {styles.backgroundImage != "" && (
+                          <div className="flex-section">
+                            <p>{__("Background Size", "unlimited-blocks")}</p>
+                            <select
+                              value={styles.backgroundImageSize}
+                              onChange={(e) => {
+                                this.updateStyle(
+                                  "backgroundImageSize",
+                                  e.target.value
+                                );
+                              }}
+                            >
+                              <option value="auto">
+                                {__("Auto", "unlimited-blocks")}
+                              </option>
+                              <option value="cover">
+                                {__("Cover", "unlimited-blocks")}
+                              </option>
+                              <option value="contain">
+                                {__("Contain", "unlimited-blocks")}
+                              </option>
+                            </select>
+                          </div>
+                        )}
+                      </>
+                    )}
+
+                    {(styles.backgroundType == "color" ||
+                      styles.backgroundType == "image") && (
+                      <>
+                        <p>
+                          <strong>
+                            {styles.backgroundType == "image" &&
+                            styles.backgroundImage != ""
+                              ? __("Overlay Color", "unlimited-blocks")
+                              : __("Background Color", "unlimited-blocks")}
+                          </strong>
+                        </p>
+
+                        <div class="ubl-switcher-button-section">
+                          <span
+                            onClick={() =>
+                              this.updateStyle("backgroundColorType", "color")
+                            }
+                            className={
+                              styles.backgroundColorType == "color"
+                                ? "selected"
+                                : ""
+                            }
+                          >
+                            {__("Solid", "unlimited-blocks")}
+                          </span>
+                          <span
+                            onClick={() =>
+                              this.updateStyle(
+                                "backgroundColorType",
+                                "gradient"
+                              )
+                            }
+                            className={
+                              styles.backgroundColorType == "gradient"
+                                ? "selected"
+                                : ""
+                            }
+                          >
+                            {__("Gradient", "unlimited-blocks")}
+                          </span>
+                        </div>
+
+                        {"color" == styles.backgroundColorType ? (
+                          <ColorPicker
+                            color={styles.backgroundColor}
+                            onChangeComplete={(colorBg) => {
+                              let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                              this.updateStyle("backgroundColor", color);
+                            }}
+                          />
+                        ) : (
+                          <GradientPicker
+                            disableCustomGradients={false}
+                            value={styles.backgroundImageGradient}
+                            gradients={UBLGraDientColors}
+                            onChange={(newGradient) => {
+                              this.updateStyle(
+                                "backgroundImageGradient",
+                                newGradient
+                              );
+                            }}
+                          />
+                        )}
+                        <RangeControl
+                          label={__("Opacity", "unlimited-blocks")}
+                          value={styles.backgroundOpacity}
+                          min={0}
+                          max={1}
+                          step={0.1}
+                          onChange={(e) => {
+                            this.updateStyle("backgroundOpacity", e);
                           }}
                         />
                       </>
                     )}
-                    {/* -----------------box shadow----------------- */}
-                  </>
-                ) : (
-                  <>
-                    <ToggleControl
-                      label={
-                        styles.borderEnable
-                          ? __("Disable", "unlimited-blocks")
-                          : __("Enable", "unlimited-blocks")
-                      }
-                      checked={styles.borderEnable}
-                      onChange={(e) => this.updateStyle("borderEnable", e)}
-                    />
-                    {styles.borderEnable && (
-                      <div className="icon-border-setting">
-                        <div className="ubl-multiple-select">
-                          <SelectControl
-                            label={__("Border Style", "unlimited-blocks")}
-                            value={styles.borderStyle}
-                            onChange={(choosen) => {
-                              this.updateStyle("borderStyle", choosen);
-                            }}
-                            options={[
-                              {
-                                value: "solid",
-                                label: __("Solid", "unlimited-blocks"),
-                              },
-                              {
-                                value: "dotted",
-                                label: __("Dotted", "unlimited-blocks"),
-                              },
-                              {
-                                value: "dashed",
-                                label: __("Dashed", "unlimited-blocks"),
-                              },
-                            ]}
-                          />
-                        </div>
-                        <RangeControl
-                          label={__("Border Radius", "unlimited-blocks")}
-                          value={styles.borderRadius}
-                          min={0}
-                          max={50}
-                          onChange={(e) => {
-                            this.updateStyle("borderRadius", e);
-                          }}
-                        />
-                        <RangeControl
-                          label={__("Border Width", "unlimited-blocks")}
-                          value={styles.borderWidth}
-                          min={0}
-                          max={100}
-                          onChange={(e) => this.updateStyle("borderWidth", e)}
-                        />
-                        <ColorPalette
-                          label={__("Border Color", "unlimited-blocks")}
-                          value={styles.borderColor}
-                          onChange={(color) =>
-                            this.updateStyle("borderColor", color)
+                  </PanelBody>
+
+                  <PanelBody
+                    title={__("Border and Box Shadow", "unlimited-blocks")}
+                    initialOpen={false}
+                  >
+                    <div class="ubl-switcher-button-section">
+                      <span
+                        onClick={() =>
+                          this.setState({ chooseBorderORShadow: "border" })
+                        }
+                        className={
+                          this.state.chooseBorderORShadow == "border"
+                            ? "selected"
+                            : ""
+                        }
+                      >
+                        {__("Border", "unlimited-blocks")}
+                      </span>
+                      <span
+                        onClick={() =>
+                          this.setState({ chooseBorderORShadow: "boxshadow" })
+                        }
+                        className={
+                          this.state.chooseBorderORShadow == "boxshadow"
+                            ? "selected"
+                            : ""
+                        }
+                      >
+                        {__("Box Shadow", "unlimited-blocks")}
+                      </span>
+                    </div>
+                    {this.state.chooseBorderORShadow == "boxshadow" ? (
+                      <>
+                        <ToggleControl
+                          label={
+                            styles.shadowEnable
+                              ? __("Enable", "unlimited-blocks")
+                              : __("Disable", "unlimited-blocks")
                           }
+                          checked={styles.shadowEnable}
+                          onChange={(e) => this.updateStyle("shadowEnable", e)}
                         />
-                      </div>
+                        {styles.shadowEnable && (
+                          <>
+                            <div className="range-and-title-inline">
+                              <p className="title-inline">
+                                <strong>{__("X", "unlimited-blocks")}</strong>
+                              </p>
+                              <RangeControl
+                                value={styles.shadowOffsetX}
+                                min={0}
+                                max={20}
+                                onChange={(e) => {
+                                  this.updateStyle("shadowOffsetX", e);
+                                }}
+                              />
+                            </div>
+                            <div className="range-and-title-inline">
+                              <p className="title-inline">
+                                <strong>{__("Y", "unlimited-blocks")}</strong>
+                              </p>
+                              <RangeControl
+                                value={styles.shadowOffsetY}
+                                min={0}
+                                max={20}
+                                onChange={(e) => {
+                                  this.updateStyle("shadowOffsetY", e);
+                                }}
+                              />
+                            </div>
+                            <div className="range-and-title-inline">
+                              <p className="title-inline">
+                                <strong>
+                                  {__("Blur", "unlimited-blocks")}
+                                </strong>
+                              </p>
+                              <RangeControl
+                                value={styles.shadowBlur}
+                                min={0}
+                                max={20}
+                                onChange={(e) => {
+                                  this.updateStyle("shadowBlur", e);
+                                }}
+                              />
+                            </div>
+                            <div className="range-and-title-inline">
+                              <p className="title-inline">
+                                <strong>
+                                  {__("Spread", "unlimited-blocks")}
+                                </strong>
+                              </p>
+                              <RangeControl
+                                value={styles.shadowSpread}
+                                min={0}
+                                max={20}
+                                onChange={(e) => {
+                                  this.updateStyle("shadowSpread", e);
+                                }}
+                              />
+                            </div>
+                            <p>
+                              <strong>
+                                {__("Shadow Color", "unlimited-blocks")}
+                              </strong>
+                            </p>
+                            <ColorPicker
+                              color={styles.shadowColor}
+                              onChangeComplete={(colorBg) => {
+                                let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                                this.updateStyle("shadowColor", color);
+                              }}
+                            />
+                          </>
+                        )}
+                        {/* -----------------box shadow----------------- */}
+                      </>
+                    ) : (
+                      <>
+                        <ToggleControl
+                          label={
+                            styles.borderEnable
+                              ? __("Disable", "unlimited-blocks")
+                              : __("Enable", "unlimited-blocks")
+                          }
+                          checked={styles.borderEnable}
+                          onChange={(e) => this.updateStyle("borderEnable", e)}
+                        />
+                        {styles.borderEnable && (
+                          <div className="icon-border-setting">
+                            <div className="ubl-multiple-select">
+                              <SelectControl
+                                label={__("Border Style", "unlimited-blocks")}
+                                value={styles.borderStyle}
+                                onChange={(choosen) => {
+                                  this.updateStyle("borderStyle", choosen);
+                                }}
+                                options={[
+                                  {
+                                    value: "solid",
+                                    label: __("Solid", "unlimited-blocks"),
+                                  },
+                                  {
+                                    value: "dotted",
+                                    label: __("Dotted", "unlimited-blocks"),
+                                  },
+                                  {
+                                    value: "dashed",
+                                    label: __("Dashed", "unlimited-blocks"),
+                                  },
+                                ]}
+                              />
+                            </div>
+                            <RangeControl
+                              label={__("Border Radius", "unlimited-blocks")}
+                              value={styles.borderRadius}
+                              min={0}
+                              max={50}
+                              onChange={(e) => {
+                                this.updateStyle("borderRadius", e);
+                              }}
+                            />
+                            <RangeControl
+                              label={__("Border Width", "unlimited-blocks")}
+                              value={styles.borderWidth}
+                              min={0}
+                              max={100}
+                              onChange={(e) =>
+                                this.updateStyle("borderWidth", e)
+                              }
+                            />
+                            <ColorPalette
+                              label={__("Border Color", "unlimited-blocks")}
+                              value={styles.borderColor}
+                              onChange={(color) =>
+                                this.updateStyle("borderColor", color)
+                              }
+                            />
+                          </div>
+                        )}
+                      </>
                     )}
-                  </>
-                )}
-              </PanelBody>
+                  </PanelBody>
+                </>
+              )}
             </>
           )}
+          <PanelBody
+            title={__("Animations", "unlimited-blocks")}
+            initialOpen={false}
+          >
+            <Animation
+              value={attributes.additionalClassNames}
+              change={(animate) => {
+                console.log("animation", animate);
+                setAttributes({ additionalClassNames: animate });
+              }}
+            />
+          </PanelBody>
         </InspectorControls>
+
         <div
-          className={`ubl-blocks-column-wrapper`}
+          className="ubl-blocks-column-wrapper"
           id={blockId}
           dataListStyle={dataListStyle_}
         >
-          <div className="ubl-blocks-column-wrapper-2" style={wrapperStyles}>
+          <div className={WrapperClass} style={wrapperStyles}>
             <div
               className="ubl-blocks-column-wrapper-2-overlay"
               style={overlLayColor}

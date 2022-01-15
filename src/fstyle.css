@@ -233,8 +233,8 @@
 .wp-block-wpgt-blocks-block-column-parent.alignleft,
 .wp-block-wpgt-blocks-pricing-table-section.alignleft,
 .wp-block-wpgt-blocks-block-column-parent.alignright,
-.wp-block-wpgt-blocks-pricing-table-section.alignright{
-  position: unset!important;
-  margin: unset!important;
+.wp-block-wpgt-blocks-pricing-table-section.alignright {
+  position: unset !important;
+  margin: unset !important;
   min-width: 700px;
 }
