@@ -2,6 +2,7 @@ import "./style/editor.scss";
 import Edit from "./edit";
 import { registerBlockType } from "@wordpress/blocks";
 const { InnerBlocks } = wp.blockEditor;
+import { setAnimationClass } from "../block-assets/utility-components/animations/index";
 import { __ } from "@wordpress/i18n";
 const attrS = {
   align: { type: "string", default: "wide" },
@@ -61,12 +62,18 @@ const attrS = {
       marginBottom: 0,
       marginLeft: 0,
       marginRight: 0,
+      marginLink: true,
       // padding
       paddingTop: 12,
       paddingBottom: 12,
       paddingLeft: 12,
       paddingRight: 12,
+      paddingLink: true,
     },
+  },
+  additionalClassNames: {
+    type: "object",
+    default: {},
   },
 };
 import { blocksDetail } from "../block-assets/blocks-detail";
@@ -192,6 +199,11 @@ registerBlockType("unlimited-blocks/ubl-column-block-wrapper", {
         };
       }
     }
+    let WrapperClass = `ubl-blocks-column-wrapper-2 ${blockId + "wrap2-"}`;
+    WrapperClass = setAnimationClass(
+      attributes.additionalClassNames,
+      WrapperClass
+    );
     return (
       <div
         id={blockId}
@@ -199,10 +211,7 @@ registerBlockType("unlimited-blocks/ubl-column-block-wrapper", {
         ubl-blocks-styler={ublStyler}
         data-ubl-column-width={jsonSettingData}
       >
-        <div
-          className={`ubl-blocks-column-wrapper-2 ${blockId + "wrap2-"}`}
-          ubl-blocks-styler={ublStyler1}
-        >
+        <div className={WrapperClass} ubl-blocks-styler={ublStyler1}>
           <div
             className={`ubl-blocks-column-wrapper-2-overlay ${
               blockId + "overlay-"

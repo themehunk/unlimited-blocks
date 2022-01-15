@@ -24,6 +24,10 @@ import {
 import { UBLGraDientColors } from "../block-assets/post-functions";
 import BasicToggleNav from "../block-assets/utility-components/BasicToggleNav";
 import Dimension from "../block-assets/utility-components/dimension";
+import {
+  Animation,
+  setAnimationClass,
+} from "../block-assets/utility-components/animations/index";
 class Edit extends Component {
   constructor() {
     super(...arguments);
@@ -184,9 +188,10 @@ class Edit extends Component {
   }
 
   render() {
-    console.log("block column block class name ", this.props);
+    // console.log("block column block class name ", this.props);
 
-    let clickSyncBlock = document.getElementById(this.props.attributes.blockId);
+    const { attributes, setAttributes } = this.props;
+    let clickSyncBlock = document.getElementById(attributes.blockId);
     if (clickSyncBlock) {
       clickSyncBlock =
         clickSyncBlock.getAttribute("data-type") ==
@@ -201,7 +206,6 @@ class Edit extends Component {
       });
     }
 
-    const { attributes, setAttributes } = this.props;
     let { width, styles } = attributes;
     // wrapper style
     let wrapperStyles = {
@@ -265,7 +269,11 @@ class Edit extends Component {
       };
       wrapperStyles = { ...wrapperStyles, ...{ width: 100 + "%" } };
     }
-
+    let WrapperClass = "ubl-blocks-cw-column-wrap";
+    WrapperClass = setAnimationClass(
+      attributes.additionalClassNames,
+      WrapperClass
+    );
     return (
       <>
         <InspectorControls key="inspector">
@@ -293,6 +301,17 @@ class Edit extends Component {
             title={__("Layouts", "unlimited-blocks")}
             initialOpen={false}
           >
+            <p>
+              <strong>{__("Animation", "unlimited-blocks")}</strong>
+            </p>
+
+            <Animation
+              value={attributes.additionalClassNames}
+              change={(animate) => {
+                setAttributes({ additionalClassNames: animate });
+              }}
+            />
+
             <p>
               <strong>{__("Width", "unlimited-blocks")}</strong>
             </p>
@@ -562,7 +581,6 @@ class Edit extends Component {
                 this.updateStyle(true, true, saveObj);
               }}
             />
-            
           </PanelBody>
           <PanelBody
             title={__("Background", "unlimited-blocks")}
@@ -779,7 +797,7 @@ class Edit extends Component {
             className="ubl-blocks-cw-column"
             style={verticleStyle}
           >
-            <div className="ubl-blocks-cw-column-wrap" style={wrapperStyles}>
+            <div className={WrapperClass} style={wrapperStyles}>
               <div
                 className="ubl-blocks-cw-column-overlay"
                 style={overlLayColor}

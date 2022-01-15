@@ -8,17 +8,82 @@
 import Edit from "./edit";
 import "./styles/editor.scss";
 import { InnerBlocks } from "@wordpress/block-editor";
+import { setAnimationClass } from "../block-assets/utility-components/animations/index";
 /**
  * WordPress dependencies.
  */
 import { __ } from "@wordpress/i18n";
 const { registerBlockType } = wp.blocks;
 /**
+ *
  * Register advanced columns block.
+ *
  */
 import { blocksDetail } from "../block-assets/blocks-detail";
 const { column_blocks_column } = blocksDetail;
-
+const AttrS = {
+  styles: {
+    type: "object",
+    default: {
+      // background
+      // image/color/none/gradient
+      backgroundType: "",
+      // color/gradient
+      backgroundColorType: "color",
+      backgroundColor: "",
+      backgroundImage: "",
+      backgroundImageSize: "cover",
+      backgroundImageGradient:
+        "radial-gradient(rgba(6,147,227,1) 38%,rgb(155,81,224) 80%)",
+      backgroundOpacity: 1,
+      // border
+      borderEnable: false,
+      borderStyle: "solid",
+      borderWidth: 1,
+      borderColor: "#f8c045",
+      borderRadius: "",
+      // box-shadowpP
+      shadowEnable: false,
+      shadowOffsetX: 1,
+      shadowOffsetY: 0,
+      shadowBlur: 2,
+      shadowSpread: 2,
+      shadowColor: "#f8c045",
+      // margin
+      marginLink: true,
+      marginTop: 0,
+      marginBottom: 0,
+      marginLeft: 0,
+      marginRight: 0,
+      // padding
+      paddingLink: true,
+      paddingTop: 12,
+      paddingBottom: 12,
+      paddingLeft: 12,
+      paddingRight: 12,
+    },
+  },
+  blockId: { type: "string", default: "" },
+  width: {
+    type: "number",
+    default: 0,
+  },
+  verticleAlign: {
+    type: "string",
+    default: "",
+  },
+  responsiveWidth: {
+    type: "object",
+    default: {
+      orgWidth: 0,
+      // maxWidth: 0,
+    },
+  },
+  additionalClassNames: {
+    type: "object",
+    default: {},
+  },
+};
 registerBlockType("unlimited-blocks/ubl-column-block-column", {
   title: column_blocks_column.title,
   description: column_blocks_column.description,
@@ -26,69 +91,7 @@ registerBlockType("unlimited-blocks/ubl-column-block-column", {
   keywords: column_blocks_column.keywords,
   category: "unlimited-blocks-category",
   parent: ["unlimited-blocks/ubl-column-block-wrapper"],
-  attributes: {
-    styles: {
-      type: "object",
-      default: {
-        // background
-        // image/color/none/gradient
-        backgroundType: "",
-        // color/gradient
-        backgroundColorType: "color",
-        backgroundColor: "",
-        backgroundImage: "",
-        backgroundImageSize: "cover",
-        backgroundImageGradient:
-          "radial-gradient(rgba(6,147,227,1) 38%,rgb(155,81,224) 80%)",
-        backgroundOpacity: 1,
-        // border
-        borderEnable: false,
-        borderStyle: "solid",
-        borderWidth: 1,
-        borderColor: "#f8c045",
-        borderRadius: "",
-        // box-shadowpP
-        shadowEnable: false,
-        shadowOffsetX: 1,
-        shadowOffsetY: 0,
-        shadowBlur: 2,
-        shadowSpread: 2,
-        shadowColor: "#f8c045",
-        // margin
-        marginLink: true,
-        marginTop: 0,
-        marginBottom: 0,
-        marginLeft: 0,
-        marginRight: 0,
-        // padding
-        paddingLink: true,
-        paddingTop: 12,
-        paddingBottom: 12,
-        paddingLeft: 12,
-        paddingRight: 12,
-      },
-    },
-    blockId: { type: "string", default: "" },
-    width: {
-      type: "number",
-      default: 0,
-    },
-    verticleAlign: {
-      type: "string",
-      default: "",
-    },
-    responsiveWidth: {
-      type: "object",
-      default: {
-        orgWidth: 0,
-        // maxWidth: 0,
-      },
-    },
-    additionalClassNames: {
-      type: "object",
-      default: {},
-    },
-  },
+  attributes: AttrS,
   /* Render the block in the editor. */
   edit: (props) => {
     // console.log("column props->", props);
@@ -199,16 +202,19 @@ registerBlockType("unlimited-blocks/ubl-column-block-column", {
         overlLayColor = { backgroundColor: styles.backgroundColor };
       }
     }
-
+    // wrapper class
+    let WrapperClass = `ubl-blocks-cw-column-wrap ${blockId}column-wrap`;
+    WrapperClass = setAnimationClass(
+      attributes.additionalClassNames,
+      WrapperClass
+    );
+    // wrapper class
     return (
       <div
         className={`ubl-blocks-cw-column ${blockId}`}
         ubl-blocks-styler={ublStyler1}
       >
-        <div
-          className={`ubl-blocks-cw-column-wrap ${blockId + "column-wrap"}`}
-          ubl-blocks-styler={ublStyler2}
-        >
+        <div className={WrapperClass} ubl-blocks-styler={ublStyler2}>
           <div
             className="ubl-blocks-cw-column-overlay"
             style={overlLayColor}

@@ -35,3 +35,25 @@ const BasicToggleNav = (props) => {
   }
 };
 export default BasicToggleNav;
+// component
+{
+  /* <BasicToggleNav
+              value={this.state.openPanel}
+              navItem={[
+                {
+                  name: "layout",
+                  title: "Layout",
+                  icon: "dashicons dashicons-editor-table",
+                },
+                {
+                  name: "style",
+                  title: "Style",
+                  icon: "dashicons dashicons-admin-customizer",
+                },
+              ]}
+              clickme={(value_) => {
+                this.setState({ openPanel: value_ });
+              }}
+            /> */
+}
+// component
