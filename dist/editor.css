@@ -514,16 +514,24 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:focus:after {
 
 .ul-animation-popup .components-popover__content {
   padding: 10px;
+  min-width: 225px;
 }
 .ul-animation-popup .components-popover__content .components-menu-group {
   max-height: 250px;
   overflow-y: auto;
+  margin-top: 8px;
+}
+.ul-animation-popup .components-popover__content .no_animation_found {
+  padding: 10px 0;
 }
 .ul-animation-popup .components-popover__content .search-wrap_ {
   margin: 0;
   display: flex;
   flex-direction: column;
   grid-gap: 6px;
+}
+.ul-animation-popup .components-popover__content .search-wrap_ .search-wrap_heading {
+  color: #707070;
 }
 .wpgt-radio-wrap {
   margin: 14px 0;

@@ -11,6 +11,7 @@ export class Animation extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      animationTitle: false,
       animation: { name: null, delay: null, speed: null },
       allAnimation: AnimationsClass,
       showPopOver: false,
@@ -31,9 +32,38 @@ export class Animation extends Component {
       if (value.speed) {
         setobj["speed"] = value.speed;
       }
-      this.setState({ animation: setobj });
+      let setObje = { animation: setobj };
+      let getTitle = this.getDefaultTitle(value.name);
+      if (getTitle) {
+        setObje["animationTitle"] = getTitle;
+      }
+      this.setState(setObje);
     }
   }
+
+  getDefaultTitle = (value_) => {
+    let getAnimation = [...AnimationsClass];
+    const checkPointOne_ = (mainArray) => {
+      let stageTwo = false;
+      for (let stageTwoFil of mainArray) {
+        if (stageTwoFil.anim_class == value_) {
+          stageTwo = stageTwoFil.title;
+          break;
+        }
+      }
+      return stageTwo;
+    };
+    let title = false;
+    for (let stageOne of getAnimation) {
+      let stageTwo = checkPointOne_(stageOne.value);
+      if (stageTwo) {
+        title = stageTwo;
+        break;
+      }
+    }
+    return title;
+  };
+
   changeVal(stateKey, stateVal) {
     let stateWoutCopyAnim = this.state.animation;
     if (!stateWoutCopyAnim) {
@@ -42,7 +72,6 @@ export class Animation extends Component {
     let copyStateAnim = { ...stateWoutCopyAnim };
     copyStateAnim[stateKey] = stateVal == "none" ? null : stateVal;
     this.setState({ animation: copyStateAnim });
-    // ex ->  animate__animated animate__bounce animate__delay-2s
     this.props.change(copyStateAnim);
   }
 
@@ -55,7 +84,7 @@ export class Animation extends Component {
           this.changeVal("delay", e.target.value);
         }}
       >
-        <option value="none">Default</option>
+        <option value="none">{__("Default", "unlimited-blocks")}</option>
         {allDelay.map((val_) => (
           <option
             value={val_.anim_class}
@@ -76,7 +105,7 @@ export class Animation extends Component {
           this.changeVal("speed", e.target.value);
         }}
       >
-        <option value="none">Default</option>
+        <option value="none">{__("Default", "unlimited-blocks")}</option>
         {allSpeed.map((val_) => (
           <option
             value={val_.anim_class}
@@ -91,9 +120,9 @@ export class Animation extends Component {
   allAnimations = () => {
     let allAnimations = this.state.allAnimation;
     let thisAnimation = this.state.animation.name;
-    const chooseAnimation = (animClass) => {
+    const chooseAnimation = (animClass, title_) => {
       this.changeVal("name", animClass);
-      this.setState({ showPopOver: false });
+      this.setState({ showPopOver: false, animationTitle: title_ });
     };
     const classNandTitle = (val) => {
       return val.map((val2) => {
@@ -101,7 +130,7 @@ export class Animation extends Component {
         return (
           <MenuItem
             onClick={() => {
-              chooseAnimation(val2.anim_class);
+              chooseAnimation(val2.anim_class, val2.title);
             }}
             icon={isActive ? "yes" : false}
           >
@@ -112,21 +141,31 @@ export class Animation extends Component {
     };
     return (
       <MenuGroup>
-        <MenuItem
-          onClick={() => {
-            chooseAnimation("none");
-          }}
-        >
-          {__("None", "unlimited-blocks")}
-        </MenuItem>
-        {allAnimations.map((val_) => {
-          return (
-            <>
-              <strong className="animationHeading">{val_.title}</strong>
-              {classNandTitle(val_.value)}
-            </>
-          );
-        })}
+        {allAnimations ? (
+          <>
+            <MenuItem
+              onClick={() => {
+                chooseAnimation("none", false);
+              }}
+            >
+              {__("None", "unlimited-blocks")}
+            </MenuItem>
+            {allAnimations.map((val_) => {
+              return (
+                <>
+                  {val_.title && (
+                    <strong className="animationHeading">{val_.title}</strong>
+                  )}
+                  {classNandTitle(val_.value)}
+                </>
+              );
+            })}
+          </>
+        ) : (
+          <div className="no_animation_found">
+            <span>{__("No Animation Found", "unlinited-blocks")}</span>
+          </div>
+        )}
       </MenuGroup>
     );
   };
@@ -142,12 +181,55 @@ export class Animation extends Component {
         className={"ul-animation-popup"}
       >
         <div className="search-wrap_">
-          <strong>{__("Animations", "unlimited-blocks")}</strong>
-          <input type="text" />
+          <strong className="search-wrap_heading">
+            {__("Animations", "unlimited-blocks")}
+          </strong>
+          <input
+            type="text"
+            onKeyUp={(e) => {
+              this.searchAnimation(e.target.value);
+            }}
+          />
         </div>
         {this.allAnimations()}
       </Popover>
     );
+  };
+  searchAnimation = (val) => {
+    if (val != "") {
+      let lowerValue = val.toLowerCase();
+      let getAnimation = [...AnimationsClass];
+      const checkPointOne = (mainArray) => {
+        let stageTwo = [];
+        for (let stageTwoFil of mainArray) {
+          if (stageTwoFil.title) {
+            let chunkArrayTitle = stageTwoFil.title.toLowerCase();
+            let getIndex = chunkArrayTitle.indexOf(lowerValue);
+            if (getIndex >= 0) {
+              stageTwo.push(stageTwoFil);
+            }
+          }
+        }
+        if (stageTwo.length) {
+          return stageTwo;
+        }
+      };
+      let newAnimation = [];
+      for (let stageOne of getAnimation) {
+        let stageTwo = checkPointOne(stageOne.value);
+        if (stageTwo) newAnimation.push({ value: stageTwo });
+      }
+
+      if (newAnimation.length) {
+        this.setState({ allAnimation: newAnimation });
+      } else {
+        // set animations not available
+        this.setState({ allAnimation: false });
+      }
+    } else {
+      // set original animations
+      this.setState({ allAnimation: AnimationsClass });
+    }
   };
   render() {
     let { state } = this;
@@ -166,8 +248,8 @@ export class Animation extends Component {
               }
             }}
           >
-            {state.animation.name
-              ? state.animation.name
+            {state.animationTitle
+              ? state.animationTitle
               : __("Choose Animation", "unlimited-blocks")}
           </Button>
           {this.state.showPopOver && this.animationInPopup()}
@@ -224,5 +306,9 @@ export let setAnimationClass = (cssObj, existClass = false) => {
               change={(animate) => {
                 setAttributes({ additionalClassNames: animate });
               }}
-            /> */
+            /> 
+    added classes
+    // ex ->  animate__animated animate__bounce animate__delay-2s
+            
+            */
 }

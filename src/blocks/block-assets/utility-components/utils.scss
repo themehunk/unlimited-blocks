@@ -104,10 +104,14 @@
 .ul-animation-popup {
   .components-popover__content {
     padding: 10px;
-    // max-height: 300px !important;
+    min-width: 225px;
     .components-menu-group {
       max-height: 250px;
       overflow-y: auto;
+      margin-top: 8px;
+    }
+    .no_animation_found {
+      padding: 10px 0;
     }
     .search-wrap_ {
       margin: 0;
@@ -120,6 +124,9 @@
       // padding: 10px;
       // top: 2px;
       // right: -16px;
+      .search-wrap_heading {
+        color: #707070;
+      }
     }
   }
 }
