@@ -41,8 +41,112 @@ const Fade = {
     { title: "Fade Out Up Big", anim_class: "animate__fadeOutUpBig" },
   ],
 };
+const Fliping = {
+  title: "Fliping",
+  value: [
+    //in
+    { title: "Flip", anim_class: "animate__flip" },
+    { title: "Flip In X", anim_class: "animate__flipInX" },
+    { title: "Flip In Y", anim_class: "animate__flipInY" },
+    { title: "Flip Out X", anim_class: "animate__flipOutX" },
+    { title: "Flip Out Y", anim_class: "animate__flipOutY" },
+  ],
+};
+const Rotate = {
+  title: "Rotating",
+  value: [
+    //in
+    { title: "Rotate In", anim_class: "animate__rotateIn" },
+    { title: "Rotate In Down Left", anim_class: "animate__rotateInDownLeft" },
+    { title: "Rotate In Down Right", anim_class: "animate__rotateInDownRight" },
+    { title: "Rotate In Up Left", anim_class: "animate__rotateInUpLeft" },
+    { title: "Rotate In Up Right", anim_class: "animate__rotateInUpRight" },
+    { title: "Rotate Out", anim_class: "animate__rotateOut" },
+    { title: "Rotate Out Down Left", anim_class: "animate__rotateOutDownLeft" },
+    {
+      title: "Rotate Out Down Right",
+      anim_class: "animate__rotateOutDownRight",
+    },
+    { title: "Rotate Out Up Left", anim_class: "animate__rotateOutUpLeft" },
+    { title: "Rotate Out Up Right", anim_class: "animate__rotateOutUpRight" },
+  ],
+};
+const Sliding = {
+  title: "Sliding",
+  value: [
+    //in
+    { title: "Slide In Down", anim_class: "animate__slideInDown" },
+    { title: "Slide In Left", anim_class: "animate__slideInLeft" },
+    { title: "Slide In Right", anim_class: "animate__slideInRight" },
+    { title: "Slide In Up", anim_class: "animate__slideInUp" },
 
-export let animations = [bounce, Fade];
+    { title: "Slide Out Down", anim_class: "animate__slideOutDown" },
+    { title: "Slide Out Left", anim_class: "animate__slideOutLeft" },
+    { title: "Slide Out Right", anim_class: "animate__slideOutRight" },
+    { title: "Slide Out Up", anim_class: "animate__slideOutUp" },
+  ],
+};
+const Zooming = {
+  title: "Zooming",
+  value: [
+    //in
+    { title: "Zoom In", anim_class: "animate__zoomIn" },
+    { title: "Zoom In Down", anim_class: "animate__zoomInDown" },
+    { title: "Zoom In Left", anim_class: "animate__zoomInLeft" },
+    { title: "Zoom In Right", anim_class: "animate__zoomInRight" },
+    { title: "Zoom In Up", anim_class: "animate__zoomInUp" },
+    { title: "Zoom Out", anim_class: "animate__zoomOut" },
+    { title: "Zoom Out Down", anim_class: "animate__zoomOutDown" },
+    { title: "Zoom Out Left", anim_class: "animate__zoomOutLeft" },
+    { title: "Zoom Out Right", anim_class: "animate__zoomOutRight" },
+    { title: "Zoom Out Up", anim_class: "animate__zoomOutUp" },
+  ],
+};
+const Roling = {
+  title: "Rolling",
+  value: [
+    //in
+    { title: "Roll In", anim_class: "animate__rollIn" },
+    { title: "Roll Out", anim_class: "animate__rollOut" },
+  ],
+};
+const Other = {
+  title: "Othre",
+  value: [
+    //in
+    { title: "Light Speed In Left", anim_class: "animate__lightSpeedInLeft" },
+    { title: "Light Speed In Right", anim_class: "animate__lightSpeedInRight" },
+    { title: "Light Speed Out Left", anim_class: "animate__lightSpeedOutLeft" },
+    {
+      title: "Light Speed Out Right",
+      anim_class: "animate__lightSpeedOutRight",
+    },
+
+    { title: "Flash", anim_class: "animate__flash" },
+    { title: "Pulse", anim_class: "animate__pulse" },
+    { title: "Rubber Band", anim_class: "animate__rubberBand" },
+    { title: "Shake", anim_class: "animate__shakeX" },
+    { title: "Hand Shake", anim_class: "animate__headShake" },
+    { title: "Swing", anim_class: "animate__swing" },
+    { title: "TaDa", anim_class: "animate__tada" },
+    { title: "Wobble", anim_class: "animate__wobble" },
+    { title: "Jello", anim_class: "animate__jello" },
+    { title: "Heart Beat", anim_class: "animate__heartBeat" },
+    { title: "Hinge", anim_class: "animate__hinge" },
+    { title: "Jack In The Box", anim_class: "animate__jackInTheBox" },
+  ],
+};
+
+export let animations = [
+  bounce,
+  Fade,
+  Fliping,
+  Rotate,
+  Sliding,
+  Zooming,
+  Roling,
+  Other,
+];
 export let AnimationDelay_ = [
   { title: "One Second", anim_class: "animate__delay-1s" },
   { title: "Two Second", anim_class: "animate__delay-2s" },

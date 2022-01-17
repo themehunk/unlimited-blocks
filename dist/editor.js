@@ -6025,7 +6025,190 @@ var Fade = {
     anim_class: "animate__fadeOutUpBig"
   }]
 };
-var animations = [bounce, Fade];
+var Fliping = {
+  title: "Fliping",
+  value: [//in
+  {
+    title: "Flip",
+    anim_class: "animate__flip"
+  }, {
+    title: "Flip In X",
+    anim_class: "animate__flipInX"
+  }, {
+    title: "Flip In Y",
+    anim_class: "animate__flipInY"
+  }, {
+    title: "Flip Out X",
+    anim_class: "animate__flipOutX"
+  }, {
+    title: "Flip Out Y",
+    anim_class: "animate__flipOutY"
+  }]
+};
+var Rotate = {
+  title: "Rotating",
+  value: [//in
+  {
+    title: "Rotate In",
+    anim_class: "animate__rotateIn"
+  }, {
+    title: "Rotate In Down Left",
+    anim_class: "animate__rotateInDownLeft"
+  }, {
+    title: "Rotate In Down Right",
+    anim_class: "animate__rotateInDownRight"
+  }, {
+    title: "Rotate In Up Left",
+    anim_class: "animate__rotateInUpLeft"
+  }, {
+    title: "Rotate In Up Right",
+    anim_class: "animate__rotateInUpRight"
+  }, {
+    title: "Rotate Out",
+    anim_class: "animate__rotateOut"
+  }, {
+    title: "Rotate Out Down Left",
+    anim_class: "animate__rotateOutDownLeft"
+  }, {
+    title: "Rotate Out Down Right",
+    anim_class: "animate__rotateOutDownRight"
+  }, {
+    title: "Rotate Out Up Left",
+    anim_class: "animate__rotateOutUpLeft"
+  }, {
+    title: "Rotate Out Up Right",
+    anim_class: "animate__rotateOutUpRight"
+  }]
+};
+var Sliding = {
+  title: "Sliding",
+  value: [//in
+  {
+    title: "Slide In Down",
+    anim_class: "animate__slideInDown"
+  }, {
+    title: "Slide In Left",
+    anim_class: "animate__slideInLeft"
+  }, {
+    title: "Slide In Right",
+    anim_class: "animate__slideInRight"
+  }, {
+    title: "Slide In Up",
+    anim_class: "animate__slideInUp"
+  }, {
+    title: "Slide Out Down",
+    anim_class: "animate__slideOutDown"
+  }, {
+    title: "Slide Out Left",
+    anim_class: "animate__slideOutLeft"
+  }, {
+    title: "Slide Out Right",
+    anim_class: "animate__slideOutRight"
+  }, {
+    title: "Slide Out Up",
+    anim_class: "animate__slideOutUp"
+  }]
+};
+var Zooming = {
+  title: "Zooming",
+  value: [//in
+  {
+    title: "Zoom In",
+    anim_class: "animate__zoomIn"
+  }, {
+    title: "Zoom In Down",
+    anim_class: "animate__zoomInDown"
+  }, {
+    title: "Zoom In Left",
+    anim_class: "animate__zoomInLeft"
+  }, {
+    title: "Zoom In Right",
+    anim_class: "animate__zoomInRight"
+  }, {
+    title: "Zoom In Up",
+    anim_class: "animate__zoomInUp"
+  }, {
+    title: "Zoom Out",
+    anim_class: "animate__zoomOut"
+  }, {
+    title: "Zoom Out Down",
+    anim_class: "animate__zoomOutDown"
+  }, {
+    title: "Zoom Out Left",
+    anim_class: "animate__zoomOutLeft"
+  }, {
+    title: "Zoom Out Right",
+    anim_class: "animate__zoomOutRight"
+  }, {
+    title: "Zoom Out Up",
+    anim_class: "animate__zoomOutUp"
+  }]
+};
+var Roling = {
+  title: "Rolling",
+  value: [//in
+  {
+    title: "Roll In",
+    anim_class: "animate__rollIn"
+  }, {
+    title: "Roll Out",
+    anim_class: "animate__rollOut"
+  }]
+};
+var Other = {
+  title: "Othre",
+  value: [//in
+  {
+    title: "Light Speed In Left",
+    anim_class: "animate__lightSpeedInLeft"
+  }, {
+    title: "Light Speed In Right",
+    anim_class: "animate__lightSpeedInRight"
+  }, {
+    title: "Light Speed Out Left",
+    anim_class: "animate__lightSpeedOutLeft"
+  }, {
+    title: "Light Speed Out Right",
+    anim_class: "animate__lightSpeedOutRight"
+  }, {
+    title: "Flash",
+    anim_class: "animate__flash"
+  }, {
+    title: "Pulse",
+    anim_class: "animate__pulse"
+  }, {
+    title: "Rubber Band",
+    anim_class: "animate__rubberBand"
+  }, {
+    title: "Shake",
+    anim_class: "animate__shakeX"
+  }, {
+    title: "Hand Shake",
+    anim_class: "animate__headShake"
+  }, {
+    title: "Swing",
+    anim_class: "animate__swing"
+  }, {
+    title: "TaDa",
+    anim_class: "animate__tada"
+  }, {
+    title: "Wobble",
+    anim_class: "animate__wobble"
+  }, {
+    title: "Jello",
+    anim_class: "animate__jello"
+  }, {
+    title: "Heart Beat",
+    anim_class: "animate__heartBeat"
+  }, {
+    title: "Hinge",
+    anim_class: "animate__hinge"
+  }, {
+    title: "Jack In The Box",
+    anim_class: "animate__jackInTheBox"
+  }]
+};
+var animations = [bounce, Fade, Fliping, Rotate, Sliding, Zooming, Roling, Other];
 var AnimationDelay_ = [{
   title: "One Second",
   anim_class: "animate__delay-1s"
@@ -6073,7 +6256,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _animateclasses__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./animateclasses */ "./src/blocks/block-assets/utility-components/animations/animateclasses.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _animateclasses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./animateclasses */ "./src/blocks/block-assets/utility-components/animations/animateclasses.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -6105,6 +6290,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var Animation = /*#__PURE__*/function (_Component) {
   _inherits(Animation, _Component);
 
@@ -6117,34 +6303,8 @@ var Animation = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
 
-    _defineProperty(_assertThisInitialized(_this), "allAnimations", function () {
-      var allAnimations = _animateclasses__WEBPACK_IMPORTED_MODULE_2__["animations"];
-      var thisAnimation = _this.state.animation.name;
-
-      var classNandTitle = function classNandTitle(val) {
-        return val.map(function (val2) {
-          return wp.element.createElement("option", {
-            value: val2.anim_class,
-            selected: thisAnimation == val2.anim_class ? "selected" : null
-          }, val2.title);
-        });
-      };
-
-      return wp.element.createElement("select", {
-        onChange: function onChange(e) {
-          _this.changeVal("name", e.target.value);
-        }
-      }, wp.element.createElement("option", {
-        value: "none"
-      }, "None"), allAnimations.map(function (val_) {
-        return wp.element.createElement("optgroup", {
-          label: val_.title
-        }, classNandTitle(val_.value));
-      }));
-    });
-
     _defineProperty(_assertThisInitialized(_this), "animationsDelay", function () {
-      var allDelay = _animateclasses__WEBPACK_IMPORTED_MODULE_2__["AnimationDelay_"];
+      var allDelay = _animateclasses__WEBPACK_IMPORTED_MODULE_3__["AnimationDelay_"];
       var thisAnimDelay = _this.state.animation.delay;
       return wp.element.createElement("select", {
         onChange: function onChange(e) {
@@ -6161,7 +6321,7 @@ var Animation = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "animationsSpeed", function () {
-      var allSpeed = _animateclasses__WEBPACK_IMPORTED_MODULE_2__["AnimationSpeed_"];
+      var allSpeed = _animateclasses__WEBPACK_IMPORTED_MODULE_3__["AnimationSpeed_"];
       var thisAnimSpeed = _this.state.animation.speed;
       return wp.element.createElement("select", {
         onChange: function onChange(e) {
@@ -6177,12 +6337,67 @@ var Animation = /*#__PURE__*/function (_Component) {
       }));
     });
 
+    _defineProperty(_assertThisInitialized(_this), "allAnimations", function () {
+      var allAnimations = _this.state.allAnimation;
+      var thisAnimation = _this.state.animation.name;
+
+      var chooseAnimation = function chooseAnimation(animClass) {
+        _this.changeVal("name", animClass);
+
+        _this.setState({
+          showPopOver: false
+        });
+      };
+
+      var classNandTitle = function classNandTitle(val) {
+        return val.map(function (val2) {
+          var isActive = val2.anim_class == thisAnimation ? true : false;
+          return wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["MenuItem"], {
+            onClick: function onClick() {
+              chooseAnimation(val2.anim_class);
+            },
+            icon: isActive ? "yes" : false
+          }, val2.title);
+        });
+      };
+
+      return wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["MenuGroup"], null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["MenuItem"], {
+        onClick: function onClick() {
+          chooseAnimation("none");
+        }
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("None", "unlimited-blocks")), allAnimations.map(function (val_) {
+        return wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("strong", {
+          className: "animationHeading"
+        }, val_.title), classNandTitle(val_.value));
+      }));
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "animationInPopup", function () {
+      return wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Popover"], {
+        position: "top middle",
+        onFocusOutside: function onFocusOutside(outs) {
+          if (_this.state.showPopOver) {
+            _this.setState({
+              showPopOver: false
+            });
+          }
+        },
+        className: "ul-animation-popup"
+      }, wp.element.createElement("div", {
+        className: "search-wrap_"
+      }, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Animations", "unlimited-blocks")), wp.element.createElement("input", {
+        type: "text"
+      })), _this.allAnimations());
+    });
+
     _this.state = {
       animation: {
         name: null,
         delay: null,
         speed: null
-      }
+      },
+      allAnimation: _animateclasses__WEBPACK_IMPORTED_MODULE_3__["animations"],
+      showPopOver: false
     };
     return _this;
   }
@@ -6231,21 +6446,35 @@ var Animation = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var state = this.state;
       return wp.element.createElement("div", {
         className: "ul-animation-tool"
-      }, wp.element.createElement("div", {
-        className: "ul-animation-name"
-      }, wp.element.createElement("p", {
-        className: "title_"
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Name", "unlimited-blocks")), this.allAnimations()), state.animation.name && wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("div", {
+      }, wp.element.createElement("div", null, wp.element.createElement("p", {
+        className: "anim_title_"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Animation", "unlimited-blocks")), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+        variant: "secondary",
+        className: "ul-animation-tool-toggle-btn",
+        onClick: function onClick() {
+          if (!_this2.state.showPopOver) {
+            _this2.setState({
+              showPopOver: true
+            });
+          } else {
+            _this2.setState({
+              showPopOver: false
+            });
+          }
+        }
+      }, state.animation.name ? state.animation.name : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Choose Animation", "unlimited-blocks")), this.state.showPopOver && this.animationInPopup()), state.animation.name && wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("div", {
         className: "ul-animation-delay"
       }, wp.element.createElement("p", {
-        className: "title_"
+        className: "anim_title_"
       }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Delay", "unlimited-blocks")), this.animationsDelay()), wp.element.createElement("div", {
         className: "ul-animation-speed"
       }, wp.element.createElement("p", {
-        className: "title_"
+        className: "anim_title_"
       }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Speed", "unlimited-blocks")), this.animationsSpeed())));
     }
   }]);
