@@ -6025,7 +6025,190 @@ var Fade = {
     anim_class: "animate__fadeOutUpBig"
   }]
 };
-var animations = [bounce, Fade];
+var Fliping = {
+  title: "Fliping",
+  value: [//in
+  {
+    title: "Flip",
+    anim_class: "animate__flip"
+  }, {
+    title: "Flip In X",
+    anim_class: "animate__flipInX"
+  }, {
+    title: "Flip In Y",
+    anim_class: "animate__flipInY"
+  }, {
+    title: "Flip Out X",
+    anim_class: "animate__flipOutX"
+  }, {
+    title: "Flip Out Y",
+    anim_class: "animate__flipOutY"
+  }]
+};
+var Rotate = {
+  title: "Rotating",
+  value: [//in
+  {
+    title: "Rotate In",
+    anim_class: "animate__rotateIn"
+  }, {
+    title: "Rotate In Down Left",
+    anim_class: "animate__rotateInDownLeft"
+  }, {
+    title: "Rotate In Down Right",
+    anim_class: "animate__rotateInDownRight"
+  }, {
+    title: "Rotate In Up Left",
+    anim_class: "animate__rotateInUpLeft"
+  }, {
+    title: "Rotate In Up Right",
+    anim_class: "animate__rotateInUpRight"
+  }, {
+    title: "Rotate Out",
+    anim_class: "animate__rotateOut"
+  }, {
+    title: "Rotate Out Down Left",
+    anim_class: "animate__rotateOutDownLeft"
+  }, {
+    title: "Rotate Out Down Right",
+    anim_class: "animate__rotateOutDownRight"
+  }, {
+    title: "Rotate Out Up Left",
+    anim_class: "animate__rotateOutUpLeft"
+  }, {
+    title: "Rotate Out Up Right",
+    anim_class: "animate__rotateOutUpRight"
+  }]
+};
+var Sliding = {
+  title: "Sliding",
+  value: [//in
+  {
+    title: "Slide In Down",
+    anim_class: "animate__slideInDown"
+  }, {
+    title: "Slide In Left",
+    anim_class: "animate__slideInLeft"
+  }, {
+    title: "Slide In Right",
+    anim_class: "animate__slideInRight"
+  }, {
+    title: "Slide In Up",
+    anim_class: "animate__slideInUp"
+  }, {
+    title: "Slide Out Down",
+    anim_class: "animate__slideOutDown"
+  }, {
+    title: "Slide Out Left",
+    anim_class: "animate__slideOutLeft"
+  }, {
+    title: "Slide Out Right",
+    anim_class: "animate__slideOutRight"
+  }, {
+    title: "Slide Out Up",
+    anim_class: "animate__slideOutUp"
+  }]
+};
+var Zooming = {
+  title: "Zooming",
+  value: [//in
+  {
+    title: "Zoom In",
+    anim_class: "animate__zoomIn"
+  }, {
+    title: "Zoom In Down",
+    anim_class: "animate__zoomInDown"
+  }, {
+    title: "Zoom In Left",
+    anim_class: "animate__zoomInLeft"
+  }, {
+    title: "Zoom In Right",
+    anim_class: "animate__zoomInRight"
+  }, {
+    title: "Zoom In Up",
+    anim_class: "animate__zoomInUp"
+  }, {
+    title: "Zoom Out",
+    anim_class: "animate__zoomOut"
+  }, {
+    title: "Zoom Out Down",
+    anim_class: "animate__zoomOutDown"
+  }, {
+    title: "Zoom Out Left",
+    anim_class: "animate__zoomOutLeft"
+  }, {
+    title: "Zoom Out Right",
+    anim_class: "animate__zoomOutRight"
+  }, {
+    title: "Zoom Out Up",
+    anim_class: "animate__zoomOutUp"
+  }]
+};
+var Roling = {
+  title: "Rolling",
+  value: [//in
+  {
+    title: "Roll In",
+    anim_class: "animate__rollIn"
+  }, {
+    title: "Roll Out",
+    anim_class: "animate__rollOut"
+  }]
+};
+var Other = {
+  title: "Othre",
+  value: [//in
+  {
+    title: "Light Speed In Left",
+    anim_class: "animate__lightSpeedInLeft"
+  }, {
+    title: "Light Speed In Right",
+    anim_class: "animate__lightSpeedInRight"
+  }, {
+    title: "Light Speed Out Left",
+    anim_class: "animate__lightSpeedOutLeft"
+  }, {
+    title: "Light Speed Out Right",
+    anim_class: "animate__lightSpeedOutRight"
+  }, {
+    title: "Flash",
+    anim_class: "animate__flash"
+  }, {
+    title: "Pulse",
+    anim_class: "animate__pulse"
+  }, {
+    title: "Rubber Band",
+    anim_class: "animate__rubberBand"
+  }, {
+    title: "Shake",
+    anim_class: "animate__shakeX"
+  }, {
+    title: "Hand Shake",
+    anim_class: "animate__headShake"
+  }, {
+    title: "Swing",
+    anim_class: "animate__swing"
+  }, {
+    title: "TaDa",
+    anim_class: "animate__tada"
+  }, {
+    title: "Wobble",
+    anim_class: "animate__wobble"
+  }, {
+    title: "Jello",
+    anim_class: "animate__jello"
+  }, {
+    title: "Heart Beat",
+    anim_class: "animate__heartBeat"
+  }, {
+    title: "Hinge",
+    anim_class: "animate__hinge"
+  }, {
+    title: "Jack In The Box",
+    anim_class: "animate__jackInTheBox"
+  }]
+};
+var animations = [bounce, Fade, Fliping, Rotate, Sliding, Zooming, Roling, Other];
 var AnimationDelay_ = [{
   title: "One Second",
   anim_class: "animate__delay-1s"
@@ -6073,12 +6256,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _animateclasses__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./animateclasses */ "./src/blocks/block-assets/utility-components/animations/animateclasses.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _animateclasses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./animateclasses */ "./src/blocks/block-assets/utility-components/animations/animateclasses.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6105,6 +6304,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var Animation = /*#__PURE__*/function (_Component) {
   _inherits(Animation, _Component);
 
@@ -6117,34 +6317,59 @@ var Animation = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
 
-    _defineProperty(_assertThisInitialized(_this), "allAnimations", function () {
-      var allAnimations = _animateclasses__WEBPACK_IMPORTED_MODULE_2__["animations"];
-      var thisAnimation = _this.state.animation.name;
+    _defineProperty(_assertThisInitialized(_this), "getDefaultTitle", function (value_) {
+      var getAnimation = _toConsumableArray(_animateclasses__WEBPACK_IMPORTED_MODULE_3__["animations"]);
 
-      var classNandTitle = function classNandTitle(val) {
-        return val.map(function (val2) {
-          return wp.element.createElement("option", {
-            value: val2.anim_class,
-            selected: thisAnimation == val2.anim_class ? "selected" : null
-          }, val2.title);
-        });
+      var checkPointOne_ = function checkPointOne_(mainArray) {
+        var stageTwo = false;
+
+        var _iterator = _createForOfIteratorHelper(mainArray),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var stageTwoFil = _step.value;
+
+            if (stageTwoFil.anim_class == value_) {
+              stageTwo = stageTwoFil.title;
+              break;
+            }
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+
+        return stageTwo;
       };
 
-      return wp.element.createElement("select", {
-        onChange: function onChange(e) {
-          _this.changeVal("name", e.target.value);
+      var title = false;
+
+      var _iterator2 = _createForOfIteratorHelper(getAnimation),
+          _step2;
+
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var stageOne = _step2.value;
+          var stageTwo = checkPointOne_(stageOne.value);
+
+          if (stageTwo) {
+            title = stageTwo;
+            break;
+          }
         }
-      }, wp.element.createElement("option", {
-        value: "none"
-      }, "None"), allAnimations.map(function (val_) {
-        return wp.element.createElement("optgroup", {
-          label: val_.title
-        }, classNandTitle(val_.value));
-      }));
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+
+      return title;
     });
 
     _defineProperty(_assertThisInitialized(_this), "animationsDelay", function () {
-      var allDelay = _animateclasses__WEBPACK_IMPORTED_MODULE_2__["AnimationDelay_"];
+      var allDelay = _animateclasses__WEBPACK_IMPORTED_MODULE_3__["AnimationDelay_"];
       var thisAnimDelay = _this.state.animation.delay;
       return wp.element.createElement("select", {
         onChange: function onChange(e) {
@@ -6152,7 +6377,7 @@ var Animation = /*#__PURE__*/function (_Component) {
         }
       }, wp.element.createElement("option", {
         value: "none"
-      }, "Default"), allDelay.map(function (val_) {
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Default", "unlimited-blocks")), allDelay.map(function (val_) {
         return wp.element.createElement("option", {
           value: val_.anim_class,
           selected: thisAnimDelay == val_.anim_class ? "selected" : null
@@ -6161,7 +6386,7 @@ var Animation = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "animationsSpeed", function () {
-      var allSpeed = _animateclasses__WEBPACK_IMPORTED_MODULE_2__["AnimationSpeed_"];
+      var allSpeed = _animateclasses__WEBPACK_IMPORTED_MODULE_3__["AnimationSpeed_"];
       var thisAnimSpeed = _this.state.animation.speed;
       return wp.element.createElement("select", {
         onChange: function onChange(e) {
@@ -6169,7 +6394,7 @@ var Animation = /*#__PURE__*/function (_Component) {
         }
       }, wp.element.createElement("option", {
         value: "none"
-      }, "Default"), allSpeed.map(function (val_) {
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Default", "unlimited-blocks")), allSpeed.map(function (val_) {
         return wp.element.createElement("option", {
           value: val_.anim_class,
           selected: thisAnimSpeed == val_.anim_class ? "selected" : null
@@ -6177,12 +6402,149 @@ var Animation = /*#__PURE__*/function (_Component) {
       }));
     });
 
+    _defineProperty(_assertThisInitialized(_this), "allAnimations", function () {
+      var allAnimations = _this.state.allAnimation;
+      var thisAnimation = _this.state.animation.name;
+
+      var chooseAnimation = function chooseAnimation(animClass, title_) {
+        _this.changeVal("name", animClass);
+
+        _this.setState({
+          showPopOver: false,
+          animationTitle: title_
+        });
+      };
+
+      var classNandTitle = function classNandTitle(val) {
+        return val.map(function (val2) {
+          var isActive = val2.anim_class == thisAnimation ? true : false;
+          return wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["MenuItem"], {
+            onClick: function onClick() {
+              chooseAnimation(val2.anim_class, val2.title);
+            },
+            icon: isActive ? "yes" : false
+          }, val2.title);
+        });
+      };
+
+      return wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["MenuGroup"], null, allAnimations ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["MenuItem"], {
+        onClick: function onClick() {
+          chooseAnimation("none", false);
+        }
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("None", "unlimited-blocks")), allAnimations.map(function (val_) {
+        return wp.element.createElement(wp.element.Fragment, null, val_.title && wp.element.createElement("strong", {
+          className: "animationHeading"
+        }, val_.title), classNandTitle(val_.value));
+      })) : wp.element.createElement("div", {
+        className: "no_animation_found"
+      }, wp.element.createElement("span", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("No Animation Found", "unlinited-blocks"))));
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "animationInPopup", function () {
+      return wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Popover"], {
+        position: "top middle",
+        onFocusOutside: function onFocusOutside(outs) {
+          if (_this.state.showPopOver) {
+            _this.setState({
+              showPopOver: false
+            });
+          }
+        },
+        className: "ul-animation-popup"
+      }, wp.element.createElement("div", {
+        className: "search-wrap_"
+      }, wp.element.createElement("strong", {
+        className: "search-wrap_heading"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Animations", "unlimited-blocks")), wp.element.createElement("input", {
+        type: "text",
+        onKeyUp: function onKeyUp(e) {
+          _this.searchAnimation(e.target.value);
+        }
+      })), _this.allAnimations());
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "searchAnimation", function (val) {
+      if (val != "") {
+        var lowerValue = val.toLowerCase();
+
+        var getAnimation = _toConsumableArray(_animateclasses__WEBPACK_IMPORTED_MODULE_3__["animations"]);
+
+        var checkPointOne = function checkPointOne(mainArray) {
+          var stageTwo = [];
+
+          var _iterator3 = _createForOfIteratorHelper(mainArray),
+              _step3;
+
+          try {
+            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+              var stageTwoFil = _step3.value;
+
+              if (stageTwoFil.title) {
+                var chunkArrayTitle = stageTwoFil.title.toLowerCase();
+                var getIndex = chunkArrayTitle.indexOf(lowerValue);
+
+                if (getIndex >= 0) {
+                  stageTwo.push(stageTwoFil);
+                }
+              }
+            }
+          } catch (err) {
+            _iterator3.e(err);
+          } finally {
+            _iterator3.f();
+          }
+
+          if (stageTwo.length) {
+            return stageTwo;
+          }
+        };
+
+        var newAnimation = [];
+
+        var _iterator4 = _createForOfIteratorHelper(getAnimation),
+            _step4;
+
+        try {
+          for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+            var stageOne = _step4.value;
+            var stageTwo = checkPointOne(stageOne.value);
+            if (stageTwo) newAnimation.push({
+              value: stageTwo
+            });
+          }
+        } catch (err) {
+          _iterator4.e(err);
+        } finally {
+          _iterator4.f();
+        }
+
+        if (newAnimation.length) {
+          _this.setState({
+            allAnimation: newAnimation
+          });
+        } else {
+          // set animations not available
+          _this.setState({
+            allAnimation: false
+          });
+        }
+      } else {
+        // set original animations
+        _this.setState({
+          allAnimation: _animateclasses__WEBPACK_IMPORTED_MODULE_3__["animations"]
+        });
+      }
+    });
+
     _this.state = {
+      animationTitle: false,
       animation: {
         name: null,
         delay: null,
         speed: null
-      }
+      },
+      allAnimation: _animateclasses__WEBPACK_IMPORTED_MODULE_3__["animations"],
+      showPopOver: false
     };
     return _this;
   }
@@ -6205,9 +6567,16 @@ var Animation = /*#__PURE__*/function (_Component) {
           setobj["speed"] = value.speed;
         }
 
-        this.setState({
+        var setObje = {
           animation: setobj
-        });
+        };
+        var getTitle = this.getDefaultTitle(value.name);
+
+        if (getTitle) {
+          setObje["animationTitle"] = getTitle;
+        }
+
+        this.setState(setObje);
       }
     }
   }, {
@@ -6224,28 +6593,41 @@ var Animation = /*#__PURE__*/function (_Component) {
       copyStateAnim[stateKey] = stateVal == "none" ? null : stateVal;
       this.setState({
         animation: copyStateAnim
-      }); // ex ->  animate__animated animate__bounce animate__delay-2s
-
+      });
       this.props.change(copyStateAnim);
     }
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var state = this.state;
       return wp.element.createElement("div", {
         className: "ul-animation-tool"
-      }, wp.element.createElement("div", {
-        className: "ul-animation-name"
-      }, wp.element.createElement("p", {
-        className: "title_"
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Name", "unlimited-blocks")), this.allAnimations()), state.animation.name && wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("div", {
+      }, wp.element.createElement("div", null, wp.element.createElement("p", {
+        className: "anim_title_"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Animation", "unlimited-blocks")), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+        variant: "secondary",
+        className: "ul-animation-tool-toggle-btn",
+        onClick: function onClick() {
+          if (!_this2.state.showPopOver) {
+            _this2.setState({
+              showPopOver: true
+            });
+          } else {
+            _this2.setState({
+              showPopOver: false
+            });
+          }
+        }
+      }, state.animationTitle ? state.animationTitle : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Choose Animation", "unlimited-blocks")), this.state.showPopOver && this.animationInPopup()), state.animation.name && wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("div", {
         className: "ul-animation-delay"
       }, wp.element.createElement("p", {
-        className: "title_"
+        className: "anim_title_"
       }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Delay", "unlimited-blocks")), this.animationsDelay()), wp.element.createElement("div", {
         className: "ul-animation-speed"
       }, wp.element.createElement("p", {
-        className: "title_"
+        className: "anim_title_"
       }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Speed", "unlimited-blocks")), this.animationsSpeed())));
     }
   }]);
@@ -6288,7 +6670,11 @@ var setAnimationClass = function setAnimationClass(cssObj) {
               change={(animate) => {
                 setAttributes({ additionalClassNames: animate });
               }}
-            /> */
+            /> 
+    added classes
+    // ex ->  animate__animated animate__bounce animate__delay-2s
+            
+            */
 }
 
 /***/ }),

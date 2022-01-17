@@ -414,24 +414,6 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:focus:after {
   margin-bottom: 0;
 }
 
-.ul-top-nav {
-  margin: -16px;
-  display: flex;
-}
-.ul-top-nav > div {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 2px solid transparent;
-  cursor: pointer;
-}
-.ul-top-nav > div.active {
-  background: #ebebeb;
-  border-bottom: 2px solid #007cba;
-}
-
 .ul-dimension-tool {
   display: flex;
   margin: 16px 0 0 0;
@@ -482,6 +464,74 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:focus:after {
 .ul-dimension-tool .tools_ > div.link_dimension span:before {
   content: "";
   font-family: "dashicons";
+}
+
+.ul-top-nav {
+  margin: -16px;
+  display: flex;
+}
+.ul-top-nav > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+.ul-top-nav > div.active {
+  background: #ebebeb;
+  border-bottom: 2px solid #007cba;
+}
+
+.ul-animation-tool {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 15px;
+}
+.ul-animation-tool .ul-animation-tool-toggle-btn {
+  width: 100%;
+  color: #565656;
+  box-shadow: inset 0 0 0 1px #9d9d9d;
+  position: relative;
+}
+.ul-animation-tool .ul-animation-tool-toggle-btn:after {
+  display: block;
+  position: absolute;
+  right: 8px;
+  content: "";
+  font-family: "dashicons";
+  font-size: 18px;
+}
+.ul-animation-tool select {
+  width: 100%;
+}
+.ul-animation-tool .anim_title_ {
+  background: transparent;
+  margin: 5px 0;
+  padding: 0;
+}
+
+.ul-animation-popup .components-popover__content {
+  padding: 10px;
+  min-width: 225px;
+}
+.ul-animation-popup .components-popover__content .components-menu-group {
+  max-height: 250px;
+  overflow-y: auto;
+  margin-top: 8px;
+}
+.ul-animation-popup .components-popover__content .no_animation_found {
+  padding: 10px 0;
+}
+.ul-animation-popup .components-popover__content .search-wrap_ {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 6px;
+}
+.ul-animation-popup .components-popover__content .search-wrap_ .search-wrap_heading {
+  color: #707070;
 }
 .wpgt-radio-wrap {
   margin: 14px 0;
