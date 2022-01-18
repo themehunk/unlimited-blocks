@@ -312,3 +312,15 @@ export let setAnimationClass = (cssObj, existClass = false) => {
             
             */
 }
+
+// const { hasChildBlocks, rootClientId } = useSelect(
+//   (select) => {
+//     const { getBlockOrder, getBlockRootClientId } = select(blockEditorStore);
+
+//     return {
+//       hasChildBlocks: getBlockOrder(clientId).length > 0,
+//       rootClientId: getBlockRootClientId(clientId),
+//     };
+//   },
+//   [clientId]
+// );

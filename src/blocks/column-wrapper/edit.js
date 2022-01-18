@@ -205,7 +205,7 @@ class Edit extends Component {
   render() {
     // prevv ------------------=+++++++++++++============
 
-    // console.log('getLayoutTemplate->',getLayoutTemplate);
+    // console.log("wrapper props->", this.props);
 
     // initialize style for column
     const { attributes, setAttributes, clientId } = this.props;
@@ -878,13 +878,13 @@ class Edit extends Component {
             title={__("Animations", "unlimited-blocks")}
             initialOpen={false}
           >
-            <Animation
+            {/* <Animation
               value={attributes.additionalClassNames}
               change={(animate) => {
                 console.log("animation", animate);
                 setAttributes({ additionalClassNames: animate });
               }}
-            />
+            /> */}
           </PanelBody>
         </InspectorControls>
 
