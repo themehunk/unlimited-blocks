@@ -4,13 +4,12 @@
 import { __ } from "@wordpress/i18n";
 import { Component } from "@wordpress/element";
 import {
-  AlignmentToolbar,
-  BlockControls,
   InnerBlocks,
   InspectorControls,
-  BlockAlignmentToolbar,
   MediaUpload,
   ColorPalette,
+  Inserter,
+  store as blockEditorStore,
 } from "@wordpress/block-editor";
 import {
   PanelBody,
@@ -20,7 +19,10 @@ import {
   ToggleControl,
   __experimentalGradientPicker as GradientPicker,
   ResizableBox,
+  IconButton,
 } from "@wordpress/components";
+const { withSelect } = wp.data;
+
 import { UBLGraDientColors } from "../block-assets/post-functions";
 import BasicToggleNav from "../block-assets/utility-components/BasicToggleNav";
 import Dimension from "../block-assets/utility-components/dimension";
@@ -28,6 +30,8 @@ import {
   Animation,
   setAnimationClass,
 } from "../block-assets/utility-components/animations/index";
+import { compose } from "redux";
+import { withDispatch } from "@wordpress/data";
 class Edit extends Component {
   constructor() {
     super(...arguments);
@@ -47,7 +51,6 @@ class Edit extends Component {
     } else {
       getStyle[key_] = value;
     }
-
     setAttributes({ styles: getStyle });
   };
   componentDidUpdate(prevProps) {
@@ -147,6 +150,23 @@ class Edit extends Component {
     setTimeout(() => {
       this.firstTimeWidthInit();
     }, 200);
+
+    //   const { attributes, setAttributes, clientId } = this.props;
+    //   const useSelectData = useSelect(
+    //     (select) => {
+    //       // const { getBlockOrder, getBlockRootClientId } =
+    //       //   select(blockEditorStore);
+    //       // const rootId = getBlockRootClientId(clientId);
+    //       return {
+    //         // hasChildBlocks: getBlockOrder(clientId).length > 0,
+    //         // rootClientId: rootId,
+    //         // columnsIds: getBlockOrder(rootId),
+    //         yes: true,
+    //       };
+    //     },
+    //     [clientId]
+    //   );
+    //   console.log("useSelectData->", useSelectData);
   }
 
   firstTimeWidthInit() {
@@ -190,7 +210,8 @@ class Edit extends Component {
   render() {
     // console.log("block column block class name ", this.props);
 
-    const { attributes, setAttributes } = this.props;
+    const { attributes, setAttributes, clientId } = this.props;
+
     let clickSyncBlock = document.getElementById(attributes.blockId);
     if (clickSyncBlock) {
       clickSyncBlock =
@@ -782,13 +803,6 @@ class Edit extends Component {
                 setAttributes({ width: gotWidth });
               }
             }
-
-            // console.log("getElement->", getElement);
-
-            // console.log(
-            //   "element_ width->",
-            //   element_.getBoundingClientRect().width
-            // );
           }}
         >
           {/* ////// */}
@@ -804,9 +818,13 @@ class Edit extends Component {
               ></div>
               <div className="ubl-blocks-cw-column-content">
                 <InnerBlocks
-                  template={[["core/paragraph"]]}
+                  // template={[["core/paragraph"]]}
                   templateLock={false}
                   templateInsertUpdatesSelection={false}
+                  renderAppender={InnerBlocks.ButtonBlockAppender}
+                  // renderAppender={() => (
+                  //   <this.UlBlockAppender rootClientId={clientId} />
+                  // )}
                 />
               </div>
             </div>
@@ -815,107 +833,100 @@ class Edit extends Component {
       </>
     );
   }
+  // UlBlockAppender({ rootClientId }) {
+  //   return (
+  //     <Inserter
+  //       rootClientId={rootClientId}
+  //       renderToggle={({ onToggle, disabled }) => (
+  //         <IconButton
+  //           className="my-button-block-appender"
+  //           onClick={onToggle}
+  //           disabled={disabled}
+  //           label="Add a Block"
+  //           icon="plus"
+  //         />
+  //       )}
+  //       isAppender
+  //     />
+  //   );
+  // }
 }
 
-export default Edit;
+export default compose(
+  withSelect((select, ownProps) => {
+    // console.log("block column block class name inside select  ", ownProps);
+    // const { clientId } = ownProps;
+    // const { getBlockOrder, getBlockRootClientId, getBlock } =
+    //   select(blockEditorStore);
+    // const rootId = getBlockRootClientId(clientId);
+    // let getRootBlock = getBlock(rootId);
+    // console.log("clientId -> ", clientId);
+    // let getBlockorder = getBlockOrder(clientId);
+    // console.log("getBlockorder->", getBlockorder);
+    // console.log("getRootBlock->", getRootBlock);
+    // console.log("getRootBlock attr->", getRootBlock.attributes);
+    // console.log("getBlockRootClientId->", getBlockRootClientId);
+  }),
+  withDispatch((dispatch, ownProps, registry) => {
+    const { clientId } = ownProps;
+    const { getBlockOrder, getBlockRootClientId, getBlock } =
+      registry.select(blockEditorStore);
 
-{
-  /* <ResizableBox
-            enable={{
-              top: false,
-              right: true,
-              bottom: false,
-              left: false,
-              topRight: false,
-              bottomRight: false,
-              bottomLeft: false,
-              topLeft: false,
-            }}
-            
-            onResizeStart={(_event, _direction, elt) => {
-              console.log("onResizeStart->");
-              // console.log("_event->", _event);
-              // console.log("_direction->", _direction);
-              // console.log("elt->", elt);
+    // console.log("getBlockregistry->", getBlockregistry);
+    // console.log("getBlockregistry order ->", getBlockregistry.getBlockOrder);
 
-              // const nextVal = getNextVal(elt);
-              // onResizeStart(nextVal);
-              // onResize(nextVal);
-            }}
-            onResize={(_event, _direction, elt) => {
-              console.log("onResize->");
-              console.log("_event->", _event);
-              console.log("_direction->", _direction);
-              console.log("elt->", elt);
-              // onResize(getNextVal(elt));
-              // if (!isResizing) {
-              //   setIsResizing(true);
-              // }
-            }}
-            onResizeStop={(_event, _direction, elt) => {
-              console.log("onResizeStop->");
-              // console.log("_event->", _event);
-              // console.log("_direction->", _direction);
-              // console.log("elt->", elt);
+    const rootId = getBlockRootClientId(clientId);
 
-              // const nextVal = Math.min(MAX_SPACER_SIZE, getCurrentSize(elt));
-              // onResizeStop(`${nextVal}px`);
-              // setIsResizing(false);
-            }}
-          /> */
-}
+    let getRootBlock = getBlock(rootId);
 
-{
-  /* <p>
-              <strong>{__("check gradient Color", "unlimited-blocks")}</strong>
-            </p>
-            <GradientPicker
-              // value={gradientValue}
-              onChange={(newGradient) => {
-                console.log("hh",newGradient);
-                // onGradientChange(newGradient);
-                // onColorChange();
-              }}
-              // onChange={
-              //   canChooseAColor
-              //     ? (newGradient) => {
-              //         onGradientChange(newGradient);
-              //         onColorChange();
-              //       }
-              //     : onGradientChange
-              // }
-              // {...{ gradients, disableCustomGradients }}
-            /> */
-}
-// editor-post-publish-button
-// components-button editor-post-publish-panel__toggle editor-post-publish-button__button is-primary
-// components-button editor-post-publish-button editor-post-publish-button__button is-primary
+    console.log("rootId -> ", rootId);
+    console.log("getBlock -> ", getRootBlock);
+    // let getBlockorder = getBlockOrder(clientId);
+    // console.log("getBlockorder->", getBlockorder);
+    // console.log("getRootBlock->", getRootBlock);
+    // console.log("getRootBlock attr->", getRootBlock.attributes);
 
-{
-  /* <div class="wp-themeisle-block-advanced-column-resize-container-handle">
-  <div
-    class="components-resizable-box__handle components-resizable-box__side-handle components-resizable-box__handle-right"
-    style="position: absolute; user-select: none; cursor: col-resize;"
-  ></div>
-</div>;
+    // const { clientId, setAttributes } = ownProps;
+    // const { getBlockOrder } = registry.select("core/block-editor");
+    const { updateBlockAttributes } = dispatch("core/block-editor");
 
-<div
-  class="components-resizable-box__container has-show-handle"
-  style="position: relative; user-select: auto; width: 320px; height: 200px; box-sizing: border-box; flex-shrink: 0;"
->
-  <div>
-    <div
-      class="components-resizable-box__handle components-resizable-box__side-handle components-resizable-box__handle-right"
-      style="position: absolute; user-select: none; cursor: col-resize;"
-    ></div>
-    <div
-      class="components-resizable-box__handle components-resizable-box__side-handle components-resizable-box__handle-bottom"
-      style="position: absolute; user-select: none; cursor: row-resize;"
-    ></div>
-    <div
-      class="components-resizable-box__handle components-resizable-box__corner-handle components-resizable-box__handle-bottom components-resizable-box__handle-right"
-      style="position: absolute; user-select: none; cursor: se-resize;"
-    ></div>
-  </div>
-</div>; */
-}
+    let updatedProps = { "updated-by-ext": 8085005396 };
+    updateBlockAttributes(rootId, updatedProps);
+  })
+)(Edit);
+//single higher order component ex-----
+// export default withSelect((select, props) => {
+//   console.log("block column block class name inside select  ", props);
+//   const { clientId } = props;
+//   const { getBlockOrder, getBlockRootClientId, getBlock } =
+//     select(blockEditorStore);
+//   const rootId = getBlockRootClientId(clientId);
+
+//   let getRootBlock = getBlock(rootId);
+
+//   console.log("clientId -> ", clientId);
+//   let getBlockorder = getBlockOrder(clientId);
+//   console.log("getBlockorder->", getBlockorder);
+//   console.log("getRootBlock->", getRootBlock);
+//   console.log("getRootBlock attr->", getRootBlock.attributes);
+//   // console.log("getBlockRootClientId->", getBlockRootClientId);
+// })(Edit);
+//single higher order component ex-----
+
+// compose(
+// 	withSelect( ( select, { clientId } ) => {
+// 		const block = select( blockEditorStore ).getBlock( clientId );
+
+// 		return {
+// 			block,
+// 			shouldRender: block && block.name === 'core/html',
+// 		};
+// 	} ),
+// 	withDispatch( ( dispatch, { block } ) => ( {
+// 		onClick: () =>
+// 			dispatch( blockEditorStore ).replaceBlocks(
+// 				block.clientId,
+// 				rawHandler( { HTML: getBlockContent( block ) } )
+// 			),
+// 	} ) )
+// )
