@@ -8497,107 +8497,109 @@ var Edit = /*#__PURE__*/function (_Component) {
     });
 
     _this.state = {
-      widthFirst: false,
+      // widthFirst: false,
       chooseBorderORShadow: "border",
       resizeWidth: false,
       resizeContainerWidth: false,
-      openPanel: "layout"
+      openPanel: "layout",
+      cloneWidth: false
     };
     return _this;
   }
 
   _createClass(Edit, [{
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      if (this.props.attributes.width !== prevProps.attributes.width) {
-        this.setState({
-          widthFirst: true
-        }); // if (this.state.widthFirst) {
-        // this.updateWidth();
-        // }
-      }
-    }
-  }, {
-    key: "updateWidth",
-    value: function updateWidth(attrWidth) {
-      var columnId = this.props.attributes.blockId; // console.log("attrWidth-> ", attrWidth);
-
-      var getCurrentColumn = document.getElementById(columnId);
-      var attrButesWidth = attrWidth; // let attrButesWidth = attrWidth ? attrWidth : this.props.attributes.width;
-
-      var checkNeedCHangeWidth = false;
-
-      if (getCurrentColumn) {
-        var getParentColumn = getCurrentColumn.getAttribute("data-type") == "unlimited-blocks/ubl-column-block-column" ? getCurrentColumn : getCurrentColumn.closest('[data-type="unlimited-blocks/ubl-column-block-column"]');
-        var getNextSibling = getParentColumn.nextSibling; //get current index
-
-        var nodes = Array.prototype.slice.call(getParentColumn.closest(".block-editor-block-list__layout").children);
-        var getIndex = nodes.indexOf(getParentColumn); // get width-------------------
-
-        var mainJsonWrapper = getCurrentColumn.closest(".ubl-blocks-column-wrapper");
-        var getJsonWidth = mainJsonWrapper.getAttribute("dataliststyle");
-
-        if (getJsonWidth && (getIndex || getIndex == 0)) {
-          //for double code remove
-          if (getJsonWidth.indexOf('"') == 0) getJsonWidth = getJsonWidth.slice(1, -1); //for \
-
-          getJsonWidth = getJsonWidth.replace(/\\/g, "");
-          getJsonWidth = JSON.parse(getJsonWidth);
-
-          if (getNextSibling) {
-            // update next
-            var complexWidth = getJsonWidth[getIndex] + getJsonWidth[getIndex + 1];
-            var width_ = complexWidth - attrButesWidth;
-            getJsonWidth[getIndex + 1] = width_;
-            getJsonWidth[getIndex] = attrButesWidth; // console.log("attrButesWidth-> ", attrButesWidth);
-            // console.log("next width_-> ", width_);
-
-            if (width_ >= 10) {
-              // console.log("next width_ af ceil-> ", width_);
-              checkNeedCHangeWidth = true;
-              getNextSibling.style.width = width_ + "%";
-            } else {
-              checkNeedCHangeWidth = false;
-            } // checkNeedCHangeWidth = Math.ceil(width_) > 10 ? true : false;
-
-          } else if (getParentColumn.previousSibling) {
-            // update previous
-            var _complexWidth = getJsonWidth[getIndex] + getJsonWidth[getIndex - 1];
-
-            var _width_ = _complexWidth - attrButesWidth;
-
-            getJsonWidth[getIndex - 1] = _width_;
-            getJsonWidth[getIndex] = attrButesWidth; // console.log("attrButesWidth-> ", attrButesWidth);
-            // console.log("previous width_-> ", width_);
-
-            if (_width_ >= 10) {
-              // console.log("previous width_ af ceil-> ", width_);
-              checkNeedCHangeWidth = true;
-              getParentColumn.previousSibling.style.width = _width_ + "%";
-            } else {
-              checkNeedCHangeWidth = false;
-            }
-          }
-
-          if (checkNeedCHangeWidth == true) {
-            // console.log("checkNeedCHangeWidth aplly ->", checkNeedCHangeWidth);
-            // console.log("checkNeedCHangeWidth aplly ->", checkNeedCHangeWidth);
-            getParentColumn.style.width = attrButesWidth + "%";
-            mainJsonWrapper.setAttribute("dataliststyle", JSON.stringify(getJsonWidth));
-          }
-        }
-      }
-
-      return checkNeedCHangeWidth;
+    value: function componentDidUpdate(prevProps) {// if (this.props. !== prevProps.attributes.width) {}
+      //   if (this.props.attributes.width !== prevProps.attributes.width) {
+      //     this.setState({ widthFirst: true });
+      //   }
+      // }
+      // updateWidth(attrWidth) {
+      //   let columnId = this.props.attributes.blockId;
+      //   // console.log("attrWidth-> ", attrWidth);
+      //   let getCurrentColumn = document.getElementById(columnId);
+      //   let attrButesWidth = attrWidth;
+      //   // let attrButesWidth = attrWidth ? attrWidth : this.props.attributes.width;
+      //   let checkNeedCHangeWidth = false;
+      //   if (getCurrentColumn) {
+      //     let getParentColumn =
+      //       getCurrentColumn.getAttribute("data-type") ==
+      //       "unlimited-blocks/ubl-column-block-column"
+      //         ? getCurrentColumn
+      //         : getCurrentColumn.closest(
+      //             '[data-type="unlimited-blocks/ubl-column-block-column"]'
+      //           );
+      //     let getNextSibling = getParentColumn.nextSibling;
+      //     //get current index
+      //     let nodes = Array.prototype.slice.call(
+      //       getParentColumn.closest(".block-editor-block-list__layout").children
+      //     );
+      //     let getIndex = nodes.indexOf(getParentColumn);
+      //     // get width-------------------
+      //     let mainJsonWrapper = getCurrentColumn.closest(
+      //       ".ubl-blocks-column-wrapper"
+      //     );
+      //     let getJsonWidth = mainJsonWrapper.getAttribute("dataliststyle");
+      //     if (getJsonWidth && (getIndex || getIndex == 0)) {
+      //       //for double code remove
+      //       if (getJsonWidth.indexOf('"') == 0)
+      //         getJsonWidth = getJsonWidth.slice(1, -1);
+      //       //for \
+      //       getJsonWidth = getJsonWidth.replace(/\\/g, "");
+      //       getJsonWidth = JSON.parse(getJsonWidth);
+      //       if (getNextSibling) {
+      //         // update next
+      //         let complexWidth =
+      //           getJsonWidth[getIndex] + getJsonWidth[getIndex + 1];
+      //         let width_ = complexWidth - attrButesWidth;
+      //         getJsonWidth[getIndex + 1] = width_;
+      //         getJsonWidth[getIndex] = attrButesWidth;
+      //         // console.log("attrButesWidth-> ", attrButesWidth);
+      //         // console.log("next width_-> ", width_);
+      //         if (width_ >= 10) {
+      //           // console.log("next width_ af ceil-> ", width_);
+      //           checkNeedCHangeWidth = true;
+      //           getNextSibling.style.width = width_ + "%";
+      //         } else {
+      //           checkNeedCHangeWidth = false;
+      //         }
+      //         // checkNeedCHangeWidth = Math.ceil(width_) > 10 ? true : false;
+      //       } else if (getParentColumn.previousSibling) {
+      //         // update previous
+      //         let complexWidth =
+      //           getJsonWidth[getIndex] + getJsonWidth[getIndex - 1];
+      //         let width_ = complexWidth - attrButesWidth;
+      //         getJsonWidth[getIndex - 1] = width_;
+      //         getJsonWidth[getIndex] = attrButesWidth;
+      //         // console.log("attrButesWidth-> ", attrButesWidth);
+      //         // console.log("previous width_-> ", width_);
+      //         if (width_ >= 10) {
+      //           // console.log("previous width_ af ceil-> ", width_);
+      //           checkNeedCHangeWidth = true;
+      //           getParentColumn.previousSibling.style.width = width_ + "%";
+      //         } else {
+      //           checkNeedCHangeWidth = false;
+      //         }
+      //       }
+      //       if (checkNeedCHangeWidth == true) {
+      //         // console.log("checkNeedCHangeWidth aplly ->", checkNeedCHangeWidth);
+      //         // console.log("checkNeedCHangeWidth aplly ->", checkNeedCHangeWidth);
+      //         getParentColumn.style.width = attrButesWidth + "%";
+      //         mainJsonWrapper.setAttribute(
+      //           "dataliststyle",
+      //           JSON.stringify(getJsonWidth)
+      //         );
+      //       }
+      //     }
+      //   }
+      //   return checkNeedCHangeWidth;
     }
   }, {
     key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      setTimeout(function () {
-        _this2.firstTimeWidthInit();
-      }, 200); //   const { attributes, setAttributes, clientId } = this.props;
+    value: function componentDidMount() {// setTimeout(() => {
+      //   this.firstTimeWidthInit();
+      // }, 200);
+      //   const { attributes, setAttributes, clientId } = this.props;
       //   const useSelectData = useSelect(
       //     (select) => {
       //       // const { getBlockOrder, getBlockRootClientId } =
@@ -8613,59 +8615,67 @@ var Edit = /*#__PURE__*/function (_Component) {
       //     [clientId]
       //   );
       //   console.log("useSelectData->", useSelectData);
-    }
-  }, {
-    key: "firstTimeWidthInit",
-    value: function firstTimeWidthInit() {
-      var columnId = this.props.attributes.blockId;
-      var getCurrentColumn = document.getElementById(columnId);
+    } // firstTimeWidthInit() {
+    //   let columnId = this.props.attributes.blockId;
+    //   let getCurrentColumn = document.getElementById(columnId);
+    //   if (getCurrentColumn) {
+    //     let currentColumn =
+    //       getCurrentColumn.getAttribute("data-type") ==
+    //       "unlimited-blocks/ubl-column-block-column"
+    //         ? getCurrentColumn
+    //         : getCurrentColumn.closest(
+    //             '[data-type="unlimited-blocks/ubl-column-block-column"]'
+    //           );
+    //     // console.log("currentColumn->", currentColumn);
+    //     let currentColumnWrap = getCurrentColumn.closest(
+    //       ".block-editor-block-list__layout"
+    //     );
+    //     // console.log("currentColumnWrap->", currentColumnWrap);
+    //     let nodes = Array.prototype.slice.call(currentColumnWrap.children);
+    //     let getIndex = nodes.indexOf(currentColumn);
+    //     // console.log("index of -" + columnId, getIndex);
+    //     // get width
+    //     let getJsonWidth = getCurrentColumn
+    //       .closest(".ubl-blocks-column-wrapper")
+    //       .getAttribute("dataliststyle");
+    //     if (getJsonWidth) {
+    //       //for double code remove
+    //       if (getJsonWidth.indexOf('"') == 0)
+    //         getJsonWidth = getJsonWidth.slice(1, -1);
+    //       //for \\
+    //       getJsonWidth = getJsonWidth.replace(/\\/g, "");
+    //       getJsonWidth = JSON.parse(getJsonWidth);
+    //       if (getIndex in getJsonWidth) {
+    //         this.props.setAttributes({ width: getJsonWidth[getIndex] });
+    //       }
+    //     }
+    //     // get width
+    //   }
+    // }
 
-      if (getCurrentColumn) {
-        var currentColumn = getCurrentColumn.getAttribute("data-type") == "unlimited-blocks/ubl-column-block-column" ? getCurrentColumn : getCurrentColumn.closest('[data-type="unlimited-blocks/ubl-column-block-column"]'); // console.log("currentColumn->", currentColumn);
-
-        var currentColumnWrap = getCurrentColumn.closest(".block-editor-block-list__layout"); // console.log("currentColumnWrap->", currentColumnWrap);
-
-        var nodes = Array.prototype.slice.call(currentColumnWrap.children);
-        var getIndex = nodes.indexOf(currentColumn); // console.log("index of -" + columnId, getIndex);
-        // get width
-
-        var getJsonWidth = getCurrentColumn.closest(".ubl-blocks-column-wrapper").getAttribute("dataliststyle");
-
-        if (getJsonWidth) {
-          //for double code remove
-          if (getJsonWidth.indexOf('"') == 0) getJsonWidth = getJsonWidth.slice(1, -1); //for \\
-
-          getJsonWidth = getJsonWidth.replace(/\\/g, "");
-          getJsonWidth = JSON.parse(getJsonWidth);
-
-          if (getIndex in getJsonWidth) {
-            this.props.setAttributes({
-              width: getJsonWidth[getIndex]
-            });
-          }
-        } // get width
-
-      }
-    }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
-      // console.log("block column block class name ", this.props);
+      console.log("block column block class name ", this.props);
       var _this$props2 = this.props,
           attributes = _this$props2.attributes,
           setAttributes = _this$props2.setAttributes,
-          clientId = _this$props2.clientId;
-      var clickSyncBlock = document.getElementById(attributes.blockId);
-
-      if (clickSyncBlock) {
-        clickSyncBlock = clickSyncBlock.getAttribute("data-type") == "unlimited-blocks/ubl-column-block-column" ? clickSyncBlock : clickSyncBlock.closest('[data-type="unlimited-blocks/ubl-column-block-column"]');
-        clickSyncBlock.addEventListener("click", function () {
-          // console.log("now clicked");
-          _this3.firstTimeWidthInit();
-        });
-      }
+          clientId = _this$props2.clientId; // let clickSyncBlock = document.getElementById(attributes.blockId);
+      // if (clickSyncBlock) {
+      //   clickSyncBlock =
+      //     clickSyncBlock.getAttribute("data-type") ==
+      //     "unlimited-blocks/ubl-column-block-column"
+      //       ? clickSyncBlock
+      //       : clickSyncBlock.closest(
+      //           '[data-type="unlimited-blocks/ubl-column-block-column"]'
+      //         );
+      //   clickSyncBlock.addEventListener("click", () => {
+      //     // console.log("now clicked");
+      //     this.firstTimeWidthInit();
+      //   });
+      // }
 
       var width = attributes.width,
           styles = attributes.styles; // wrapper style
@@ -8750,7 +8760,7 @@ var Edit = /*#__PURE__*/function (_Component) {
           icon: "dashicons dashicons-admin-customizer"
         }],
         clickme: function clickme(value_) {
-          _this3.setState({
+          _this2.setState({
             openPanel: value_
           });
         }
@@ -8766,16 +8776,18 @@ var Edit = /*#__PURE__*/function (_Component) {
         }
       }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Width", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["RangeControl"], {
         label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Column Width (%)", "unlimited-blocks"),
-        value: width,
+        value: this.state.cloneWidth ? this.state.cloneWidth : this.props.cloneWidth,
         min: 10,
         max: 100,
         onChange: function onChange(e) {
-          // console.log("e vent width", e);
-          var check_Width = _this3.updateWidth(e);
+          console.log("e vent width", e);
+          console.log("e vent width", _this2.props);
 
-          if (check_Width == true) {
-            setAttributes({
-              width: e
+          var checkWidth = _this2.props.changeWidthColumn(e);
+
+          if (checkWidth == true) {
+            _this2.setState({
+              cloneWidth: e
             });
           }
         }
@@ -8806,14 +8818,14 @@ var Edit = /*#__PURE__*/function (_Component) {
         class: "ubl-switcher-button-section"
       }, wp.element.createElement("span", {
         onClick: function onClick() {
-          return _this3.setState({
+          return _this2.setState({
             chooseBorderORShadow: "border"
           });
         },
         className: this.state.chooseBorderORShadow == "border" ? "selected" : ""
       }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Border", "unlimited-blocks")), wp.element.createElement("span", {
         onClick: function onClick() {
-          return _this3.setState({
+          return _this2.setState({
             chooseBorderORShadow: "boxshadow"
           });
         },
@@ -8822,7 +8834,7 @@ var Edit = /*#__PURE__*/function (_Component) {
         label: styles.shadowEnable ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Enable", "unlimited-blocks") : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Disable", "unlimited-blocks"),
         checked: styles.shadowEnable,
         onChange: function onChange(e) {
-          return _this3.updateStyle("shadowEnable", e);
+          return _this2.updateStyle("shadowEnable", e);
         }
       }), styles.shadowEnable && wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("div", {
         className: "range-and-title-inline"
@@ -8833,7 +8845,7 @@ var Edit = /*#__PURE__*/function (_Component) {
         min: 0,
         max: 20,
         onChange: function onChange(e) {
-          _this3.updateStyle("shadowOffsetX", e);
+          _this2.updateStyle("shadowOffsetX", e);
         }
       })), wp.element.createElement("div", {
         className: "range-and-title-inline"
@@ -8844,7 +8856,7 @@ var Edit = /*#__PURE__*/function (_Component) {
         min: 0,
         max: 20,
         onChange: function onChange(e) {
-          _this3.updateStyle("shadowOffsetY", e);
+          _this2.updateStyle("shadowOffsetY", e);
         }
       })), wp.element.createElement("div", {
         className: "range-and-title-inline"
@@ -8855,7 +8867,7 @@ var Edit = /*#__PURE__*/function (_Component) {
         min: 0,
         max: 20,
         onChange: function onChange(e) {
-          _this3.updateStyle("shadowBlur", e);
+          _this2.updateStyle("shadowBlur", e);
         }
       })), wp.element.createElement("div", {
         className: "range-and-title-inline"
@@ -8866,20 +8878,20 @@ var Edit = /*#__PURE__*/function (_Component) {
         min: 0,
         max: 20,
         onChange: function onChange(e) {
-          _this3.updateStyle("shadowSpread", e);
+          _this2.updateStyle("shadowSpread", e);
         }
       })), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Shadow Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ColorPicker"], {
         color: styles.shadowColor,
         onChangeComplete: function onChangeComplete(colorBg) {
           var color = "rgba(".concat(colorBg.rgb.r, ",").concat(colorBg.rgb.g, ",").concat(colorBg.rgb.b, ",").concat(colorBg.rgb.a, ")");
 
-          _this3.updateStyle("shadowColor", color);
+          _this2.updateStyle("shadowColor", color);
         }
       }))) : wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ToggleControl"], {
         label: styles.borderEnable ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Disable", "unlimited-blocks") : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Enable", "unlimited-blocks"),
         checked: styles.borderEnable,
         onChange: function onChange(e) {
-          return _this3.updateStyle("borderEnable", e);
+          return _this2.updateStyle("borderEnable", e);
         }
       }), styles.borderEnable && wp.element.createElement("div", {
         className: "icon-border-setting"
@@ -8889,7 +8901,7 @@ var Edit = /*#__PURE__*/function (_Component) {
         label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Border Style", "unlimited-blocks"),
         value: styles.borderStyle,
         onChange: function onChange(choosen) {
-          _this3.updateStyle("borderStyle", choosen);
+          _this2.updateStyle("borderStyle", choosen);
         },
         options: [{
           value: "solid",
@@ -8907,7 +8919,7 @@ var Edit = /*#__PURE__*/function (_Component) {
         min: 0,
         max: 50,
         onChange: function onChange(e) {
-          _this3.updateStyle("borderRadius", e);
+          _this2.updateStyle("borderRadius", e);
         }
       }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["RangeControl"], {
         label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Border Width", "unlimited-blocks"),
@@ -8915,13 +8927,13 @@ var Edit = /*#__PURE__*/function (_Component) {
         min: 0,
         max: 100,
         onChange: function onChange(e) {
-          return _this3.updateStyle("borderWidth", e);
+          return _this2.updateStyle("borderWidth", e);
         }
       }), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["ColorPalette"], {
         label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Border Color", "unlimited-blocks"),
         value: styles.borderColor,
         onChange: function onChange(color) {
-          return _this3.updateStyle("borderColor", color);
+          return _this2.updateStyle("borderColor", color);
         }
       })))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
         title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Spacing", "unlimited-blocks"),
@@ -8946,7 +8958,7 @@ var Edit = /*#__PURE__*/function (_Component) {
             saveObj.paddingLink = val_.isLink;
           }
 
-          _this3.updateStyle(true, true, saveObj);
+          _this2.updateStyle(true, true, saveObj);
         }
       }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Margin", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_dimension__WEBPACK_IMPORTED_MODULE_6__["default"], {
         value: {
@@ -8968,7 +8980,7 @@ var Edit = /*#__PURE__*/function (_Component) {
             saveObj.marginLink = val_.isLink;
           }
 
-          _this3.updateStyle(true, true, saveObj);
+          _this2.updateStyle(true, true, saveObj);
         }
       })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
         title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Background", "unlimited-blocks"),
@@ -8978,7 +8990,7 @@ var Edit = /*#__PURE__*/function (_Component) {
       }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["SelectControl"], {
         value: styles.backgroundType,
         onChange: function onChange(choosen) {
-          _this3.updateStyle("backgroundType", choosen);
+          _this2.updateStyle("backgroundType", choosen);
         },
         options: [{
           value: "none",
@@ -8994,7 +9006,7 @@ var Edit = /*#__PURE__*/function (_Component) {
       })), styles.backgroundType == "image" && wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Background image", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["MediaUpload"], {
         allowedType: "image",
         onSelect: function onSelect(newImage) {
-          _this3.updateStyle("backgroundImage", newImage.sizes.full.url);
+          _this2.updateStyle("backgroundImage", newImage.sizes.full.url);
         },
         value: styles.backgroundImage,
         render: function render(_ref) {
@@ -9013,7 +9025,7 @@ var Edit = /*#__PURE__*/function (_Component) {
       }, wp.element.createElement("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Background Size", "unlimited-blocks")), wp.element.createElement("select", {
         value: styles.backgroundImageSize,
         onChange: function onChange(e) {
-          _this3.updateStyle("backgroundImageSize", e.target.value);
+          _this2.updateStyle("backgroundImageSize", e.target.value);
         }
       }, wp.element.createElement("option", {
         value: "auto"
@@ -9025,12 +9037,12 @@ var Edit = /*#__PURE__*/function (_Component) {
         class: "ubl-switcher-button-section"
       }, wp.element.createElement("span", {
         onClick: function onClick() {
-          return _this3.updateStyle("backgroundColorType", "color");
+          return _this2.updateStyle("backgroundColorType", "color");
         },
         className: styles.backgroundColorType == "color" ? "selected" : ""
       }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Solid", "unlimited-blocks")), wp.element.createElement("span", {
         onClick: function onClick() {
-          return _this3.updateStyle("backgroundColorType", "gradient");
+          return _this2.updateStyle("backgroundColorType", "gradient");
         },
         className: styles.backgroundColorType == "gradient" ? "selected" : ""
       }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Gradient", "unlimited-blocks"))), "color" == styles.backgroundColorType ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ColorPicker"], {
@@ -9038,13 +9050,13 @@ var Edit = /*#__PURE__*/function (_Component) {
         onChangeComplete: function onChangeComplete(colorBg) {
           var color = "rgba(".concat(colorBg.rgb.r, ",").concat(colorBg.rgb.g, ",").concat(colorBg.rgb.b, ",").concat(colorBg.rgb.a, ")");
 
-          _this3.updateStyle("backgroundColor", color);
+          _this2.updateStyle("backgroundColor", color);
         }
       }) : wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["__experimentalGradientPicker"], {
         value: styles.backgroundImageGradient,
         gradients: _block_assets_post_functions__WEBPACK_IMPORTED_MODULE_4__["UBLGraDientColors"],
         onChange: function onChange(newGradient) {
-          _this3.updateStyle("backgroundImageGradient", newGradient);
+          _this2.updateStyle("backgroundImageGradient", newGradient);
         }
       }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["RangeControl"], {
         label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Opacity", "unlimited-blocks"),
@@ -9053,7 +9065,7 @@ var Edit = /*#__PURE__*/function (_Component) {
         max: 1,
         step: 0.1,
         onChange: function onChange(e) {
-          _this3.updateStyle("backgroundOpacity", e);
+          _this2.updateStyle("backgroundOpacity", e);
         }
       })))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ResizableBox"], {
         className: "ubl-blocks-custom-resizeable",
@@ -9069,7 +9081,7 @@ var Edit = /*#__PURE__*/function (_Component) {
           topLeft: false
         },
         onResizeStop: function onResizeStop() {
-          _this3.setState({
+          _this2.setState({
             resizeWidth: false
           });
         },
@@ -9084,7 +9096,7 @@ var Edit = /*#__PURE__*/function (_Component) {
               var elementWidth = getElement.getBoundingClientRect().width;
               var elementWrapperWidth = wrapper.getBoundingClientRect().width;
 
-              _this3.setState({
+              _this2.setState({
                 resizeWidth: elementWidth,
                 resizeContainerWidth: elementWrapperWidth
               });
@@ -9099,13 +9111,13 @@ var Edit = /*#__PURE__*/function (_Component) {
           //   "state wrapper width->",
           //   this.state.resizeContainerWidth
           // );
-          if (_this3.state.resizeWidth && _this3.state.resizeContainerWidth) {
-            var nowWidth = _this3.state.resizeWidth + arg_.width;
-            var calculateWidth = 100 * nowWidth / _this3.state.resizeContainerWidth; // console.log("calculateWidth width->", calculateWidth);
+          if (_this2.state.resizeWidth && _this2.state.resizeContainerWidth) {
+            var nowWidth = _this2.state.resizeWidth + arg_.width;
+            var calculateWidth = 100 * nowWidth / _this2.state.resizeContainerWidth; // console.log("calculateWidth width->", calculateWidth);
 
             var gotWidth = parseInt(calculateWidth); // console.log("gotWidth width->", gotWidth);
 
-            var check_Width = _this3.updateWidth(gotWidth);
+            var check_Width = _this2.updateWidth(gotWidth);
 
             if (check_Width == true) {
               setAttributes({
@@ -9158,45 +9170,127 @@ var Edit = /*#__PURE__*/function (_Component) {
   return Edit;
 }(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_8__["compose"])(withSelect(function (select, ownProps) {// console.log("block column block class name inside select  ", ownProps);
-  // const { clientId } = ownProps;
-  // const { getBlockOrder, getBlockRootClientId, getBlock } =
-  //   select(blockEditorStore);
-  // const rootId = getBlockRootClientId(clientId);
-  // let getRootBlock = getBlock(rootId);
-  // console.log("clientId -> ", clientId);
-  // let getBlockorder = getBlockOrder(clientId);
-  // console.log("getBlockorder->", getBlockorder);
-  // console.log("getRootBlock->", getRootBlock);
-  // console.log("getRootBlock attr->", getRootBlock.attributes);
-  // console.log("getBlockRootClientId->", getBlockRootClientId);
-}), Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_9__["withDispatch"])(function (dispatch, ownProps, registry) {
+/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_8__["compose"])(withSelect(function (select, ownProps) {
+  // console.log("block column block class name inside select  ", ownProps);
   var clientId = ownProps.clientId;
 
-  var _registry$select = registry.select(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["store"]),
-      getBlockOrder = _registry$select.getBlockOrder,
-      getBlockRootClientId = _registry$select.getBlockRootClientId,
-      getBlock = _registry$select.getBlock; // console.log("getBlockregistry->", getBlockregistry);
-  // console.log("getBlockregistry order ->", getBlockregistry.getBlockOrder);
-
+  var _select = select(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["store"]),
+      getBlockRootClientId = _select.getBlockRootClientId,
+      getBlock = _select.getBlock;
 
   var rootId = getBlockRootClientId(clientId);
   var getRootBlock = getBlock(rootId);
-  console.log("rootId -> ", rootId);
-  console.log("getBlock -> ", getRootBlock); // let getBlockorder = getBlockOrder(clientId);
-  // console.log("getBlockorder->", getBlockorder);
+  var rootBlockWrapperAttr = getRootBlock.attributes; // console.log("clientId -> ", clientId); // current column client id
   // console.log("getRootBlock->", getRootBlock);
   // console.log("getRootBlock attr->", getRootBlock.attributes);
-  // const { clientId, setAttributes } = ownProps;
-  // const { getBlockOrder } = registry.select("core/block-editor");
+
+  var lengthInnerBlock = getRootBlock.innerBlocks.length;
+  var WrapperColumns = rootBlockWrapperAttr.columns;
+  var StyleColumn = rootBlockWrapperAttr.listStyle.columns;
+  var StyleColumnL = Object.keys(StyleColumn).length; // console.log("lengthInnerBlock ->", lengthInnerBlock);
+  // console.log("WrapperColumns ->", WrapperColumns);
+  // console.log("StyleColumn ->", StyleColumn);
+
+  if (lengthInnerBlock == WrapperColumns && lengthInnerBlock == StyleColumnL) {
+    var getIndexOfColumn = getRootBlock.innerBlocks.findIndex(checkIndexOfcolumn); // current column client id
+
+    var setCloneWidth = StyleColumn[getIndexOfColumn]; // console.log(
+    //   "clientId index -> " + getIndexOfColumn + "-> client id",
+    //   clientId + "--width-" + setCloneWidth
+    // );
+    //get index of currentColumn
+
+    function checkIndexOfcolumn(columns) {
+      return clientId == columns.clientId;
+    } //get index of currentColumn
+
+
+    return {
+      cloneWidth: setCloneWidth,
+      ul_column_index: getIndexOfColumn,
+      ul_column_length: StyleColumnL - 1
+    };
+  } // let getBlockorder = getBlockOrder(clientId);
+  // console.log("getBlockorder->", getBlockorder);
+  // console.log("getBlockRootClientId->", getBlockRootClientId); //root block client id
+
+}), Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_9__["withDispatch"])(function (dispatch, ownProps, registry) {
+  var clientId = ownProps.clientId,
+      ul_column_index = ownProps.ul_column_index,
+      ul_column_length = ownProps.ul_column_length;
+
+  var _registry$select = registry.select(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["store"]),
+      getBlockRootClientId = _registry$select.getBlockRootClientId,
+      getBlock = _registry$select.getBlock;
+
+  var rootWrapperID = getBlockRootClientId(clientId);
+  var getRootBlock = getBlock(rootWrapperID);
 
   var _dispatch = dispatch("core/block-editor"),
       updateBlockAttributes = _dispatch.updateBlockAttributes;
 
-  var updatedProps = {
-    "updated-by-ext": 8085005396
+  var rootBlockWrapperAttr = _objectSpread({}, getRootBlock.attributes); // console.log("wrapper before ->", getRootBlock);
+
+
+  var getListStyle = rootBlockWrapperAttr.listStyle.columns; // console.log("getListStyle", getListStyle);
+  // console.log("rootWrapperID -> ", rootWrapperID);
+  // console.log("getBlock -> ", getRootBlock);
+  // // let getBlockorder = getBlockOrder(clientId);
+  // // console.log("getBlockorder->", getBlockorder);
+  // // console.log("getRootBlock->", getRootBlock);
+  // // console.log("getRootBlock attr->", getRootBlock.attributes);
+  // const { clientId, setAttributes } = ownProps;
+  // const { getBlockOrder } = registry.select("core/block-editor");
+  // let updatedProps = { "updated-by-ext": 8085005396 };
+  // updateBlockAttributes(rootWrapperID, updatedProps);
+
+  var changeWidthAndPlaceStyle = function changeWidthAndPlaceStyle(width) {
+    var cloneColumnWidths = _objectSpread({}, getListStyle);
+
+    var ApplyWidth = _objectSpread({}, getListStyle);
+
+    var changeWidth = true;
+
+    if (ul_column_index == ul_column_length) {
+      var getPrevIndex = ul_column_index - 1;
+      var getComplexWidth = cloneColumnWidths[ul_column_index] + cloneColumnWidths[getPrevIndex];
+      var prev_item_width = getComplexWidth - width;
+
+      if (prev_item_width <= 10) {
+        changeWidth = false;
+      }
+
+      ApplyWidth[getPrevIndex] = prev_item_width;
+    } else if (ul_column_index < ul_column_length) {
+      var getNextIndex = ul_column_index + 1;
+
+      var _getComplexWidth = cloneColumnWidths[ul_column_index] + cloneColumnWidths[getNextIndex];
+
+      var next_item_width = _getComplexWidth - width;
+      ApplyWidth[getNextIndex] = next_item_width;
+
+      if (next_item_width <= 10) {
+        changeWidth = false;
+      }
+    }
+
+    ApplyWidth[ul_column_index] = width;
+    var columnsStyle = {
+      columns: ApplyWidth
+    };
+
+    if (changeWidth) {
+      updateBlockAttributes(rootWrapperID, {
+        listStyle: columnsStyle
+      });
+    }
+
+    return changeWidth;
   };
-  updateBlockAttributes(rootId, updatedProps);
+
+  return {
+    changeWidthColumn: changeWidthAndPlaceStyle
+  };
 }))(Edit)); //single higher order component ex-----
 // export default withSelect((select, props) => {
 //   console.log("block column block class name inside select  ", props);
@@ -9575,7 +9669,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  * WordPress dependencies.
  */
 
-var dispatch = wp.data.dispatch;
 
 
 
@@ -9587,9 +9680,16 @@ var dispatch = wp.data.dispatch;
 
 var columnOptions = [{
   class_: "100",
+  width: {
+    0: 100
+  },
   columns: 1
 }, {
   class_: "1-2",
+  width: {
+    0: 50,
+    1: 50
+  },
   columns: 2
 }, {
   class_: "30-70",
@@ -9607,6 +9707,11 @@ var columnOptions = [{
   columns: 2
 }, {
   class_: "1-3",
+  width: {
+    0: 33.333,
+    1: 33.333,
+    2: 33.333
+  },
   columns: 3
 }, {
   class_: "25-25-50",
@@ -9634,9 +9739,21 @@ var columnOptions = [{
   columns: 3
 }, {
   class_: "1-4",
+  width: {
+    0: 25,
+    1: 25,
+    2: 25,
+    3: 25
+  },
   columns: 4
 }, {
   class_: "1-5",
+  width: {
+    0: 20,
+    1: 20,
+    2: 20,
+    3: 20
+  },
   columns: 5
 }];
 var ALLOWED_BLOCKS = ["unlimited-blocks/ubl-column-block-column"];
@@ -9661,36 +9778,6 @@ var Edit = /*#__PURE__*/function (_Component) {
 
     _this = _super.apply(this, arguments);
 
-    _defineProperty(_assertThisInitialized(_this), "updateAndInitWidth", function () {
-      var filterAfterSec = function filterAfterSec() {
-        var element = document.getElementById(_this.props.attributes.blockId); // console.log("updateAndInitWidth element", element);
-
-        if (element) {
-          var getWidthColumns = element.getAttribute("dataliststyle"); // console.log("getWidthColumns", getWidthColumns);
-
-          if (getWidthColumns) {
-            //for double code remove
-            if (getWidthColumns.indexOf('"') == 0) getWidthColumns = getWidthColumns.slice(1, -1); //for \\
-
-            getWidthColumns = getWidthColumns.replace(/\\/g, "");
-            getWidthColumns = JSON.parse(getWidthColumns); // console.log("getWidthColumns", getWidthColumns);
-
-            var children = element.querySelector(".ubl-blocks-column-wrapper-2 > .ubl-blocks-column-wrapper-2-content > .block-editor-inner-blocks > .block-editor-block-list__layout").children;
-
-            if (children && getWidthColumns) {
-              for (var x in getWidthColumns) {
-                if (children[x]) children[x].style.width = getWidthColumns[x] + "%";
-              }
-
-              element.classList.add("active");
-            }
-          }
-        }
-      };
-
-      setTimeout(filterAfterSec, 100);
-    });
-
     _defineProperty(_assertThisInitialized(_this), "updateStyle", function (key_, value) {
       var multiple = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
       var _this$props = _this.props,
@@ -9711,8 +9798,8 @@ var Edit = /*#__PURE__*/function (_Component) {
     });
 
     _this.state = {
-      selectLayout: true,
-      initWidthJson: false,
+      // selectLayout: true,
+      // initWidthJson: false,
       chooseBorderORShadow: "border",
       openPanel: "layout"
     };
@@ -9722,73 +9809,140 @@ var Edit = /*#__PURE__*/function (_Component) {
   _createClass(Edit, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      if (this.props.attributes.columns !== prevProps.attributes.columns) {
-        // this.props.attributes.listStyle.columns
-        var listStyle_ = _objectSpread({}, this.props.attributes.listStyle);
+      // console.log("prev props", prevProps);
+      // console.log("current props", this.props);
+      if (prevProps.attributes.columns != this.props.attributes.columns) {
+        // console.log("yes change is 2");
+        var currentColumn = parseInt(this.props.attributes.columns);
+        var columnsWidth = 100 / currentColumn;
+        var SetObject = {};
 
-        listStyle_.columns = false;
+        for (var initWidth = 0; initWidth < currentColumn; initWidth++) {
+          // const element = array[index_];
+          SetObject[initWidth] = columnsWidth;
+        }
+
+        var setObjectColumn = {
+          columns: SetObject
+        };
         this.props.setAttributes({
-          listStyle: listStyle_
-        }); // dispatch("core/block-editor").synchronizeTemplate();
-        // wp.data.dispatch("core/block-editor").synchronizeTemplate()
-
-        this.setupINStateByProps(true);
-        this.updateAndInitWidth();
+          listStyle: setObjectColumn
+        });
+        this.setupWidthOnchangeWidth();
+      } else if (this.props.wrapper_childrens !== prevProps.wrapper_childrens) {
+        // console.log("yes change is 1");
+        this.setupWidthOnchangeWidth();
+      } else if (this.props.attributes.listStyle.columns != prevProps.attributes.listStyle.columns) {
+        // if change column width by individual columns
+        this.setupWidthOnchangeWidth();
       }
     }
   }, {
+    key: "setupWidthOnchangeWidth",
+    value: function setupWidthOnchangeWidth() {
+      var _this$props2 = this.props,
+          attributes = _this$props2.attributes,
+          wrapper_childrens = _this$props2.wrapper_childrens;
+      var getListStyle = attributes.listStyle.columns;
+      console.log("this->props setupWidthOnchangeWidth ->", this.props);
+      console.log("this->props getListStyle ->", getListStyle);
+
+      if (getListStyle && wrapper_childrens.length) {
+        for (var getOrderChildren in getListStyle) {
+          var getIdOfColumn = wrapper_childrens[getOrderChildren].clientId;
+          var getIdOfColumnWidth = getListStyle[getOrderChildren];
+
+          if (getIdOfColumn) {
+            var IdOfColumn = "block-" + getIdOfColumn;
+            var foundColumn = document.getElementById(IdOfColumn);
+
+            if (foundColumn) {
+              foundColumn.style.width = getIdOfColumnWidth + "%";
+            }
+          }
+        }
+      }
+    } // updateAndInitWidth = () => {
+    //   let filterAfterSec = () => {
+    //     let element = document.getElementById(this.props.attributes.blockId);
+    //     // console.log("updateAndInitWidth element", element);
+    //     if (element) {
+    //       let getWidthColumns = element.getAttribute("dataliststyle");
+    //       // console.log("getWidthColumns", getWidthColumns);
+    //       if (getWidthColumns) {
+    //         //for double code remove
+    //         if (getWidthColumns.indexOf('"') == 0)
+    //           getWidthColumns = getWidthColumns.slice(1, -1);
+    //         //for \\
+    //         getWidthColumns = getWidthColumns.replace(/\\/g, "");
+    //         getWidthColumns = JSON.parse(getWidthColumns);
+    //         // console.log("getWidthColumns", getWidthColumns);
+    //         let children = element.querySelector(
+    //           ".ubl-blocks-column-wrapper-2 > .ubl-blocks-column-wrapper-2-content > .block-editor-inner-blocks > .block-editor-block-list__layout"
+    //         ).children;
+    //         if (children && getWidthColumns) {
+    //           for (let x in getWidthColumns) {
+    //             if (children[x])
+    //               children[x].style.width = getWidthColumns[x] + "%";
+    //           }
+    //           element.classList.add("active");
+    //         }
+    //       }
+    //     }
+    //   };
+    //   setTimeout(filterAfterSec, 100);
+    // };
+
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.setupINStateByProps();
-      this.updateAndInitWidth(); // save style option one
-
-      var updateBtn = document.getElementsByClassName("editor-post-publish-button__button");
-
-      if (updateBtn && updateBtn.length > 0) {
-        // console.log("update btn triggered", updateBtn);
-        // console.log("this porops componentDidmount", this.props);
-        var _this$props2 = this.props,
-            attributes = _this$props2.attributes,
-            setAttributes = _this$props2.setAttributes;
-        updateBtn[0].addEventListener("click", function () {
-          // console.log("attributes->", attributes);
-          // console.log("setAttributes->", setAttributes);
-          var getElement = document.querySelector('[id="' + attributes.blockId + '"][dataliststyle]');
-
-          if (getElement) {
-            var getPreviousStyle = _objectSpread({}, attributes.listStyle);
-
-            var dataliststyle = getElement.getAttribute("dataliststyle");
-            getPreviousStyle["columns"] = JSON.parse(dataliststyle);
-            setAttributes({
-              listStyle: getPreviousStyle
-            });
-          }
-        });
-      } // save style option one
-
+      // console.log("component did mount call", this.props);
+      this.setupWidthOnchangeWidth(); // this.setupINStateByProps();
+      // this.updateAndInitWidth();
+      // // save style option one
+      // let updateBtn = document.getElementsByClassName(
+      //   "editor-post-publish-button__button"
+      // );
+      // if (updateBtn && updateBtn.length > 0) {
+      //   // console.log("update btn triggered", updateBtn);
+      //   // console.log("this porops componentDidmount", this.props);
+      //   const { attributes, setAttributes } = this.props;
+      //   updateBtn[0].addEventListener("click", function () {
+      //     console.log("attributes->", attributes);
+      //     // console.log("setAttributes->", setAttributes);
+      //     let getElement = document.querySelector(
+      //       '[id="' + attributes.blockId + '"][dataliststyle]'
+      //     );
+      //     if (getElement) {
+      //       let getPreviousStyle = { ...attributes.listStyle };
+      //       let dataliststyle = getElement.getAttribute("dataliststyle");
+      //       getPreviousStyle["columns"] = JSON.parse(dataliststyle);
+      //       setAttributes({ listStyle: getPreviousStyle });
+      //     }
+      //   });
+      // }
+      // save style option one
     }
   }, {
     key: "setupINStateByProps",
     value: function setupINStateByProps() {
       var updatecolumn = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
-      if (false == this.props.attributes.listStyle.columns || true == updatecolumn) {
-        var columnWidth = 100 / this.props.attributes.columns;
-        var columnWidthI = {}; // set style as children
+      if (false == this.props.attributes.listStyle.columns || true == updatecolumn) {// let columnWidth = 100 / this.props.attributes.columns;
+        // let columnWidthI = {};
+        // // set style as children
+        // for (
+        //   let initWidth = 0;
+        //   initWidth < this.props.attributes.columns;
+        //   initWidth++
+        // ) {
+        //   columnWidthI[initWidth] = columnWidth;
+        // }
+        // this.setState({ initWidthJson: columnWidthI });
+      } //  else if (this.props.attributes.listStyle.columns) {
+      //   this.setState({ initWidthJson: this.props.attributes.listStyle.columns });
+      // }
 
-        for (var initWidth = 0; initWidth < this.props.attributes.columns; initWidth++) {
-          columnWidthI[initWidth] = columnWidth;
-        }
-
-        this.setState({
-          initWidthJson: columnWidthI
-        });
-      } else if (this.props.attributes.listStyle.columns) {
-        this.setState({
-          initWidthJson: this.props.attributes.listStyle.columns
-        });
-      }
     }
   }, {
     key: "render",
@@ -9796,7 +9950,7 @@ var Edit = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       // prevv ------------------=+++++++++++++============
-      // console.log("wrapper props->", this.props);
+      // console.log("wrapper props by render ->", this.props);
       // initialize style for column
       var _this$props3 = this.props,
           attributes = _this$props3.attributes,
@@ -9808,14 +9962,12 @@ var Edit = /*#__PURE__*/function (_Component) {
       });
       var blockId = attributes.blockId,
           styles = attributes.styles,
-          contentWidth = attributes.contentWidth;
-      var dataListStyle_ = null;
-      var initWidthJson_ = this.state.initWidthJson;
-
-      if (initWidthJson_) {
-        // set column width
-        dataListStyle_ = JSON.stringify(this.state.initWidthJson);
-      }
+          contentWidth = attributes.contentWidth; // let dataListStyle_ = null;
+      // let initWidthJson_ = this.state.initWidthJson;
+      // if (initWidthJson_) {
+      //   // set column width
+      //   dataListStyle_ = JSON.stringify(this.state.initWidthJson);
+      // }
 
       var wrapperStyles = {
         margin: "".concat(styles.marginTop, "px ").concat(styles.marginRight, "px ").concat(styles.marginBottom, "px ").concat(styles.marginLeft, "px"),
@@ -10300,10 +10452,18 @@ var Edit = /*#__PURE__*/function (_Component) {
       })))))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["PanelBody"], {
         title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Animations", "unlimited-blocks"),
         initialOpen: false
-      })), wp.element.createElement("div", {
+      }, wp.element.createElement(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_11__["Animation"], {
+        value: attributes.additionalClassNames,
+        change: function change(animate) {
+          // console.log("animation", animate);
+          setAttributes({
+            additionalClassNames: animate
+          });
+        }
+      }))), wp.element.createElement("div", {
         className: "ubl-blocks-column-wrapper",
-        id: blockId,
-        dataListStyle: dataListStyle_
+        id: blockId // dataListStyle={dataListStyle_}
+
       }, wp.element.createElement("div", {
         className: WrapperClass,
         style: wrapperStyles
@@ -10326,32 +10486,19 @@ var Edit = /*#__PURE__*/function (_Component) {
   return Edit;
 }(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Edit); // export default withSelect((select, props) => {
-//   console.log("in props->",props);
-//   // console.log("selectooò");
-//   // const { attributes, setAttributes } = props;
-//   const {
-//     isSavingPost,
-//     isCurrentPostPublished,
-//     isCurrentPostScheduled,
-//   } = select("core/editor");
-//   // let getElement = document.querySelector(
-//   //   '[id="' + attributes.blockId + '"][dataliststyle]'
-//   // );
-//   // if (getElement && isSavingPost() && isCurrentPostPublished()) {
-//   //   let getPreviousStyle = { ...attributes.listStyle };
-//   //   let dataliststyle = getElement.getAttribute("dataliststyle");
-//   //   getPreviousStyle["columns"] = JSON.parse(dataliststyle);
-//   //   setAttributes({ listStyle: getPreviousStyle });
-//   // }
-//   return {
-//     isSaving: isSavingPost(),
-//     isPublished: isCurrentPostPublished(),
-//     isScheduled: isCurrentPostScheduled(),
-//     initilizedOkkkk: "arraaaa",
-//   };
-//   // return arrayCatePost;
-// })(Edit);
+/* harmony default export */ __webpack_exports__["default"] = (Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__["withSelect"])(function (select, ownProps) {
+  var clientId = ownProps.clientId;
+
+  var _select = select(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__["store"]),
+      getBlockOrder = _select.getBlockOrder,
+      getBlockRootClientId = _select.getBlockRootClientId,
+      getBlock = _select.getBlock;
+
+  var getRootBlock = getBlock(clientId);
+  return {
+    wrapper_childrens: getRootBlock.innerBlocks
+  };
+})(Edit));
 
 /***/ }),
 
@@ -10486,9 +10633,9 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
         blockId = attributes.blockId,
         styles = attributes.styles,
         align = attributes.align,
-        contentWidth = attributes.contentWidth;
-    var jsonSettingData = attributes.listStyle;
-    jsonSettingData = JSON.stringify(jsonSettingData);
+        contentWidth = attributes.contentWidth; // let jsonSettingData = attributes.listStyle;
+    // jsonSettingData = JSON.stringify(jsonSettingData);
+
     var columnWrapperStyle = {};
 
     if (align == "wide") {
@@ -10594,8 +10741,8 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
     return wp.element.createElement("div", {
       id: blockId,
       className: "ubl-blocks-column-wrapper ".concat(blockId),
-      "ubl-blocks-styler": ublStyler,
-      "data-ubl-column-width": jsonSettingData
+      "ubl-blocks-styler": ublStyler // data-ubl-column-width={jsonSettingData}
+
     }, wp.element.createElement("div", {
       className: WrapperClass,
       "ubl-blocks-styler": ublStyler1

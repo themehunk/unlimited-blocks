@@ -16,7 +16,6 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:focus:after {
 
 .ubl-blocks-column-wrapper {
   padding: 10px;
-  opacity: 0;
   transition: 0.4s opacity ease;
   position: relative;
 }

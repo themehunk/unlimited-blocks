@@ -36,11 +36,12 @@ class Edit extends Component {
   constructor() {
     super(...arguments);
     this.state = {
-      widthFirst: false,
+      // widthFirst: false,
       chooseBorderORShadow: "border",
       resizeWidth: false,
       resizeContainerWidth: false,
       openPanel: "layout",
+      cloneWidth: false,
     };
   }
   updateStyle = (key_, value, multiple = false) => {
@@ -54,103 +55,96 @@ class Edit extends Component {
     setAttributes({ styles: getStyle });
   };
   componentDidUpdate(prevProps) {
-    if (this.props.attributes.width !== prevProps.attributes.width) {
-      this.setState({ widthFirst: true });
-      // if (this.state.widthFirst) {
-      // this.updateWidth();
-      // }
-    }
-  }
-
-  updateWidth(attrWidth) {
-    let columnId = this.props.attributes.blockId;
-    // console.log("attrWidth-> ", attrWidth);
-    let getCurrentColumn = document.getElementById(columnId);
-    let attrButesWidth = attrWidth;
-    // let attrButesWidth = attrWidth ? attrWidth : this.props.attributes.width;
-    let checkNeedCHangeWidth = false;
-    if (getCurrentColumn) {
-      let getParentColumn =
-        getCurrentColumn.getAttribute("data-type") ==
-        "unlimited-blocks/ubl-column-block-column"
-          ? getCurrentColumn
-          : getCurrentColumn.closest(
-              '[data-type="unlimited-blocks/ubl-column-block-column"]'
-            );
-      let getNextSibling = getParentColumn.nextSibling;
-      //get current index
-      let nodes = Array.prototype.slice.call(
-        getParentColumn.closest(".block-editor-block-list__layout").children
-      );
-      let getIndex = nodes.indexOf(getParentColumn);
-      // get width-------------------
-      let mainJsonWrapper = getCurrentColumn.closest(
-        ".ubl-blocks-column-wrapper"
-      );
-      let getJsonWidth = mainJsonWrapper.getAttribute("dataliststyle");
-      if (getJsonWidth && (getIndex || getIndex == 0)) {
-        //for double code remove
-        if (getJsonWidth.indexOf('"') == 0)
-          getJsonWidth = getJsonWidth.slice(1, -1);
-        //for \
-        getJsonWidth = getJsonWidth.replace(/\\/g, "");
-        getJsonWidth = JSON.parse(getJsonWidth);
-        if (getNextSibling) {
-          // update next
-          let complexWidth =
-            getJsonWidth[getIndex] + getJsonWidth[getIndex + 1];
-          let width_ = complexWidth - attrButesWidth;
-          getJsonWidth[getIndex + 1] = width_;
-          getJsonWidth[getIndex] = attrButesWidth;
-
-          // console.log("attrButesWidth-> ", attrButesWidth);
-          // console.log("next width_-> ", width_);
-          if (width_ >= 10) {
-            // console.log("next width_ af ceil-> ", width_);
-            checkNeedCHangeWidth = true;
-            getNextSibling.style.width = width_ + "%";
-          } else {
-            checkNeedCHangeWidth = false;
-          }
-          // checkNeedCHangeWidth = Math.ceil(width_) > 10 ? true : false;
-        } else if (getParentColumn.previousSibling) {
-          // update previous
-          let complexWidth =
-            getJsonWidth[getIndex] + getJsonWidth[getIndex - 1];
-          let width_ = complexWidth - attrButesWidth;
-          getJsonWidth[getIndex - 1] = width_;
-          getJsonWidth[getIndex] = attrButesWidth;
-
-          // console.log("attrButesWidth-> ", attrButesWidth);
-          // console.log("previous width_-> ", width_);
-          if (width_ >= 10) {
-            // console.log("previous width_ af ceil-> ", width_);
-            checkNeedCHangeWidth = true;
-            getParentColumn.previousSibling.style.width = width_ + "%";
-          } else {
-            checkNeedCHangeWidth = false;
-          }
-        }
-
-        if (checkNeedCHangeWidth == true) {
-          // console.log("checkNeedCHangeWidth aplly ->", checkNeedCHangeWidth);
-          // console.log("checkNeedCHangeWidth aplly ->", checkNeedCHangeWidth);
-          getParentColumn.style.width = attrButesWidth + "%";
-          mainJsonWrapper.setAttribute(
-            "dataliststyle",
-            JSON.stringify(getJsonWidth)
-          );
-        }
-      }
-    }
-    return checkNeedCHangeWidth;
+    // if (this.props. !== prevProps.attributes.width) {}
+    //   if (this.props.attributes.width !== prevProps.attributes.width) {
+    //     this.setState({ widthFirst: true });
+    //   }
+    // }
+    // updateWidth(attrWidth) {
+    //   let columnId = this.props.attributes.blockId;
+    //   // console.log("attrWidth-> ", attrWidth);
+    //   let getCurrentColumn = document.getElementById(columnId);
+    //   let attrButesWidth = attrWidth;
+    //   // let attrButesWidth = attrWidth ? attrWidth : this.props.attributes.width;
+    //   let checkNeedCHangeWidth = false;
+    //   if (getCurrentColumn) {
+    //     let getParentColumn =
+    //       getCurrentColumn.getAttribute("data-type") ==
+    //       "unlimited-blocks/ubl-column-block-column"
+    //         ? getCurrentColumn
+    //         : getCurrentColumn.closest(
+    //             '[data-type="unlimited-blocks/ubl-column-block-column"]'
+    //           );
+    //     let getNextSibling = getParentColumn.nextSibling;
+    //     //get current index
+    //     let nodes = Array.prototype.slice.call(
+    //       getParentColumn.closest(".block-editor-block-list__layout").children
+    //     );
+    //     let getIndex = nodes.indexOf(getParentColumn);
+    //     // get width-------------------
+    //     let mainJsonWrapper = getCurrentColumn.closest(
+    //       ".ubl-blocks-column-wrapper"
+    //     );
+    //     let getJsonWidth = mainJsonWrapper.getAttribute("dataliststyle");
+    //     if (getJsonWidth && (getIndex || getIndex == 0)) {
+    //       //for double code remove
+    //       if (getJsonWidth.indexOf('"') == 0)
+    //         getJsonWidth = getJsonWidth.slice(1, -1);
+    //       //for \
+    //       getJsonWidth = getJsonWidth.replace(/\\/g, "");
+    //       getJsonWidth = JSON.parse(getJsonWidth);
+    //       if (getNextSibling) {
+    //         // update next
+    //         let complexWidth =
+    //           getJsonWidth[getIndex] + getJsonWidth[getIndex + 1];
+    //         let width_ = complexWidth - attrButesWidth;
+    //         getJsonWidth[getIndex + 1] = width_;
+    //         getJsonWidth[getIndex] = attrButesWidth;
+    //         // console.log("attrButesWidth-> ", attrButesWidth);
+    //         // console.log("next width_-> ", width_);
+    //         if (width_ >= 10) {
+    //           // console.log("next width_ af ceil-> ", width_);
+    //           checkNeedCHangeWidth = true;
+    //           getNextSibling.style.width = width_ + "%";
+    //         } else {
+    //           checkNeedCHangeWidth = false;
+    //         }
+    //         // checkNeedCHangeWidth = Math.ceil(width_) > 10 ? true : false;
+    //       } else if (getParentColumn.previousSibling) {
+    //         // update previous
+    //         let complexWidth =
+    //           getJsonWidth[getIndex] + getJsonWidth[getIndex - 1];
+    //         let width_ = complexWidth - attrButesWidth;
+    //         getJsonWidth[getIndex - 1] = width_;
+    //         getJsonWidth[getIndex] = attrButesWidth;
+    //         // console.log("attrButesWidth-> ", attrButesWidth);
+    //         // console.log("previous width_-> ", width_);
+    //         if (width_ >= 10) {
+    //           // console.log("previous width_ af ceil-> ", width_);
+    //           checkNeedCHangeWidth = true;
+    //           getParentColumn.previousSibling.style.width = width_ + "%";
+    //         } else {
+    //           checkNeedCHangeWidth = false;
+    //         }
+    //       }
+    //       if (checkNeedCHangeWidth == true) {
+    //         // console.log("checkNeedCHangeWidth aplly ->", checkNeedCHangeWidth);
+    //         // console.log("checkNeedCHangeWidth aplly ->", checkNeedCHangeWidth);
+    //         getParentColumn.style.width = attrButesWidth + "%";
+    //         mainJsonWrapper.setAttribute(
+    //           "dataliststyle",
+    //           JSON.stringify(getJsonWidth)
+    //         );
+    //       }
+    //     }
+    //   }
+    //   return checkNeedCHangeWidth;
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.firstTimeWidthInit();
-    }, 200);
-
+    // setTimeout(() => {
+    //   this.firstTimeWidthInit();
+    // }, 200);
     //   const { attributes, setAttributes, clientId } = this.props;
     //   const useSelectData = useSelect(
     //     (select) => {
@@ -169,63 +163,61 @@ class Edit extends Component {
     //   console.log("useSelectData->", useSelectData);
   }
 
-  firstTimeWidthInit() {
-    let columnId = this.props.attributes.blockId;
-    let getCurrentColumn = document.getElementById(columnId);
-    if (getCurrentColumn) {
-      let currentColumn =
-        getCurrentColumn.getAttribute("data-type") ==
-        "unlimited-blocks/ubl-column-block-column"
-          ? getCurrentColumn
-          : getCurrentColumn.closest(
-              '[data-type="unlimited-blocks/ubl-column-block-column"]'
-            );
-      // console.log("currentColumn->", currentColumn);
-      let currentColumnWrap = getCurrentColumn.closest(
-        ".block-editor-block-list__layout"
-      );
-      // console.log("currentColumnWrap->", currentColumnWrap);
-      let nodes = Array.prototype.slice.call(currentColumnWrap.children);
-      let getIndex = nodes.indexOf(currentColumn);
-      // console.log("index of -" + columnId, getIndex);
-      // get width
-      let getJsonWidth = getCurrentColumn
-        .closest(".ubl-blocks-column-wrapper")
-        .getAttribute("dataliststyle");
-      if (getJsonWidth) {
-        //for double code remove
-        if (getJsonWidth.indexOf('"') == 0)
-          getJsonWidth = getJsonWidth.slice(1, -1);
-        //for \\
-        getJsonWidth = getJsonWidth.replace(/\\/g, "");
-        getJsonWidth = JSON.parse(getJsonWidth);
-        if (getIndex in getJsonWidth) {
-          this.props.setAttributes({ width: getJsonWidth[getIndex] });
-        }
-      }
-      // get width
-    }
-  }
+  // firstTimeWidthInit() {
+  //   let columnId = this.props.attributes.blockId;
+  //   let getCurrentColumn = document.getElementById(columnId);
+  //   if (getCurrentColumn) {
+  //     let currentColumn =
+  //       getCurrentColumn.getAttribute("data-type") ==
+  //       "unlimited-blocks/ubl-column-block-column"
+  //         ? getCurrentColumn
+  //         : getCurrentColumn.closest(
+  //             '[data-type="unlimited-blocks/ubl-column-block-column"]'
+  //           );
+  //     // console.log("currentColumn->", currentColumn);
+  //     let currentColumnWrap = getCurrentColumn.closest(
+  //       ".block-editor-block-list__layout"
+  //     );
+  //     // console.log("currentColumnWrap->", currentColumnWrap);
+  //     let nodes = Array.prototype.slice.call(currentColumnWrap.children);
+  //     let getIndex = nodes.indexOf(currentColumn);
+  //     // console.log("index of -" + columnId, getIndex);
+  //     // get width
+  //     let getJsonWidth = getCurrentColumn
+  //       .closest(".ubl-blocks-column-wrapper")
+  //       .getAttribute("dataliststyle");
+  //     if (getJsonWidth) {
+  //       //for double code remove
+  //       if (getJsonWidth.indexOf('"') == 0)
+  //         getJsonWidth = getJsonWidth.slice(1, -1);
+  //       //for \\
+  //       getJsonWidth = getJsonWidth.replace(/\\/g, "");
+  //       getJsonWidth = JSON.parse(getJsonWidth);
+  //       if (getIndex in getJsonWidth) {
+  //         this.props.setAttributes({ width: getJsonWidth[getIndex] });
+  //       }
+  //     }
+  //     // get width
+  //   }
+  // }
 
   render() {
-    // console.log("block column block class name ", this.props);
-
+    console.log("block column block class name ", this.props);
     const { attributes, setAttributes, clientId } = this.props;
-
-    let clickSyncBlock = document.getElementById(attributes.blockId);
-    if (clickSyncBlock) {
-      clickSyncBlock =
-        clickSyncBlock.getAttribute("data-type") ==
-        "unlimited-blocks/ubl-column-block-column"
-          ? clickSyncBlock
-          : clickSyncBlock.closest(
-              '[data-type="unlimited-blocks/ubl-column-block-column"]'
-            );
-      clickSyncBlock.addEventListener("click", () => {
-        // console.log("now clicked");
-        this.firstTimeWidthInit();
-      });
-    }
+    // let clickSyncBlock = document.getElementById(attributes.blockId);
+    // if (clickSyncBlock) {
+    //   clickSyncBlock =
+    //     clickSyncBlock.getAttribute("data-type") ==
+    //     "unlimited-blocks/ubl-column-block-column"
+    //       ? clickSyncBlock
+    //       : clickSyncBlock.closest(
+    //           '[data-type="unlimited-blocks/ubl-column-block-column"]'
+    //         );
+    //   clickSyncBlock.addEventListener("click", () => {
+    //     // console.log("now clicked");
+    //     this.firstTimeWidthInit();
+    //   });
+    // }
 
     let { width, styles } = attributes;
     // wrapper style
@@ -338,15 +330,20 @@ class Edit extends Component {
             </p>
             <RangeControl
               label={__("Column Width (%)", "unlimited-blocks")}
-              value={width}
+              value={
+                this.state.cloneWidth
+                  ? this.state.cloneWidth
+                  : this.props.cloneWidth
+              }
               min={10}
               max={100}
               onChange={(e) => {
-                // console.log("e vent width", e);
+                console.log("e vent width", e);
+                console.log("e vent width", this.props);
 
-                let check_Width = this.updateWidth(e);
-                if (check_Width == true) {
-                  setAttributes({ width: e });
+                let checkWidth = this.props.changeWidthColumn(e);
+                if (checkWidth == true) {
+                  this.setState({ cloneWidth: e });
                 }
               }}
             />
@@ -855,43 +852,114 @@ class Edit extends Component {
 export default compose(
   withSelect((select, ownProps) => {
     // console.log("block column block class name inside select  ", ownProps);
-    // const { clientId } = ownProps;
-    // const { getBlockOrder, getBlockRootClientId, getBlock } =
-    //   select(blockEditorStore);
-    // const rootId = getBlockRootClientId(clientId);
-    // let getRootBlock = getBlock(rootId);
-    // console.log("clientId -> ", clientId);
-    // let getBlockorder = getBlockOrder(clientId);
-    // console.log("getBlockorder->", getBlockorder);
+    const { clientId } = ownProps;
+    const { getBlockRootClientId, getBlock } = select(blockEditorStore);
+    const rootId = getBlockRootClientId(clientId);
+    let getRootBlock = getBlock(rootId);
+    let rootBlockWrapperAttr = getRootBlock.attributes;
+    // console.log("clientId -> ", clientId); // current column client id
     // console.log("getRootBlock->", getRootBlock);
     // console.log("getRootBlock attr->", getRootBlock.attributes);
-    // console.log("getBlockRootClientId->", getBlockRootClientId);
+
+    let lengthInnerBlock = getRootBlock.innerBlocks.length;
+    let WrapperColumns = rootBlockWrapperAttr.columns;
+    let StyleColumn = rootBlockWrapperAttr.listStyle.columns;
+    let StyleColumnL = Object.keys(StyleColumn).length;
+    // console.log("lengthInnerBlock ->", lengthInnerBlock);
+    // console.log("WrapperColumns ->", WrapperColumns);
+    // console.log("StyleColumn ->", StyleColumn);
+    if (
+      lengthInnerBlock == WrapperColumns &&
+      lengthInnerBlock == StyleColumnL
+    ) {
+      let getIndexOfColumn =
+        getRootBlock.innerBlocks.findIndex(checkIndexOfcolumn); // current column client id
+      let setCloneWidth = StyleColumn[getIndexOfColumn];
+      // console.log(
+      //   "clientId index -> " + getIndexOfColumn + "-> client id",
+      //   clientId + "--width-" + setCloneWidth
+      // );
+      //get index of currentColumn
+      function checkIndexOfcolumn(columns) {
+        return clientId == columns.clientId;
+      }
+      //get index of currentColumn
+      return {
+        cloneWidth: setCloneWidth,
+        ul_column_index: getIndexOfColumn,
+        ul_column_length: StyleColumnL - 1,
+      };
+    }
+
+    // let getBlockorder = getBlockOrder(clientId);
+    // console.log("getBlockorder->", getBlockorder);
+
+    // console.log("getBlockRootClientId->", getBlockRootClientId); //root block client id
   }),
   withDispatch((dispatch, ownProps, registry) => {
-    const { clientId } = ownProps;
-    const { getBlockOrder, getBlockRootClientId, getBlock } =
+    const { clientId, ul_column_index, ul_column_length } = ownProps;
+    const { getBlockRootClientId, getBlock } =
       registry.select(blockEditorStore);
+    const rootWrapperID = getBlockRootClientId(clientId);
+    const getRootBlock = getBlock(rootWrapperID);
+    const { updateBlockAttributes } = dispatch("core/block-editor");
+    const rootBlockWrapperAttr = { ...getRootBlock.attributes };
 
-    // console.log("getBlockregistry->", getBlockregistry);
-    // console.log("getBlockregistry order ->", getBlockregistry.getBlockOrder);
+    // console.log("wrapper before ->", getRootBlock);
 
-    const rootId = getBlockRootClientId(clientId);
+    let getListStyle = rootBlockWrapperAttr.listStyle.columns;
 
-    let getRootBlock = getBlock(rootId);
+    // console.log("getListStyle", getListStyle);
 
-    console.log("rootId -> ", rootId);
-    console.log("getBlock -> ", getRootBlock);
-    // let getBlockorder = getBlockOrder(clientId);
-    // console.log("getBlockorder->", getBlockorder);
-    // console.log("getRootBlock->", getRootBlock);
-    // console.log("getRootBlock attr->", getRootBlock.attributes);
-
+    // console.log("rootWrapperID -> ", rootWrapperID);
+    // console.log("getBlock -> ", getRootBlock);
+    // // let getBlockorder = getBlockOrder(clientId);
+    // // console.log("getBlockorder->", getBlockorder);
+    // // console.log("getRootBlock->", getRootBlock);
+    // // console.log("getRootBlock attr->", getRootBlock.attributes);
     // const { clientId, setAttributes } = ownProps;
     // const { getBlockOrder } = registry.select("core/block-editor");
-    const { updateBlockAttributes } = dispatch("core/block-editor");
+    // let updatedProps = { "updated-by-ext": 8085005396 };
+    // updateBlockAttributes(rootWrapperID, updatedProps);
 
-    let updatedProps = { "updated-by-ext": 8085005396 };
-    updateBlockAttributes(rootId, updatedProps);
+    const changeWidthAndPlaceStyle = (width) => {
+      let cloneColumnWidths = { ...getListStyle };
+      let ApplyWidth = { ...getListStyle };
+      let changeWidth = true;
+      if (ul_column_index == ul_column_length) {
+        let getPrevIndex = ul_column_index - 1;
+        let getComplexWidth =
+          cloneColumnWidths[ul_column_index] + cloneColumnWidths[getPrevIndex];
+        let prev_item_width = getComplexWidth - width;
+
+        if (prev_item_width <= 10) {
+          changeWidth = false;
+        }
+
+        ApplyWidth[getPrevIndex] = prev_item_width;
+      } else if (ul_column_index < ul_column_length) {
+        let getNextIndex = ul_column_index + 1;
+        let getComplexWidth =
+          cloneColumnWidths[ul_column_index] + cloneColumnWidths[getNextIndex];
+        let next_item_width = getComplexWidth - width;
+        ApplyWidth[getNextIndex] = next_item_width;
+        if (next_item_width <= 10) {
+          changeWidth = false;
+        }
+      }
+      ApplyWidth[ul_column_index] = width;
+      let columnsStyle = { columns: ApplyWidth };
+      if (changeWidth) {
+        updateBlockAttributes(rootWrapperID, {
+          listStyle: columnsStyle,
+        });
+      }
+      return changeWidth;
+    };
+
+    return {
+      changeWidthColumn: changeWidthAndPlaceStyle,
+    };
   })
 )(Edit);
 //single higher order component ex-----
