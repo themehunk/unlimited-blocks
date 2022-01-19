@@ -4,7 +4,6 @@ import _times from "lodash/times";
 /**
  * WordPress dependencies.
  */
-const { dispatch } = wp.data;
 import { withSelect } from "@wordpress/data";
 import { __ } from "@wordpress/i18n";
 import { Component } from "@wordpress/element";
@@ -15,6 +14,7 @@ import {
   InnerBlocks,
   MediaUpload,
   ColorPalette,
+  store as blockEditorStore,
 } from "@wordpress/block-editor";
 import {
   PanelBody,
@@ -37,10 +37,12 @@ import {
 const columnOptions = [
   {
     class_: "100",
+    width: { 0: 100 },
     columns: 1,
   },
   {
     class_: "1-2",
+    width: { 0: 50, 1: 50 },
     columns: 2,
   },
   {
@@ -55,6 +57,7 @@ const columnOptions = [
   },
   {
     class_: "1-3",
+    width: { 0: 33.333, 1: 33.333, 2: 33.333 },
     columns: 3,
   },
   {
@@ -74,10 +77,12 @@ const columnOptions = [
   },
   {
     class_: "1-4",
+    width: { 0: 25, 1: 25, 2: 25, 3: 25 },
     columns: 4,
   },
   {
     class_: "1-5",
+    width: { 0: 20, 1: 20, 2: 20, 3: 20 },
     columns: 5,
   },
 ];
@@ -93,104 +98,139 @@ class Edit extends Component {
   constructor(props) {
     super(...arguments);
     this.state = {
-      selectLayout: true,
-      initWidthJson: false,
+      // selectLayout: true,
+      // initWidthJson: false,
       chooseBorderORShadow: "border",
       openPanel: "layout",
     };
   }
   componentDidUpdate(prevProps) {
-    if (this.props.attributes.columns !== prevProps.attributes.columns) {
-      // this.props.attributes.listStyle.columns
-      let listStyle_ = { ...this.props.attributes.listStyle };
-      listStyle_.columns = false;
-      this.props.setAttributes({ listStyle: listStyle_ });
+    // console.log("prev props", prevProps);
+    // console.log("current props", this.props);
 
-      // dispatch("core/block-editor").synchronizeTemplate();
-      // wp.data.dispatch("core/block-editor").synchronizeTemplate()
-      this.setupINStateByProps(true);
-      this.updateAndInitWidth();
+    if (prevProps.attributes.columns != this.props.attributes.columns) {
+      // console.log("yes change is 2");
+      let currentColumn = parseInt(this.props.attributes.columns);
+      let columnsWidth = 100 / currentColumn;
+      let SetObject = {};
+      for (let initWidth = 0; initWidth < currentColumn; initWidth++) {
+        // const element = array[index_];
+        SetObject[initWidth] = columnsWidth;
+      }
+      let setObjectColumn = { columns: SetObject };
+      this.props.setAttributes({ listStyle: setObjectColumn });
+      this.setupWidthOnchangeWidth();
+    } else if (this.props.wrapper_childrens !== prevProps.wrapper_childrens) {
+      // console.log("yes change is 1");
+      this.setupWidthOnchangeWidth();
+    } else if (
+      this.props.attributes.listStyle.columns !=
+      prevProps.attributes.listStyle.columns
+    ) {
+      // if change column width by individual columns
+      this.setupWidthOnchangeWidth();
     }
   }
-
-  updateAndInitWidth = () => {
-    let filterAfterSec = () => {
-      let element = document.getElementById(this.props.attributes.blockId);
-      // console.log("updateAndInitWidth element", element);
-      if (element) {
-        let getWidthColumns = element.getAttribute("dataliststyle");
-        // console.log("getWidthColumns", getWidthColumns);
-        if (getWidthColumns) {
-          //for double code remove
-          if (getWidthColumns.indexOf('"') == 0)
-            getWidthColumns = getWidthColumns.slice(1, -1);
-          //for \\
-          getWidthColumns = getWidthColumns.replace(/\\/g, "");
-
-          getWidthColumns = JSON.parse(getWidthColumns);
-          // console.log("getWidthColumns", getWidthColumns);
-          let children = element.querySelector(
-            ".ubl-blocks-column-wrapper-2 > .ubl-blocks-column-wrapper-2-content > .block-editor-inner-blocks > .block-editor-block-list__layout"
-          ).children;
-          if (children && getWidthColumns) {
-            for (let x in getWidthColumns) {
-              if (children[x])
-                children[x].style.width = getWidthColumns[x] + "%";
-            }
-            element.classList.add("active");
+  setupWidthOnchangeWidth() {
+    const { attributes, wrapper_childrens } = this.props;
+    let getListStyle = attributes.listStyle.columns;
+    console.log("this->props setupWidthOnchangeWidth ->", this.props);
+    console.log("this->props getListStyle ->", getListStyle);
+    if (getListStyle && wrapper_childrens.length) {
+      for (let getOrderChildren in getListStyle) {
+        let getIdOfColumn = wrapper_childrens[getOrderChildren].clientId;
+        let getIdOfColumnWidth = getListStyle[getOrderChildren];
+        if (getIdOfColumn) {
+          let IdOfColumn = "block-" + getIdOfColumn;
+          let foundColumn = document.getElementById(IdOfColumn);
+          if (foundColumn) {
+            foundColumn.style.width = getIdOfColumnWidth + "%";
           }
         }
       }
-    };
-    setTimeout(filterAfterSec, 100);
-  };
-  componentDidMount() {
-    this.setupINStateByProps();
-    this.updateAndInitWidth();
-
-    // save style option one
-    let updateBtn = document.getElementsByClassName(
-      "editor-post-publish-button__button"
-    );
-    if (updateBtn && updateBtn.length > 0) {
-      // console.log("update btn triggered", updateBtn);
-      // console.log("this porops componentDidmount", this.props);
-      const { attributes, setAttributes } = this.props;
-      updateBtn[0].addEventListener("click", function () {
-        // console.log("attributes->", attributes);
-        // console.log("setAttributes->", setAttributes);
-        let getElement = document.querySelector(
-          '[id="' + attributes.blockId + '"][dataliststyle]'
-        );
-        if (getElement) {
-          let getPreviousStyle = { ...attributes.listStyle };
-          let dataliststyle = getElement.getAttribute("dataliststyle");
-          getPreviousStyle["columns"] = JSON.parse(dataliststyle);
-          setAttributes({ listStyle: getPreviousStyle });
-        }
-      });
     }
+  }
+  // updateAndInitWidth = () => {
+  //   let filterAfterSec = () => {
+  //     let element = document.getElementById(this.props.attributes.blockId);
+  //     // console.log("updateAndInitWidth element", element);
+  //     if (element) {
+  //       let getWidthColumns = element.getAttribute("dataliststyle");
+  //       // console.log("getWidthColumns", getWidthColumns);
+  //       if (getWidthColumns) {
+  //         //for double code remove
+  //         if (getWidthColumns.indexOf('"') == 0)
+  //           getWidthColumns = getWidthColumns.slice(1, -1);
+  //         //for \\
+  //         getWidthColumns = getWidthColumns.replace(/\\/g, "");
+
+  //         getWidthColumns = JSON.parse(getWidthColumns);
+  //         // console.log("getWidthColumns", getWidthColumns);
+  //         let children = element.querySelector(
+  //           ".ubl-blocks-column-wrapper-2 > .ubl-blocks-column-wrapper-2-content > .block-editor-inner-blocks > .block-editor-block-list__layout"
+  //         ).children;
+  //         if (children && getWidthColumns) {
+  //           for (let x in getWidthColumns) {
+  //             if (children[x])
+  //               children[x].style.width = getWidthColumns[x] + "%";
+  //           }
+  //           element.classList.add("active");
+  //         }
+  //       }
+  //     }
+  //   };
+  //   setTimeout(filterAfterSec, 100);
+  // };
+  componentDidMount() {
+    // console.log("component did mount call", this.props);
+    this.setupWidthOnchangeWidth();
+    // this.setupINStateByProps();
+    // this.updateAndInitWidth();
+    // // save style option one
+    // let updateBtn = document.getElementsByClassName(
+    //   "editor-post-publish-button__button"
+    // );
+    // if (updateBtn && updateBtn.length > 0) {
+    //   // console.log("update btn triggered", updateBtn);
+    //   // console.log("this porops componentDidmount", this.props);
+    //   const { attributes, setAttributes } = this.props;
+    //   updateBtn[0].addEventListener("click", function () {
+    //     console.log("attributes->", attributes);
+    //     // console.log("setAttributes->", setAttributes);
+    //     let getElement = document.querySelector(
+    //       '[id="' + attributes.blockId + '"][dataliststyle]'
+    //     );
+    //     if (getElement) {
+    //       let getPreviousStyle = { ...attributes.listStyle };
+    //       let dataliststyle = getElement.getAttribute("dataliststyle");
+    //       getPreviousStyle["columns"] = JSON.parse(dataliststyle);
+    //       setAttributes({ listStyle: getPreviousStyle });
+    //     }
+    //   });
+    // }
     // save style option one
   }
+
   setupINStateByProps(updatecolumn = false) {
     if (
       false == this.props.attributes.listStyle.columns ||
       true == updatecolumn
     ) {
-      let columnWidth = 100 / this.props.attributes.columns;
-      let columnWidthI = {};
-      // set style as children
-      for (
-        let initWidth = 0;
-        initWidth < this.props.attributes.columns;
-        initWidth++
-      ) {
-        columnWidthI[initWidth] = columnWidth;
-      }
-      this.setState({ initWidthJson: columnWidthI });
-    } else if (this.props.attributes.listStyle.columns) {
-      this.setState({ initWidthJson: this.props.attributes.listStyle.columns });
+      // let columnWidth = 100 / this.props.attributes.columns;
+      // let columnWidthI = {};
+      // // set style as children
+      // for (
+      //   let initWidth = 0;
+      //   initWidth < this.props.attributes.columns;
+      //   initWidth++
+      // ) {
+      //   columnWidthI[initWidth] = columnWidth;
+      // }
+      // this.setState({ initWidthJson: columnWidthI });
     }
+    //  else if (this.props.attributes.listStyle.columns) {
+    //   this.setState({ initWidthJson: this.props.attributes.listStyle.columns });
+    // }
   }
   updateStyle = (key_, value, multiple = false) => {
     const { attributes, setAttributes } = this.props;
@@ -205,7 +245,7 @@ class Edit extends Component {
   render() {
     // prevv ------------------=+++++++++++++============
 
-    // console.log("wrapper props->", this.props);
+    // console.log("wrapper props by render ->", this.props);
 
     // initialize style for column
     const { attributes, setAttributes, clientId } = this.props;
@@ -214,12 +254,12 @@ class Edit extends Component {
       setAttributes({ blockId: "ubl-blocks-" + clientId });
 
     const { blockId, styles, contentWidth } = attributes;
-    let dataListStyle_ = null;
-    let initWidthJson_ = this.state.initWidthJson;
-    if (initWidthJson_) {
-      // set column width
-      dataListStyle_ = JSON.stringify(this.state.initWidthJson);
-    }
+    // let dataListStyle_ = null;
+    // let initWidthJson_ = this.state.initWidthJson;
+    // if (initWidthJson_) {
+    //   // set column width
+    //   dataListStyle_ = JSON.stringify(this.state.initWidthJson);
+    // }
     let wrapperStyles = {
       margin: `${styles.marginTop}px ${styles.marginRight}px ${styles.marginBottom}px ${styles.marginLeft}px`,
       padding: `${styles.paddingTop}px ${styles.paddingRight}px ${styles.paddingBottom}px ${styles.paddingLeft}px`,
@@ -878,20 +918,20 @@ class Edit extends Component {
             title={__("Animations", "unlimited-blocks")}
             initialOpen={false}
           >
-            {/* <Animation
+            <Animation
               value={attributes.additionalClassNames}
               change={(animate) => {
-                console.log("animation", animate);
+                // console.log("animation", animate);
                 setAttributes({ additionalClassNames: animate });
               }}
-            /> */}
+            />
           </PanelBody>
         </InspectorControls>
 
         <div
           className="ubl-blocks-column-wrapper"
           id={blockId}
-          dataListStyle={dataListStyle_}
+          // dataListStyle={dataListStyle_}
         >
           <div className={WrapperClass} style={wrapperStyles}>
             <div
@@ -915,32 +955,10 @@ class Edit extends Component {
     );
   }
 }
-export default Edit;
-// export default withSelect((select, props) => {
-//   console.log("in props->",props);
-//   // console.log("selectooò");
-//   // const { attributes, setAttributes } = props;
-//   const {
-//     isSavingPost,
-//     isCurrentPostPublished,
-//     isCurrentPostScheduled,
-//   } = select("core/editor");
-
-//   // let getElement = document.querySelector(
-//   //   '[id="' + attributes.blockId + '"][dataliststyle]'
-//   // );
-//   // if (getElement && isSavingPost() && isCurrentPostPublished()) {
-//   //   let getPreviousStyle = { ...attributes.listStyle };
-//   //   let dataliststyle = getElement.getAttribute("dataliststyle");
-//   //   getPreviousStyle["columns"] = JSON.parse(dataliststyle);
-//   //   setAttributes({ listStyle: getPreviousStyle });
-//   // }
-
-//   return {
-//     isSaving: isSavingPost(),
-//     isPublished: isCurrentPostPublished(),
-//     isScheduled: isCurrentPostScheduled(),
-//     initilizedOkkkk: "arraaaa",
-//   };
-//   // return arrayCatePost;
-// })(Edit);
+export default withSelect((select, ownProps) => {
+  const { clientId } = ownProps;
+  const { getBlockOrder, getBlockRootClientId, getBlock } =
+    select(blockEditorStore);
+  let getRootBlock = getBlock(clientId);
+  return { wrapper_childrens: getRootBlock.innerBlocks };
+})(Edit);
