@@ -54,171 +54,9 @@ class Edit extends Component {
     }
     setAttributes({ styles: getStyle });
   };
-  componentDidUpdate(prevProps) {
-    // if (this.props. !== prevProps.attributes.width) {}
-    //   if (this.props.attributes.width !== prevProps.attributes.width) {
-    //     this.setState({ widthFirst: true });
-    //   }
-    // }
-    // updateWidth(attrWidth) {
-    //   let columnId = this.props.attributes.blockId;
-    //   // console.log("attrWidth-> ", attrWidth);
-    //   let getCurrentColumn = document.getElementById(columnId);
-    //   let attrButesWidth = attrWidth;
-    //   // let attrButesWidth = attrWidth ? attrWidth : this.props.attributes.width;
-    //   let checkNeedCHangeWidth = false;
-    //   if (getCurrentColumn) {
-    //     let getParentColumn =
-    //       getCurrentColumn.getAttribute("data-type") ==
-    //       "unlimited-blocks/ubl-column-block-column"
-    //         ? getCurrentColumn
-    //         : getCurrentColumn.closest(
-    //             '[data-type="unlimited-blocks/ubl-column-block-column"]'
-    //           );
-    //     let getNextSibling = getParentColumn.nextSibling;
-    //     //get current index
-    //     let nodes = Array.prototype.slice.call(
-    //       getParentColumn.closest(".block-editor-block-list__layout").children
-    //     );
-    //     let getIndex = nodes.indexOf(getParentColumn);
-    //     // get width-------------------
-    //     let mainJsonWrapper = getCurrentColumn.closest(
-    //       ".ubl-blocks-column-wrapper"
-    //     );
-    //     let getJsonWidth = mainJsonWrapper.getAttribute("dataliststyle");
-    //     if (getJsonWidth && (getIndex || getIndex == 0)) {
-    //       //for double code remove
-    //       if (getJsonWidth.indexOf('"') == 0)
-    //         getJsonWidth = getJsonWidth.slice(1, -1);
-    //       //for \
-    //       getJsonWidth = getJsonWidth.replace(/\\/g, "");
-    //       getJsonWidth = JSON.parse(getJsonWidth);
-    //       if (getNextSibling) {
-    //         // update next
-    //         let complexWidth =
-    //           getJsonWidth[getIndex] + getJsonWidth[getIndex + 1];
-    //         let width_ = complexWidth - attrButesWidth;
-    //         getJsonWidth[getIndex + 1] = width_;
-    //         getJsonWidth[getIndex] = attrButesWidth;
-    //         // console.log("attrButesWidth-> ", attrButesWidth);
-    //         // console.log("next width_-> ", width_);
-    //         if (width_ >= 10) {
-    //           // console.log("next width_ af ceil-> ", width_);
-    //           checkNeedCHangeWidth = true;
-    //           getNextSibling.style.width = width_ + "%";
-    //         } else {
-    //           checkNeedCHangeWidth = false;
-    //         }
-    //         // checkNeedCHangeWidth = Math.ceil(width_) > 10 ? true : false;
-    //       } else if (getParentColumn.previousSibling) {
-    //         // update previous
-    //         let complexWidth =
-    //           getJsonWidth[getIndex] + getJsonWidth[getIndex - 1];
-    //         let width_ = complexWidth - attrButesWidth;
-    //         getJsonWidth[getIndex - 1] = width_;
-    //         getJsonWidth[getIndex] = attrButesWidth;
-    //         // console.log("attrButesWidth-> ", attrButesWidth);
-    //         // console.log("previous width_-> ", width_);
-    //         if (width_ >= 10) {
-    //           // console.log("previous width_ af ceil-> ", width_);
-    //           checkNeedCHangeWidth = true;
-    //           getParentColumn.previousSibling.style.width = width_ + "%";
-    //         } else {
-    //           checkNeedCHangeWidth = false;
-    //         }
-    //       }
-    //       if (checkNeedCHangeWidth == true) {
-    //         // console.log("checkNeedCHangeWidth aplly ->", checkNeedCHangeWidth);
-    //         // console.log("checkNeedCHangeWidth aplly ->", checkNeedCHangeWidth);
-    //         getParentColumn.style.width = attrButesWidth + "%";
-    //         mainJsonWrapper.setAttribute(
-    //           "dataliststyle",
-    //           JSON.stringify(getJsonWidth)
-    //         );
-    //       }
-    //     }
-    //   }
-    //   return checkNeedCHangeWidth;
-  }
-
-  componentDidMount() {
-    // setTimeout(() => {
-    //   this.firstTimeWidthInit();
-    // }, 200);
-    //   const { attributes, setAttributes, clientId } = this.props;
-    //   const useSelectData = useSelect(
-    //     (select) => {
-    //       // const { getBlockOrder, getBlockRootClientId } =
-    //       //   select(blockEditorStore);
-    //       // const rootId = getBlockRootClientId(clientId);
-    //       return {
-    //         // hasChildBlocks: getBlockOrder(clientId).length > 0,
-    //         // rootClientId: rootId,
-    //         // columnsIds: getBlockOrder(rootId),
-    //         yes: true,
-    //       };
-    //     },
-    //     [clientId]
-    //   );
-    //   console.log("useSelectData->", useSelectData);
-  }
-
-  // firstTimeWidthInit() {
-  //   let columnId = this.props.attributes.blockId;
-  //   let getCurrentColumn = document.getElementById(columnId);
-  //   if (getCurrentColumn) {
-  //     let currentColumn =
-  //       getCurrentColumn.getAttribute("data-type") ==
-  //       "unlimited-blocks/ubl-column-block-column"
-  //         ? getCurrentColumn
-  //         : getCurrentColumn.closest(
-  //             '[data-type="unlimited-blocks/ubl-column-block-column"]'
-  //           );
-  //     // console.log("currentColumn->", currentColumn);
-  //     let currentColumnWrap = getCurrentColumn.closest(
-  //       ".block-editor-block-list__layout"
-  //     );
-  //     // console.log("currentColumnWrap->", currentColumnWrap);
-  //     let nodes = Array.prototype.slice.call(currentColumnWrap.children);
-  //     let getIndex = nodes.indexOf(currentColumn);
-  //     // console.log("index of -" + columnId, getIndex);
-  //     // get width
-  //     let getJsonWidth = getCurrentColumn
-  //       .closest(".ubl-blocks-column-wrapper")
-  //       .getAttribute("dataliststyle");
-  //     if (getJsonWidth) {
-  //       //for double code remove
-  //       if (getJsonWidth.indexOf('"') == 0)
-  //         getJsonWidth = getJsonWidth.slice(1, -1);
-  //       //for \\
-  //       getJsonWidth = getJsonWidth.replace(/\\/g, "");
-  //       getJsonWidth = JSON.parse(getJsonWidth);
-  //       if (getIndex in getJsonWidth) {
-  //         this.props.setAttributes({ width: getJsonWidth[getIndex] });
-  //       }
-  //     }
-  //     // get width
-  //   }
-  // }
-
   render() {
     console.log("block column block class name ", this.props);
     const { attributes, setAttributes, clientId } = this.props;
-    // let clickSyncBlock = document.getElementById(attributes.blockId);
-    // if (clickSyncBlock) {
-    //   clickSyncBlock =
-    //     clickSyncBlock.getAttribute("data-type") ==
-    //     "unlimited-blocks/ubl-column-block-column"
-    //       ? clickSyncBlock
-    //       : clickSyncBlock.closest(
-    //           '[data-type="unlimited-blocks/ubl-column-block-column"]'
-    //         );
-    //   clickSyncBlock.addEventListener("click", () => {
-    //     // console.log("now clicked");
-    //     this.firstTimeWidthInit();
-    //   });
-    // }
-
     let { width, styles } = attributes;
     // wrapper style
     let wrapperStyles = {
@@ -338,9 +176,6 @@ class Edit extends Component {
               min={10}
               max={100}
               onChange={(e) => {
-                console.log("e vent width", e);
-                console.log("e vent width", this.props);
-
                 let checkWidth = this.props.changeWidthColumn(e);
                 if (checkWidth == true) {
                   this.setState({ cloneWidth: e });
@@ -794,10 +629,9 @@ class Edit extends Component {
               // console.log("calculateWidth width->", calculateWidth);
               let gotWidth = parseInt(calculateWidth);
               // console.log("gotWidth width->", gotWidth);
-
-              let check_Width = this.updateWidth(gotWidth);
-              if (check_Width == true) {
-                setAttributes({ width: gotWidth });
+              let checkWidth = this.props.changeWidthColumn(gotWidth);
+              if (checkWidth == true) {
+                this.setState({ cloneWidth: gotWidth });
               }
             }
           }}
@@ -813,9 +647,12 @@ class Edit extends Component {
                 className="ubl-blocks-cw-column-overlay"
                 style={overlLayColor}
               ></div>
-              <div className="ubl-blocks-cw-column-content">
+              <div
+                className={`ubl-blocks-cw-column-content ${
+                  this.props.ul_has_children ? "ul_has_column_children" : ""
+                }`}
+              >
                 <InnerBlocks
-                  // template={[["core/paragraph"]]}
                   templateLock={false}
                   templateInsertUpdatesSelection={false}
                   renderAppender={InnerBlocks.ButtonBlockAppender}
@@ -830,24 +667,24 @@ class Edit extends Component {
       </>
     );
   }
-  // UlBlockAppender({ rootClientId }) {
-  //   return (
-  //     <Inserter
-  //       rootClientId={rootClientId}
-  //       renderToggle={({ onToggle, disabled }) => (
-  //         <IconButton
-  //           className="my-button-block-appender"
-  //           onClick={onToggle}
-  //           disabled={disabled}
-  //           label="Add a Block"
-  //           icon="plus"
-  //         />
-  //       )}
-  //       isAppender
-  //     />
-  //   );
-  // }
 }
+// UlBlockAppender({ rootClientId }) {
+//   return (
+//     <Inserter
+//       rootClientId={rootClientId}
+//       renderToggle={({ onToggle, disabled }) => (
+//         <IconButton
+//           className="my-button-block-appender"
+//           onClick={onToggle}
+//           disabled={disabled}
+//           label="Add a Block"
+//           icon="plus"
+//         />
+//       )}
+//       isAppender
+//     />
+//   );
+// }
 
 export default compose(
   withSelect((select, ownProps) => {
@@ -856,18 +693,15 @@ export default compose(
     const { getBlockRootClientId, getBlock } = select(blockEditorStore);
     const rootId = getBlockRootClientId(clientId);
     let getRootBlock = getBlock(rootId);
+    // check column has children
+    let currentColumnChildren = getBlock(clientId).innerBlocks.length;
+    currentColumnChildren = currentColumnChildren ? true : false;
+    // check column has children
     let rootBlockWrapperAttr = getRootBlock.attributes;
-    // console.log("clientId -> ", clientId); // current column client id
-    // console.log("getRootBlock->", getRootBlock);
-    // console.log("getRootBlock attr->", getRootBlock.attributes);
-
     let lengthInnerBlock = getRootBlock.innerBlocks.length;
     let WrapperColumns = rootBlockWrapperAttr.columns;
     let StyleColumn = rootBlockWrapperAttr.listStyle.columns;
     let StyleColumnL = Object.keys(StyleColumn).length;
-    // console.log("lengthInnerBlock ->", lengthInnerBlock);
-    // console.log("WrapperColumns ->", WrapperColumns);
-    // console.log("StyleColumn ->", StyleColumn);
     if (
       lengthInnerBlock == WrapperColumns &&
       lengthInnerBlock == StyleColumnL
@@ -875,10 +709,7 @@ export default compose(
       let getIndexOfColumn =
         getRootBlock.innerBlocks.findIndex(checkIndexOfcolumn); // current column client id
       let setCloneWidth = StyleColumn[getIndexOfColumn];
-      // console.log(
-      //   "clientId index -> " + getIndexOfColumn + "-> client id",
-      //   clientId + "--width-" + setCloneWidth
-      // );
+
       //get index of currentColumn
       function checkIndexOfcolumn(columns) {
         return clientId == columns.clientId;
@@ -888,13 +719,9 @@ export default compose(
         cloneWidth: setCloneWidth,
         ul_column_index: getIndexOfColumn,
         ul_column_length: StyleColumnL - 1,
+        ul_has_children: currentColumnChildren,
       };
     }
-
-    // let getBlockorder = getBlockOrder(clientId);
-    // console.log("getBlockorder->", getBlockorder);
-
-    // console.log("getBlockRootClientId->", getBlockRootClientId); //root block client id
   }),
   withDispatch((dispatch, ownProps, registry) => {
     const { clientId, ul_column_index, ul_column_length } = ownProps;
@@ -908,20 +735,6 @@ export default compose(
     // console.log("wrapper before ->", getRootBlock);
 
     let getListStyle = rootBlockWrapperAttr.listStyle.columns;
-
-    // console.log("getListStyle", getListStyle);
-
-    // console.log("rootWrapperID -> ", rootWrapperID);
-    // console.log("getBlock -> ", getRootBlock);
-    // // let getBlockorder = getBlockOrder(clientId);
-    // // console.log("getBlockorder->", getBlockorder);
-    // // console.log("getRootBlock->", getRootBlock);
-    // // console.log("getRootBlock attr->", getRootBlock.attributes);
-    // const { clientId, setAttributes } = ownProps;
-    // const { getBlockOrder } = registry.select("core/block-editor");
-    // let updatedProps = { "updated-by-ext": 8085005396 };
-    // updateBlockAttributes(rootWrapperID, updatedProps);
-
     const changeWidthAndPlaceStyle = (width) => {
       let cloneColumnWidths = { ...getListStyle };
       let ApplyWidth = { ...getListStyle };
@@ -962,39 +775,3 @@ export default compose(
     };
   })
 )(Edit);
-//single higher order component ex-----
-// export default withSelect((select, props) => {
-//   console.log("block column block class name inside select  ", props);
-//   const { clientId } = props;
-//   const { getBlockOrder, getBlockRootClientId, getBlock } =
-//     select(blockEditorStore);
-//   const rootId = getBlockRootClientId(clientId);
-
-//   let getRootBlock = getBlock(rootId);
-
-//   console.log("clientId -> ", clientId);
-//   let getBlockorder = getBlockOrder(clientId);
-//   console.log("getBlockorder->", getBlockorder);
-//   console.log("getRootBlock->", getRootBlock);
-//   console.log("getRootBlock attr->", getRootBlock.attributes);
-//   // console.log("getBlockRootClientId->", getBlockRootClientId);
-// })(Edit);
-//single higher order component ex-----
-
-// compose(
-// 	withSelect( ( select, { clientId } ) => {
-// 		const block = select( blockEditorStore ).getBlock( clientId );
-
-// 		return {
-// 			block,
-// 			shouldRender: block && block.name === 'core/html',
-// 		};
-// 	} ),
-// 	withDispatch( ( dispatch, { block } ) => ( {
-// 		onClick: () =>
-// 			dispatch( blockEditorStore ).replaceBlocks(
-// 				block.clientId,
-// 				rawHandler( { HTML: getBlockContent( block ) } )
-// 			),
-// 	} ) )
-// )

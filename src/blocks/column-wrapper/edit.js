@@ -98,8 +98,6 @@ class Edit extends Component {
   constructor(props) {
     super(...arguments);
     this.state = {
-      // selectLayout: true,
-      // initWidthJson: false,
       chooseBorderORShadow: "border",
       openPanel: "layout",
     };
@@ -134,8 +132,8 @@ class Edit extends Component {
   setupWidthOnchangeWidth() {
     const { attributes, wrapper_childrens } = this.props;
     let getListStyle = attributes.listStyle.columns;
-    console.log("this->props setupWidthOnchangeWidth ->", this.props);
-    console.log("this->props getListStyle ->", getListStyle);
+    // console.log("this->props setupWidthOnchangeWidth ->", this.props);
+    // console.log("this->props getListStyle ->", getListStyle);
     if (getListStyle && wrapper_childrens.length) {
       for (let getOrderChildren in getListStyle) {
         let getIdOfColumn = wrapper_childrens[getOrderChildren].clientId;
@@ -150,87 +148,8 @@ class Edit extends Component {
       }
     }
   }
-  // updateAndInitWidth = () => {
-  //   let filterAfterSec = () => {
-  //     let element = document.getElementById(this.props.attributes.blockId);
-  //     // console.log("updateAndInitWidth element", element);
-  //     if (element) {
-  //       let getWidthColumns = element.getAttribute("dataliststyle");
-  //       // console.log("getWidthColumns", getWidthColumns);
-  //       if (getWidthColumns) {
-  //         //for double code remove
-  //         if (getWidthColumns.indexOf('"') == 0)
-  //           getWidthColumns = getWidthColumns.slice(1, -1);
-  //         //for \\
-  //         getWidthColumns = getWidthColumns.replace(/\\/g, "");
-
-  //         getWidthColumns = JSON.parse(getWidthColumns);
-  //         // console.log("getWidthColumns", getWidthColumns);
-  //         let children = element.querySelector(
-  //           ".ubl-blocks-column-wrapper-2 > .ubl-blocks-column-wrapper-2-content > .block-editor-inner-blocks > .block-editor-block-list__layout"
-  //         ).children;
-  //         if (children && getWidthColumns) {
-  //           for (let x in getWidthColumns) {
-  //             if (children[x])
-  //               children[x].style.width = getWidthColumns[x] + "%";
-  //           }
-  //           element.classList.add("active");
-  //         }
-  //       }
-  //     }
-  //   };
-  //   setTimeout(filterAfterSec, 100);
-  // };
   componentDidMount() {
-    // console.log("component did mount call", this.props);
     this.setupWidthOnchangeWidth();
-    // this.setupINStateByProps();
-    // this.updateAndInitWidth();
-    // // save style option one
-    // let updateBtn = document.getElementsByClassName(
-    //   "editor-post-publish-button__button"
-    // );
-    // if (updateBtn && updateBtn.length > 0) {
-    //   // console.log("update btn triggered", updateBtn);
-    //   // console.log("this porops componentDidmount", this.props);
-    //   const { attributes, setAttributes } = this.props;
-    //   updateBtn[0].addEventListener("click", function () {
-    //     console.log("attributes->", attributes);
-    //     // console.log("setAttributes->", setAttributes);
-    //     let getElement = document.querySelector(
-    //       '[id="' + attributes.blockId + '"][dataliststyle]'
-    //     );
-    //     if (getElement) {
-    //       let getPreviousStyle = { ...attributes.listStyle };
-    //       let dataliststyle = getElement.getAttribute("dataliststyle");
-    //       getPreviousStyle["columns"] = JSON.parse(dataliststyle);
-    //       setAttributes({ listStyle: getPreviousStyle });
-    //     }
-    //   });
-    // }
-    // save style option one
-  }
-
-  setupINStateByProps(updatecolumn = false) {
-    if (
-      false == this.props.attributes.listStyle.columns ||
-      true == updatecolumn
-    ) {
-      // let columnWidth = 100 / this.props.attributes.columns;
-      // let columnWidthI = {};
-      // // set style as children
-      // for (
-      //   let initWidth = 0;
-      //   initWidth < this.props.attributes.columns;
-      //   initWidth++
-      // ) {
-      //   columnWidthI[initWidth] = columnWidth;
-      // }
-      // this.setState({ initWidthJson: columnWidthI });
-    }
-    //  else if (this.props.attributes.listStyle.columns) {
-    //   this.setState({ initWidthJson: this.props.attributes.listStyle.columns });
-    // }
   }
   updateStyle = (key_, value, multiple = false) => {
     const { attributes, setAttributes } = this.props;
