@@ -102,8 +102,8 @@ registerBlockType("unlimited-blocks/ubl-column-block-wrapper", {
   save: (props) => {
     const { attributes } = props;
     const { listStyle, blockId, styles, align, contentWidth } = attributes;
-    // let jsonSettingData = attributes.listStyle;
-    // jsonSettingData = JSON.stringify(jsonSettingData);
+    let jsonSettingData = attributes.listStyle;
+    jsonSettingData = JSON.stringify(jsonSettingData);
     let columnWrapperStyle = {};
     if (align == "wide") {
       columnWrapperStyle["max-width"] = "1100px";
@@ -209,7 +209,7 @@ registerBlockType("unlimited-blocks/ubl-column-block-wrapper", {
         id={blockId}
         className={`ubl-blocks-column-wrapper ${blockId}`}
         ubl-blocks-styler={ublStyler}
-        // data-ubl-column-width={jsonSettingData}
+        data-ubl-column-width={jsonSettingData}
       >
         <div className={WrapperClass} ubl-blocks-styler={ublStyler1}>
           <div

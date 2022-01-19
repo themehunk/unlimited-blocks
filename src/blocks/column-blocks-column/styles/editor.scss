@@ -15,7 +15,27 @@
     }
   }
 }
-// .ubl-blocks-column-wrapper-2-content {
-//   .ubl-blocks-cw-column-content-resizeable {
-//   }
-// }
+.ubl-blocks-cw-column-content.ul_has_column_children {
+  > .block-editor-inner-blocks {
+    > .block-editor-block-list__layout > .block-list-appender {
+      button.block-editor-button-block-appender {
+        border-radius: 4px;
+        background: black;
+        color: white;
+        padding: 1px;
+        // opacity: 0;
+        // transition: 0.2s all linear;
+      }
+    }
+  }
+
+  // &:hover {
+  //   > .block-editor-inner-blocks {
+  //     > .block-editor-block-list__layout > .block-list-appender {
+  //       button.block-editor-button-block-appender {
+  //         opacity: 1;
+  //       }
+  //     }
+  //   }
+  // }
+}

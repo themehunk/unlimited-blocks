@@ -90,36 +90,40 @@ div[data-type="unlimited-blocks/ubl-column-block-column"] {
       // resizeable css
       &:hover {
         [data-type="unlimited-blocks/ubl-column-block-column"] {
-          .components-resizable-box__container {
-            .ubl-blocks-cw-column-handle-wrapper {
-              .components-resizable-box__handle {
-                opacity: 1;
+          > {
+            .components-resizable-box__container {
+              .ubl-blocks-cw-column-handle-wrapper {
+                .components-resizable-box__handle {
+                  opacity: 1;
+                }
               }
             }
           }
         }
       }
       [data-type="unlimited-blocks/ubl-column-block-column"] {
-        .components-resizable-box__container {
-          width: 100% !important;
-          position: unset !important;
-          .ubl-blocks-cw-column-handle-wrapper {
+        > {
+          .components-resizable-box__container {
             width: 100% !important;
-            .components-resizable-box__handle {
-              width: 10px;
-              height: 100%;
-              transform: translateX(5px);
-              right: 0;
-              opacity: 0;
-              &:before {
-                background: transparent;
-              }
-              &:after {
-                background: #007cba;
-                height: 10px;
+            position: unset !important;
+            .ubl-blocks-cw-column-handle-wrapper {
+              width: 100% !important;
+              .components-resizable-box__handle {
                 width: 10px;
-                left: 0;
-                border: 2px solid white;
+                height: 100%;
+                transform: translateX(5px);
+                right: 0;
+                opacity: 0;
+                &:before {
+                  background: transparent;
+                }
+                &:after {
+                  background: #007cba;
+                  height: 10px;
+                  width: 10px;
+                  left: 0;
+                  border: 2px solid white;
+                }
               }
             }
           }
