@@ -64,10 +64,10 @@ const AttrS = {
     },
   },
   blockId: { type: "string", default: "" },
-  width: {
-    type: "number",
-    default: 0,
-  },
+  // width: {
+  //   type: "number",
+  //   default: 0,
+  // },
   verticleAlign: {
     type: "string",
     default: "",
@@ -94,27 +94,6 @@ registerBlockType("unlimited-blocks/ubl-column-block-column", {
   attributes: AttrS,
   /* Render the block in the editor. */
   edit: (props) => {
-    // console.log("column props->", props);
-    // save style current width
-    // let updateBtn = document.getElementsByClassName(
-    //   "editor-post-publish-button__button"
-    // );
-    // if (updateBtn && updateBtn.length > 0) {
-    //   updateBtn[0].addEventListener("click", function () {
-    //     let getElement = document.querySelector(
-    //       '[id="' + props.attributes.blockId + '"].ubl-blocks-cw-column'
-    //     );
-    //     // console.log("getElement", getElement);
-    //     if (getElement) {
-    //       // console.log("element offsetWidth", getElement.offsetWidth);
-    //       let getOrgWidth = getElement.offsetWidth;
-    //       let saveWidth = { orgWidth: getOrgWidth };
-    //       props.setAttributes({ responsiveWidth: saveWidth });
-    //     }
-    //   });
-    // }
-    // save style current width
-
     if (props.attributes.blockId == "")
       props.setAttributes({ blockId: "ubl-blocks-" + props.clientId });
     return <Edit {...props} />;

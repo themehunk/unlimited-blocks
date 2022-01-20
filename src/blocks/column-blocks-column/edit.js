@@ -8,7 +8,6 @@ import {
   InspectorControls,
   MediaUpload,
   ColorPalette,
-  Inserter,
   store as blockEditorStore,
 } from "@wordpress/block-editor";
 import {
@@ -19,9 +18,7 @@ import {
   ToggleControl,
   __experimentalGradientPicker as GradientPicker,
   ResizableBox,
-  IconButton,
 } from "@wordpress/components";
-const { withSelect } = wp.data;
 
 import { UBLGraDientColors } from "../block-assets/post-functions";
 import BasicToggleNav from "../block-assets/utility-components/BasicToggleNav";
@@ -31,7 +28,7 @@ import {
   setAnimationClass,
 } from "../block-assets/utility-components/animations/index";
 import { compose } from "redux";
-import { withDispatch } from "@wordpress/data";
+import { withSelect, withDispatch } from "@wordpress/data";
 class Edit extends Component {
   constructor() {
     super(...arguments);
@@ -656,35 +653,26 @@ class Edit extends Component {
                   templateLock={false}
                   templateInsertUpdatesSelection={false}
                   renderAppender={InnerBlocks.ButtonBlockAppender}
-                  // renderAppender={() => (
-                  //   <this.UlBlockAppender rootClientId={clientId} />
-                  // )}
                 />
               </div>
             </div>
           </div>
+          {this.props.ul_column_length < 5 &&
+            this.props.ul_column_index != this.props.ul_column_length && (
+              <button
+                onClick={() => {
+                  this.props.addBlockNextBlock();
+                }}
+                className="ul-add-new-column-btn"
+              >
+                <span className="dashicons dashicons-plus-alt2"></span>
+              </button>
+            )}
         </ResizableBox>
       </>
     );
   }
 }
-// UlBlockAppender({ rootClientId }) {
-//   return (
-//     <Inserter
-//       rootClientId={rootClientId}
-//       renderToggle={({ onToggle, disabled }) => (
-//         <IconButton
-//           className="my-button-block-appender"
-//           onClick={onToggle}
-//           disabled={disabled}
-//           label="Add a Block"
-//           icon="plus"
-//         />
-//       )}
-//       isAppender
-//     />
-//   );
-// }
 
 export default compose(
   withSelect((select, ownProps) => {
@@ -693,6 +681,7 @@ export default compose(
     const { getBlockRootClientId, getBlock } = select(blockEditorStore);
     const rootId = getBlockRootClientId(clientId);
     let getRootBlock = getBlock(rootId);
+    // console.log("getRootBlock from column select-> ", getRootBlock);
     // check column has children
     let currentColumnChildren = getBlock(clientId).innerBlocks.length;
     currentColumnChildren = currentColumnChildren ? true : false;
@@ -729,11 +718,11 @@ export default compose(
       registry.select(blockEditorStore);
     const rootWrapperID = getBlockRootClientId(clientId);
     const getRootBlock = getBlock(rootWrapperID);
-    const { updateBlockAttributes } = dispatch("core/block-editor");
+
+    // ** current column change width
+    const { updateBlockAttributes, insertBlock } =
+      dispatch("core/block-editor");
     const rootBlockWrapperAttr = { ...getRootBlock.attributes };
-
-    // console.log("wrapper before ->", getRootBlock);
-
     let getListStyle = rootBlockWrapperAttr.listStyle.columns;
     const changeWidthAndPlaceStyle = (width) => {
       let cloneColumnWidths = { ...getListStyle };
@@ -769,9 +758,27 @@ export default compose(
       }
       return changeWidth;
     };
+    // ** current column change width
+
+    /**
+     * add more column
+     */
+    // console.log("getRootBlock from column dispatch-> ", getRootBlock);
+    const blockName = "unlimited-blocks/ubl-column-block-column";
+    const insertedBlock = wp.blocks.createBlock(blockName);
+    const columnAddIndex = ul_column_index + 1;
+    const addBlockNextBlock = () => {
+      insertBlock(insertedBlock, columnAddIndex, rootWrapperID);
+      let NowColumnCount = rootBlockWrapperAttr.columns + 1;
+      // change column length
+      updateBlockAttributes(rootWrapperID, {
+        columns: NowColumnCount,
+      });
+    };
 
     return {
       changeWidthColumn: changeWidthAndPlaceStyle,
+      addBlockNextBlock: addBlockNextBlock,
     };
   })
 )(Edit);
