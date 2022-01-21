@@ -15,7 +15,6 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:focus:after {
 }
 
 .ubl-blocks-column-wrapper {
-  padding: 10px;
   transition: 0.4s opacity ease;
   position: relative;
 }
@@ -481,6 +480,17 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:focus:after {
 .ul-top-nav > div.active {
   background: #ebebeb;
   border-bottom: 2px solid #007cba;
+}
+.ul-top-nav.secondary-nav {
+  margin: 0;
+  border: 1px solid #dcdbdb;
+}
+.ul-top-nav.secondary-nav > div {
+  padding: 4px;
+  border: none;
+}
+.ul-top-nav.secondary-nav > div.active {
+  border: none;
 }
 
 .ul-animation-tool {

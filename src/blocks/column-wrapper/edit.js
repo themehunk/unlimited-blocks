@@ -270,7 +270,7 @@ class Edit extends Component {
           <BlockAlignmentToolbar
             value={attributes.align}
             onChange={(align) => setAttributes({ align })}
-            controls={["center", "wide", "full"]}
+            controls={["wide", "full"]}
           />
         </BlockControls>,
         <Placeholder

@@ -3694,11 +3694,10 @@ var Edit = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      console.log("block column block class name ", this.props);
+      // console.log("block column block class name ", this.props);
       var _this$props2 = this.props,
           attributes = _this$props2.attributes,
-          setAttributes = _this$props2.setAttributes,
-          clientId = _this$props2.clientId;
+          setAttributes = _this$props2.setAttributes;
       var width = attributes.width,
           styles = attributes.styles; // wrapper style
 
@@ -3786,9 +3785,9 @@ var Edit = /*#__PURE__*/function (_Component) {
             openPanel: value_
           });
         }
-      })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
+      })), this.state.openPanel == "layout" ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
         title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Layouts", "unlimited-blocks"),
-        initialOpen: false
+        initialOpen: true
       }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Animation", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_7__["Animation"], {
         value: attributes.additionalClassNames,
         change: function change(animate) {
@@ -3810,47 +3809,91 @@ var Edit = /*#__PURE__*/function (_Component) {
             });
           }
         }
-      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Verticle Alignment", "unlimited-blocks"))), wp.element.createElement("div", {
-        class: "ubl-switcher-button-section"
-      }, wp.element.createElement("span", {
-        onClick: function onClick() {
-          return setAttributes({
-            verticleAlign: ""
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Verticle Alignment", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_BasicToggleNav__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        wrapperClass: "secondary-nav",
+        value: attributes.verticleAlign ? attributes.verticleAlign : "unset",
+        navItem: [{
+          name: "unset",
+          title: "Top"
+        }, {
+          name: "center",
+          title: "Center"
+        }, {
+          name: "flex-end",
+          title: "Bottom"
+        }],
+        clickme: function clickme(value_) {
+          setAttributes({
+            verticleAlign: value_
           });
+        }
+      })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
+        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Spacing", "unlimited-blocks"),
+        initialOpen: false
+      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Padding", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_dimension__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        value: {
+          top: styles.paddingTop,
+          right: styles.paddingRight,
+          bottom: styles.paddingBottom,
+          left: styles.paddingLeft
         },
-        className: attributes.verticleAlign == "" ? "selected" : ""
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Top", "unlimited-blocks")), wp.element.createElement("span", {
-        onClick: function onClick() {
-          return setAttributes({
-            verticleAlign: "center"
+        isLink: styles.paddingLink,
+        changeme: function changeme(val_) {
+          var saveObj = {
+            paddingTop: val_.top,
+            paddingRight: val_.right,
+            paddingBottom: val_.bottom,
+            paddingLeft: val_.left
+          };
+
+          if ("isLink" in val_) {
+            saveObj.paddingLink = val_.isLink;
+          }
+
+          _this2.updateStyle(true, true, saveObj);
+        }
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Margin", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_dimension__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        value: {
+          top: styles.marginTop,
+          right: styles.marginRight,
+          bottom: styles.marginBottom,
+          left: styles.marginLeft
+        },
+        isLink: styles.marginLink,
+        changeme: function changeme(val_) {
+          var saveObj = {
+            marginTop: val_.top,
+            marginRight: val_.right,
+            marginBottom: val_.bottom,
+            marginLeft: val_.left
+          };
+
+          if ("isLink" in val_) {
+            saveObj.marginLink = val_.isLink;
+          }
+
+          _this2.updateStyle(true, true, saveObj);
+        }
+      }))) : wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
+        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Border & Box Shadow"),
+        initialOpen: false
+      }, wp.element.createElement(_block_assets_utility_components_BasicToggleNav__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        wrapperClass: "secondary-nav",
+        value: this.state.chooseBorderORShadow,
+        navItem: [{
+          name: "border",
+          title: "Border"
+        }, {
+          name: "boxshadow",
+          title: "Box Shadow"
+        }],
+        clickme: function clickme(value_) {
+          _this2.setState({
+            chooseBorderORShadow: value_
           });
-        },
-        className: attributes.verticleAlign == "center" ? "selected" : ""
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Center", "unlimited-blocks")), wp.element.createElement("span", {
-        onClick: function onClick() {
-          return setAttributes({
-            verticleAlign: "flex-end"
-          });
-        },
-        className: attributes.verticleAlign == "flex-end" ? "selected" : ""
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Bottom", "unlimited-blocks"))), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Border & Box Shadow", "unlimited-blocks"))), wp.element.createElement("div", {
-        class: "ubl-switcher-button-section"
-      }, wp.element.createElement("span", {
-        onClick: function onClick() {
-          return _this2.setState({
-            chooseBorderORShadow: "border"
-          });
-        },
-        className: this.state.chooseBorderORShadow == "border" ? "selected" : ""
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Border", "unlimited-blocks")), wp.element.createElement("span", {
-        onClick: function onClick() {
-          return _this2.setState({
-            chooseBorderORShadow: "boxshadow"
-          });
-        },
-        className: this.state.chooseBorderORShadow == "boxshadow" ? "selected" : ""
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Box Shadow", "unlimited-blocks"))), this.state.chooseBorderORShadow == "boxshadow" ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ToggleControl"], {
-        label: styles.shadowEnable ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Enable", "unlimited-blocks") : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Disable", "unlimited-blocks"),
+        }
+      }), this.state.chooseBorderORShadow == "boxshadow" ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ToggleControl"], {
+        label: styles.shadowEnable ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Disable", "unlimited-blocks") : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Enable", "unlimited-blocks"),
         checked: styles.shadowEnable,
         onChange: function onChange(e) {
           return _this2.updateStyle("shadowEnable", e);
@@ -3955,53 +3998,6 @@ var Edit = /*#__PURE__*/function (_Component) {
           return _this2.updateStyle("borderColor", color);
         }
       })))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
-        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Spacing", "unlimited-blocks"),
-        initialOpen: false
-      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Padding", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_dimension__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        value: {
-          top: styles.paddingTop,
-          right: styles.paddingRight,
-          bottom: styles.paddingBottom,
-          left: styles.paddingLeft
-        },
-        isLink: styles.paddingLink,
-        changeme: function changeme(val_) {
-          var saveObj = {
-            paddingTop: val_.top,
-            paddingRight: val_.right,
-            paddingBottom: val_.bottom,
-            paddingLeft: val_.left
-          };
-
-          if ("isLink" in val_) {
-            saveObj.paddingLink = val_.isLink;
-          }
-
-          _this2.updateStyle(true, true, saveObj);
-        }
-      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Margin", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_dimension__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        value: {
-          top: styles.marginTop,
-          right: styles.marginRight,
-          bottom: styles.marginBottom,
-          left: styles.marginLeft
-        },
-        isLink: styles.marginLink,
-        changeme: function changeme(val_) {
-          var saveObj = {
-            marginTop: val_.top,
-            marginRight: val_.right,
-            marginBottom: val_.bottom,
-            marginLeft: val_.left
-          };
-
-          if ("isLink" in val_) {
-            saveObj.marginLink = val_.isLink;
-          }
-
-          _this2.updateStyle(true, true, saveObj);
-        }
-      })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
         title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Background", "unlimited-blocks"),
         initialOpen: false
       }, wp.element.createElement("div", {
@@ -4052,19 +4048,20 @@ var Edit = /*#__PURE__*/function (_Component) {
         value: "cover"
       }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Cover", "unlimited-blocks")), wp.element.createElement("option", {
         value: "contain"
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Contain", "unlimited-blocks"))))), (styles.backgroundType == "color" || styles.backgroundType == "image") && wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, styles.backgroundType == "image" && styles.backgroundImage != "" ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Overlay Color", "unlimited-blocks") : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement("div", {
-        class: "ubl-switcher-button-section"
-      }, wp.element.createElement("span", {
-        onClick: function onClick() {
-          return _this2.updateStyle("backgroundColorType", "color");
-        },
-        className: styles.backgroundColorType == "color" ? "selected" : ""
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Solid", "unlimited-blocks")), wp.element.createElement("span", {
-        onClick: function onClick() {
-          return _this2.updateStyle("backgroundColorType", "gradient");
-        },
-        className: styles.backgroundColorType == "gradient" ? "selected" : ""
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Gradient", "unlimited-blocks"))), "color" == styles.backgroundColorType ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ColorPicker"], {
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Contain", "unlimited-blocks"))))), (styles.backgroundType == "color" || styles.backgroundType == "image") && wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, styles.backgroundType == "image" && styles.backgroundImage != "" ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Overlay Color", "unlimited-blocks") : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_BasicToggleNav__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        wrapperClass: "secondary-nav",
+        value: styles.backgroundColorType,
+        navItem: [{
+          name: "color",
+          title: "Solid"
+        }, {
+          name: "gradient",
+          title: "Gradient"
+        }],
+        clickme: function clickme(value_) {
+          _this2.updateStyle("backgroundColorType", value_);
+        }
+      }), "color" == styles.backgroundColorType ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ColorPicker"], {
         color: styles.backgroundColor,
         onChangeComplete: function onChangeComplete(colorBg) {
           var color = "rgba(".concat(colorBg.rgb.r, ",").concat(colorBg.rgb.g, ",").concat(colorBg.rgb.b, ",").concat(colorBg.rgb.a, ")");
@@ -4086,7 +4083,7 @@ var Edit = /*#__PURE__*/function (_Component) {
         onChange: function onChange(e) {
           _this2.updateStyle("backgroundOpacity", e);
         }
-      })))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ResizableBox"], {
+      }))))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ResizableBox"], {
         className: "ubl-blocks-custom-resizeable",
         handleWrapperClass: "ubl-blocks-cw-column-handle-wrapper",
         enable: {
@@ -4937,7 +4934,7 @@ var Edit = /*#__PURE__*/function (_Component) {
               align: align
             });
           },
-          controls: ["center", "wide", "full"]
+          controls: ["wide", "full"]
         })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["Placeholder"], {
           key: "placeholder",
           icon: "editor-table",
@@ -5556,11 +5553,11 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
     var columnWrapperStyle = {};
 
     if (align == "wide") {
-      columnWrapperStyle["max-width"] = "1100px";
+      columnWrapperStyle["max-width"] = "1000px";
     } else if (align == "full") {
       columnWrapperStyle["max-width"] = "100%";
     } else if (align == "center") {
-      columnWrapperStyle["max-width"] = "580px";
+      columnWrapperStyle["max-width"] = "650px";
     }
 
     var ublStyler = {
@@ -5655,9 +5652,11 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
 
     var WrapperClass = "ubl-blocks-column-wrapper-2 ".concat(blockId + "wrap2-");
     WrapperClass = Object(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_3__["setAnimationClass"])(attributes.additionalClassNames, WrapperClass);
+    var mainWrapperClass = ["align" + align, "ubl-blocks-column-wrapper", blockId];
+    mainWrapperClass = mainWrapperClass.join(" ");
     return wp.element.createElement("div", {
       id: blockId,
-      className: "ubl-blocks-column-wrapper ".concat(blockId),
+      className: mainWrapperClass,
       "ubl-blocks-styler": ublStyler,
       "data-ubl-column-width": jsonSettingData
     }, wp.element.createElement("div", {

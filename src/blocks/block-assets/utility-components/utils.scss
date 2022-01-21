@@ -71,6 +71,19 @@
       border-bottom: 2px solid #007cba;
     }
   }
+  // secondary nav
+  &.secondary-nav {
+    margin: 0;
+    border: 1px solid #dcdbdb;
+    > div {
+      padding: 4px;
+      border: none;
+      &.active {
+        border: none;
+      }
+    }
+  }
+  // secondary nav
 }
 
 // animation popup
@@ -118,12 +131,6 @@
       display: flex;
       flex-direction: column;
       grid-gap: 6px;
-      // background: #ffffff;
-      // position: fixed;
-      // width: 215px;
-      // padding: 10px;
-      // top: 2px;
-      // right: -16px;
       .search-wrap_heading {
         color: #707070;
       }
