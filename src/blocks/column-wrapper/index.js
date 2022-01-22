@@ -106,11 +106,11 @@ registerBlockType("unlimited-blocks/ubl-column-block-wrapper", {
     jsonSettingData = JSON.stringify(jsonSettingData);
     let columnWrapperStyle = {};
     if (align == "wide") {
-      columnWrapperStyle["max-width"] = "1100px";
+      columnWrapperStyle["max-width"] = "1000px";
     } else if (align == "full") {
       columnWrapperStyle["max-width"] = "100%";
     } else if (align == "center") {
-      columnWrapperStyle["max-width"] = "580px";
+      columnWrapperStyle["max-width"] = "650px";
     }
     let ublStyler = {
       id: blockId,
@@ -204,10 +204,17 @@ registerBlockType("unlimited-blocks/ubl-column-block-wrapper", {
       attributes.additionalClassNames,
       WrapperClass
     );
+
+    let mainWrapperClass = [
+      "align" + align,
+      "ubl-blocks-column-wrapper",
+      blockId,
+    ];
+    mainWrapperClass = mainWrapperClass.join(" ");
     return (
       <div
         id={blockId}
-        className={`ubl-blocks-column-wrapper ${blockId}`}
+        className={mainWrapperClass}
         ubl-blocks-styler={ublStyler}
         data-ubl-column-width={jsonSettingData}
       >

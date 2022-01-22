@@ -15,7 +15,6 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:focus:after {
 }
 
 .ubl-blocks-column-wrapper {
-  padding: 10px;
   transition: 0.4s opacity ease;
   position: relative;
 }
@@ -481,6 +480,17 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:focus:after {
 .ul-top-nav > div.active {
   background: #ebebeb;
   border-bottom: 2px solid #007cba;
+}
+.ul-top-nav.secondary-nav {
+  margin: 0;
+  border: 1px solid #dcdbdb;
+}
+.ul-top-nav.secondary-nav > div {
+  padding: 4px;
+  border: none;
+}
+.ul-top-nav.secondary-nav > div.active {
+  border: none;
 }
 
 .ul-animation-tool {
@@ -2152,6 +2162,42 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:focus:after {
   background: black;
   color: white;
   padding: 1px;
+}
+
+.ubl-blocks-cw-column:hover ~ .ul-add-new-column-btn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ul-add-new-column-btn {
+  position: absolute;
+  top: 0;
+  right: calc(-23px / 2);
+  text-align: center;
+  z-index: 10;
+  background: black;
+  border: none;
+  padding: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+  height: 23px;
+  width: 23px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: scale(0);
+  transition: 0.3s all ease;
+}
+.ul-add-new-column-btn:hover {
+  opacity: 1;
+  transform: scale(1);
+}
+.ul-add-new-column-btn span {
+  color: #dbdbdb;
+  width: unset;
+  height: unset;
+  font-size: 16px;
 }
 
 /*# sourceMappingURL=editor.css.map*/

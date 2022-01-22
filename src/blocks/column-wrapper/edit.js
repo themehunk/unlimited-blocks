@@ -1,10 +1,8 @@
 import memoize from "memize";
-import map from "lodash/map";
-import _times from "lodash/times";
 /**
  * WordPress dependencies.
  */
-import { withSelect } from "@wordpress/data";
+import { withDispatch, withSelect } from "@wordpress/data";
 import { __ } from "@wordpress/i18n";
 import { Component } from "@wordpress/element";
 import {
@@ -34,6 +32,7 @@ import {
   Animation,
   setAnimationClass,
 } from "../block-assets/utility-components/animations/index";
+import { compose } from "redux";
 const columnOptions = [
   {
     class_: "100",
@@ -88,11 +87,18 @@ const columnOptions = [
 ];
 const ALLOWED_BLOCKS = ["unlimited-blocks/ubl-column-block-column"];
 /* Get the column template. */
-const getLayoutTemplate = memoize((columns) => {
-  // console.log('columns->',columns);
 
-  return _times(columns, () => ["unlimited-blocks/ubl-column-block-column"]);
+// for()
+
+const getLayoutTemplate = memoize((columns) => {
+  const times_ = [];
+  for (let countcolumns = 0; countcolumns < columns; countcolumns++) {
+    times_.push(["unlimited-blocks/ubl-column-block-column"]);
+  }
+  return times_;
 });
+
+// console.log("getLayoutTemplate", getLayoutTemplate);
 
 class Edit extends Component {
   constructor(props) {
@@ -107,7 +113,7 @@ class Edit extends Component {
     // console.log("current props", this.props);
 
     if (prevProps.attributes.columns != this.props.attributes.columns) {
-      // console.log("yes change is 2");
+      // console.log("yes change is 1");
       let currentColumn = parseInt(this.props.attributes.columns);
       let columnsWidth = 100 / currentColumn;
       let SetObject = {};
@@ -117,24 +123,31 @@ class Edit extends Component {
       }
       let setObjectColumn = { columns: SetObject };
       this.props.setAttributes({ listStyle: setObjectColumn });
-      this.setupWidthOnchangeWidth();
+      // console.log("setObjectColumn->", setObjectColumn);
+      this.setupWidthOnchangeWidth(setObjectColumn);
     } else if (this.props.wrapper_childrens !== prevProps.wrapper_childrens) {
-      // console.log("yes change is 1");
+      // console.log("yes change is 2");
       this.setupWidthOnchangeWidth();
     } else if (
       this.props.attributes.listStyle.columns !=
       prevProps.attributes.listStyle.columns
     ) {
+      // console.log("yes change is 3");
       // if change column width by individual columns
       this.setupWidthOnchangeWidth();
     }
   }
-  setupWidthOnchangeWidth() {
+  setupWidthOnchangeWidth(listColumn = false) {
     const { attributes, wrapper_childrens } = this.props;
-    let getListStyle = attributes.listStyle.columns;
+    let getListStyle = !listColumn ? attributes.listStyle.columns : listColumn;
     // console.log("this->props setupWidthOnchangeWidth ->", this.props);
     // console.log("this->props getListStyle ->", getListStyle);
-    if (getListStyle && wrapper_childrens.length) {
+    // ---------
+    if (
+      getListStyle &&
+      wrapper_childrens.length &&
+      Object.keys(getListStyle).length == wrapper_childrens.length
+    ) {
       for (let getOrderChildren in getListStyle) {
         let getIdOfColumn = wrapper_childrens[getOrderChildren].clientId;
         let getIdOfColumnWidth = getListStyle[getOrderChildren];
@@ -147,6 +160,7 @@ class Edit extends Component {
         }
       }
     }
+    // ---------
   }
   componentDidMount() {
     this.setupWidthOnchangeWidth();
@@ -218,7 +232,6 @@ class Edit extends Component {
     let overlLayColor = null;
     if ("color" == styles.backgroundType || "image" == styles.backgroundType) {
       if ("gradient" == styles.backgroundColorType) {
-        // console.log("")
         overlLayColor = { backgroundImage: styles.backgroundImageGradient };
       } else {
         overlLayColor = { backgroundColor: styles.backgroundColor };
@@ -257,7 +270,7 @@ class Edit extends Component {
           <BlockAlignmentToolbar
             value={attributes.align}
             onChange={(align) => setAttributes({ align })}
-            controls={["center", "wide", "full"]}
+            controls={["wide", "full"]}
           />
         </BlockControls>,
         <Placeholder
@@ -270,7 +283,7 @@ class Edit extends Component {
             aria-label={__("Select Row Columns", "unlimited-blocks")}
             className="ubl-blocks-columns-group"
           >
-            {map(columnOptions, (columnOpt) => {
+            {columnOptions.map((columnOpt) => {
               let { columns, class_ } = columnOpt;
               return (
                 <div className="ubl-blocks-column-btn-container">
@@ -344,9 +357,11 @@ class Edit extends Component {
                       label={__("Columns", "unlimited-blocks")}
                       // help={}
                       value={attributes.columns}
-                      onChange={(value) =>
-                        this.props.setAttributes({ columns: value })
-                      }
+                      onChange={(value) => {
+                        let prevColumn = this.props.attributes.columns;
+                        this.props.updateColumn(prevColumn, value);
+                        this.props.setAttributes({ columns: value });
+                      }}
                       min={1}
                       max={6}
                       step={1}
@@ -864,8 +879,11 @@ class Edit extends Component {
             >
               <InnerBlocks
                 template={getLayoutTemplate(attributes.columns)}
-                templateLock="all"
+                // templateLock={false}
+                // templateLock={`all`}
+                orientation="horizontal"
                 allowedBlocks={ALLOWED_BLOCKS}
+                renderAppender={false}
               />
             </div>
           </div>
@@ -874,10 +892,35 @@ class Edit extends Component {
     );
   }
 }
-export default withSelect((select, ownProps) => {
-  const { clientId } = ownProps;
-  const { getBlockOrder, getBlockRootClientId, getBlock } =
-    select(blockEditorStore);
-  let getRootBlock = getBlock(clientId);
-  return { wrapper_childrens: getRootBlock.innerBlocks };
-})(Edit);
+export default compose(
+  withSelect((select, ownProps) => {
+    const { clientId } = ownProps;
+    const { getBlock } = select(blockEditorStore);
+    let getRootBlock = getBlock(clientId);
+    return { wrapper_childrens: getRootBlock.innerBlocks };
+  }),
+  withDispatch((dispatch, ownProps, registry) => {
+    const { getBlocks } = registry.select(blockEditorStore);
+    const { clientId } = ownProps;
+    let innerBlocks = getBlocks(clientId);
+    const { replaceInnerBlocks } = dispatch(blockEditorStore);
+    // update column without index
+    const updateColumn = (prevColumn, newColumns) => {
+      const adding = newColumns > prevColumn;
+      if (adding) {
+        let columnBlock = wp.blocks.createBlock(
+          "unlimited-blocks/ubl-column-block-column"
+        );
+        innerBlocks = [...innerBlocks, ...[columnBlock]];
+      } else {
+        // innerBlocks = dropRight([...innerBlocks], 1);
+        innerBlocks = [...innerBlocks].slice(0, -1);
+      }
+      replaceInnerBlocks(clientId, innerBlocks);
+    };
+    // update column without index
+    return {
+      updateColumn: updateColumn,
+    };
+  })
+)(Edit);
