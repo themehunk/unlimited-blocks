@@ -4785,7 +4785,31 @@ var Edit = /*#__PURE__*/function (_Component) {
         this.setupWidthOnchangeWidth(setObjectColumn);
       } else if (this.props.wrapper_childrens !== prevProps.wrapper_childrens) {
         // console.log("yes change is 2");
-        this.setupWidthOnchangeWidth();
+        var _currentColumn = parseInt(this.props.attributes.columns);
+
+        var _columnsWidth = 100 / _currentColumn;
+
+        var _SetObject = {};
+
+        for (var _initWidth = 0; _initWidth < _currentColumn; _initWidth++) {
+          // const element = array[index_];
+          _SetObject[_initWidth] = _columnsWidth;
+        }
+
+        var _setObjectColumn = {
+          columns: _SetObject
+        };
+        this.props.setAttributes({
+          listStyle: _setObjectColumn
+        });
+
+        if (this.props.wrapper_childrens.length != this.props.attributes.columns) {
+          this.props.setAttributes({
+            columns: this.props.wrapper_childrens.length
+          });
+        }
+
+        this.setupWidthOnchangeWidth(_setObjectColumn);
       } else if (this.props.attributes.listStyle.columns != prevProps.attributes.listStyle.columns) {
         // console.log("yes change is 3");
         // if change column width by individual columns
@@ -5006,7 +5030,7 @@ var Edit = /*#__PURE__*/function (_Component) {
       })), this.state.openPanel == "layout" ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
         title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Column & Layout", "unlimited-blocks"),
         initialOpen: true
-      }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
+      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("test color", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
         label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Columns", "unlimited-blocks") // help={}
         ,
         value: attributes.columns,
@@ -5193,7 +5217,7 @@ var Edit = /*#__PURE__*/function (_Component) {
 
           _this2.updateStyle("backgroundColor", color);
         }
-      }) : wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["__experimentalGradientPicker"], {
+      }) : wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["GradientPicker"], {
         disableCustomGradients: false,
         value: styles.backgroundImageGradient,
         gradients: _block_assets_post_functions__WEBPACK_IMPORTED_MODULE_6__["UBLGraDientColors"],

@@ -23,7 +23,7 @@ import {
   ToggleControl,
   SelectControl,
   ColorPicker,
-  __experimentalGradientPicker as GradientPicker,
+  GradientPicker,
 } from "@wordpress/components";
 import { UBLGraDientColors } from "./../block-assets/post-functions";
 import BasicToggleNav from "../block-assets/utility-components/BasicToggleNav";
@@ -127,7 +127,25 @@ class Edit extends Component {
       this.setupWidthOnchangeWidth(setObjectColumn);
     } else if (this.props.wrapper_childrens !== prevProps.wrapper_childrens) {
       // console.log("yes change is 2");
-      this.setupWidthOnchangeWidth();
+      let currentColumn = parseInt(this.props.attributes.columns);
+      let columnsWidth = 100 / currentColumn;
+      let SetObject = {};
+      for (let initWidth = 0; initWidth < currentColumn; initWidth++) {
+        // const element = array[index_];
+        SetObject[initWidth] = columnsWidth;
+      }
+      let setObjectColumn = { columns: SetObject };
+      this.props.setAttributes({ listStyle: setObjectColumn });
+
+      if (
+        this.props.wrapper_childrens.length != this.props.attributes.columns
+      ) {
+        this.props.setAttributes({
+          columns: this.props.wrapper_childrens.length,
+        });
+      }
+
+      this.setupWidthOnchangeWidth(setObjectColumn);
     } else if (
       this.props.attributes.listStyle.columns !=
       prevProps.attributes.listStyle.columns
@@ -137,11 +155,14 @@ class Edit extends Component {
       this.setupWidthOnchangeWidth();
     }
   }
+
   setupWidthOnchangeWidth(listColumn = false) {
     const { attributes, wrapper_childrens } = this.props;
     let getListStyle = !listColumn ? attributes.listStyle.columns : listColumn;
+
     // console.log("this->props setupWidthOnchangeWidth ->", this.props);
     // console.log("this->props getListStyle ->", getListStyle);
+
     // ---------
     if (
       getListStyle &&
@@ -353,6 +374,10 @@ class Edit extends Component {
                     title={__("Column & Layout", "unlimited-blocks")}
                     initialOpen={true}
                   >
+                    {/* testing ------------------------------------- */}
+                    <p>
+                      <strong>{__("test color", "unlimited-blocks")}</strong>
+                    </p>
                     <RangeControl
                       label={__("Columns", "unlimited-blocks")}
                       // help={}
