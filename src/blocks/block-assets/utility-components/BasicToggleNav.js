@@ -1,6 +1,6 @@
 const BasicToggleNav = (props) => {
   const { navItem, clickme, value, wrapperClass } = props;
-  if (navItem && value) {
+  if (navItem) {
     let default_class = "ul-top-nav";
     if (wrapperClass) {
       default_class = default_class.concat(" ", wrapperClass);
