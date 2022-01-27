@@ -1,8 +1,8 @@
 import { __ } from "@wordpress/i18n";
 import { Component } from "@wordpress/element";
-import { MediaUpload } from "@wordpress/block-editor";
-import { ColorPicker, GradientPicker } from "@wordpress/components";
-import { UBLGraDientColors } from "./../../post-functions";
+import { MediaUpload, ColorPalette } from "@wordpress/block-editor";
+import { GradientPicker, RangeControl } from "@wordpress/components";
+import { UBLGraDientColors, UblColorPlates } from "./../../post-functions";
 class BackgroundType extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +13,7 @@ class BackgroundType extends Component {
       backgroundColorType: "",
       backgroundColor: "",
       backgroundImageGradient: "",
+      backgroundOpacity: "",
     };
   }
   componentDidMount() {
@@ -25,6 +26,7 @@ class BackgroundType extends Component {
         backgroundColorType,
         backgroundColor,
         backgroundImageGradient,
+        backgroundOpacity,
       } = this.props.value;
 
       let setStateObj = {};
@@ -53,6 +55,10 @@ class BackgroundType extends Component {
         setStateObj["backgroundImageGradient"] = backgroundImageGradient;
         checkB = true;
       }
+      if (backgroundOpacity) {
+        setStateObj["backgroundOpacity"] = backgroundOpacity;
+        checkB = true;
+      }
       if (checkB) {
         this.setState(setStateObj);
       }
@@ -70,6 +76,7 @@ class BackgroundType extends Component {
       backgroundColorType: this.state.backgroundColorType,
       backgroundColor: this.state.backgroundColor,
       backgroundImageGradient: this.state.backgroundImageGradient,
+      backgroundOpacity: this.state.backgroundOpacity,
       ...obj_,
     };
 
@@ -201,36 +208,39 @@ class BackgroundType extends Component {
         </div>
 
         {"color" == this.state.backgroundColorType ? (
-          <ColorPicker
-            color={this.state.backgroundColor}
-            onChangeComplete={(colorBg) => {
-              let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-              this.updateState("backgroundColor", color);
-            }}
-          />
+          <>
+            <ColorPalette
+              value={this.state.backgroundColor}
+              // colors={UblColorPlates}
+              onChange={(color) => {
+                this.updateState("backgroundColor", color);
+              }}
+            />
+          </>
         ) : (
           <GradientPicker
             disableCustomGradients={false}
             value={this.state.backgroundImageGradient}
             gradients={UBLGraDientColors}
             onChange={(newGradient) => {
-              console.log("new gradient->", newGradient);
+              // console.log("new gradient->", newGradient);
 
               this.updateState("backgroundImageGradient", newGradient);
             }}
           />
         )}
-        {/* <RangeControl
-        label={__("Opacity", "unlimited-blocks")}
-        value={this.state.backgroundOpacity}
-        min={0}
-        max={1}
-        step={0.1}
-        onChange={(e) => {
-          // changeOpacity
-          //   this.updateStyle("backgroundOpacity", e);
-        }}
-      /> */}
+        {this.state.backgroundType == "image" && (
+          <RangeControl
+            label={__("Opacity", "unlimited-blocks")}
+            value={this.state.backgroundOpacity}
+            min={0}
+            max={1}
+            step={0.1}
+            onChange={(e) => {
+              this.updateState("backgroundOpacity", e);
+            }}
+          />
+        )}
       </>
     );
   }

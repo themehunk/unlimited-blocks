@@ -176,10 +176,12 @@ registerBlockType("unlimited-blocks/ubl-column-block-wrapper", {
       } else {
         overlLayColor = { "background-color": styles.backgroundColor };
       }
-      overlLayColor = {
-        ...overlLayColor,
-        ...{ opacity: styles.backgroundOpacity },
-      };
+      if ("image" == styles.backgroundType) {
+        overlLayColor = {
+          ...overlLayColor,
+          ...{ opacity: styles.backgroundOpacity },
+        };
+      }
     }
     let ublStyler2 = {
       id: blockId + "overlay-",

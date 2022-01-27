@@ -18,7 +18,7 @@ $editor-border-style: dashed;
 
 // editor style inherit
 
-div[data-type="unlimited-blocks/ubl-column-block-wrapper"],
+// div[data-type="unlimited-blocks/ubl-column-block-wrapper"],
 div[data-type="unlimited-blocks/ubl-column-block-column"] {
   &:hover,
   &:focus {
@@ -184,15 +184,15 @@ div[data-type="unlimited-blocks/ubl-column-block-column"] {
   * {
     box-sizing: border-box;
   }
-  width: 100%;
-  max-width: 580px;
-  margin: auto !important;
-  border: 1px solid #f8c045;
-  box-shadow: none !important;
-  outline: none !important;
-  box-sizing: border-box;
+  // width: 100%;
+  // max-width: 580px;
+  // margin: auto !important;
+  // border: 1px solid #f8c045;
+  // box-shadow: none !important;
+  // outline: none !important;
+  // box-sizing: border-box;
   .components-placeholder__label {
-    color: #f8c145;
+    // color: #f8c145;
     .dashicons-editor-table {
       margin-right: 10px;
     }
@@ -202,22 +202,27 @@ div[data-type="unlimited-blocks/ubl-column-block-column"] {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
-    justify-content: center;
+    grid-gap: 30px;
     .ubl-blocks-column-btn-container {
-      display: block;
-      width: calc(100% / 7);
-      min-width: 85px;
-      margin: 10px 10px;
-      button {
-        width: 100%;
-        box-shadow: none;
-        height: 43px;
-        border: 1px solid #f8c145;
-        border-radius: 3px !important;
-        &:hover div span {
-          background-color: #f8c045;
-          border-color: white;
+      width: 84px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .column-percent > span + span {
+        &:before {
+          content: "/";
+          margin: 0 5px;
         }
+      }
+      button {
+        width: 60px;
+        box-shadow: none;
+        height: 60px;
+        border: 1px solid #007cbb;
+        border-radius: 3px !important;
+        display: flex;
+        justify-content: center;
+        margin: 0 0 10px 0;
         &.ubl-clmn-btn-30-70 {
           span {
             flex: unset;
@@ -294,14 +299,15 @@ div[data-type="unlimited-blocks/ubl-column-block-column"] {
         }
         div {
           display: flex;
-          border: 1px solid #f8c045;
-          width: 100%;
-          height: 100%;
+          border: 2px solid #007cbb;
+          width: 34px;
+          height: 24px;
+          border-radius: 3px;
 
           span {
             display: block;
             flex: 1;
-            border-right: 1px solid #f8c045;
+            border-right: 2px solid #007cbb;
             height: 100%;
             &:last-child {
               border: none;

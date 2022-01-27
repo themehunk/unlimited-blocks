@@ -1401,7 +1401,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************************!*\
   !*** ./src/blocks/block-assets/post-functions.js ***!
   \***************************************************/
-/*! exports provided: postDataInit, filterPostInit, firstTimeInit, categoryList, excerptWords, showCateFn, showTagsFn, PostLoader, PostNotfound, UBLGraDientColors */
+/*! exports provided: postDataInit, filterPostInit, firstTimeInit, categoryList, excerptWords, showCateFn, showTagsFn, PostLoader, PostNotfound, UBLGraDientColors, UblColorPlates */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1416,6 +1416,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostLoader", function() { return PostLoader; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostNotfound", function() { return PostNotfound; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UBLGraDientColors", function() { return UBLGraDientColors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UblColorPlates", function() { return UblColorPlates; });
 /* harmony import */ var _wordpress_html_entities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/html-entities */ "@wordpress/html-entities");
 /* harmony import */ var _wordpress_html_entities__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_html_entities__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
@@ -1808,6 +1809,44 @@ var UBLGraDientColors = [{
 }, {
   name: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("ubl color 14", "unlimited-blocks"),
   gradient: "linear-gradient(to right top, #051937, #004D7A, #008793, #00BF72, #A8EB12)"
+}]; //<<<<<<<<<<<-------->>>>>>>>>>>>>>
+
+var UblColorPlates = [{
+  name: "Color: Black",
+  color: "rgb(0, 0, 0)"
+}, {
+  name: "Color: Cyan bluish gray",
+  color: "rgb(171, 184, 195)"
+}, {
+  name: "Color: White",
+  color: "rgb(255, 255, 255)"
+}, {
+  name: "Color: Pale pink",
+  color: "rgb(247, 141, 167)"
+}, {
+  name: "Color: Vivid red",
+  color: "rgb(207, 46, 46)"
+}, {
+  name: "Color: Luminous vivid orange",
+  color: "rgb(255, 105, 0)"
+}, {
+  name: "Color: Luminous vivid amber",
+  color: "rgb(252, 185, 0)"
+}, {
+  name: "Color: Light green cyan",
+  color: "rgb(123, 220, 181)"
+}, {
+  name: "Color: Vivid green cyan",
+  color: "rgb(0, 208, 132)"
+}, {
+  name: "Color: Pale cyan blue",
+  color: "rgb(142, 209, 252)"
+}, {
+  name: "Color: Vivid cyan blue",
+  color: "rgb(6, 147, 227)"
+}, {
+  name: "Color: Vivid purple",
+  color: "rgb(155, 81, 224)"
 }];
 
 /***/ }),
@@ -2721,7 +2760,8 @@ var BackgroundType = /*#__PURE__*/function (_Component) {
       backgroundImageSize: "",
       backgroundColorType: "",
       backgroundColor: "",
-      backgroundImageGradient: ""
+      backgroundImageGradient: "",
+      backgroundOpacity: ""
     };
     return _this;
   }
@@ -2737,7 +2777,8 @@ var BackgroundType = /*#__PURE__*/function (_Component) {
             backgroundImageSize = _this$props$value.backgroundImageSize,
             backgroundColorType = _this$props$value.backgroundColorType,
             backgroundColor = _this$props$value.backgroundColor,
-            backgroundImageGradient = _this$props$value.backgroundImageGradient;
+            backgroundImageGradient = _this$props$value.backgroundImageGradient,
+            backgroundOpacity = _this$props$value.backgroundOpacity;
         var setStateObj = {};
         var checkB = false;
 
@@ -2771,6 +2812,11 @@ var BackgroundType = /*#__PURE__*/function (_Component) {
           checkB = true;
         }
 
+        if (backgroundOpacity) {
+          setStateObj["backgroundOpacity"] = backgroundOpacity;
+          checkB = true;
+        }
+
         if (checkB) {
           this.setState(setStateObj);
         }
@@ -2790,7 +2836,8 @@ var BackgroundType = /*#__PURE__*/function (_Component) {
         backgroundImageSize: this.state.backgroundImageSize,
         backgroundColorType: this.state.backgroundColorType,
         backgroundColor: this.state.backgroundColor,
-        backgroundImageGradient: this.state.backgroundImageGradient
+        backgroundImageGradient: this.state.backgroundImageGradient,
+        backgroundOpacity: this.state.backgroundOpacity
       }, obj_);
 
       this.props.changeme(state_);
@@ -2888,21 +2935,28 @@ var BackgroundType = /*#__PURE__*/function (_Component) {
           return _this4.updateState("backgroundColorType", "gradient");
         },
         className: this.state.backgroundColorType == "gradient" ? "selected" : ""
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Gradient", "unlimited-blocks"))), "color" == this.state.backgroundColorType ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ColorPicker"], {
-        color: this.state.backgroundColor,
-        onChangeComplete: function onChangeComplete(colorBg) {
-          var color = "rgba(".concat(colorBg.rgb.r, ",").concat(colorBg.rgb.g, ",").concat(colorBg.rgb.b, ",").concat(colorBg.rgb.a, ")");
-
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Gradient", "unlimited-blocks"))), "color" == this.state.backgroundColorType ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["ColorPalette"], {
+        value: this.state.backgroundColor // colors={UblColorPlates}
+        ,
+        onChange: function onChange(color) {
           _this4.updateState("backgroundColor", color);
         }
-      }) : wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["GradientPicker"], {
+      })) : wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["GradientPicker"], {
         disableCustomGradients: false,
         value: this.state.backgroundImageGradient,
         gradients: _post_functions__WEBPACK_IMPORTED_MODULE_4__["UBLGraDientColors"],
         onChange: function onChange(newGradient) {
-          console.log("new gradient->", newGradient);
-
+          // console.log("new gradient->", newGradient);
           _this4.updateState("backgroundImageGradient", newGradient);
+        }
+      }), this.state.backgroundType == "image" && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["RangeControl"], {
+        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Opacity", "unlimited-blocks"),
+        value: this.state.backgroundOpacity,
+        min: 0,
+        max: 1,
+        step: 0.1,
+        onChange: function onChange(e) {
+          _this4.updateState("backgroundOpacity", e);
         }
       }));
     }
@@ -4964,25 +5018,17 @@ var columnOptions = [{
     2: 25
   },
   columns: 3
-}, {
-  class_: "1-4",
-  width: {
-    0: 25,
-    1: 25,
-    2: 25,
-    3: 25
-  },
-  columns: 4
-}, {
-  class_: "1-5",
-  width: {
-    0: 20,
-    1: 20,
-    2: 20,
-    3: 20
-  },
-  columns: 5
-}];
+} // {
+//   class_: "1-4",
+//   width: { 0: 25, 1: 25, 2: 25, 3: 25 },
+//   columns: 4,
+// },
+// {
+//   class_: "1-5",
+//   width: { 0: 20, 1: 20, 2: 20, 3: 20 },
+//   columns: 5,
+// },
+];
 var ALLOWED_BLOCKS = ["unlimited-blocks/ubl-column-block-column"];
 /* Get the column template. */
 // for()
@@ -5030,14 +5076,15 @@ var Edit = /*#__PURE__*/function (_Component) {
 
     _this.state = {
       chooseBorderORShadow: "border",
-      openPanel: "layout"
+      openPanel: "layout",
+      changeWidthPreventForFirstTime: ""
     };
     return _this;
   }
 
   _createClass(Edit, [{
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
+    value: function componentDidUpdate(prevProps, prevState) {
       // console.log("prev props", prevProps);
       // console.log("current props", this.props);
       if (prevProps.attributes.columns != this.props.attributes.columns) {
@@ -5057,38 +5104,44 @@ var Edit = /*#__PURE__*/function (_Component) {
         this.props.setAttributes({
           listStyle: setObjectColumn
         }); // console.log("setObjectColumn->", setObjectColumn);
+        // this.setupWidthOnchangeWidth(setObjectColumn);
 
-        this.setupWidthOnchangeWidth(setObjectColumn);
+        this.setState({
+          changeWidthPreventForFirstTime: 1
+        });
       } else if (this.props.wrapper_childrens !== prevProps.wrapper_childrens) {
         // console.log("yes change is 2");
-        var _currentColumn = parseInt(this.props.attributes.columns);
+        if (prevProps.wrapper_childrens.length && prevProps.wrapper_childrens.length > this.props.wrapper_childrens.length) {
+          // console.log("yes change is 22");
+          var _currentColumn = parseInt(this.props.attributes.columns);
 
-        var _columnsWidth = 100 / _currentColumn;
+          var _columnsWidth = 100 / _currentColumn;
 
-        var _SetObject = {};
+          var _SetObject = {};
 
-        for (var _initWidth = 0; _initWidth < _currentColumn; _initWidth++) {
-          // const element = array[index_];
-          _SetObject[_initWidth] = _columnsWidth;
-        }
+          for (var _initWidth = 0; _initWidth < _currentColumn; _initWidth++) {
+            // const element = array[index_];
+            _SetObject[_initWidth] = _columnsWidth;
+          }
 
-        var _setObjectColumn = {
-          columns: _SetObject
-        };
-        this.props.setAttributes({
-          listStyle: _setObjectColumn
-        });
-
-        if (this.props.wrapper_childrens.length != this.props.attributes.columns) {
+          var _setObjectColumn = {
+            columns: _SetObject
+          };
           this.props.setAttributes({
-            columns: this.props.wrapper_childrens.length
+            listStyle: _setObjectColumn
           });
-        }
 
-        this.setupWidthOnchangeWidth(_setObjectColumn);
+          if (this.props.wrapper_childrens.length != this.props.attributes.columns) {
+            this.props.setAttributes({
+              columns: this.props.wrapper_childrens.length
+            });
+          }
+
+          this.setupWidthOnchangeWidth(_setObjectColumn);
+        } else {
+          this.setupWidthOnchangeWidth();
+        }
       } else if (this.props.attributes.listStyle.columns != prevProps.attributes.listStyle.columns) {
-        // console.log("yes change is 3");
-        // if change column width by individual columns
         this.setupWidthOnchangeWidth();
       }
     }
@@ -5099,8 +5152,8 @@ var Edit = /*#__PURE__*/function (_Component) {
       var _this$props2 = this.props,
           attributes = _this$props2.attributes,
           wrapper_childrens = _this$props2.wrapper_childrens;
-      var getListStyle = !listColumn ? attributes.listStyle.columns : listColumn; // console.log("this->props setupWidthOnchangeWidth ->", this.props);
-      // console.log("this->props getListStyle ->", getListStyle);
+      var getListStyle = !listColumn ? attributes.listStyle.columns : listColumn; // console.log("--getListStyle", getListStyle);
+      // console.log("--wrapper_childrens", wrapper_childrens);
       // ---------
 
       if (getListStyle && wrapper_childrens.length && Object.keys(getListStyle).length == wrapper_childrens.length) {
@@ -5124,6 +5177,14 @@ var Edit = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.setupWidthOnchangeWidth();
+    }
+  }, {
+    key: "buttonPercent",
+    value: function buttonPercent(percent) {
+      var Per = Object.keys(percent).map(function (key_) {
+        return wp.element.createElement("span", null, parseInt(percent[key_]));
+      });
+      return Per;
     }
   }, {
     key: "render",
@@ -5193,9 +5254,11 @@ var Edit = /*#__PURE__*/function (_Component) {
           };
         }
 
-        overlLayColor = _objectSpread(_objectSpread({}, overlLayColor), {
-          opacity: styles.backgroundOpacity
-        });
+        if ("image" == styles.backgroundType) {
+          overlLayColor = _objectSpread(_objectSpread({}, overlLayColor), {
+            opacity: styles.backgroundOpacity
+          });
+        }
       }
       /**
        * content width
@@ -5245,7 +5308,8 @@ var Edit = /*#__PURE__*/function (_Component) {
           className: "ubl-blocks-columns-group"
         }, columnOptions.map(function (columnOpt) {
           var columns = columnOpt.columns,
-              class_ = columnOpt.class_;
+              class_ = columnOpt.class_,
+              width = columnOpt.width;
           return wp.element.createElement("div", {
             className: "ubl-blocks-column-btn-container"
           }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["Button"], {
@@ -5269,7 +5333,9 @@ var Edit = /*#__PURE__*/function (_Component) {
             return wp.element.createElement("span", {
               className: "span-".concat(keyy)
             });
-          }))));
+          }))), wp.element.createElement("span", {
+            className: "column-percent"
+          }, _this2.buttonPercent(width)));
         })))];
       }
 
@@ -5611,7 +5677,8 @@ var Edit = /*#__PURE__*/function (_Component) {
   var _select = select(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["store"]),
       getBlock = _select.getBlock;
 
-  var getRootBlock = getBlock(clientId);
+  var getRootBlock = getBlock(clientId); // ownProps
+
   return {
     wrapper_childrens: getRootBlock.innerBlocks
   };
@@ -5855,9 +5922,11 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
         };
       }
 
-      overlLayColor = _objectSpread(_objectSpread({}, overlLayColor), {
-        opacity: styles.backgroundOpacity
-      });
+      if ("image" == styles.backgroundType) {
+        overlLayColor = _objectSpread(_objectSpread({}, overlLayColor), {
+          opacity: styles.backgroundOpacity
+        });
+      }
     }
 
     var ublStyler2 = {
