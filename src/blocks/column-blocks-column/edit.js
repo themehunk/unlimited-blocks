@@ -153,17 +153,6 @@ class Edit extends Component {
                 initialOpen={true}
               >
                 <p>
-                  <strong>{__("Animation", "unlimited-blocks")}</strong>
-                </p>
-
-                <Animation
-                  value={attributes.additionalClassNames}
-                  change={(animate) => {
-                    setAttributes({ additionalClassNames: animate });
-                  }}
-                />
-
-                <p>
                   <strong>{__("Width", "unlimited-blocks")}</strong>
                 </p>
                 <RangeControl
@@ -265,6 +254,17 @@ class Edit extends Component {
                       saveObj.marginLink = val_.isLink;
                     }
                     this.updateStyle(true, true, saveObj);
+                  }}
+                />
+              </PanelBody>
+              <PanelBody
+                title={__("Animations", "unlimited-blocks")}
+                initialOpen={false}
+              >
+                <Animation
+                  value={attributes.additionalClassNames}
+                  change={(animate) => {
+                    setAttributes({ additionalClassNames: animate });
                   }}
                 />
               </PanelBody>

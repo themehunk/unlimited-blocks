@@ -104,8 +104,12 @@ div[data-type="unlimited-blocks/ubl-column-block-column"] {
       [data-type="unlimited-blocks/ubl-column-block-column"] {
         > {
           .components-resizable-box__container {
+            // width: 100% !important;
+            // position: unset !important;
+
             width: 100% !important;
             position: unset !important;
+            height: 100% !important;
             .ubl-blocks-cw-column-handle-wrapper {
               width: 100% !important;
               .components-resizable-box__handle {

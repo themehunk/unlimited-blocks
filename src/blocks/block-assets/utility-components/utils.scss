@@ -75,11 +75,14 @@
   &.secondary-nav {
     margin: 0;
     border: 1px solid #dcdbdb;
+    border-right: none;
     > div {
       padding: 4px;
       border: none;
+      border-right: 1px solid #dcdbdb;
       &.active {
         border: none;
+        border-right: 1px solid #dcdbdb;
       }
     }
   }
@@ -134,6 +137,36 @@
       .search-wrap_heading {
         color: #707070;
       }
+    }
+  }
+}
+// background color and image
+.ubl-background-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .types_ {
+    display: flex;
+    border: 1px solid #b1b1b1;
+    border-right: none;
+    > div {
+      border-right: 1px solid #b1b1b1;
+      padding: 5px 7px;
+      cursor: pointer;
+      color: #505050;
+      &.selected {
+        background-color: #ebebeb;
+      }
+      &::after {
+        content: "";
+      }
+      &::before {
+        content: "";
+      }
+    }
+    .buttons_ {
+      width: unset;
+      height: unset;
     }
   }
 }
