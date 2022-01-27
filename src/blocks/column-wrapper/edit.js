@@ -25,13 +25,14 @@ import {
   ColorPicker,
   GradientPicker,
 } from "@wordpress/components";
-import { UBLGraDientColors } from "./../block-assets/post-functions";
+// import { UBLGraDientColors } from "./../block-assets/post-functions";
 import BasicToggleNav from "../block-assets/utility-components/BasicToggleNav";
 import Dimension from "../block-assets/utility-components/dimension";
 import {
   Animation,
   setAnimationClass,
 } from "../block-assets/utility-components/animations/index";
+import BackgroundType from "../block-assets/utility-components/backgroundType/backgroundType";
 import { compose } from "redux";
 const columnOptions = [
   {
@@ -375,9 +376,6 @@ class Edit extends Component {
                     initialOpen={true}
                   >
                     {/* testing ------------------------------------- */}
-                    <p>
-                      <strong>{__("test color", "unlimited-blocks")}</strong>
-                    </p>
                     <RangeControl
                       label={__("Columns", "unlimited-blocks")}
                       // help={}
@@ -532,7 +530,22 @@ class Edit extends Component {
                     title={__("Background", "unlimited-blocks")}
                     initialOpen={false}
                   >
-                    <div className="ubl-multiple-select">
+                    <BackgroundType
+                      value={{
+                        backgroundType: styles.backgroundType,
+                        backgroundImage: styles.backgroundImage,
+                        backgroundImageSize: styles.backgroundImageSize,
+                        backgroundColorType: styles.backgroundColorType,
+                        backgroundColor: styles.backgroundColor,
+                        backgroundImageGradient: styles.backgroundImageGradient,
+                      }}
+                      changeme={(getProperty) => {
+                        console.log("getProperty", getProperty);
+                        this.updateStyle(true, true, getProperty);
+                      }}
+                    />
+
+                    {/* <div className="ubl-multiple-select">
                       <SelectControl
                         value={styles.backgroundType}
                         onChange={(choosen) => {
@@ -553,8 +566,8 @@ class Edit extends Component {
                           },
                         ]}
                       />
-                    </div>
-                    {styles.backgroundType == "image" && (
+                    </div> */}
+                    {/* {styles.backgroundType == "image" && (
                       <>
                         <p>
                           <strong>
@@ -609,9 +622,9 @@ class Edit extends Component {
                           </div>
                         )}
                       </>
-                    )}
+                    )} */}
 
-                    {(styles.backgroundType == "color" ||
+                    {/* {(styles.backgroundType == "color" ||
                       styles.backgroundType == "image") && (
                       <>
                         <p>
@@ -685,7 +698,7 @@ class Edit extends Component {
                           }}
                         />
                       </>
-                    )}
+                    )} */}
                   </PanelBody>
 
                   <PanelBody

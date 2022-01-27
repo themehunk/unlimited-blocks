@@ -1827,7 +1827,7 @@ var BasicToggleNav = function BasicToggleNav(props) {
       value = props.value,
       wrapperClass = props.wrapperClass;
 
-  if (navItem && value) {
+  if (navItem) {
     var default_class = "ul-top-nav";
 
     if (wrapperClass) {
@@ -2649,6 +2649,278 @@ var setAnimationClass = function setAnimationClass(cssObj) {
 //   },
 //   [clientId]
 // );
+
+/***/ }),
+
+/***/ "./src/blocks/block-assets/utility-components/backgroundType/backgroundType.js":
+/*!*************************************************************************************!*\
+  !*** ./src/blocks/block-assets/utility-components/backgroundType/backgroundType.js ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _post_functions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../post-functions */ "./src/blocks/block-assets/post-functions.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+
+var BackgroundType = /*#__PURE__*/function (_Component) {
+  _inherits(BackgroundType, _Component);
+
+  var _super = _createSuper(BackgroundType);
+
+  function BackgroundType(props) {
+    var _this;
+
+    _classCallCheck(this, BackgroundType);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      backgroundType: "",
+      backgroundImage: "",
+      backgroundImageSize: "",
+      backgroundColorType: "",
+      backgroundColor: "",
+      backgroundImageGradient: ""
+    };
+    return _this;
+  }
+
+  _createClass(BackgroundType, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      // console.log("props -> ", this.props);
+      if (this.props.value) {
+        var _this$props$value = this.props.value,
+            backgroundType = _this$props$value.backgroundType,
+            backgroundImage = _this$props$value.backgroundImage,
+            backgroundImageSize = _this$props$value.backgroundImageSize,
+            backgroundColorType = _this$props$value.backgroundColorType,
+            backgroundColor = _this$props$value.backgroundColor,
+            backgroundImageGradient = _this$props$value.backgroundImageGradient;
+        var setStateObj = {};
+        var checkB = false;
+
+        if (backgroundType) {
+          setStateObj["backgroundType"] = backgroundType;
+          checkB = true;
+        }
+
+        if (backgroundImage) {
+          setStateObj["backgroundImage"] = backgroundImage;
+          checkB = true;
+        }
+
+        if (backgroundImageSize) {
+          setStateObj["backgroundImageSize"] = backgroundImageSize;
+          checkB = true;
+        }
+
+        if (backgroundColorType) {
+          setStateObj["backgroundColorType"] = backgroundColorType;
+          checkB = true;
+        }
+
+        if (backgroundColor) {
+          setStateObj["backgroundColor"] = backgroundColor;
+          checkB = true;
+        }
+
+        if (backgroundImageGradient) {
+          setStateObj["backgroundImageGradient"] = backgroundImageGradient;
+          checkB = true;
+        }
+
+        if (checkB) {
+          this.setState(setStateObj);
+        }
+      }
+    } //   set state of bg type
+
+  }, {
+    key: "updateState",
+    value: function updateState(stateKey, stateVal) {
+      var obj_ = {};
+      obj_[stateKey] = stateVal;
+      this.setState(obj_);
+
+      var state_ = _objectSpread({
+        backgroundType: this.state.backgroundType,
+        backgroundImage: this.state.backgroundImage,
+        backgroundImageSize: this.state.backgroundImageSize,
+        backgroundColorType: this.state.backgroundColorType,
+        backgroundColor: this.state.backgroundColor,
+        backgroundImageGradient: this.state.backgroundImageGradient
+      }, obj_);
+
+      this.props.changeme(state_);
+    }
+  }, {
+    key: "navType",
+    value: function navType() {
+      var _this2 = this;
+
+      return wp.element.createElement("div", {
+        className: "ubl-background-type"
+      }, wp.element.createElement("span", {
+        className: "top-title"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Background Type", "unlimited-blocks")), wp.element.createElement("div", {
+        className: "types_"
+      }, wp.element.createElement("div", {
+        className: "".concat(!this.state.backgroundType ? "selected" : "")
+      }, wp.element.createElement("span", {
+        className: "buttons_ dashicons dashicons-dismiss",
+        "data-title": Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("None", "unlimited-blocks"),
+        onClick: function onClick() {
+          _this2.updateState("backgroundType", "");
+        }
+      })), wp.element.createElement("div", {
+        className: "".concat(this.state.backgroundType == "color" ? "selected" : "")
+      }, wp.element.createElement("span", {
+        className: "buttons_ dashicons dashicons-admin-customizer",
+        "data-title": Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Color", "unlimited-blocks"),
+        onClick: function onClick() {
+          _this2.updateState("backgroundType", "color");
+        }
+      })), wp.element.createElement("div", {
+        className: "".concat(this.state.backgroundType == "image" ? "selected" : "")
+      }, wp.element.createElement("span", {
+        className: "buttons_ dashicons dashicons-format-image ",
+        "data-title": Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Image", "unlimited-blocks"),
+        onClick: function onClick() {
+          _this2.updateState("backgroundType", "image");
+        }
+      }))));
+    }
+  }, {
+    key: "bgImage",
+    value: function bgImage() {
+      var _this3 = this;
+
+      return wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Background image", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["MediaUpload"], {
+        allowedType: "image",
+        onSelect: function onSelect(newImage) {
+          console.log("newImage", newImage);
+
+          _this3.updateState("backgroundImage", newImage.sizes.full.url);
+        },
+        value: this.state.backgroundImage,
+        render: function render(_ref) {
+          var open = _ref.open;
+          return wp.element.createElement("div", {
+            onClick: open,
+            className: "ubl-block-image-uploader ".concat("" == _this3.state.backgroundImage && "blank")
+          }, wp.element.createElement("div", null, wp.element.createElement("i", {
+            className: "fas fa-plus"
+          })), wp.element.createElement("img", {
+            src: _this3.state.backgroundImage
+          }));
+        }
+      }), this.state.backgroundImage != "" && wp.element.createElement("div", {
+        className: "flex-section"
+      }, wp.element.createElement("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Background Size", "unlimited-blocks")), wp.element.createElement("select", {
+        value: this.state.backgroundImageSize,
+        onChange: function onChange(e) {
+          _this3.updateState("backgroundImageSize", e.target.value);
+        }
+      }, wp.element.createElement("option", {
+        value: "auto"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Auto", "unlimited-blocks")), wp.element.createElement("option", {
+        value: "cover"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Cover", "unlimited-blocks")), wp.element.createElement("option", {
+        value: "contain"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Contain", "unlimited-blocks")))));
+    }
+  }, {
+    key: "colorGradient",
+    value: function colorGradient() {
+      var _this4 = this;
+
+      return wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, this.state.backgroundType == "image" && this.state.backgroundImage != "" ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Overlay Color", "unlimited-blocks") : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement("div", {
+        class: "ubl-switcher-button-section"
+      }, wp.element.createElement("span", {
+        onClick: function onClick() {
+          return _this4.updateState("backgroundColorType", "color");
+        },
+        className: this.state.backgroundColorType == "color" ? "selected" : ""
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Solid", "unlimited-blocks")), wp.element.createElement("span", {
+        onClick: function onClick() {
+          return _this4.updateState("backgroundColorType", "gradient");
+        },
+        className: this.state.backgroundColorType == "gradient" ? "selected" : ""
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Gradient", "unlimited-blocks"))), "color" == this.state.backgroundColorType ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ColorPicker"], {
+        color: this.state.backgroundColor,
+        onChangeComplete: function onChangeComplete(colorBg) {
+          var color = "rgba(".concat(colorBg.rgb.r, ",").concat(colorBg.rgb.g, ",").concat(colorBg.rgb.b, ",").concat(colorBg.rgb.a, ")");
+
+          _this4.updateState("backgroundColor", color);
+        }
+      }) : wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["GradientPicker"], {
+        disableCustomGradients: false,
+        value: this.state.backgroundImageGradient,
+        gradients: _post_functions__WEBPACK_IMPORTED_MODULE_4__["UBLGraDientColors"],
+        onChange: function onChange(newGradient) {
+          console.log("new gradient->", newGradient);
+
+          _this4.updateState("backgroundImageGradient", newGradient);
+        }
+      }));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return wp.element.createElement(wp.element.Fragment, null, this.navType(), this.state.backgroundType == "image" && this.bgImage(), (this.state.backgroundType == "image" || this.state.backgroundType == "color") && this.colorGradient());
+    }
+  }]);
+
+  return BackgroundType;
+}(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (BackgroundType);
+{
+  /* <BackgroundType changeme={(object_)=>{
+  }}/> */
+}
 
 /***/ }),
 
@@ -3788,14 +4060,7 @@ var Edit = /*#__PURE__*/function (_Component) {
       })), this.state.openPanel == "layout" ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
         title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Layouts", "unlimited-blocks"),
         initialOpen: true
-      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Animation", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_7__["Animation"], {
-        value: attributes.additionalClassNames,
-        change: function change(animate) {
-          setAttributes({
-            additionalClassNames: animate
-          });
-        }
-      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Width", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["RangeControl"], {
+      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Width", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["RangeControl"], {
         label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Column Width (%)", "unlimited-blocks"),
         value: this.state.cloneWidth ? this.state.cloneWidth : this.props.cloneWidth,
         min: 10,
@@ -3873,6 +4138,16 @@ var Edit = /*#__PURE__*/function (_Component) {
           }
 
           _this2.updateStyle(true, true, saveObj);
+        }
+      })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
+        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Animations", "unlimited-blocks"),
+        initialOpen: false
+      }, wp.element.createElement(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_7__["Animation"], {
+        value: attributes.additionalClassNames,
+        change: function change(animate) {
+          setAttributes({
+            additionalClassNames: animate
+          });
         }
       }))) : wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
         title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Border & Box Shadow"),
@@ -4569,10 +4844,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _block_assets_post_functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../block-assets/post-functions */ "./src/blocks/block-assets/post-functions.js");
-/* harmony import */ var _block_assets_utility_components_BasicToggleNav__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../block-assets/utility-components/BasicToggleNav */ "./src/blocks/block-assets/utility-components/BasicToggleNav.js");
-/* harmony import */ var _block_assets_utility_components_dimension__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../block-assets/utility-components/dimension */ "./src/blocks/block-assets/utility-components/dimension.js");
-/* harmony import */ var _block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../block-assets/utility-components/animations/index */ "./src/blocks/block-assets/utility-components/animations/index.js");
+/* harmony import */ var _block_assets_utility_components_BasicToggleNav__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../block-assets/utility-components/BasicToggleNav */ "./src/blocks/block-assets/utility-components/BasicToggleNav.js");
+/* harmony import */ var _block_assets_utility_components_dimension__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../block-assets/utility-components/dimension */ "./src/blocks/block-assets/utility-components/dimension.js");
+/* harmony import */ var _block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../block-assets/utility-components/animations/index */ "./src/blocks/block-assets/utility-components/animations/index.js");
+/* harmony import */ var _block_assets_utility_components_backgroundType_backgroundType__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../block-assets/utility-components/backgroundType/backgroundType */ "./src/blocks/block-assets/utility-components/backgroundType/backgroundType.js");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -4623,6 +4898,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+ // import { UBLGraDientColors } from "./../block-assets/post-functions";
 
 
 
@@ -4945,7 +5221,7 @@ var Edit = /*#__PURE__*/function (_Component) {
 
 
       var WrapperClass = "ubl-blocks-column-wrapper-2";
-      WrapperClass = Object(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_9__["setAnimationClass"])(attributes.additionalClassNames, WrapperClass);
+      WrapperClass = Object(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_8__["setAnimationClass"])(attributes.additionalClassNames, WrapperClass);
       /* Show the layout placeholder. */
 
       if (attributes.columns == 0) {
@@ -5011,7 +5287,7 @@ var Edit = /*#__PURE__*/function (_Component) {
         key: "inspector"
       }, attributes.columns > 0 && wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
         initialOpen: true
-      }, wp.element.createElement(_block_assets_utility_components_BasicToggleNav__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      }, wp.element.createElement(_block_assets_utility_components_BasicToggleNav__WEBPACK_IMPORTED_MODULE_6__["default"], {
         value: this.state.openPanel,
         navItem: [{
           name: "layout",
@@ -5030,7 +5306,7 @@ var Edit = /*#__PURE__*/function (_Component) {
       })), this.state.openPanel == "layout" ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
         title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Column & Layout", "unlimited-blocks"),
         initialOpen: true
-      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("test color", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
+      }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
         label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Columns", "unlimited-blocks") // help={}
         ,
         value: attributes.columns,
@@ -5104,7 +5380,7 @@ var Edit = /*#__PURE__*/function (_Component) {
       }))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
         title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Spacing", "unlimited-blocks"),
         initialOpen: false
-      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Padding", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_dimension__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Padding", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_dimension__WEBPACK_IMPORTED_MODULE_7__["default"], {
         value: {
           top: styles.paddingTop,
           right: styles.paddingRight,
@@ -5126,7 +5402,7 @@ var Edit = /*#__PURE__*/function (_Component) {
 
           _this2.updateStyle(true, true, saveObj);
         }
-      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Margin", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_dimension__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Margin", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_dimension__WEBPACK_IMPORTED_MODULE_7__["default"], {
         value: {
           top: styles.marginTop,
           right: styles.marginRight,
@@ -5151,89 +5427,21 @@ var Edit = /*#__PURE__*/function (_Component) {
       }))) : wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
         title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Background", "unlimited-blocks"),
         initialOpen: false
-      }, wp.element.createElement("div", {
-        className: "ubl-multiple-select"
-      }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["SelectControl"], {
-        value: styles.backgroundType,
-        onChange: function onChange(choosen) {
-          _this2.updateStyle("backgroundType", choosen);
+      }, wp.element.createElement(_block_assets_utility_components_backgroundType_backgroundType__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        value: {
+          backgroundType: styles.backgroundType,
+          backgroundImage: styles.backgroundImage,
+          backgroundImageSize: styles.backgroundImageSize,
+          backgroundColorType: styles.backgroundColorType,
+          backgroundColor: styles.backgroundColor,
+          backgroundImageGradient: styles.backgroundImageGradient
         },
-        options: [{
-          value: "none",
-          label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("None", "unlimited-blocks")
-        }, {
-          value: "color",
-          label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Color", "unlimited-blocks")
-        }, {
-          value: "image",
-          label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Image", "unlimited-blocks")
-        }]
-      })), styles.backgroundType == "image" && wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Background image", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["MediaUpload"], {
-        allowedType: "image",
-        onSelect: function onSelect(newImage) {
-          _this2.updateStyle("backgroundImage", newImage.sizes.full.url);
-        },
-        value: styles.backgroundImage,
-        render: function render(_ref) {
-          var open = _ref.open;
-          return wp.element.createElement("div", {
-            onClick: open,
-            className: "ubl-block-image-uploader ".concat("" == styles.backgroundImage && "blank")
-          }, wp.element.createElement("div", null, wp.element.createElement("i", {
-            className: "fas fa-plus"
-          })), wp.element.createElement("img", {
-            src: styles.backgroundImage
-          }));
-        }
-      }), styles.backgroundImage != "" && wp.element.createElement("div", {
-        className: "flex-section"
-      }, wp.element.createElement("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Background Size", "unlimited-blocks")), wp.element.createElement("select", {
-        value: styles.backgroundImageSize,
-        onChange: function onChange(e) {
-          _this2.updateStyle("backgroundImageSize", e.target.value);
-        }
-      }, wp.element.createElement("option", {
-        value: "auto"
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Auto", "unlimited-blocks")), wp.element.createElement("option", {
-        value: "cover"
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Cover", "unlimited-blocks")), wp.element.createElement("option", {
-        value: "contain"
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Contain", "unlimited-blocks"))))), (styles.backgroundType == "color" || styles.backgroundType == "image") && wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, styles.backgroundType == "image" && styles.backgroundImage != "" ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Overlay Color", "unlimited-blocks") : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement("div", {
-        class: "ubl-switcher-button-section"
-      }, wp.element.createElement("span", {
-        onClick: function onClick() {
-          return _this2.updateStyle("backgroundColorType", "color");
-        },
-        className: styles.backgroundColorType == "color" ? "selected" : ""
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Solid", "unlimited-blocks")), wp.element.createElement("span", {
-        onClick: function onClick() {
-          return _this2.updateStyle("backgroundColorType", "gradient");
-        },
-        className: styles.backgroundColorType == "gradient" ? "selected" : ""
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Gradient", "unlimited-blocks"))), "color" == styles.backgroundColorType ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ColorPicker"], {
-        color: styles.backgroundColor,
-        onChangeComplete: function onChangeComplete(colorBg) {
-          var color = "rgba(".concat(colorBg.rgb.r, ",").concat(colorBg.rgb.g, ",").concat(colorBg.rgb.b, ",").concat(colorBg.rgb.a, ")");
+        changeme: function changeme(getProperty) {
+          console.log("getProperty", getProperty);
 
-          _this2.updateStyle("backgroundColor", color);
+          _this2.updateStyle(true, true, getProperty);
         }
-      }) : wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["GradientPicker"], {
-        disableCustomGradients: false,
-        value: styles.backgroundImageGradient,
-        gradients: _block_assets_post_functions__WEBPACK_IMPORTED_MODULE_6__["UBLGraDientColors"],
-        onChange: function onChange(newGradient) {
-          _this2.updateStyle("backgroundImageGradient", newGradient);
-        }
-      }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
-        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Opacity", "unlimited-blocks"),
-        value: styles.backgroundOpacity,
-        min: 0,
-        max: 1,
-        step: 0.1,
-        onChange: function onChange(e) {
-          _this2.updateStyle("backgroundOpacity", e);
-        }
-      }))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
+      })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
         title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Border and Box Shadow", "unlimited-blocks"),
         initialOpen: false
       }, wp.element.createElement("div", {
@@ -5360,7 +5568,7 @@ var Edit = /*#__PURE__*/function (_Component) {
       })))))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
         title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Animations", "unlimited-blocks"),
         initialOpen: false
-      }, wp.element.createElement(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_9__["Animation"], {
+      }, wp.element.createElement(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_8__["Animation"], {
         value: attributes.additionalClassNames,
         change: function change(animate) {
           // console.log("animation", animate);
