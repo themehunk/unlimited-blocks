@@ -295,3 +295,30 @@ export const UBLGraDientColors = [
       "linear-gradient(to right top, #051937, #004D7A, #008793, #00BF72, #A8EB12)",
   },
 ];
+
+//<<<<<<<<<<<-------->>>>>>>>>>>>>>
+export const UblColorPlates = [
+  { name: "Color: Black", color: "rgb(0, 0, 0)" },
+
+  { name: "Color: Cyan bluish gray", color: "rgb(171, 184, 195)" },
+
+  { name: "Color: White", color: "rgb(255, 255, 255)" },
+
+  { name: "Color: Pale pink", color: "rgb(247, 141, 167)" },
+
+  { name: "Color: Vivid red", color: "rgb(207, 46, 46)" },
+
+  { name: "Color: Luminous vivid orange", color: "rgb(255, 105, 0)" },
+
+  { name: "Color: Luminous vivid amber", color: "rgb(252, 185, 0)" },
+
+  { name: "Color: Light green cyan", color: "rgb(123, 220, 181)" },
+
+  { name: "Color: Vivid green cyan", color: "rgb(0, 208, 132)" },
+
+  { name: "Color: Pale cyan blue", color: "rgb(142, 209, 252)" },
+
+  { name: "Color: Vivid cyan blue", color: "rgb(6, 147, 227)" },
+
+  { name: "Color: Vivid purple", color: "rgb(155, 81, 224)" },
+];

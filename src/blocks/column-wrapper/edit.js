@@ -10,7 +10,6 @@ import {
   BlockControls,
   BlockAlignmentToolbar,
   InnerBlocks,
-  MediaUpload,
   ColorPalette,
   store as blockEditorStore,
 } from "@wordpress/block-editor";
@@ -23,7 +22,6 @@ import {
   ToggleControl,
   SelectControl,
   ColorPicker,
-  GradientPicker,
 } from "@wordpress/components";
 // import { UBLGraDientColors } from "./../block-assets/post-functions";
 import BasicToggleNav from "../block-assets/utility-components/BasicToggleNav";
@@ -75,16 +73,16 @@ const columnOptions = [
     width: { 0: 25, 1: 50, 2: 25 },
     columns: 3,
   },
-  {
-    class_: "1-4",
-    width: { 0: 25, 1: 25, 2: 25, 3: 25 },
-    columns: 4,
-  },
-  {
-    class_: "1-5",
-    width: { 0: 20, 1: 20, 2: 20, 3: 20 },
-    columns: 5,
-  },
+  // {
+  //   class_: "1-4",
+  //   width: { 0: 25, 1: 25, 2: 25, 3: 25 },
+  //   columns: 4,
+  // },
+  // {
+  //   class_: "1-5",
+  //   width: { 0: 20, 1: 20, 2: 20, 3: 20 },
+  //   columns: 5,
+  // },
 ];
 const ALLOWED_BLOCKS = ["unlimited-blocks/ubl-column-block-column"];
 /* Get the column template. */
@@ -107,9 +105,11 @@ class Edit extends Component {
     this.state = {
       chooseBorderORShadow: "border",
       openPanel: "layout",
+      changeWidthPreventForFirstTime: "",
     };
   }
-  componentDidUpdate(prevProps) {
+
+  componentDidUpdate(prevProps, prevState) {
     // console.log("prev props", prevProps);
     // console.log("current props", this.props);
 
@@ -125,34 +125,42 @@ class Edit extends Component {
       let setObjectColumn = { columns: SetObject };
       this.props.setAttributes({ listStyle: setObjectColumn });
       // console.log("setObjectColumn->", setObjectColumn);
-      this.setupWidthOnchangeWidth(setObjectColumn);
+      // this.setupWidthOnchangeWidth(setObjectColumn);
+
+      this.setState({ changeWidthPreventForFirstTime: 1 });
     } else if (this.props.wrapper_childrens !== prevProps.wrapper_childrens) {
       // console.log("yes change is 2");
-      let currentColumn = parseInt(this.props.attributes.columns);
-      let columnsWidth = 100 / currentColumn;
-      let SetObject = {};
-      for (let initWidth = 0; initWidth < currentColumn; initWidth++) {
-        // const element = array[index_];
-        SetObject[initWidth] = columnsWidth;
-      }
-      let setObjectColumn = { columns: SetObject };
-      this.props.setAttributes({ listStyle: setObjectColumn });
 
       if (
-        this.props.wrapper_childrens.length != this.props.attributes.columns
+        prevProps.wrapper_childrens.length &&
+        prevProps.wrapper_childrens.length > this.props.wrapper_childrens.length
       ) {
-        this.props.setAttributes({
-          columns: this.props.wrapper_childrens.length,
-        });
-      }
+        // console.log("yes change is 22");
+        let currentColumn = parseInt(this.props.attributes.columns);
+        let columnsWidth = 100 / currentColumn;
+        let SetObject = {};
+        for (let initWidth = 0; initWidth < currentColumn; initWidth++) {
+          // const element = array[index_];
+          SetObject[initWidth] = columnsWidth;
+        }
+        let setObjectColumn = { columns: SetObject };
+        this.props.setAttributes({ listStyle: setObjectColumn });
 
-      this.setupWidthOnchangeWidth(setObjectColumn);
+        if (
+          this.props.wrapper_childrens.length != this.props.attributes.columns
+        ) {
+          this.props.setAttributes({
+            columns: this.props.wrapper_childrens.length,
+          });
+        }
+        this.setupWidthOnchangeWidth(setObjectColumn);
+      } else {
+        this.setupWidthOnchangeWidth();
+      }
     } else if (
       this.props.attributes.listStyle.columns !=
       prevProps.attributes.listStyle.columns
     ) {
-      // console.log("yes change is 3");
-      // if change column width by individual columns
       this.setupWidthOnchangeWidth();
     }
   }
@@ -160,10 +168,8 @@ class Edit extends Component {
   setupWidthOnchangeWidth(listColumn = false) {
     const { attributes, wrapper_childrens } = this.props;
     let getListStyle = !listColumn ? attributes.listStyle.columns : listColumn;
-
-    // console.log("this->props setupWidthOnchangeWidth ->", this.props);
-    // console.log("this->props getListStyle ->", getListStyle);
-
+    // console.log("--getListStyle", getListStyle);
+    // console.log("--wrapper_childrens", wrapper_childrens);
     // ---------
     if (
       getListStyle &&
@@ -197,6 +203,12 @@ class Edit extends Component {
     }
     setAttributes({ styles: getStyle });
   };
+  buttonPercent(percent) {
+    let Per = Object.keys(percent).map((key_) => (
+      <span>{parseInt(percent[key_])}</span>
+    ));
+    return Per;
+  }
   render() {
     // prevv ------------------=+++++++++++++============
 
@@ -258,10 +270,12 @@ class Edit extends Component {
       } else {
         overlLayColor = { backgroundColor: styles.backgroundColor };
       }
-      overlLayColor = {
-        ...overlLayColor,
-        ...{ opacity: styles.backgroundOpacity },
-      };
+      if ("image" == styles.backgroundType) {
+        overlLayColor = {
+          ...overlLayColor,
+          ...{ opacity: styles.backgroundOpacity },
+        };
+      }
     }
     /**
      * content width
@@ -306,7 +320,7 @@ class Edit extends Component {
             className="ubl-blocks-columns-group"
           >
             {columnOptions.map((columnOpt) => {
-              let { columns, class_ } = columnOpt;
+              let { columns, class_, width } = columnOpt;
               return (
                 <div className="ubl-blocks-column-btn-container">
                   <Button
@@ -329,6 +343,9 @@ class Edit extends Component {
                       ))}
                     </div>
                   </Button>
+                  <span className="column-percent">
+                    {this.buttonPercent(width)}
+                  </span>
                 </div>
               );
             })}
@@ -935,6 +952,9 @@ export default compose(
     const { clientId } = ownProps;
     const { getBlock } = select(blockEditorStore);
     let getRootBlock = getBlock(clientId);
+
+    // ownProps
+
     return { wrapper_childrens: getRootBlock.innerBlocks };
   }),
   withDispatch((dispatch, ownProps, registry) => {

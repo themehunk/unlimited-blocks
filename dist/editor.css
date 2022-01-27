@@ -1,6 +1,4 @@
-div[data-type="unlimited-blocks/ubl-column-block-wrapper"]:hover:after, div[data-type="unlimited-blocks/ubl-column-block-wrapper"]:focus:after,
-div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after,
-div[data-type="unlimited-blocks/ubl-column-block-column"]:focus:after {
+div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-type="unlimited-blocks/ubl-column-block-column"]:focus:after {
   border-radius: 1px;
   bottom: 1px;
   box-shadow: 0 0 0 var(--wp-admin-border-width-focus) var(--wp-admin-theme-color);
@@ -89,20 +87,8 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:focus:after {
   border-right: none;
 }
 
-.ubl-column-placeholder {
-  width: 100%;
-  max-width: 580px;
-  margin: auto !important;
-  border: 1px solid #f8c045;
-  box-shadow: none !important;
-  outline: none !important;
-  box-sizing: border-box;
-}
 .ubl-column-placeholder * {
   box-sizing: border-box;
-}
-.ubl-column-placeholder .components-placeholder__label {
-  color: #f8c145;
 }
 .ubl-column-placeholder .components-placeholder__label .dashicons-editor-table {
   margin-right: 10px;
@@ -111,24 +97,27 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:focus:after {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  justify-content: center;
+  grid-gap: 30px;
 }
 .ubl-column-placeholder .ubl-blocks-columns-group .ubl-blocks-column-btn-container {
-  display: block;
-  width: calc(100% / 7);
-  min-width: 85px;
-  margin: 10px 10px;
+  width: 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ubl-column-placeholder .ubl-blocks-columns-group .ubl-blocks-column-btn-container .column-percent > span + span:before {
+  content: "/";
+  margin: 0 5px;
 }
 .ubl-column-placeholder .ubl-blocks-columns-group .ubl-blocks-column-btn-container button {
-  width: 100%;
+  width: 60px;
   box-shadow: none;
-  height: 43px;
-  border: 1px solid #f8c145;
+  height: 60px;
+  border: 1px solid #007cbb;
   border-radius: 3px !important;
-}
-.ubl-column-placeholder .ubl-blocks-columns-group .ubl-blocks-column-btn-container button:hover div span {
-  background-color: #f8c045;
-  border-color: white;
+  display: flex;
+  justify-content: center;
+  margin: 0 0 10px 0;
 }
 .ubl-column-placeholder .ubl-blocks-columns-group .ubl-blocks-column-btn-container button.ubl-clmn-btn-30-70 span {
   flex: unset;
@@ -186,14 +175,15 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:focus:after {
 }
 .ubl-column-placeholder .ubl-blocks-columns-group .ubl-blocks-column-btn-container button div {
   display: flex;
-  border: 1px solid #f8c045;
-  width: 100%;
-  height: 100%;
+  border: 2px solid #007cbb;
+  width: 34px;
+  height: 24px;
+  border-radius: 3px;
 }
 .ubl-column-placeholder .ubl-blocks-columns-group .ubl-blocks-column-btn-container button div span {
   display: block;
   flex: 1;
-  border-right: 1px solid #f8c045;
+  border-right: 2px solid #007cbb;
   height: 100%;
 }
 .ubl-column-placeholder .ubl-blocks-columns-group .ubl-blocks-column-btn-container button div span:last-child {
@@ -336,10 +326,10 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:focus:after {
 }
 
 .block-editor-block-types-list[aria-label="Unlimited Blocks"] button svg {
-  color: #f8c045;
+  color: #2d78ff;
 }
 .block-editor-block-types-list[aria-label="Unlimited Blocks"] button span.dashicon {
-  color: #f8c045;
+  color: #2d78ff;
 }
 
 .normal-label {
