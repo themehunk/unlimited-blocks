@@ -151,22 +151,70 @@
     border-right: none;
     > div {
       border-right: 1px solid #b1b1b1;
-      padding: 5px 7px;
+      padding: 7px 9px;
       cursor: pointer;
       color: #505050;
+      display: flex;
+      position: relative;
       &.selected {
         background-color: #ebebeb;
       }
-      &::after {
-        content: "";
-      }
       &::before {
-        content: "";
+        content: attr(data-title);
+        position: absolute;
+        top: -30px;
+        right: 0;
+        background: black;
+        padding: 4px;
+        border-radius: 2px;
+        color: white;
+        opacity: 0;
+        transition: 0.2s all linear;
+      }
+      &:hover {
+        &::before {
+          opacity: 1;
+        }
       }
     }
     .buttons_ {
       width: unset;
       height: unset;
+      font-size: 15px;
+    }
+  }
+}
+// bg solid or gradient
+.ubl-switcher-bg-clr-gradient {
+  display: flex;
+  margin: 12px 0;
+  position: relative;
+  border: 1px solid #504f4f;
+  padding: 4px;
+  border-radius: 2px;
+  .bg-span {
+    background-color: black;
+    width: 50%;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    height: calc(100% - 4px);
+    border-radius: 2px;
+    transition: 0.2s all ease;
+  }
+  &.clor_gradient .bg-span {
+    left: calc(50% - 2px);
+  }
+  span {
+    flex: 1;
+    text-align: center;
+    padding: 5px 9px;
+    color: #504f4f;
+    cursor: pointer;
+    position: relative;
+    font-size: 13px;
+    &.selected {
+      color: white;
     }
   }
 }

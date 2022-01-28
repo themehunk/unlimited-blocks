@@ -10,7 +10,7 @@ class BackgroundType extends Component {
       backgroundType: "",
       backgroundImage: "",
       backgroundImageSize: "",
-      backgroundColorType: "",
+      backgroundColorType: "color",
       backgroundColor: "",
       backgroundImageGradient: "",
       backgroundOpacity: "",
@@ -90,36 +90,38 @@ class BackgroundType extends Component {
           {__("Background Type", "unlimited-blocks")}
         </span>
         <div className="types_">
-          <div className={`${!this.state.backgroundType ? "selected" : ""}`}>
+          <div
+            data-title={__("None", "unlimited-blocks")}
+            className={`${!this.state.backgroundType ? "selected" : ""}`}
+          >
             <span
               className={`buttons_ dashicons dashicons-dismiss`}
-              data-title={__("None", "unlimited-blocks")}
               onClick={() => {
                 this.updateState("backgroundType", "");
               }}
             ></span>
           </div>
           <div
+            data-title={__("Color", "unlimited-blocks")}
             className={`${
               this.state.backgroundType == "color" ? "selected" : ""
             }`}
           >
             <span
               className={`buttons_ dashicons dashicons-admin-customizer`}
-              data-title={__("Color", "unlimited-blocks")}
               onClick={() => {
                 this.updateState("backgroundType", "color");
               }}
             ></span>
           </div>
           <div
+            data-title={__("Image", "unlimited-blocks")}
             className={`${
               this.state.backgroundType == "image" ? "selected" : ""
             }`}
           >
             <span
               className={`buttons_ dashicons dashicons-format-image `}
-              data-title={__("Image", "unlimited-blocks")}
               onClick={() => {
                 this.updateState("backgroundType", "image");
               }}
@@ -188,7 +190,10 @@ class BackgroundType extends Component {
           </strong>
         </p>
 
-        <div class="ubl-switcher-button-section">
+        <div
+          class={`ubl-switcher-bg-clr-gradient clor_${this.state.backgroundColorType}`}
+        >
+          <span className="bg-span"></span>
           <span
             onClick={() => this.updateState("backgroundColorType", "color")}
             className={

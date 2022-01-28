@@ -2758,7 +2758,7 @@ var BackgroundType = /*#__PURE__*/function (_Component) {
       backgroundType: "",
       backgroundImage: "",
       backgroundImageSize: "",
-      backgroundColorType: "",
+      backgroundColorType: "color",
       backgroundColor: "",
       backgroundImageGradient: "",
       backgroundOpacity: ""
@@ -2854,26 +2854,26 @@ var BackgroundType = /*#__PURE__*/function (_Component) {
       }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Background Type", "unlimited-blocks")), wp.element.createElement("div", {
         className: "types_"
       }, wp.element.createElement("div", {
+        "data-title": Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("None", "unlimited-blocks"),
         className: "".concat(!this.state.backgroundType ? "selected" : "")
       }, wp.element.createElement("span", {
         className: "buttons_ dashicons dashicons-dismiss",
-        "data-title": Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("None", "unlimited-blocks"),
         onClick: function onClick() {
           _this2.updateState("backgroundType", "");
         }
       })), wp.element.createElement("div", {
+        "data-title": Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Color", "unlimited-blocks"),
         className: "".concat(this.state.backgroundType == "color" ? "selected" : "")
       }, wp.element.createElement("span", {
         className: "buttons_ dashicons dashicons-admin-customizer",
-        "data-title": Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Color", "unlimited-blocks"),
         onClick: function onClick() {
           _this2.updateState("backgroundType", "color");
         }
       })), wp.element.createElement("div", {
+        "data-title": Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Image", "unlimited-blocks"),
         className: "".concat(this.state.backgroundType == "image" ? "selected" : "")
       }, wp.element.createElement("span", {
         className: "buttons_ dashicons dashicons-format-image ",
-        "data-title": Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Image", "unlimited-blocks"),
         onClick: function onClick() {
           _this2.updateState("backgroundType", "image");
         }
@@ -2924,8 +2924,10 @@ var BackgroundType = /*#__PURE__*/function (_Component) {
       var _this4 = this;
 
       return wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, this.state.backgroundType == "image" && this.state.backgroundImage != "" ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Overlay Color", "unlimited-blocks") : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement("div", {
-        class: "ubl-switcher-button-section"
+        class: "ubl-switcher-bg-clr-gradient clor_".concat(this.state.backgroundColorType)
       }, wp.element.createElement("span", {
+        className: "bg-span"
+      }), wp.element.createElement("span", {
         onClick: function onClick() {
           return _this4.updateState("backgroundColorType", "color");
         },
