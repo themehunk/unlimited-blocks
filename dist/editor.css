@@ -549,22 +549,78 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
 }
 .ubl-background-type .types_ > div {
   border-right: 1px solid #b1b1b1;
-  padding: 5px 7px;
+  padding: 7px 9px;
   cursor: pointer;
   color: #505050;
+  display: flex;
+  position: relative;
 }
 .ubl-background-type .types_ > div.selected {
   background-color: #ebebeb;
 }
-.ubl-background-type .types_ > div::after {
-  content: "";
-}
 .ubl-background-type .types_ > div::before {
-  content: "";
+  content: attr(data-title);
+  position: absolute;
+  top: -30px;
+  right: 0;
+  background: black;
+  padding: 4px;
+  border-radius: 2px;
+  color: white;
+  opacity: 0;
+  transition: 0.2s all linear;
+}
+.ubl-background-type .types_ > div:hover::before {
+  opacity: 1;
 }
 .ubl-background-type .types_ .buttons_ {
   width: unset;
   height: unset;
+  font-size: 15px;
+}
+
+.ubl-switcher-bg-clr-gradient {
+  display: flex;
+  margin: 12px 0;
+  position: relative;
+  border: 1px solid #504f4f;
+  padding: 4px;
+  border-radius: 2px;
+}
+.ubl-switcher-bg-clr-gradient .bg-span {
+  background-color: black;
+  width: 50%;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  height: calc(100% - 4px);
+  border-radius: 2px;
+  transition: 0.2s all ease;
+}
+.ubl-switcher-bg-clr-gradient.clor_gradient .bg-span {
+  left: calc(50% - 2px);
+}
+.ubl-switcher-bg-clr-gradient span {
+  flex: 1;
+  text-align: center;
+  padding: 5px 9px;
+  color: #504f4f;
+  cursor: pointer;
+  position: relative;
+  font-size: 13px;
+}
+.ubl-switcher-bg-clr-gradient span.selected {
+  color: white;
+}
+
+.icon-border-setting {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 10px;
+  margin-top: -15px;
+}
+.icon-border-setting .ul-dimension-tool {
+  margin: 0;
 }
 .wpgt-radio-wrap {
   margin: 14px 0;

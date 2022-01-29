@@ -45,10 +45,11 @@ const attrS = {
         "radial-gradient(rgba(6,147,227,1) 38%,rgb(155,81,224) 80%)",
       backgroundOpacity: 1,
       // border
-      borderEnable: false,
+      borderWidthLink: true,
       borderStyle: "solid",
-      borderWidth: 1,
+      borderWidth: 0,
       borderColor: "#f8c045",
+      borderRadiusLink: true,
       borderRadius: "",
       // box-shadow
       shadowEnable: false,
@@ -149,14 +150,15 @@ registerBlockType("unlimited-blocks/ubl-column-block-wrapper", {
         },
       };
     }
-    // wrapper border is enable
-    if (styles.borderEnable) {
-      let borderStyle = `${styles.borderWidth}px ${styles.borderStyle} ${styles.borderColor}`;
+
+    if (styles.borderWidth || styles.borderRadius) {
       wrapperStyles = {
         ...wrapperStyles,
         ...{
-          border: borderStyle,
-          "border-radius": styles.borderRadius + "px",
+          "border-width": styles.borderWidth,
+          "border-color": styles.borderColor,
+          "border-style": styles.borderStyle,
+          "border-radius": styles.borderRadius,
         },
       };
     }
