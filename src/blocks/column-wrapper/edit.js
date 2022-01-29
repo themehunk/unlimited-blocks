@@ -1,4 +1,5 @@
 import memoize from "memize";
+
 /**
  * WordPress dependencies.
  */
@@ -22,6 +23,7 @@ import {
   ToggleControl,
   SelectControl,
   ColorPicker,
+  __experimentalUnitControl as UnitControl,
 } from "@wordpress/components";
 // import { UBLGraDientColors } from "./../block-assets/post-functions";
 import BasicToggleNav from "../block-assets/utility-components/BasicToggleNav";
@@ -32,58 +34,8 @@ import {
 } from "../block-assets/utility-components/animations/index";
 import BackgroundType from "../block-assets/utility-components/backgroundType/backgroundType";
 import { compose } from "redux";
-const columnOptions = [
-  {
-    class_: "100",
-    width: { 0: 100 },
-    columns: 1,
-  },
-  {
-    class_: "1-2",
-    width: { 0: 50, 1: 50 },
-    columns: 2,
-  },
-  {
-    class_: "30-70",
-    width: { 0: 30, 1: 70 },
-    columns: 2,
-  },
-  {
-    class_: "70-30",
-    width: { 0: 70, 1: 30 },
-    columns: 2,
-  },
-  {
-    class_: "1-3",
-    width: { 0: 33.333, 1: 33.333, 2: 33.333 },
-    columns: 3,
-  },
-  {
-    class_: "25-25-50",
-    width: { 0: 25, 1: 25, 2: 50 },
-    columns: 3,
-  },
-  {
-    class_: "50-25-25",
-    width: { 0: 50, 1: 25, 2: 25 },
-    columns: 3,
-  },
-  {
-    class_: "25-50-25",
-    width: { 0: 25, 1: 50, 2: 25 },
-    columns: 3,
-  },
-  // {
-  //   class_: "1-4",
-  //   width: { 0: 25, 1: 25, 2: 25, 3: 25 },
-  //   columns: 4,
-  // },
-  // {
-  //   class_: "1-5",
-  //   width: { 0: 20, 1: 20, 2: 20, 3: 20 },
-  //   columns: 5,
-  // },
-];
+import Border from "../block-assets//utility-components/border";
+import { columnOptions } from "./columnOptions";
 const ALLOWED_BLOCKS = ["unlimited-blocks/ubl-column-block-column"];
 /* Get the column template. */
 
@@ -252,13 +204,14 @@ class Edit extends Component {
       };
     }
     // wrapper border is enable
-    if (styles.borderEnable) {
-      let borderStyle = `${styles.borderWidth}px ${styles.borderStyle} ${styles.borderColor}`;
+    if (styles.borderWidth || styles.borderRadius) {
       wrapperStyles = {
         ...wrapperStyles,
         ...{
-          border: borderStyle,
-          borderRadius: styles.borderRadius + "px",
+          borderWidth: styles.borderWidth,
+          borderColor: styles.borderColor,
+          borderStyle: styles.borderStyle,
+          borderRadius: styles.borderRadius,
         },
       };
     }
@@ -393,6 +346,8 @@ class Edit extends Component {
                     initialOpen={true}
                   >
                     {/* testing ------------------------------------- */}
+                    {/* testing ------------------------------------- */}
+
                     <RangeControl
                       label={__("Columns", "unlimited-blocks")}
                       // help={}
@@ -557,165 +512,10 @@ class Edit extends Component {
                         backgroundImageGradient: styles.backgroundImageGradient,
                       }}
                       changeme={(getProperty) => {
-                        console.log("getProperty", getProperty);
+                        // console.log("getProperty", getProperty);
                         this.updateStyle(true, true, getProperty);
                       }}
                     />
-
-                    {/* <div className="ubl-multiple-select">
-                      <SelectControl
-                        value={styles.backgroundType}
-                        onChange={(choosen) => {
-                          this.updateStyle("backgroundType", choosen);
-                        }}
-                        options={[
-                          {
-                            value: "none",
-                            label: __("None", "unlimited-blocks"),
-                          },
-                          {
-                            value: "color",
-                            label: __("Color", "unlimited-blocks"),
-                          },
-                          {
-                            value: "image",
-                            label: __("Image", "unlimited-blocks"),
-                          },
-                        ]}
-                      />
-                    </div> */}
-                    {/* {styles.backgroundType == "image" && (
-                      <>
-                        <p>
-                          <strong>
-                            {__("Background image", "unlimited-blocks")}
-                          </strong>
-                        </p>
-                        <MediaUpload
-                          allowedType="image"
-                          onSelect={(newImage) => {
-                            this.updateStyle(
-                              "backgroundImage",
-                              newImage.sizes.full.url
-                            );
-                          }}
-                          value={styles.backgroundImage}
-                          render={({ open }) => (
-                            <div
-                              onClick={open}
-                              className={`ubl-block-image-uploader ${
-                                "" == styles.backgroundImage && "blank"
-                              }`}
-                            >
-                              <div>
-                                <i className="fas fa-plus"></i>
-                              </div>
-                              <img src={styles.backgroundImage} />
-                            </div>
-                          )}
-                        />
-                        {styles.backgroundImage != "" && (
-                          <div className="flex-section">
-                            <p>{__("Background Size", "unlimited-blocks")}</p>
-                            <select
-                              value={styles.backgroundImageSize}
-                              onChange={(e) => {
-                                this.updateStyle(
-                                  "backgroundImageSize",
-                                  e.target.value
-                                );
-                              }}
-                            >
-                              <option value="auto">
-                                {__("Auto", "unlimited-blocks")}
-                              </option>
-                              <option value="cover">
-                                {__("Cover", "unlimited-blocks")}
-                              </option>
-                              <option value="contain">
-                                {__("Contain", "unlimited-blocks")}
-                              </option>
-                            </select>
-                          </div>
-                        )}
-                      </>
-                    )} */}
-
-                    {/* {(styles.backgroundType == "color" ||
-                      styles.backgroundType == "image") && (
-                      <>
-                        <p>
-                          <strong>
-                            {styles.backgroundType == "image" &&
-                            styles.backgroundImage != ""
-                              ? __("Overlay Color", "unlimited-blocks")
-                              : __("Background Color", "unlimited-blocks")}
-                          </strong>
-                        </p>
-
-                        <div class="ubl-switcher-button-section">
-                          <span
-                            onClick={() =>
-                              this.updateStyle("backgroundColorType", "color")
-                            }
-                            className={
-                              styles.backgroundColorType == "color"
-                                ? "selected"
-                                : ""
-                            }
-                          >
-                            {__("Solid", "unlimited-blocks")}
-                          </span>
-                          <span
-                            onClick={() =>
-                              this.updateStyle(
-                                "backgroundColorType",
-                                "gradient"
-                              )
-                            }
-                            className={
-                              styles.backgroundColorType == "gradient"
-                                ? "selected"
-                                : ""
-                            }
-                          >
-                            {__("Gradient", "unlimited-blocks")}
-                          </span>
-                        </div>
-
-                        {"color" == styles.backgroundColorType ? (
-                          <ColorPicker
-                            color={styles.backgroundColor}
-                            onChangeComplete={(colorBg) => {
-                              let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                              this.updateStyle("backgroundColor", color);
-                            }}
-                          />
-                        ) : (
-                          <GradientPicker
-                            disableCustomGradients={false}
-                            value={styles.backgroundImageGradient}
-                            gradients={UBLGraDientColors}
-                            onChange={(newGradient) => {
-                              this.updateStyle(
-                                "backgroundImageGradient",
-                                newGradient
-                              );
-                            }}
-                          />
-                        )}
-                        <RangeControl
-                          label={__("Opacity", "unlimited-blocks")}
-                          value={styles.backgroundOpacity}
-                          min={0}
-                          max={1}
-                          step={0.1}
-                          onChange={(e) => {
-                            this.updateStyle("backgroundOpacity", e);
-                          }}
-                        />
-                      </>
-                    )} */}
                   </PanelBody>
 
                   <PanelBody
@@ -748,6 +548,7 @@ class Edit extends Component {
                         {__("Box Shadow", "unlimited-blocks")}
                       </span>
                     </div>
+                    {/* <Border /> */}
                     {this.state.chooseBorderORShadow == "boxshadow" ? (
                       <>
                         <ToggleControl
@@ -835,7 +636,8 @@ class Edit extends Component {
                       </>
                     ) : (
                       <>
-                        <ToggleControl
+                        {/* booooooo */}
+                        {/* <ToggleControl
                           label={
                             styles.borderEnable
                               ? __("Disable", "unlimited-blocks")
@@ -843,59 +645,24 @@ class Edit extends Component {
                           }
                           checked={styles.borderEnable}
                           onChange={(e) => this.updateStyle("borderEnable", e)}
+                        /> */}
+                        {/* {styles.borderEnable && ( */}
+                        <Border
+                          value={{
+                            allUnit: "px",
+                            borderStyle: styles.borderStyle,
+                            borderWidth: styles.borderWidth,
+                            borderColor: styles.borderColor,
+                            borderRadius: styles.borderRadius,
+                            borderWidthLink: styles.borderWidthLink,
+                            borderRadiusLink: styles.borderRadiusLink,
+                          }}
+                          changeme={(getProperty) => {
+                            // console.log("ev->", getProperty);
+                            this.updateStyle(true, true, getProperty);
+                          }}
                         />
-                        {styles.borderEnable && (
-                          <div className="icon-border-setting">
-                            <div className="ubl-multiple-select">
-                              <SelectControl
-                                label={__("Border Style", "unlimited-blocks")}
-                                value={styles.borderStyle}
-                                onChange={(choosen) => {
-                                  this.updateStyle("borderStyle", choosen);
-                                }}
-                                options={[
-                                  {
-                                    value: "solid",
-                                    label: __("Solid", "unlimited-blocks"),
-                                  },
-                                  {
-                                    value: "dotted",
-                                    label: __("Dotted", "unlimited-blocks"),
-                                  },
-                                  {
-                                    value: "dashed",
-                                    label: __("Dashed", "unlimited-blocks"),
-                                  },
-                                ]}
-                              />
-                            </div>
-                            <RangeControl
-                              label={__("Border Radius", "unlimited-blocks")}
-                              value={styles.borderRadius}
-                              min={0}
-                              max={50}
-                              onChange={(e) => {
-                                this.updateStyle("borderRadius", e);
-                              }}
-                            />
-                            <RangeControl
-                              label={__("Border Width", "unlimited-blocks")}
-                              value={styles.borderWidth}
-                              min={0}
-                              max={100}
-                              onChange={(e) =>
-                                this.updateStyle("borderWidth", e)
-                              }
-                            />
-                            <ColorPalette
-                              label={__("Border Color", "unlimited-blocks")}
-                              value={styles.borderColor}
-                              onChange={(color) =>
-                                this.updateStyle("borderColor", color)
-                              }
-                            />
-                          </div>
-                        )}
+                        {/* )} */}
                       </>
                     )}
                   </PanelBody>
@@ -982,3 +749,56 @@ export default compose(
     };
   })
 )(Edit);
+
+{
+  /* <div className="icon-border-setting">
+                            <div className="ubl-multiple-select">
+                              <SelectControl
+                                label={__("Border Style", "unlimited-blocks")}
+                                value={styles.borderStyle}
+                                onChange={(choosen) => {
+                                  this.updateStyle("borderStyle", choosen);
+                                }}
+                                options={[
+                                  {
+                                    value: "solid",
+                                    label: __("Solid", "unlimited-blocks"),
+                                  },
+                                  {
+                                    value: "dotted",
+                                    label: __("Dotted", "unlimited-blocks"),
+                                  },
+                                  {
+                                    value: "dashed",
+                                    label: __("Dashed", "unlimited-blocks"),
+                                  },
+                                ]}
+                              />
+                            </div>
+                            <RangeControl
+                              label={__("Border Radius", "unlimited-blocks")}
+                              value={styles.borderRadius}
+                              min={0}
+                              max={50}
+                              onChange={(e) => {
+                                this.updateStyle("borderRadius", e);
+                              }}
+                            />
+                            <RangeControl
+                              label={__("Border Width", "unlimited-blocks")}
+                              value={styles.borderWidth}
+                              min={0}
+                              max={100}
+                              onChange={(e) =>
+                                this.updateStyle("borderWidth", e)
+                              }
+                            />
+                            <ColorPalette
+                              label={__("Border Color", "unlimited-blocks")}
+                              value={styles.borderColor}
+                              onChange={(color) =>
+                                this.updateStyle("borderColor", color)
+                              }
+                            />
+                          </div> */
+}

@@ -14,9 +14,20 @@ class Dimension extends Component {
     };
   }
   componentDidMount() {
+    this.setDefaultValue();
+  }
+  componentDidUpdate(prevprops) {
+    if (
+      prevprops.value != this.props.value ||
+      prevprops.isLink != this.props.isLink
+    ) {
+      this.setDefaultValue();
+    }
+  }
+  setDefaultValue() {
     let defaultValue = this.props.value;
     let isLink = this.props.isLink;
-    // console.log("default value ", defaultValue);
+    // console.log("dimension -> default value ", defaultValue);
     if (typeof defaultValue == "object" && !Array.isArray(defaultValue)) {
       let oldDimension = { ...this.state.dimension, ...defaultValue };
       if (isLink) {
@@ -32,9 +43,11 @@ class Dimension extends Component {
         oldDimension.right = compareValue;
         oldDimension.bottom = compareValue;
         oldDimension.left = compareValue;
-        this.setState({ dimension: oldDimension, isLink: true });
+        this.setState({ dimension: oldDimension, isLink: isLink });
+        // console.log("dimension set 1 -> default value ", defaultValue);
       } else {
-        this.setState({ dimension: oldDimension });
+        // console.log("dimension set 2 -> default value ", defaultValue);
+        this.setState({ dimension: oldDimension, isLink: isLink });
       }
     }
   }
@@ -83,7 +96,8 @@ class Dimension extends Component {
     this.props.changeme(copyDimension);
   }
   render() {
-    // console.log("props inrender", this.props);
+    // console.log("dimension ->  props inrender ", this.props);
+    // console.log("dimension -> props STATE inren ", this.state);
     let { top, right, bottom, left } = this.state.dimension;
     let { isLink } = this.state;
     isLink = isLink ? "linked" : "";

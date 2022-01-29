@@ -612,6 +612,16 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
 .ubl-switcher-bg-clr-gradient span.selected {
   color: white;
 }
+
+.icon-border-setting {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 10px;
+  margin-top: -15px;
+}
+.icon-border-setting .ul-dimension-tool {
+  margin: 0;
+}
 .wpgt-radio-wrap {
   margin: 14px 0;
 }

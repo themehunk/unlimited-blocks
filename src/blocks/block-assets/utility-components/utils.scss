@@ -218,3 +218,13 @@
     }
   }
 }
+// icon border setting
+.icon-border-setting {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 10px;
+  margin-top: -15px;
+  .ul-dimension-tool {
+    margin: 0;
+  }
+}
