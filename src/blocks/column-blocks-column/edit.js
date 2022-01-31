@@ -6,21 +6,10 @@ import { Component } from "@wordpress/element";
 import {
   InnerBlocks,
   InspectorControls,
-  MediaUpload,
-  ColorPalette,
   store as blockEditorStore,
 } from "@wordpress/block-editor";
-import {
-  PanelBody,
-  RangeControl,
-  ColorPicker,
-  SelectControl,
-  ToggleControl,
-  __experimentalGradientPicker as GradientPicker,
-  ResizableBox,
-} from "@wordpress/components";
+import { PanelBody, RangeControl, ResizableBox } from "@wordpress/components";
 
-import { UBLGraDientColors } from "../block-assets/post-functions";
 import BasicToggleNav from "../block-assets/utility-components/BasicToggleNav";
 import Dimension from "../block-assets/utility-components/dimension";
 import {
@@ -29,6 +18,11 @@ import {
 } from "../block-assets/utility-components/animations/index";
 import { compose } from "redux";
 import { withSelect, withDispatch } from "@wordpress/data";
+
+import BackgroundType from "../block-assets/utility-components/backgroundType/backgroundType";
+import Border from "../block-assets//utility-components/border";
+import Boxshadow from "./../block-assets/utility-components/box-shadow";
+
 class Edit extends Component {
   constructor() {
     super(...arguments);
@@ -81,13 +75,14 @@ class Edit extends Component {
       };
     }
     // wrapper border is enable
-    if (styles.borderEnable) {
-      let borderStyle = `${styles.borderWidth}px ${styles.borderStyle} ${styles.borderColor}`;
+    if (styles.borderWidth || styles.borderRadius) {
       wrapperStyles = {
         ...wrapperStyles,
         ...{
-          border: borderStyle,
-          borderRadius: styles.borderRadius + "px",
+          borderWidth: styles.borderWidth,
+          borderColor: styles.borderColor,
+          borderStyle: styles.borderStyle,
+          borderRadius: styles.borderRadius,
         },
       };
     }
@@ -271,313 +266,89 @@ class Edit extends Component {
             </>
           ) : (
             <>
-              <PanelBody title={__("Border & Box Shadow")} initialOpen={false}>
-                {/* -----------------box shadow----------------- */}
-                <BasicToggleNav
-                  wrapperClass="secondary-nav"
-                  value={this.state.chooseBorderORShadow}
-                  navItem={[
-                    {
-                      name: "border",
-                      title: "Border",
-                    },
-                    {
-                      name: "boxshadow",
-                      title: "Box Shadow",
-                    },
-                  ]}
-                  clickme={(value_) => {
-                    this.setState({ chooseBorderORShadow: value_ });
-                  }}
-                />
-                {this.state.chooseBorderORShadow == "boxshadow" ? (
-                  <>
-                    <ToggleControl
-                      label={
-                        styles.shadowEnable
-                          ? __("Disable", "unlimited-blocks")
-                          : __("Enable", "unlimited-blocks")
-                      }
-                      checked={styles.shadowEnable}
-                      onChange={(e) => this.updateStyle("shadowEnable", e)}
-                    />
-                    {styles.shadowEnable && (
-                      <>
-                        <div className="range-and-title-inline">
-                          <p className="title-inline">
-                            <strong>{__("X", "unlimited-blocks")}</strong>
-                          </p>
-                          <RangeControl
-                            value={styles.shadowOffsetX}
-                            min={0}
-                            max={20}
-                            onChange={(e) => {
-                              this.updateStyle("shadowOffsetX", e);
-                            }}
-                          />
-                        </div>
-                        <div className="range-and-title-inline">
-                          <p className="title-inline">
-                            <strong>{__("Y", "unlimited-blocks")}</strong>
-                          </p>
-                          <RangeControl
-                            value={styles.shadowOffsetY}
-                            min={0}
-                            max={20}
-                            onChange={(e) => {
-                              this.updateStyle("shadowOffsetY", e);
-                            }}
-                          />
-                        </div>
-                        <div className="range-and-title-inline">
-                          <p className="title-inline">
-                            <strong>{__("Blur", "unlimited-blocks")}</strong>
-                          </p>
-                          <RangeControl
-                            value={styles.shadowBlur}
-                            min={0}
-                            max={20}
-                            onChange={(e) => {
-                              this.updateStyle("shadowBlur", e);
-                            }}
-                          />
-                        </div>
-                        <div className="range-and-title-inline">
-                          <p className="title-inline">
-                            <strong>{__("Spread", "unlimited-blocks")}</strong>
-                          </p>
-                          <RangeControl
-                            value={styles.shadowSpread}
-                            min={0}
-                            max={20}
-                            onChange={(e) => {
-                              this.updateStyle("shadowSpread", e);
-                            }}
-                          />
-                        </div>
-                        <p>
-                          <strong>
-                            {__("Shadow Color", "unlimited-blocks")}
-                          </strong>
-                        </p>
-                        <ColorPicker
-                          color={styles.shadowColor}
-                          onChangeComplete={(colorBg) => {
-                            let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                            this.updateStyle("shadowColor", color);
-                          }}
-                        />
-                      </>
-                    )}
-                    {/* -----------------box shadow----------------- */}
-                  </>
-                ) : (
-                  <>
-                    <ToggleControl
-                      label={
-                        styles.borderEnable
-                          ? __("Disable", "unlimited-blocks")
-                          : __("Enable", "unlimited-blocks")
-                      }
-                      checked={styles.borderEnable}
-                      onChange={(e) => this.updateStyle("borderEnable", e)}
-                    />
-                    {styles.borderEnable && (
-                      <div className="icon-border-setting">
-                        <div className="ubl-multiple-select">
-                          <SelectControl
-                            label={__("Border Style", "unlimited-blocks")}
-                            value={styles.borderStyle}
-                            onChange={(choosen) => {
-                              this.updateStyle("borderStyle", choosen);
-                            }}
-                            options={[
-                              {
-                                value: "solid",
-                                label: __("Solid", "unlimited-blocks"),
-                              },
-                              {
-                                value: "dotted",
-                                label: __("Dotted", "unlimited-blocks"),
-                              },
-                              {
-                                value: "dashed",
-                                label: __("Dashed", "unlimited-blocks"),
-                              },
-                            ]}
-                          />
-                        </div>
-                        <RangeControl
-                          label={__("Border Radius", "unlimited-blocks")}
-                          value={styles.borderRadius}
-                          min={0}
-                          max={50}
-                          onChange={(e) => {
-                            this.updateStyle("borderRadius", e);
-                          }}
-                        />
-                        <RangeControl
-                          label={__("Border Width", "unlimited-blocks")}
-                          value={styles.borderWidth}
-                          min={0}
-                          max={100}
-                          onChange={(e) => this.updateStyle("borderWidth", e)}
-                        />
-                        <ColorPalette
-                          label={__("Border Color", "unlimited-blocks")}
-                          value={styles.borderColor}
-                          onChange={(color) =>
-                            this.updateStyle("borderColor", color)
-                          }
-                        />
-                      </div>
-                    )}
-                  </>
-                )}
-              </PanelBody>
               <PanelBody
                 title={__("Background", "unlimited-blocks")}
                 initialOpen={false}
               >
-                <div className="ubl-multiple-select">
-                  <SelectControl
-                    value={styles.backgroundType}
-                    onChange={(choosen) => {
-                      this.updateStyle("backgroundType", choosen);
-                    }}
-                    options={[
-                      {
-                        value: "none",
-                        label: __("None", "unlimited-blocks"),
-                      },
-                      {
-                        value: "color",
-                        label: __("Color", "unlimited-blocks"),
-                      },
-                      // { value: "color", label: __("Color", "unlimited-blocks") },
-                      {
-                        value: "image",
-                        label: __("Image", "unlimited-blocks"),
-                      },
-                    ]}
-                  />
+                <BackgroundType
+                  value={{
+                    backgroundType: styles.backgroundType,
+                    backgroundImage: styles.backgroundImage,
+                    backgroundImageSize: styles.backgroundImageSize,
+                    backgroundColorType: styles.backgroundColorType,
+                    backgroundColor: styles.backgroundColor,
+                    backgroundImageGradient: styles.backgroundImageGradient,
+                    backgroundOpacity: styles.backgroundOpacity,
+                  }}
+                  changeme={(getProperty) => {
+                    this.updateStyle(true, true, getProperty);
+                  }}
+                />
+              </PanelBody>
+              <PanelBody title={__("Border & Box Shadow")} initialOpen={false}>
+                {/* -----------------box shadow----------------- */}
+                <div
+                  class={`ubl-switcher-bg-clr-gradient clor_${
+                    this.state.chooseBorderORShadow == "boxshadow"
+                      ? "gradient"
+                      : ""
+                  }`}
+                >
+                  <span class="bg-span"></span>
+                  <span
+                    class={
+                      this.state.chooseBorderORShadow == "border"
+                        ? "selected"
+                        : ""
+                    }
+                    onClick={() =>
+                      this.setState({ chooseBorderORShadow: "border" })
+                    }
+                  >
+                    {__("Border", "unlimited-blocks")}
+                  </span>
+                  <span
+                    class={
+                      this.state.chooseBorderORShadow == "boxshadow"
+                        ? "selected"
+                        : ""
+                    }
+                    onClick={() =>
+                      this.setState({ chooseBorderORShadow: "boxshadow" })
+                    }
+                  >
+                    {__("Box Shadow", "unlimited-blocks")}
+                  </span>
                 </div>
-                {styles.backgroundType == "image" && (
-                  <>
-                    <p>
-                      <strong>
-                        {__("Background image", "unlimited-blocks")}
-                      </strong>
-                    </p>
-                    <MediaUpload
-                      allowedType="image"
-                      onSelect={(newImage) => {
-                        this.updateStyle(
-                          "backgroundImage",
-                          newImage.sizes.full.url
-                        );
-                      }}
-                      value={styles.backgroundImage}
-                      render={({ open }) => (
-                        <div
-                          onClick={open}
-                          className={`ubl-block-image-uploader ${
-                            "" == styles.backgroundImage && "blank"
-                          }`}
-                        >
-                          <div>
-                            <i className="fas fa-plus"></i>
-                          </div>
-                          <img src={styles.backgroundImage} />
-                        </div>
-                      )}
-                    />
-                    {styles.backgroundImage != "" && (
-                      <div className="flex-section">
-                        <p>{__("Background Size", "unlimited-blocks")}</p>
-                        <select
-                          value={styles.backgroundImageSize}
-                          onChange={(e) => {
-                            this.updateStyle(
-                              "backgroundImageSize",
-                              e.target.value
-                            );
-                          }}
-                        >
-                          <option value="auto">
-                            {__("Auto", "unlimited-blocks")}
-                          </option>
-                          <option value="cover">
-                            {__("Cover", "unlimited-blocks")}
-                          </option>
-                          <option value="contain">
-                            {__("Contain", "unlimited-blocks")}
-                          </option>
-                        </select>
-                      </div>
-                    )}
-                  </>
-                )}
-
-                {(styles.backgroundType == "color" ||
-                  styles.backgroundType == "image") && (
-                  <>
-                    <p>
-                      <strong>
-                        {styles.backgroundType == "image" &&
-                        styles.backgroundImage != ""
-                          ? __("Overlay Color", "unlimited-blocks")
-                          : __("Background Color", "unlimited-blocks")}
-                      </strong>
-                    </p>
-                    <BasicToggleNav
-                      wrapperClass="secondary-nav"
-                      value={styles.backgroundColorType}
-                      navItem={[
-                        {
-                          name: "color",
-                          title: "Solid",
-                        },
-                        {
-                          name: "gradient",
-                          title: "Gradient",
-                        },
-                      ]}
-                      clickme={(value_) => {
-                        this.updateStyle("backgroundColorType", value_);
-                      }}
-                    />
-                    {"color" == styles.backgroundColorType ? (
-                      <ColorPicker
-                        color={styles.backgroundColor}
-                        onChangeComplete={(colorBg) => {
-                          let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                          this.updateStyle("backgroundColor", color);
-                        }}
-                      />
-                    ) : (
-                      <GradientPicker
-                        value={styles.backgroundImageGradient}
-                        gradients={UBLGraDientColors}
-                        onChange={(newGradient) => {
-                          this.updateStyle(
-                            "backgroundImageGradient",
-                            newGradient
-                          );
-                        }}
-                      />
-                    )}
-                    <RangeControl
-                      label={__("Opacity", "unlimited-blocks")}
-                      value={styles.backgroundOpacity}
-                      min={0}
-                      max={1}
-                      step={0.1}
-                      onChange={(e) => {
-                        this.updateStyle("backgroundOpacity", e);
-                      }}
-                    />
-                  </>
+                {this.state.chooseBorderORShadow == "boxshadow" ? (
+                  <Boxshadow
+                    shadowOffsetX={styles.shadowOffsetX}
+                    shadowOffsetY={styles.shadowOffsetY}
+                    shadowBlur={styles.shadowBlur}
+                    shadowSpread={styles.shadowSpread}
+                    shadowColor={styles.shadowColor}
+                    shadowEnable={styles.shadowEnable}
+                    changeme={(e) => {
+                      console.log("shadow come", e);
+                      this.updateStyle(true, true, e);
+                    }}
+                  />
+                ) : (
+                  <Border
+                    value={{
+                      allUnit: "px",
+                      borderStyle: styles.borderStyle,
+                      borderWidth: styles.borderWidth,
+                      borderColor: styles.borderColor,
+                      borderRadius: styles.borderRadius,
+                      borderWidthLink: styles.borderWidthLink,
+                      borderRadiusLink: styles.borderRadiusLink,
+                    }}
+                    changeme={(getProperty) => {
+                      // console.log("ev->", getProperty);
+                      this.updateStyle(true, true, getProperty);
+                    }}
+                  />
                 )}
               </PanelBody>
             </>

@@ -498,6 +498,7 @@ class Edit extends Component {
                         backgroundColorType: styles.backgroundColorType,
                         backgroundColor: styles.backgroundColor,
                         backgroundImageGradient: styles.backgroundImageGradient,
+                        backgroundOpacity: styles.backgroundOpacity,
                       }}
                       changeme={(getProperty) => {
                         // console.log("getProperty", getProperty);

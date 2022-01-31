@@ -37,9 +37,9 @@ const AttrS = {
         "radial-gradient(rgba(6,147,227,1) 38%,rgb(155,81,224) 80%)",
       backgroundOpacity: 1,
       // border
-      borderEnable: false,
+      // borderEnable: false,
       borderStyle: "solid",
-      borderWidth: 1,
+      borderWidth: 0,
       borderColor: "#f8c045",
       borderRadius: "",
       // box-shadowpP
@@ -154,13 +154,14 @@ registerBlockType("unlimited-blocks/ubl-column-block-column", {
       };
     }
     // wrapper border is enable
-    if (styles.borderEnable) {
-      let borderStyle = `${styles.borderWidth}px ${styles.borderStyle} ${styles.borderColor}`;
+    if (styles.borderWidth || styles.borderRadius) {
       wrapperStyles = {
         ...wrapperStyles,
         ...{
-          border: borderStyle,
-          "border-radius": styles.borderRadius,
+          borderWidth: styles.borderWidth,
+          borderColor: styles.borderColor,
+          borderStyle: styles.borderStyle,
+          borderRadius: styles.borderRadius,
         },
       };
     }
