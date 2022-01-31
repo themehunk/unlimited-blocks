@@ -4821,7 +4821,7 @@ var Animation = /*#__PURE__*/function (_Component) {
 
 var setAnimationClass = function setAnimationClass(cssObj) {
   var existClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-  var returnString = "";
+  var returnString = [""];
 
   if (cssObj && _typeof(cssObj) == "object" && !Array.isArray(cssObj) && "name" in cssObj) {
     var returnClass = ["animate__animated"];
@@ -4838,14 +4838,13 @@ var setAnimationClass = function setAnimationClass(cssObj) {
 
 
     if (existClass) {
-      returnClass.push(existClass);
+      returnString = [].concat(returnClass, _toConsumableArray(existClass));
     }
-
-    returnString = returnClass.join(" ");
   } else if (existClass) {
     returnString = existClass;
   }
 
+  returnString = returnString.join(" ");
   return returnString;
 };
 {
@@ -6833,7 +6832,7 @@ var Edit = /*#__PURE__*/function (_Component) {
       }
 
       var WrapperClass = "ubl-blocks-cw-column-wrap";
-      WrapperClass = Object(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_6__["setAnimationClass"])(attributes.additionalClassNames, WrapperClass);
+      WrapperClass = Object(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_6__["setAnimationClass"])(attributes.additionalClassNames, [WrapperClass]);
       return wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["InspectorControls"], {
         key: "inspector"
       }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
@@ -7445,7 +7444,7 @@ registerBlockType("unlimited-blocks/ubl-column-block-column", {
 
 
     var WrapperClass = "ubl-blocks-cw-column-wrap ".concat(blockId, "column-wrap");
-    WrapperClass = Object(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_3__["setAnimationClass"])(attributes.additionalClassNames, WrapperClass); // wrapper class
+    WrapperClass = Object(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_3__["setAnimationClass"])(attributes.additionalClassNames, [WrapperClass]); // wrapper class
 
     return wp.element.createElement("div", {
       className: "ubl-blocks-cw-column ".concat(blockId),
@@ -7691,7 +7690,8 @@ var Edit = /*#__PURE__*/function (_Component) {
     _this.state = {
       chooseBorderORShadow: "border",
       openPanel: "layout",
-      changeWidthPreventForFirstTime: ""
+      changeWidthPreventForFirstTime: "",
+      deviceType: ""
     };
     return _this;
   }
@@ -7699,50 +7699,33 @@ var Edit = /*#__PURE__*/function (_Component) {
   _createClass(Edit, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
+      // console.log(
+      //   "--------------------+++++++++++++++++++++++++++++++------------------------------"
+      // );
       // console.log("prev props", prevProps);
       // console.log("current props", this.props);
+      // console.log("current props prev state", prevState);
+      // console.log("current props state", this.state);
       if (prevProps.attributes.columns != this.props.attributes.columns) {
-        // console.log("yes change is 1");
-        var currentColumn = parseInt(this.props.attributes.columns);
-        var columnsWidth = 100 / currentColumn;
-        var SetObject = {};
-
-        for (var initWidth = 0; initWidth < currentColumn; initWidth++) {
-          // const element = array[index_];
-          SetObject[initWidth] = columnsWidth;
-        }
-
-        var setObjectColumn = {
-          columns: SetObject
-        };
-        this.props.setAttributes({
-          listStyle: setObjectColumn
-        }); // console.log("setObjectColumn->", setObjectColumn);
-        // this.setupWidthOnchangeWidth(setObjectColumn);
-
-        this.setState({
-          changeWidthPreventForFirstTime: 1
-        });
+        this.setColumnWidthWithAttr();
       } else if (this.props.wrapper_childrens !== prevProps.wrapper_childrens) {
         // console.log("yes change is 2");
         if (prevProps.wrapper_childrens.length && prevProps.wrapper_childrens.length > this.props.wrapper_childrens.length) {
           // console.log("yes change is 22");
-          var _currentColumn = parseInt(this.props.attributes.columns);
+          var currentColumn = parseInt(this.props.attributes.columns);
+          var columnsWidth = 100 / currentColumn;
+          var SetObject = {};
 
-          var _columnsWidth = 100 / _currentColumn;
-
-          var _SetObject = {};
-
-          for (var _initWidth = 0; _initWidth < _currentColumn; _initWidth++) {
+          for (var initWidth = 0; initWidth < currentColumn; initWidth++) {
             // const element = array[index_];
-            _SetObject[_initWidth] = _columnsWidth;
+            SetObject[initWidth] = columnsWidth;
           }
 
-          var _setObjectColumn = {
-            columns: _SetObject
+          var setObjectColumn = {
+            columns: SetObject
           };
           this.props.setAttributes({
-            listStyle: _setObjectColumn
+            listStyle: setObjectColumn
           });
 
           if (this.props.wrapper_childrens.length != this.props.attributes.columns) {
@@ -7751,24 +7734,56 @@ var Edit = /*#__PURE__*/function (_Component) {
             });
           }
 
-          this.setupWidthOnchangeWidth(_setObjectColumn);
+          this.setWidth(setObjectColumn);
         } else {
-          this.setupWidthOnchangeWidth();
+          this.setWidth();
         }
       } else if (this.props.attributes.listStyle.columns != prevProps.attributes.listStyle.columns) {
-        this.setupWidthOnchangeWidth();
-      }
+        this.setWidth();
+      } // else if (prevState.deviceType != this.props.deviceType) {
+      //   // console.log("yes change is de vice wo");
+      //   // this.setState({ deviceType: this.props.deviceType });
+      //   // setTimeout(() => {
+      //   //   console.log("yes change is de vice wo ssss");
+      //   //   this.setWidth();
+      //   // }, 1000);
+      //   // this.setWidth();
+      // } else if (prevState.deviceType != this.state.deviceType) {
+      //   // console.log("yes change is de vice wo ready with stae update ");
+      //   // this.setWidth();
+      // }
+
     }
   }, {
-    key: "setupWidthOnchangeWidth",
-    value: function setupWidthOnchangeWidth() {
+    key: "setColumnWidthWithAttr",
+    value: function setColumnWidthWithAttr() {
+      var currentColumn = parseInt(this.props.attributes.columns);
+      var columnsWidth = 100 / currentColumn;
+      var SetObject = {};
+
+      for (var initWidth = 0; initWidth < currentColumn; initWidth++) {
+        // const element = array[index_];
+        SetObject[initWidth] = columnsWidth;
+      }
+
+      var setObjectColumn = {
+        columns: SetObject
+      };
+      this.props.setAttributes({
+        listStyle: setObjectColumn
+      });
+      this.setWidth(setObjectColumn);
+    }
+  }, {
+    key: "setWidth",
+    value: function setWidth() {
       var listColumn = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      var documentIframe = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       var _this$props2 = this.props,
           attributes = _this$props2.attributes,
           wrapper_childrens = _this$props2.wrapper_childrens;
-      var getListStyle = !listColumn ? attributes.listStyle.columns : listColumn; // console.log("--getListStyle", getListStyle);
-      // console.log("--wrapper_childrens", wrapper_childrens);
-      // ---------
+      var getListStyle = !listColumn ? attributes.listStyle.columns : listColumn;
+      var searChDocument = !documentIframe ? document : documentIframe; // ---------
 
       if (getListStyle && wrapper_childrens.length && Object.keys(getListStyle).length == wrapper_childrens.length) {
         for (var getOrderChildren in getListStyle) {
@@ -7777,7 +7792,9 @@ var Edit = /*#__PURE__*/function (_Component) {
 
           if (getIdOfColumn) {
             var IdOfColumn = "block-" + getIdOfColumn;
-            var foundColumn = document.getElementById(IdOfColumn);
+            var foundColumn = searChDocument.getElementById(IdOfColumn);
+            console.log("foundColumn ->searChDocument", searChDocument);
+            console.log("foundColumn ->IdOfColumn", foundColumn);
 
             if (foundColumn) {
               foundColumn.style.width = getIdOfColumnWidth + "%";
@@ -7790,7 +7807,27 @@ var Edit = /*#__PURE__*/function (_Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.setupWidthOnchangeWidth();
+      // console.log(
+      //   "component did mount --------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>",
+      //   this.props
+      // );
+      // get state
+      // let getPreviewTablet = document.getElementsByClassName("is-tablet-preview");
+      // console.log("getPreviewTablet->", getPreviewTablet);
+      if (this.props.deviceType) {
+        this.setState({
+          deviceType: this.props.deviceType
+        });
+      }
+
+      var getIframe = document.querySelector('[name="editor-canvas"]'); // console.log("getIframe->", getIframe);
+
+      if (getIframe) {
+        var sendDocument = getIframe.contentDocument || getIframe.contentWindow.document;
+        this.setWidth(false, sendDocument);
+      } else {
+        this.setWidth();
+      }
     }
   }, {
     key: "buttonPercent",
@@ -7810,7 +7847,8 @@ var Edit = /*#__PURE__*/function (_Component) {
       var _this$props3 = this.props,
           attributes = _this$props3.attributes,
           setAttributes = _this$props3.setAttributes,
-          clientId = _this$props3.clientId; // set block id
+          clientId = _this$props3.clientId,
+          deviceType = _this$props3.deviceType; // set block id
 
       if (attributes.blockId == "") setAttributes({
         blockId: "ubl-blocks-" + clientId
@@ -7891,8 +7929,9 @@ var Edit = /*#__PURE__*/function (_Component) {
        **/
 
 
+      var deviceClass = "ubl-wrapper-device-" + deviceType;
       var WrapperClass = "ubl-blocks-column-wrapper-2";
-      WrapperClass = Object(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_8__["setAnimationClass"])(attributes.additionalClassNames, WrapperClass);
+      WrapperClass = Object(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_8__["setAnimationClass"])(attributes.additionalClassNames, [WrapperClass, deviceClass]);
       /* Show the layout placeholder. */
 
       if (attributes.columns == 0) {
@@ -8206,10 +8245,20 @@ var Edit = /*#__PURE__*/function (_Component) {
   var _select = select(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["store"]),
       getBlock = _select.getBlock;
 
-  var getRootBlock = getBlock(clientId); // ownProps
+  var getRootBlock = getBlock(clientId); // -----------------------------------------------------
+  // responsive
+
+  var _select2 = select("core/edit-post"),
+      __experimentalGetPreviewDeviceType = _select2.__experimentalGetPreviewDeviceType;
+
+  var DeviceType = __experimentalGetPreviewDeviceType();
+
+  DeviceType = DeviceType ? DeviceType.toLowerCase() : ""; // -----------------------------------------------------
+  // ownProps
 
   return {
-    wrapper_childrens: getRootBlock.innerBlocks
+    wrapper_childrens: getRootBlock.innerBlocks,
+    deviceType: DeviceType
   };
 }), Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__["withDispatch"])(function (dispatch, ownProps, registry) {
   var _registry$select = registry.select(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["store"]),
@@ -8482,7 +8531,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
     }
 
     var WrapperClass = "ubl-blocks-column-wrapper-2 ".concat(blockId + "wrap2-");
-    WrapperClass = Object(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_3__["setAnimationClass"])(attributes.additionalClassNames, WrapperClass);
+    WrapperClass = Object(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_3__["setAnimationClass"])(attributes.additionalClassNames, [WrapperClass]);
     var mainWrapperClass = ["align" + align, "ubl-blocks-column-wrapper", blockId];
     mainWrapperClass = mainWrapperClass.join(" ");
     return wp.element.createElement("div", {

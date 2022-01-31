@@ -113,10 +113,9 @@ class Edit extends Component {
       wrapperStyles = { ...wrapperStyles, ...{ width: 100 + "%" } };
     }
     let WrapperClass = "ubl-blocks-cw-column-wrap";
-    WrapperClass = setAnimationClass(
-      attributes.additionalClassNames,
-      WrapperClass
-    );
+    WrapperClass = setAnimationClass(attributes.additionalClassNames, [
+      WrapperClass,
+    ]);
     return (
       <>
         <InspectorControls key="inspector">

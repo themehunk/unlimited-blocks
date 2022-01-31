@@ -273,7 +273,7 @@ export class Animation extends Component {
 
 // export Animations;
 export let setAnimationClass = (cssObj, existClass = false) => {
-  let returnString = "";
+  let returnString = [""];
   if (
     cssObj &&
     typeof cssObj == "object" &&
@@ -292,12 +292,12 @@ export let setAnimationClass = (cssObj, existClass = false) => {
     }
     // delay
     if (existClass) {
-      returnClass.push(existClass);
+      returnString = [...returnClass, ...existClass];
     }
-    returnString = returnClass.join(" ");
   } else if (existClass) {
     returnString = existClass;
   }
+  returnString = returnString.join(" ");
   return returnString;
 };
 {
