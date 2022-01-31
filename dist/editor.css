@@ -622,6 +622,22 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
 .icon-border-setting .ul-dimension-tool {
   margin: 0;
 }
+
+.box-shadow-wrapper .settings_ {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 15px;
+}
+.box-shadow-wrapper .settings_ .shadow-border-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ul-box-shadow-popup .container_ {
+  min-width: 300px;
+  padding: 10px;
+}
 .wpgt-radio-wrap {
   margin: 14px 0;
 }

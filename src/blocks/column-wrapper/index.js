@@ -50,7 +50,7 @@ const attrS = {
       borderWidth: 0,
       borderColor: "#f8c045",
       borderRadiusLink: true,
-      borderRadius: "",
+      borderRadius: 0,
       // box-shadow
       shadowEnable: false,
       shadowOffsetX: 1,

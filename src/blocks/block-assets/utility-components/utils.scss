@@ -228,3 +228,22 @@
     margin: 0;
   }
 }
+// box shadow ------------------------------------------
+.box-shadow-wrapper {
+  .settings_ {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 15px;
+    .shadow-border-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
+.ul-box-shadow-popup {
+  .container_ {
+    min-width: 300px;
+    padding: 10px;
+  }
+}
