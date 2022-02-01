@@ -315,7 +315,7 @@ class Edit extends Component {
                     shadowColor={styles.shadowColor}
                     shadowEnable={styles.shadowEnable}
                     changeme={(e) => {
-                      console.log("shadow come", e);
+                      // console.log("shadow come", e);
                       this.updateStyle(true, true, e);
                     }}
                   />

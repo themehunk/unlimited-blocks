@@ -6879,24 +6879,6 @@ var Edit = /*#__PURE__*/function (_Component) {
             });
           }
         }
-      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Verticle Alignment", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_BasicToggleNav__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        wrapperClass: "secondary-nav",
-        value: attributes.verticleAlign ? attributes.verticleAlign : "unset",
-        navItem: [{
-          name: "unset",
-          title: "Top"
-        }, {
-          name: "center",
-          title: "Center"
-        }, {
-          name: "flex-end",
-          title: "Bottom"
-        }],
-        clickme: function clickme(value_) {
-          setAttributes({
-            verticleAlign: value_
-          });
-        }
       })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
         title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Spacing", "unlimited-blocks"),
         initialOpen: false
@@ -6999,8 +6981,7 @@ var Edit = /*#__PURE__*/function (_Component) {
         shadowColor: styles.shadowColor,
         shadowEnable: styles.shadowEnable,
         changeme: function changeme(e) {
-          console.log("shadow come", e);
-
+          // console.log("shadow come", e);
           _this2.updateStyle(true, true, e);
         }
       }) : wp.element.createElement(_block_assets_utility_components_border__WEBPACK_IMPORTED_MODULE_10__["default"], {
