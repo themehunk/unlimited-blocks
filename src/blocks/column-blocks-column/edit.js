@@ -7,6 +7,9 @@ import {
   InnerBlocks,
   InspectorControls,
   store as blockEditorStore,
+  ////
+  BlockControls,
+  BlockVerticalAlignmentToolbar,
 } from "@wordpress/block-editor";
 import { PanelBody, RangeControl, ResizableBox } from "@wordpress/components";
 
@@ -102,12 +105,20 @@ class Edit extends Component {
     }
     let verticleStyle = {};
     if (attributes.verticleAlign) {
+      let verticleAlign =
+        attributes.verticleAlign == "top"
+          ? "start"
+          : attributes.verticleAlign == "center"
+          ? "center"
+          : "flex-end";
+      // top,center,bottom - unset,center,flex-end
+
       verticleStyle = {
         ...verticleStyle,
         ...{
           height: 100 + "%",
           display: "flex",
-          alignItems: attributes.verticleAlign,
+          alignItems: verticleAlign,
         },
       };
       wrapperStyles = { ...wrapperStyles, ...{ width: 100 + "%" } };
@@ -118,6 +129,14 @@ class Edit extends Component {
     ]);
     return (
       <>
+        <BlockControls key="controls">
+          <BlockVerticalAlignmentToolbar
+            value={attributes.verticleAlign}
+            onChange={(align) => {
+              setAttributes({ verticleAlign: align });
+            }}
+          />
+        </BlockControls>
         <InspectorControls key="inspector">
           <PanelBody initialOpen={true}>
             <BasicToggleNav
@@ -165,38 +184,6 @@ class Edit extends Component {
                     }
                   }}
                 />
-                {/* verticle alignment  */}
-                <p>
-                  <strong>
-                    {__("Verticle Alignment", "unlimited-blocks")}
-                  </strong>
-                </p>
-                <BasicToggleNav
-                  wrapperClass="secondary-nav"
-                  value={
-                    attributes.verticleAlign
-                      ? attributes.verticleAlign
-                      : "unset"
-                  }
-                  navItem={[
-                    {
-                      name: "unset",
-                      title: "Top",
-                    },
-                    {
-                      name: "center",
-                      title: "Center",
-                    },
-                    {
-                      name: "flex-end",
-                      title: "Bottom",
-                    },
-                  ]}
-                  clickme={(value_) => {
-                    setAttributes({ verticleAlign: value_ });
-                  }}
-                />
-                {/* verticle alignment  */}
               </PanelBody>
               <PanelBody
                 title={__("Spacing", "unlimited-blocks")}
@@ -328,7 +315,7 @@ class Edit extends Component {
                     shadowColor={styles.shadowColor}
                     shadowEnable={styles.shadowEnable}
                     changeme={(e) => {
-                      console.log("shadow come", e);
+                      // console.log("shadow come", e);
                       this.updateStyle(true, true, e);
                     }}
                   />

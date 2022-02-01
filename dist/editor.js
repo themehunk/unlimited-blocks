@@ -5670,8 +5670,8 @@ var Boxshadow = /*#__PURE__*/function (_Component) {
 
       var _this$props2 = this.props,
           shadowEnable = _this$props2.shadowEnable,
-          shadowColor = _this$props2.shadowColor;
-      console.log("shadow props", this.props);
+          shadowColor = _this$props2.shadowColor; // console.log("shadow props", this.props);
+
       return wp.element.createElement("div", {
         className: "box-shadow-wrapper"
       }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ToggleControl"], {
@@ -5682,12 +5682,10 @@ var Boxshadow = /*#__PURE__*/function (_Component) {
         }
       }), shadowEnable && wp.element.createElement("div", {
         className: "settings_"
-      }, this.toggleBtn(), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ColorPicker"], {
-        color: shadowColor,
-        onChangeComplete: function onChangeComplete(colorBg) {
-          var color = "rgba(".concat(colorBg.rgb.r, ",").concat(colorBg.rgb.g, ",").concat(colorBg.rgb.b, ",").concat(colorBg.rgb.a, ")");
-
-          _this3.updateProp("shadowColor", color);
+      }, this.toggleBtn(), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["ColorPalette"], {
+        value: shadowColor,
+        onChange: function onChange(color) {
+          return _this3.updateProp("shadowColor", color);
         }
       })));
     }
@@ -6821,10 +6819,12 @@ var Edit = /*#__PURE__*/function (_Component) {
       var verticleStyle = {};
 
       if (attributes.verticleAlign) {
+        var verticleAlign = attributes.verticleAlign == "top" ? "start" : attributes.verticleAlign == "center" ? "center" : "flex-end"; // top,center,bottom - unset,center,flex-end
+
         verticleStyle = _objectSpread(_objectSpread({}, verticleStyle), {
           height: 100 + "%",
           display: "flex",
-          alignItems: attributes.verticleAlign
+          alignItems: verticleAlign
         });
         wrapperStyles = _objectSpread(_objectSpread({}, wrapperStyles), {
           width: 100 + "%"
@@ -6833,7 +6833,16 @@ var Edit = /*#__PURE__*/function (_Component) {
 
       var WrapperClass = "ubl-blocks-cw-column-wrap";
       WrapperClass = Object(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_6__["setAnimationClass"])(attributes.additionalClassNames, [WrapperClass]);
-      return wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["InspectorControls"], {
+      return wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["BlockControls"], {
+        key: "controls"
+      }, wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["BlockVerticalAlignmentToolbar"], {
+        value: attributes.verticleAlign,
+        onChange: function onChange(align) {
+          setAttributes({
+            verticleAlign: align
+          });
+        }
+      })), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["InspectorControls"], {
         key: "inspector"
       }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
         initialOpen: true
@@ -6869,24 +6878,6 @@ var Edit = /*#__PURE__*/function (_Component) {
               cloneWidth: e
             });
           }
-        }
-      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Verticle Alignment", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_BasicToggleNav__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        wrapperClass: "secondary-nav",
-        value: attributes.verticleAlign ? attributes.verticleAlign : "unset",
-        navItem: [{
-          name: "unset",
-          title: "Top"
-        }, {
-          name: "center",
-          title: "Center"
-        }, {
-          name: "flex-end",
-          title: "Bottom"
-        }],
-        clickme: function clickme(value_) {
-          setAttributes({
-            verticleAlign: value_
-          });
         }
       })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
         title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Spacing", "unlimited-blocks"),
@@ -6990,8 +6981,7 @@ var Edit = /*#__PURE__*/function (_Component) {
         shadowColor: styles.shadowColor,
         shadowEnable: styles.shadowEnable,
         changeme: function changeme(e) {
-          console.log("shadow come", e);
-
+          // console.log("shadow come", e);
           _this2.updateStyle(true, true, e);
         }
       }) : wp.element.createElement(_block_assets_utility_components_border__WEBPACK_IMPORTED_MODULE_10__["default"], {
@@ -7366,10 +7356,12 @@ registerBlockType("unlimited-blocks/ubl-column-block-column", {
     var verticleStyle = "";
 
     if (attributes.verticleAlign) {
+      var verticleAlign = attributes.verticleAlign == "top" ? "start" : attributes.verticleAlign == "center" ? "center" : "flex-end"; // top,center,bottom - unset,center,flex-end
+
       verticleStyle = {
         // height: 100 + "%",
         display: "flex",
-        "align-items": attributes.verticleAlign
+        "align-items": verticleAlign
       };
     } // column responsive width
 
@@ -7792,9 +7784,8 @@ var Edit = /*#__PURE__*/function (_Component) {
 
           if (getIdOfColumn) {
             var IdOfColumn = "block-" + getIdOfColumn;
-            var foundColumn = searChDocument.getElementById(IdOfColumn);
-            console.log("foundColumn ->searChDocument", searChDocument);
-            console.log("foundColumn ->IdOfColumn", foundColumn);
+            var foundColumn = searChDocument.getElementById(IdOfColumn); // console.log("foundColumn ->searChDocument", searChDocument);
+            // console.log("foundColumn ->IdOfColumn", foundColumn);
 
             if (foundColumn) {
               foundColumn.style.width = getIdOfColumnWidth + "%";
@@ -8278,7 +8269,6 @@ var Edit = /*#__PURE__*/function (_Component) {
       var columnBlock = wp.blocks.createBlock("unlimited-blocks/ubl-column-block-column");
       innerBlocks = [].concat(_toConsumableArray(innerBlocks), [columnBlock]);
     } else {
-      // innerBlocks = dropRight([...innerBlocks], 1);
       innerBlocks = _toConsumableArray(innerBlocks).slice(0, -1);
     }
 

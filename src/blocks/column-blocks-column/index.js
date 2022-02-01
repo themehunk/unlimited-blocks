@@ -107,10 +107,17 @@ registerBlockType("unlimited-blocks/ubl-column-block-column", {
     // style 1
     let verticleStyle = "";
     if (attributes.verticleAlign) {
+      let verticleAlign =
+        attributes.verticleAlign == "top"
+          ? "start"
+          : attributes.verticleAlign == "center"
+          ? "center"
+          : "flex-end";
+      // top,center,bottom - unset,center,flex-end
       verticleStyle = {
         // height: 100 + "%",
         display: "flex",
-        "align-items": attributes.verticleAlign,
+        "align-items": verticleAlign,
       };
     }
     // column responsive width

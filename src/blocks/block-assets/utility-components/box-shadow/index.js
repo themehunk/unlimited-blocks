@@ -124,7 +124,7 @@ class Boxshadow extends Component {
   render() {
     let { shadowEnable, shadowColor } = this.props;
 
-    console.log("shadow props", this.props);
+    // console.log("shadow props", this.props);
 
     return (
       <div className="box-shadow-wrapper">
@@ -143,13 +143,17 @@ class Boxshadow extends Component {
         {shadowEnable && (
           <div className="settings_">
             {this.toggleBtn()}
-            <ColorPicker
+            <ColorPalette
+              value={shadowColor}
+              onChange={(color) => this.updateProp("shadowColor", color)}
+            />
+            {/* <ColorPicker
               color={shadowColor}
               onChangeComplete={(colorBg) => {
                 let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
                 this.updateProp("shadowColor", color);
               }}
-            />
+            /> */}
           </div>
         )}
       </div>
