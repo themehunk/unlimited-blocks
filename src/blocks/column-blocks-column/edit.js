@@ -184,38 +184,6 @@ class Edit extends Component {
                     }
                   }}
                 />
-                {/* verticle alignment  */}
-                <p>
-                  <strong>
-                    {__("Verticle Alignment", "unlimited-blocks")}
-                  </strong>
-                </p>
-                <BasicToggleNav
-                  wrapperClass="secondary-nav"
-                  value={
-                    attributes.verticleAlign
-                      ? attributes.verticleAlign
-                      : "unset"
-                  }
-                  navItem={[
-                    {
-                      name: "unset",
-                      title: "Top",
-                    },
-                    {
-                      name: "center",
-                      title: "Center",
-                    },
-                    {
-                      name: "flex-end",
-                      title: "Bottom",
-                    },
-                  ]}
-                  clickme={(value_) => {
-                    setAttributes({ verticleAlign: value_ });
-                  }}
-                />
-                {/* verticle alignment  */}
               </PanelBody>
               <PanelBody
                 title={__("Spacing", "unlimited-blocks")}
