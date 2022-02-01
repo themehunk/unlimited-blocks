@@ -21,9 +21,6 @@ import {
   Button,
   RangeControl,
   ToggleControl,
-  SelectControl,
-  ColorPicker,
-  __experimentalUnitControl as UnitControl,
 } from "@wordpress/components";
 // import { UBLGraDientColors } from "./../block-assets/post-functions";
 import BasicToggleNav from "../block-assets/utility-components/BasicToggleNav";
@@ -56,31 +53,23 @@ class Edit extends Component {
       chooseBorderORShadow: "border",
       openPanel: "layout",
       changeWidthPreventForFirstTime: "",
+      deviceType: "",
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
+    // console.log(
+    //   "--------------------+++++++++++++++++++++++++++++++------------------------------"
+    // );
     // console.log("prev props", prevProps);
     // console.log("current props", this.props);
+    // console.log("current props prev state", prevState);
+    // console.log("current props state", this.state);
 
     if (prevProps.attributes.columns != this.props.attributes.columns) {
-      // console.log("yes change is 1");
-      let currentColumn = parseInt(this.props.attributes.columns);
-      let columnsWidth = 100 / currentColumn;
-      let SetObject = {};
-      for (let initWidth = 0; initWidth < currentColumn; initWidth++) {
-        // const element = array[index_];
-        SetObject[initWidth] = columnsWidth;
-      }
-      let setObjectColumn = { columns: SetObject };
-      this.props.setAttributes({ listStyle: setObjectColumn });
-      // console.log("setObjectColumn->", setObjectColumn);
-      // this.setupWidthOnchangeWidth(setObjectColumn);
-
-      this.setState({ changeWidthPreventForFirstTime: 1 });
+      this.setColumnWidthWithAttr();
     } else if (this.props.wrapper_childrens !== prevProps.wrapper_childrens) {
       // console.log("yes change is 2");
-
       if (
         prevProps.wrapper_childrens.length &&
         prevProps.wrapper_childrens.length > this.props.wrapper_childrens.length
@@ -103,23 +92,46 @@ class Edit extends Component {
             columns: this.props.wrapper_childrens.length,
           });
         }
-        this.setupWidthOnchangeWidth(setObjectColumn);
+        this.setWidth(setObjectColumn);
       } else {
-        this.setupWidthOnchangeWidth();
+        this.setWidth();
       }
     } else if (
       this.props.attributes.listStyle.columns !=
       prevProps.attributes.listStyle.columns
     ) {
-      this.setupWidthOnchangeWidth();
+      this.setWidth();
     }
-  }
 
-  setupWidthOnchangeWidth(listColumn = false) {
+    // else if (prevState.deviceType != this.props.deviceType) {
+    //   // console.log("yes change is de vice wo");
+    //   // this.setState({ deviceType: this.props.deviceType });
+    //   // setTimeout(() => {
+    //   //   console.log("yes change is de vice wo ssss");
+    //   //   this.setWidth();
+    //   // }, 1000);
+    //   // this.setWidth();
+    // } else if (prevState.deviceType != this.state.deviceType) {
+    //   // console.log("yes change is de vice wo ready with stae update ");
+    //   // this.setWidth();
+    // }
+  }
+  setColumnWidthWithAttr() {
+    let currentColumn = parseInt(this.props.attributes.columns);
+    let columnsWidth = 100 / currentColumn;
+    let SetObject = {};
+    for (let initWidth = 0; initWidth < currentColumn; initWidth++) {
+      // const element = array[index_];
+      SetObject[initWidth] = columnsWidth;
+    }
+    let setObjectColumn = { columns: SetObject };
+    this.props.setAttributes({ listStyle: setObjectColumn });
+    this.setWidth(setObjectColumn);
+  }
+  setWidth(listColumn = false, documentIframe = false) {
     const { attributes, wrapper_childrens } = this.props;
     let getListStyle = !listColumn ? attributes.listStyle.columns : listColumn;
-    // console.log("--getListStyle", getListStyle);
-    // console.log("--wrapper_childrens", wrapper_childrens);
+    let searChDocument = !documentIframe ? document : documentIframe;
     // ---------
     if (
       getListStyle &&
@@ -129,9 +141,12 @@ class Edit extends Component {
       for (let getOrderChildren in getListStyle) {
         let getIdOfColumn = wrapper_childrens[getOrderChildren].clientId;
         let getIdOfColumnWidth = getListStyle[getOrderChildren];
+
         if (getIdOfColumn) {
           let IdOfColumn = "block-" + getIdOfColumn;
-          let foundColumn = document.getElementById(IdOfColumn);
+          let foundColumn = searChDocument.getElementById(IdOfColumn);
+          console.log("foundColumn ->searChDocument", searChDocument);
+          console.log("foundColumn ->IdOfColumn", foundColumn);
           if (foundColumn) {
             foundColumn.style.width = getIdOfColumnWidth + "%";
           }
@@ -141,7 +156,26 @@ class Edit extends Component {
     // ---------
   }
   componentDidMount() {
-    this.setupWidthOnchangeWidth();
+    // console.log(
+    //   "component did mount --------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>",
+    //   this.props
+    // );
+    // get state
+    // let getPreviewTablet = document.getElementsByClassName("is-tablet-preview");
+
+    // console.log("getPreviewTablet->", getPreviewTablet);
+    if (this.props.deviceType) {
+      this.setState({ deviceType: this.props.deviceType });
+    }
+    let getIframe = document.querySelector('[name="editor-canvas"]');
+    // console.log("getIframe->", getIframe);
+    if (getIframe) {
+      let sendDocument =
+        getIframe.contentDocument || getIframe.contentWindow.document;
+      this.setWidth(false, sendDocument);
+    } else {
+      this.setWidth();
+    }
   }
   updateStyle = (key_, value, multiple = false) => {
     const { attributes, setAttributes } = this.props;
@@ -162,7 +196,7 @@ class Edit extends Component {
   render() {
     // prevv ------------------=+++++++++++++============
     // initialize style for column
-    const { attributes, setAttributes, clientId } = this.props;
+    const { attributes, setAttributes, clientId, deviceType } = this.props;
     // set block id
     if (attributes.blockId == "")
       setAttributes({ blockId: "ubl-blocks-" + clientId });
@@ -231,15 +265,17 @@ class Edit extends Component {
         contentWidthApply.width = contentWidth.width + "%";
       }
     }
+
     /**
      * wrapper class
      *
      **/
+    let deviceClass = "ubl-wrapper-device-" + deviceType;
     let WrapperClass = "ubl-blocks-column-wrapper-2";
-    WrapperClass = setAnimationClass(
-      attributes.additionalClassNames,
-      WrapperClass
-    );
+    WrapperClass = setAnimationClass(attributes.additionalClassNames, [
+      WrapperClass,
+      deviceClass,
+    ]);
     /* Show the layout placeholder. */
     if (attributes.columns == 0) {
       return [
@@ -629,9 +665,17 @@ export default compose(
     const { getBlock } = select(blockEditorStore);
     let getRootBlock = getBlock(clientId);
 
+    // -----------------------------------------------------
+    // responsive
+    const { __experimentalGetPreviewDeviceType } = select("core/edit-post");
+    let DeviceType = __experimentalGetPreviewDeviceType();
+    DeviceType = DeviceType ? DeviceType.toLowerCase() : "";
+    // -----------------------------------------------------
     // ownProps
-
-    return { wrapper_childrens: getRootBlock.innerBlocks };
+    return {
+      wrapper_childrens: getRootBlock.innerBlocks,
+      deviceType: DeviceType,
+    };
   }),
   withDispatch((dispatch, ownProps, registry) => {
     const { getBlocks } = registry.select(blockEditorStore);
