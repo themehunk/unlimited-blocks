@@ -145,8 +145,8 @@ class Edit extends Component {
         if (getIdOfColumn) {
           let IdOfColumn = "block-" + getIdOfColumn;
           let foundColumn = searChDocument.getElementById(IdOfColumn);
-          console.log("foundColumn ->searChDocument", searChDocument);
-          console.log("foundColumn ->IdOfColumn", foundColumn);
+          // console.log("foundColumn ->searChDocument", searChDocument);
+          // console.log("foundColumn ->IdOfColumn", foundColumn);
           if (foundColumn) {
             foundColumn.style.width = getIdOfColumnWidth + "%";
           }
@@ -691,7 +691,6 @@ export default compose(
         );
         innerBlocks = [...innerBlocks, ...[columnBlock]];
       } else {
-        // innerBlocks = dropRight([...innerBlocks], 1);
         innerBlocks = [...innerBlocks].slice(0, -1);
       }
       replaceInnerBlocks(clientId, innerBlocks);
