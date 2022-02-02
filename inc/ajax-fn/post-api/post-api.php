@@ -10,8 +10,15 @@ if (!function_exists('unlimited_blocks_post_apis')) {
             "callback" => "unlimited_blocks_post_apis_result",
             'permission_callback' => '__return_true',
         ]);
+        // product-api.php 
+        register_rest_route("unlimited-blocks-product-api/v3", "product", [
+            'methods' => WP_REST_SERVER::CREATABLE,
+            "callback" => "unlimited_blocks_product_api_result",
+            'permission_callback' => '__return_true',
+        ]);
     }
 }
+
 if (!function_exists('unlimited_blocks_post_apis_result')) {
     function unlimited_blocks_post_apis_result(\WP_REST_Request $request)
     {

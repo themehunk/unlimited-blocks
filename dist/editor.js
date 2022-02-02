@@ -86,6 +86,517 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/html-entities/lib/html4-entities.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/html-entities/lib/html4-entities.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var surrogate_pairs_1 = __webpack_require__(/*! ./surrogate-pairs */ "./node_modules/html-entities/lib/surrogate-pairs.js");
+var HTML_ALPHA = ['apos', 'nbsp', 'iexcl', 'cent', 'pound', 'curren', 'yen', 'brvbar', 'sect', 'uml', 'copy', 'ordf', 'laquo', 'not', 'shy', 'reg', 'macr', 'deg', 'plusmn', 'sup2', 'sup3', 'acute', 'micro', 'para', 'middot', 'cedil', 'sup1', 'ordm', 'raquo', 'frac14', 'frac12', 'frac34', 'iquest', 'Agrave', 'Aacute', 'Acirc', 'Atilde', 'Auml', 'Aring', 'AElig', 'Ccedil', 'Egrave', 'Eacute', 'Ecirc', 'Euml', 'Igrave', 'Iacute', 'Icirc', 'Iuml', 'ETH', 'Ntilde', 'Ograve', 'Oacute', 'Ocirc', 'Otilde', 'Ouml', 'times', 'Oslash', 'Ugrave', 'Uacute', 'Ucirc', 'Uuml', 'Yacute', 'THORN', 'szlig', 'agrave', 'aacute', 'acirc', 'atilde', 'auml', 'aring', 'aelig', 'ccedil', 'egrave', 'eacute', 'ecirc', 'euml', 'igrave', 'iacute', 'icirc', 'iuml', 'eth', 'ntilde', 'ograve', 'oacute', 'ocirc', 'otilde', 'ouml', 'divide', 'oslash', 'ugrave', 'uacute', 'ucirc', 'uuml', 'yacute', 'thorn', 'yuml', 'quot', 'amp', 'lt', 'gt', 'OElig', 'oelig', 'Scaron', 'scaron', 'Yuml', 'circ', 'tilde', 'ensp', 'emsp', 'thinsp', 'zwnj', 'zwj', 'lrm', 'rlm', 'ndash', 'mdash', 'lsquo', 'rsquo', 'sbquo', 'ldquo', 'rdquo', 'bdquo', 'dagger', 'Dagger', 'permil', 'lsaquo', 'rsaquo', 'euro', 'fnof', 'Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Eta', 'Theta', 'Iota', 'Kappa', 'Lambda', 'Mu', 'Nu', 'Xi', 'Omicron', 'Pi', 'Rho', 'Sigma', 'Tau', 'Upsilon', 'Phi', 'Chi', 'Psi', 'Omega', 'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'iota', 'kappa', 'lambda', 'mu', 'nu', 'xi', 'omicron', 'pi', 'rho', 'sigmaf', 'sigma', 'tau', 'upsilon', 'phi', 'chi', 'psi', 'omega', 'thetasym', 'upsih', 'piv', 'bull', 'hellip', 'prime', 'Prime', 'oline', 'frasl', 'weierp', 'image', 'real', 'trade', 'alefsym', 'larr', 'uarr', 'rarr', 'darr', 'harr', 'crarr', 'lArr', 'uArr', 'rArr', 'dArr', 'hArr', 'forall', 'part', 'exist', 'empty', 'nabla', 'isin', 'notin', 'ni', 'prod', 'sum', 'minus', 'lowast', 'radic', 'prop', 'infin', 'ang', 'and', 'or', 'cap', 'cup', 'int', 'there4', 'sim', 'cong', 'asymp', 'ne', 'equiv', 'le', 'ge', 'sub', 'sup', 'nsub', 'sube', 'supe', 'oplus', 'otimes', 'perp', 'sdot', 'lceil', 'rceil', 'lfloor', 'rfloor', 'lang', 'rang', 'loz', 'spades', 'clubs', 'hearts', 'diams'];
+var HTML_CODES = [39, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 34, 38, 60, 62, 338, 339, 352, 353, 376, 710, 732, 8194, 8195, 8201, 8204, 8205, 8206, 8207, 8211, 8212, 8216, 8217, 8218, 8220, 8221, 8222, 8224, 8225, 8240, 8249, 8250, 8364, 402, 913, 914, 915, 916, 917, 918, 919, 920, 921, 922, 923, 924, 925, 926, 927, 928, 929, 931, 932, 933, 934, 935, 936, 937, 945, 946, 947, 948, 949, 950, 951, 952, 953, 954, 955, 956, 957, 958, 959, 960, 961, 962, 963, 964, 965, 966, 967, 968, 969, 977, 978, 982, 8226, 8230, 8242, 8243, 8254, 8260, 8472, 8465, 8476, 8482, 8501, 8592, 8593, 8594, 8595, 8596, 8629, 8656, 8657, 8658, 8659, 8660, 8704, 8706, 8707, 8709, 8711, 8712, 8713, 8715, 8719, 8721, 8722, 8727, 8730, 8733, 8734, 8736, 8743, 8744, 8745, 8746, 8747, 8756, 8764, 8773, 8776, 8800, 8801, 8804, 8805, 8834, 8835, 8836, 8838, 8839, 8853, 8855, 8869, 8901, 8968, 8969, 8970, 8971, 9001, 9002, 9674, 9824, 9827, 9829, 9830];
+var alphaIndex = {};
+var numIndex = {};
+(function () {
+    var i = 0;
+    var length = HTML_ALPHA.length;
+    while (i < length) {
+        var a = HTML_ALPHA[i];
+        var c = HTML_CODES[i];
+        alphaIndex[a] = String.fromCharCode(c);
+        numIndex[c] = a;
+        i++;
+    }
+})();
+var Html4Entities = /** @class */ (function () {
+    function Html4Entities() {
+    }
+    Html4Entities.prototype.decode = function (str) {
+        if (!str || !str.length) {
+            return '';
+        }
+        return str.replace(/&(#?[\w\d]+);?/g, function (s, entity) {
+            var chr;
+            if (entity.charAt(0) === "#") {
+                var code = entity.charAt(1).toLowerCase() === 'x' ?
+                    parseInt(entity.substr(2), 16) :
+                    parseInt(entity.substr(1));
+                if (!isNaN(code) || code >= -32768) {
+                    if (code <= 65535) {
+                        chr = String.fromCharCode(code);
+                    }
+                    else {
+                        chr = surrogate_pairs_1.fromCodePoint(code);
+                    }
+                }
+            }
+            else {
+                chr = alphaIndex[entity];
+            }
+            return chr || s;
+        });
+    };
+    Html4Entities.decode = function (str) {
+        return new Html4Entities().decode(str);
+    };
+    Html4Entities.prototype.encode = function (str) {
+        if (!str || !str.length) {
+            return '';
+        }
+        var strLength = str.length;
+        var result = '';
+        var i = 0;
+        while (i < strLength) {
+            var alpha = numIndex[str.charCodeAt(i)];
+            result += alpha ? "&" + alpha + ";" : str.charAt(i);
+            i++;
+        }
+        return result;
+    };
+    Html4Entities.encode = function (str) {
+        return new Html4Entities().encode(str);
+    };
+    Html4Entities.prototype.encodeNonUTF = function (str) {
+        if (!str || !str.length) {
+            return '';
+        }
+        var strLength = str.length;
+        var result = '';
+        var i = 0;
+        while (i < strLength) {
+            var cc = str.charCodeAt(i);
+            var alpha = numIndex[cc];
+            if (alpha) {
+                result += "&" + alpha + ";";
+            }
+            else if (cc < 32 || cc > 126) {
+                if (cc >= surrogate_pairs_1.highSurrogateFrom && cc <= surrogate_pairs_1.highSurrogateTo) {
+                    result += '&#' + surrogate_pairs_1.getCodePoint(str, i) + ';';
+                    i++;
+                }
+                else {
+                    result += '&#' + cc + ';';
+                }
+            }
+            else {
+                result += str.charAt(i);
+            }
+            i++;
+        }
+        return result;
+    };
+    Html4Entities.encodeNonUTF = function (str) {
+        return new Html4Entities().encodeNonUTF(str);
+    };
+    Html4Entities.prototype.encodeNonASCII = function (str) {
+        if (!str || !str.length) {
+            return '';
+        }
+        var strLength = str.length;
+        var result = '';
+        var i = 0;
+        while (i < strLength) {
+            var c = str.charCodeAt(i);
+            if (c <= 255) {
+                result += str[i++];
+                continue;
+            }
+            if (c >= surrogate_pairs_1.highSurrogateFrom && c <= surrogate_pairs_1.highSurrogateTo) {
+                result += '&#' + surrogate_pairs_1.getCodePoint(str, i) + ';';
+                i++;
+            }
+            else {
+                result += '&#' + c + ';';
+            }
+            i++;
+        }
+        return result;
+    };
+    Html4Entities.encodeNonASCII = function (str) {
+        return new Html4Entities().encodeNonASCII(str);
+    };
+    return Html4Entities;
+}());
+exports.Html4Entities = Html4Entities;
+
+
+/***/ }),
+
+/***/ "./node_modules/html-entities/lib/html5-entities.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/html-entities/lib/html5-entities.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var surrogate_pairs_1 = __webpack_require__(/*! ./surrogate-pairs */ "./node_modules/html-entities/lib/surrogate-pairs.js");
+var ENTITIES = [['Aacute', [193]], ['aacute', [225]], ['Abreve', [258]], ['abreve', [259]], ['ac', [8766]], ['acd', [8767]], ['acE', [8766, 819]], ['Acirc', [194]], ['acirc', [226]], ['acute', [180]], ['Acy', [1040]], ['acy', [1072]], ['AElig', [198]], ['aelig', [230]], ['af', [8289]], ['Afr', [120068]], ['afr', [120094]], ['Agrave', [192]], ['agrave', [224]], ['alefsym', [8501]], ['aleph', [8501]], ['Alpha', [913]], ['alpha', [945]], ['Amacr', [256]], ['amacr', [257]], ['amalg', [10815]], ['amp', [38]], ['AMP', [38]], ['andand', [10837]], ['And', [10835]], ['and', [8743]], ['andd', [10844]], ['andslope', [10840]], ['andv', [10842]], ['ang', [8736]], ['ange', [10660]], ['angle', [8736]], ['angmsdaa', [10664]], ['angmsdab', [10665]], ['angmsdac', [10666]], ['angmsdad', [10667]], ['angmsdae', [10668]], ['angmsdaf', [10669]], ['angmsdag', [10670]], ['angmsdah', [10671]], ['angmsd', [8737]], ['angrt', [8735]], ['angrtvb', [8894]], ['angrtvbd', [10653]], ['angsph', [8738]], ['angst', [197]], ['angzarr', [9084]], ['Aogon', [260]], ['aogon', [261]], ['Aopf', [120120]], ['aopf', [120146]], ['apacir', [10863]], ['ap', [8776]], ['apE', [10864]], ['ape', [8778]], ['apid', [8779]], ['apos', [39]], ['ApplyFunction', [8289]], ['approx', [8776]], ['approxeq', [8778]], ['Aring', [197]], ['aring', [229]], ['Ascr', [119964]], ['ascr', [119990]], ['Assign', [8788]], ['ast', [42]], ['asymp', [8776]], ['asympeq', [8781]], ['Atilde', [195]], ['atilde', [227]], ['Auml', [196]], ['auml', [228]], ['awconint', [8755]], ['awint', [10769]], ['backcong', [8780]], ['backepsilon', [1014]], ['backprime', [8245]], ['backsim', [8765]], ['backsimeq', [8909]], ['Backslash', [8726]], ['Barv', [10983]], ['barvee', [8893]], ['barwed', [8965]], ['Barwed', [8966]], ['barwedge', [8965]], ['bbrk', [9141]], ['bbrktbrk', [9142]], ['bcong', [8780]], ['Bcy', [1041]], ['bcy', [1073]], ['bdquo', [8222]], ['becaus', [8757]], ['because', [8757]], ['Because', [8757]], ['bemptyv', [10672]], ['bepsi', [1014]], ['bernou', [8492]], ['Bernoullis', [8492]], ['Beta', [914]], ['beta', [946]], ['beth', [8502]], ['between', [8812]], ['Bfr', [120069]], ['bfr', [120095]], ['bigcap', [8898]], ['bigcirc', [9711]], ['bigcup', [8899]], ['bigodot', [10752]], ['bigoplus', [10753]], ['bigotimes', [10754]], ['bigsqcup', [10758]], ['bigstar', [9733]], ['bigtriangledown', [9661]], ['bigtriangleup', [9651]], ['biguplus', [10756]], ['bigvee', [8897]], ['bigwedge', [8896]], ['bkarow', [10509]], ['blacklozenge', [10731]], ['blacksquare', [9642]], ['blacktriangle', [9652]], ['blacktriangledown', [9662]], ['blacktriangleleft', [9666]], ['blacktriangleright', [9656]], ['blank', [9251]], ['blk12', [9618]], ['blk14', [9617]], ['blk34', [9619]], ['block', [9608]], ['bne', [61, 8421]], ['bnequiv', [8801, 8421]], ['bNot', [10989]], ['bnot', [8976]], ['Bopf', [120121]], ['bopf', [120147]], ['bot', [8869]], ['bottom', [8869]], ['bowtie', [8904]], ['boxbox', [10697]], ['boxdl', [9488]], ['boxdL', [9557]], ['boxDl', [9558]], ['boxDL', [9559]], ['boxdr', [9484]], ['boxdR', [9554]], ['boxDr', [9555]], ['boxDR', [9556]], ['boxh', [9472]], ['boxH', [9552]], ['boxhd', [9516]], ['boxHd', [9572]], ['boxhD', [9573]], ['boxHD', [9574]], ['boxhu', [9524]], ['boxHu', [9575]], ['boxhU', [9576]], ['boxHU', [9577]], ['boxminus', [8863]], ['boxplus', [8862]], ['boxtimes', [8864]], ['boxul', [9496]], ['boxuL', [9563]], ['boxUl', [9564]], ['boxUL', [9565]], ['boxur', [9492]], ['boxuR', [9560]], ['boxUr', [9561]], ['boxUR', [9562]], ['boxv', [9474]], ['boxV', [9553]], ['boxvh', [9532]], ['boxvH', [9578]], ['boxVh', [9579]], ['boxVH', [9580]], ['boxvl', [9508]], ['boxvL', [9569]], ['boxVl', [9570]], ['boxVL', [9571]], ['boxvr', [9500]], ['boxvR', [9566]], ['boxVr', [9567]], ['boxVR', [9568]], ['bprime', [8245]], ['breve', [728]], ['Breve', [728]], ['brvbar', [166]], ['bscr', [119991]], ['Bscr', [8492]], ['bsemi', [8271]], ['bsim', [8765]], ['bsime', [8909]], ['bsolb', [10693]], ['bsol', [92]], ['bsolhsub', [10184]], ['bull', [8226]], ['bullet', [8226]], ['bump', [8782]], ['bumpE', [10926]], ['bumpe', [8783]], ['Bumpeq', [8782]], ['bumpeq', [8783]], ['Cacute', [262]], ['cacute', [263]], ['capand', [10820]], ['capbrcup', [10825]], ['capcap', [10827]], ['cap', [8745]], ['Cap', [8914]], ['capcup', [10823]], ['capdot', [10816]], ['CapitalDifferentialD', [8517]], ['caps', [8745, 65024]], ['caret', [8257]], ['caron', [711]], ['Cayleys', [8493]], ['ccaps', [10829]], ['Ccaron', [268]], ['ccaron', [269]], ['Ccedil', [199]], ['ccedil', [231]], ['Ccirc', [264]], ['ccirc', [265]], ['Cconint', [8752]], ['ccups', [10828]], ['ccupssm', [10832]], ['Cdot', [266]], ['cdot', [267]], ['cedil', [184]], ['Cedilla', [184]], ['cemptyv', [10674]], ['cent', [162]], ['centerdot', [183]], ['CenterDot', [183]], ['cfr', [120096]], ['Cfr', [8493]], ['CHcy', [1063]], ['chcy', [1095]], ['check', [10003]], ['checkmark', [10003]], ['Chi', [935]], ['chi', [967]], ['circ', [710]], ['circeq', [8791]], ['circlearrowleft', [8634]], ['circlearrowright', [8635]], ['circledast', [8859]], ['circledcirc', [8858]], ['circleddash', [8861]], ['CircleDot', [8857]], ['circledR', [174]], ['circledS', [9416]], ['CircleMinus', [8854]], ['CirclePlus', [8853]], ['CircleTimes', [8855]], ['cir', [9675]], ['cirE', [10691]], ['cire', [8791]], ['cirfnint', [10768]], ['cirmid', [10991]], ['cirscir', [10690]], ['ClockwiseContourIntegral', [8754]], ['clubs', [9827]], ['clubsuit', [9827]], ['colon', [58]], ['Colon', [8759]], ['Colone', [10868]], ['colone', [8788]], ['coloneq', [8788]], ['comma', [44]], ['commat', [64]], ['comp', [8705]], ['compfn', [8728]], ['complement', [8705]], ['complexes', [8450]], ['cong', [8773]], ['congdot', [10861]], ['Congruent', [8801]], ['conint', [8750]], ['Conint', [8751]], ['ContourIntegral', [8750]], ['copf', [120148]], ['Copf', [8450]], ['coprod', [8720]], ['Coproduct', [8720]], ['copy', [169]], ['COPY', [169]], ['copysr', [8471]], ['CounterClockwiseContourIntegral', [8755]], ['crarr', [8629]], ['cross', [10007]], ['Cross', [10799]], ['Cscr', [119966]], ['cscr', [119992]], ['csub', [10959]], ['csube', [10961]], ['csup', [10960]], ['csupe', [10962]], ['ctdot', [8943]], ['cudarrl', [10552]], ['cudarrr', [10549]], ['cuepr', [8926]], ['cuesc', [8927]], ['cularr', [8630]], ['cularrp', [10557]], ['cupbrcap', [10824]], ['cupcap', [10822]], ['CupCap', [8781]], ['cup', [8746]], ['Cup', [8915]], ['cupcup', [10826]], ['cupdot', [8845]], ['cupor', [10821]], ['cups', [8746, 65024]], ['curarr', [8631]], ['curarrm', [10556]], ['curlyeqprec', [8926]], ['curlyeqsucc', [8927]], ['curlyvee', [8910]], ['curlywedge', [8911]], ['curren', [164]], ['curvearrowleft', [8630]], ['curvearrowright', [8631]], ['cuvee', [8910]], ['cuwed', [8911]], ['cwconint', [8754]], ['cwint', [8753]], ['cylcty', [9005]], ['dagger', [8224]], ['Dagger', [8225]], ['daleth', [8504]], ['darr', [8595]], ['Darr', [8609]], ['dArr', [8659]], ['dash', [8208]], ['Dashv', [10980]], ['dashv', [8867]], ['dbkarow', [10511]], ['dblac', [733]], ['Dcaron', [270]], ['dcaron', [271]], ['Dcy', [1044]], ['dcy', [1076]], ['ddagger', [8225]], ['ddarr', [8650]], ['DD', [8517]], ['dd', [8518]], ['DDotrahd', [10513]], ['ddotseq', [10871]], ['deg', [176]], ['Del', [8711]], ['Delta', [916]], ['delta', [948]], ['demptyv', [10673]], ['dfisht', [10623]], ['Dfr', [120071]], ['dfr', [120097]], ['dHar', [10597]], ['dharl', [8643]], ['dharr', [8642]], ['DiacriticalAcute', [180]], ['DiacriticalDot', [729]], ['DiacriticalDoubleAcute', [733]], ['DiacriticalGrave', [96]], ['DiacriticalTilde', [732]], ['diam', [8900]], ['diamond', [8900]], ['Diamond', [8900]], ['diamondsuit', [9830]], ['diams', [9830]], ['die', [168]], ['DifferentialD', [8518]], ['digamma', [989]], ['disin', [8946]], ['div', [247]], ['divide', [247]], ['divideontimes', [8903]], ['divonx', [8903]], ['DJcy', [1026]], ['djcy', [1106]], ['dlcorn', [8990]], ['dlcrop', [8973]], ['dollar', [36]], ['Dopf', [120123]], ['dopf', [120149]], ['Dot', [168]], ['dot', [729]], ['DotDot', [8412]], ['doteq', [8784]], ['doteqdot', [8785]], ['DotEqual', [8784]], ['dotminus', [8760]], ['dotplus', [8724]], ['dotsquare', [8865]], ['doublebarwedge', [8966]], ['DoubleContourIntegral', [8751]], ['DoubleDot', [168]], ['DoubleDownArrow', [8659]], ['DoubleLeftArrow', [8656]], ['DoubleLeftRightArrow', [8660]], ['DoubleLeftTee', [10980]], ['DoubleLongLeftArrow', [10232]], ['DoubleLongLeftRightArrow', [10234]], ['DoubleLongRightArrow', [10233]], ['DoubleRightArrow', [8658]], ['DoubleRightTee', [8872]], ['DoubleUpArrow', [8657]], ['DoubleUpDownArrow', [8661]], ['DoubleVerticalBar', [8741]], ['DownArrowBar', [10515]], ['downarrow', [8595]], ['DownArrow', [8595]], ['Downarrow', [8659]], ['DownArrowUpArrow', [8693]], ['DownBreve', [785]], ['downdownarrows', [8650]], ['downharpoonleft', [8643]], ['downharpoonright', [8642]], ['DownLeftRightVector', [10576]], ['DownLeftTeeVector', [10590]], ['DownLeftVectorBar', [10582]], ['DownLeftVector', [8637]], ['DownRightTeeVector', [10591]], ['DownRightVectorBar', [10583]], ['DownRightVector', [8641]], ['DownTeeArrow', [8615]], ['DownTee', [8868]], ['drbkarow', [10512]], ['drcorn', [8991]], ['drcrop', [8972]], ['Dscr', [119967]], ['dscr', [119993]], ['DScy', [1029]], ['dscy', [1109]], ['dsol', [10742]], ['Dstrok', [272]], ['dstrok', [273]], ['dtdot', [8945]], ['dtri', [9663]], ['dtrif', [9662]], ['duarr', [8693]], ['duhar', [10607]], ['dwangle', [10662]], ['DZcy', [1039]], ['dzcy', [1119]], ['dzigrarr', [10239]], ['Eacute', [201]], ['eacute', [233]], ['easter', [10862]], ['Ecaron', [282]], ['ecaron', [283]], ['Ecirc', [202]], ['ecirc', [234]], ['ecir', [8790]], ['ecolon', [8789]], ['Ecy', [1069]], ['ecy', [1101]], ['eDDot', [10871]], ['Edot', [278]], ['edot', [279]], ['eDot', [8785]], ['ee', [8519]], ['efDot', [8786]], ['Efr', [120072]], ['efr', [120098]], ['eg', [10906]], ['Egrave', [200]], ['egrave', [232]], ['egs', [10902]], ['egsdot', [10904]], ['el', [10905]], ['Element', [8712]], ['elinters', [9191]], ['ell', [8467]], ['els', [10901]], ['elsdot', [10903]], ['Emacr', [274]], ['emacr', [275]], ['empty', [8709]], ['emptyset', [8709]], ['EmptySmallSquare', [9723]], ['emptyv', [8709]], ['EmptyVerySmallSquare', [9643]], ['emsp13', [8196]], ['emsp14', [8197]], ['emsp', [8195]], ['ENG', [330]], ['eng', [331]], ['ensp', [8194]], ['Eogon', [280]], ['eogon', [281]], ['Eopf', [120124]], ['eopf', [120150]], ['epar', [8917]], ['eparsl', [10723]], ['eplus', [10865]], ['epsi', [949]], ['Epsilon', [917]], ['epsilon', [949]], ['epsiv', [1013]], ['eqcirc', [8790]], ['eqcolon', [8789]], ['eqsim', [8770]], ['eqslantgtr', [10902]], ['eqslantless', [10901]], ['Equal', [10869]], ['equals', [61]], ['EqualTilde', [8770]], ['equest', [8799]], ['Equilibrium', [8652]], ['equiv', [8801]], ['equivDD', [10872]], ['eqvparsl', [10725]], ['erarr', [10609]], ['erDot', [8787]], ['escr', [8495]], ['Escr', [8496]], ['esdot', [8784]], ['Esim', [10867]], ['esim', [8770]], ['Eta', [919]], ['eta', [951]], ['ETH', [208]], ['eth', [240]], ['Euml', [203]], ['euml', [235]], ['euro', [8364]], ['excl', [33]], ['exist', [8707]], ['Exists', [8707]], ['expectation', [8496]], ['exponentiale', [8519]], ['ExponentialE', [8519]], ['fallingdotseq', [8786]], ['Fcy', [1060]], ['fcy', [1092]], ['female', [9792]], ['ffilig', [64259]], ['fflig', [64256]], ['ffllig', [64260]], ['Ffr', [120073]], ['ffr', [120099]], ['filig', [64257]], ['FilledSmallSquare', [9724]], ['FilledVerySmallSquare', [9642]], ['fjlig', [102, 106]], ['flat', [9837]], ['fllig', [64258]], ['fltns', [9649]], ['fnof', [402]], ['Fopf', [120125]], ['fopf', [120151]], ['forall', [8704]], ['ForAll', [8704]], ['fork', [8916]], ['forkv', [10969]], ['Fouriertrf', [8497]], ['fpartint', [10765]], ['frac12', [189]], ['frac13', [8531]], ['frac14', [188]], ['frac15', [8533]], ['frac16', [8537]], ['frac18', [8539]], ['frac23', [8532]], ['frac25', [8534]], ['frac34', [190]], ['frac35', [8535]], ['frac38', [8540]], ['frac45', [8536]], ['frac56', [8538]], ['frac58', [8541]], ['frac78', [8542]], ['frasl', [8260]], ['frown', [8994]], ['fscr', [119995]], ['Fscr', [8497]], ['gacute', [501]], ['Gamma', [915]], ['gamma', [947]], ['Gammad', [988]], ['gammad', [989]], ['gap', [10886]], ['Gbreve', [286]], ['gbreve', [287]], ['Gcedil', [290]], ['Gcirc', [284]], ['gcirc', [285]], ['Gcy', [1043]], ['gcy', [1075]], ['Gdot', [288]], ['gdot', [289]], ['ge', [8805]], ['gE', [8807]], ['gEl', [10892]], ['gel', [8923]], ['geq', [8805]], ['geqq', [8807]], ['geqslant', [10878]], ['gescc', [10921]], ['ges', [10878]], ['gesdot', [10880]], ['gesdoto', [10882]], ['gesdotol', [10884]], ['gesl', [8923, 65024]], ['gesles', [10900]], ['Gfr', [120074]], ['gfr', [120100]], ['gg', [8811]], ['Gg', [8921]], ['ggg', [8921]], ['gimel', [8503]], ['GJcy', [1027]], ['gjcy', [1107]], ['gla', [10917]], ['gl', [8823]], ['glE', [10898]], ['glj', [10916]], ['gnap', [10890]], ['gnapprox', [10890]], ['gne', [10888]], ['gnE', [8809]], ['gneq', [10888]], ['gneqq', [8809]], ['gnsim', [8935]], ['Gopf', [120126]], ['gopf', [120152]], ['grave', [96]], ['GreaterEqual', [8805]], ['GreaterEqualLess', [8923]], ['GreaterFullEqual', [8807]], ['GreaterGreater', [10914]], ['GreaterLess', [8823]], ['GreaterSlantEqual', [10878]], ['GreaterTilde', [8819]], ['Gscr', [119970]], ['gscr', [8458]], ['gsim', [8819]], ['gsime', [10894]], ['gsiml', [10896]], ['gtcc', [10919]], ['gtcir', [10874]], ['gt', [62]], ['GT', [62]], ['Gt', [8811]], ['gtdot', [8919]], ['gtlPar', [10645]], ['gtquest', [10876]], ['gtrapprox', [10886]], ['gtrarr', [10616]], ['gtrdot', [8919]], ['gtreqless', [8923]], ['gtreqqless', [10892]], ['gtrless', [8823]], ['gtrsim', [8819]], ['gvertneqq', [8809, 65024]], ['gvnE', [8809, 65024]], ['Hacek', [711]], ['hairsp', [8202]], ['half', [189]], ['hamilt', [8459]], ['HARDcy', [1066]], ['hardcy', [1098]], ['harrcir', [10568]], ['harr', [8596]], ['hArr', [8660]], ['harrw', [8621]], ['Hat', [94]], ['hbar', [8463]], ['Hcirc', [292]], ['hcirc', [293]], ['hearts', [9829]], ['heartsuit', [9829]], ['hellip', [8230]], ['hercon', [8889]], ['hfr', [120101]], ['Hfr', [8460]], ['HilbertSpace', [8459]], ['hksearow', [10533]], ['hkswarow', [10534]], ['hoarr', [8703]], ['homtht', [8763]], ['hookleftarrow', [8617]], ['hookrightarrow', [8618]], ['hopf', [120153]], ['Hopf', [8461]], ['horbar', [8213]], ['HorizontalLine', [9472]], ['hscr', [119997]], ['Hscr', [8459]], ['hslash', [8463]], ['Hstrok', [294]], ['hstrok', [295]], ['HumpDownHump', [8782]], ['HumpEqual', [8783]], ['hybull', [8259]], ['hyphen', [8208]], ['Iacute', [205]], ['iacute', [237]], ['ic', [8291]], ['Icirc', [206]], ['icirc', [238]], ['Icy', [1048]], ['icy', [1080]], ['Idot', [304]], ['IEcy', [1045]], ['iecy', [1077]], ['iexcl', [161]], ['iff', [8660]], ['ifr', [120102]], ['Ifr', [8465]], ['Igrave', [204]], ['igrave', [236]], ['ii', [8520]], ['iiiint', [10764]], ['iiint', [8749]], ['iinfin', [10716]], ['iiota', [8489]], ['IJlig', [306]], ['ijlig', [307]], ['Imacr', [298]], ['imacr', [299]], ['image', [8465]], ['ImaginaryI', [8520]], ['imagline', [8464]], ['imagpart', [8465]], ['imath', [305]], ['Im', [8465]], ['imof', [8887]], ['imped', [437]], ['Implies', [8658]], ['incare', [8453]], ['in', [8712]], ['infin', [8734]], ['infintie', [10717]], ['inodot', [305]], ['intcal', [8890]], ['int', [8747]], ['Int', [8748]], ['integers', [8484]], ['Integral', [8747]], ['intercal', [8890]], ['Intersection', [8898]], ['intlarhk', [10775]], ['intprod', [10812]], ['InvisibleComma', [8291]], ['InvisibleTimes', [8290]], ['IOcy', [1025]], ['iocy', [1105]], ['Iogon', [302]], ['iogon', [303]], ['Iopf', [120128]], ['iopf', [120154]], ['Iota', [921]], ['iota', [953]], ['iprod', [10812]], ['iquest', [191]], ['iscr', [119998]], ['Iscr', [8464]], ['isin', [8712]], ['isindot', [8949]], ['isinE', [8953]], ['isins', [8948]], ['isinsv', [8947]], ['isinv', [8712]], ['it', [8290]], ['Itilde', [296]], ['itilde', [297]], ['Iukcy', [1030]], ['iukcy', [1110]], ['Iuml', [207]], ['iuml', [239]], ['Jcirc', [308]], ['jcirc', [309]], ['Jcy', [1049]], ['jcy', [1081]], ['Jfr', [120077]], ['jfr', [120103]], ['jmath', [567]], ['Jopf', [120129]], ['jopf', [120155]], ['Jscr', [119973]], ['jscr', [119999]], ['Jsercy', [1032]], ['jsercy', [1112]], ['Jukcy', [1028]], ['jukcy', [1108]], ['Kappa', [922]], ['kappa', [954]], ['kappav', [1008]], ['Kcedil', [310]], ['kcedil', [311]], ['Kcy', [1050]], ['kcy', [1082]], ['Kfr', [120078]], ['kfr', [120104]], ['kgreen', [312]], ['KHcy', [1061]], ['khcy', [1093]], ['KJcy', [1036]], ['kjcy', [1116]], ['Kopf', [120130]], ['kopf', [120156]], ['Kscr', [119974]], ['kscr', [120000]], ['lAarr', [8666]], ['Lacute', [313]], ['lacute', [314]], ['laemptyv', [10676]], ['lagran', [8466]], ['Lambda', [923]], ['lambda', [955]], ['lang', [10216]], ['Lang', [10218]], ['langd', [10641]], ['langle', [10216]], ['lap', [10885]], ['Laplacetrf', [8466]], ['laquo', [171]], ['larrb', [8676]], ['larrbfs', [10527]], ['larr', [8592]], ['Larr', [8606]], ['lArr', [8656]], ['larrfs', [10525]], ['larrhk', [8617]], ['larrlp', [8619]], ['larrpl', [10553]], ['larrsim', [10611]], ['larrtl', [8610]], ['latail', [10521]], ['lAtail', [10523]], ['lat', [10923]], ['late', [10925]], ['lates', [10925, 65024]], ['lbarr', [10508]], ['lBarr', [10510]], ['lbbrk', [10098]], ['lbrace', [123]], ['lbrack', [91]], ['lbrke', [10635]], ['lbrksld', [10639]], ['lbrkslu', [10637]], ['Lcaron', [317]], ['lcaron', [318]], ['Lcedil', [315]], ['lcedil', [316]], ['lceil', [8968]], ['lcub', [123]], ['Lcy', [1051]], ['lcy', [1083]], ['ldca', [10550]], ['ldquo', [8220]], ['ldquor', [8222]], ['ldrdhar', [10599]], ['ldrushar', [10571]], ['ldsh', [8626]], ['le', [8804]], ['lE', [8806]], ['LeftAngleBracket', [10216]], ['LeftArrowBar', [8676]], ['leftarrow', [8592]], ['LeftArrow', [8592]], ['Leftarrow', [8656]], ['LeftArrowRightArrow', [8646]], ['leftarrowtail', [8610]], ['LeftCeiling', [8968]], ['LeftDoubleBracket', [10214]], ['LeftDownTeeVector', [10593]], ['LeftDownVectorBar', [10585]], ['LeftDownVector', [8643]], ['LeftFloor', [8970]], ['leftharpoondown', [8637]], ['leftharpoonup', [8636]], ['leftleftarrows', [8647]], ['leftrightarrow', [8596]], ['LeftRightArrow', [8596]], ['Leftrightarrow', [8660]], ['leftrightarrows', [8646]], ['leftrightharpoons', [8651]], ['leftrightsquigarrow', [8621]], ['LeftRightVector', [10574]], ['LeftTeeArrow', [8612]], ['LeftTee', [8867]], ['LeftTeeVector', [10586]], ['leftthreetimes', [8907]], ['LeftTriangleBar', [10703]], ['LeftTriangle', [8882]], ['LeftTriangleEqual', [8884]], ['LeftUpDownVector', [10577]], ['LeftUpTeeVector', [10592]], ['LeftUpVectorBar', [10584]], ['LeftUpVector', [8639]], ['LeftVectorBar', [10578]], ['LeftVector', [8636]], ['lEg', [10891]], ['leg', [8922]], ['leq', [8804]], ['leqq', [8806]], ['leqslant', [10877]], ['lescc', [10920]], ['les', [10877]], ['lesdot', [10879]], ['lesdoto', [10881]], ['lesdotor', [10883]], ['lesg', [8922, 65024]], ['lesges', [10899]], ['lessapprox', [10885]], ['lessdot', [8918]], ['lesseqgtr', [8922]], ['lesseqqgtr', [10891]], ['LessEqualGreater', [8922]], ['LessFullEqual', [8806]], ['LessGreater', [8822]], ['lessgtr', [8822]], ['LessLess', [10913]], ['lesssim', [8818]], ['LessSlantEqual', [10877]], ['LessTilde', [8818]], ['lfisht', [10620]], ['lfloor', [8970]], ['Lfr', [120079]], ['lfr', [120105]], ['lg', [8822]], ['lgE', [10897]], ['lHar', [10594]], ['lhard', [8637]], ['lharu', [8636]], ['lharul', [10602]], ['lhblk', [9604]], ['LJcy', [1033]], ['ljcy', [1113]], ['llarr', [8647]], ['ll', [8810]], ['Ll', [8920]], ['llcorner', [8990]], ['Lleftarrow', [8666]], ['llhard', [10603]], ['lltri', [9722]], ['Lmidot', [319]], ['lmidot', [320]], ['lmoustache', [9136]], ['lmoust', [9136]], ['lnap', [10889]], ['lnapprox', [10889]], ['lne', [10887]], ['lnE', [8808]], ['lneq', [10887]], ['lneqq', [8808]], ['lnsim', [8934]], ['loang', [10220]], ['loarr', [8701]], ['lobrk', [10214]], ['longleftarrow', [10229]], ['LongLeftArrow', [10229]], ['Longleftarrow', [10232]], ['longleftrightarrow', [10231]], ['LongLeftRightArrow', [10231]], ['Longleftrightarrow', [10234]], ['longmapsto', [10236]], ['longrightarrow', [10230]], ['LongRightArrow', [10230]], ['Longrightarrow', [10233]], ['looparrowleft', [8619]], ['looparrowright', [8620]], ['lopar', [10629]], ['Lopf', [120131]], ['lopf', [120157]], ['loplus', [10797]], ['lotimes', [10804]], ['lowast', [8727]], ['lowbar', [95]], ['LowerLeftArrow', [8601]], ['LowerRightArrow', [8600]], ['loz', [9674]], ['lozenge', [9674]], ['lozf', [10731]], ['lpar', [40]], ['lparlt', [10643]], ['lrarr', [8646]], ['lrcorner', [8991]], ['lrhar', [8651]], ['lrhard', [10605]], ['lrm', [8206]], ['lrtri', [8895]], ['lsaquo', [8249]], ['lscr', [120001]], ['Lscr', [8466]], ['lsh', [8624]], ['Lsh', [8624]], ['lsim', [8818]], ['lsime', [10893]], ['lsimg', [10895]], ['lsqb', [91]], ['lsquo', [8216]], ['lsquor', [8218]], ['Lstrok', [321]], ['lstrok', [322]], ['ltcc', [10918]], ['ltcir', [10873]], ['lt', [60]], ['LT', [60]], ['Lt', [8810]], ['ltdot', [8918]], ['lthree', [8907]], ['ltimes', [8905]], ['ltlarr', [10614]], ['ltquest', [10875]], ['ltri', [9667]], ['ltrie', [8884]], ['ltrif', [9666]], ['ltrPar', [10646]], ['lurdshar', [10570]], ['luruhar', [10598]], ['lvertneqq', [8808, 65024]], ['lvnE', [8808, 65024]], ['macr', [175]], ['male', [9794]], ['malt', [10016]], ['maltese', [10016]], ['Map', [10501]], ['map', [8614]], ['mapsto', [8614]], ['mapstodown', [8615]], ['mapstoleft', [8612]], ['mapstoup', [8613]], ['marker', [9646]], ['mcomma', [10793]], ['Mcy', [1052]], ['mcy', [1084]], ['mdash', [8212]], ['mDDot', [8762]], ['measuredangle', [8737]], ['MediumSpace', [8287]], ['Mellintrf', [8499]], ['Mfr', [120080]], ['mfr', [120106]], ['mho', [8487]], ['micro', [181]], ['midast', [42]], ['midcir', [10992]], ['mid', [8739]], ['middot', [183]], ['minusb', [8863]], ['minus', [8722]], ['minusd', [8760]], ['minusdu', [10794]], ['MinusPlus', [8723]], ['mlcp', [10971]], ['mldr', [8230]], ['mnplus', [8723]], ['models', [8871]], ['Mopf', [120132]], ['mopf', [120158]], ['mp', [8723]], ['mscr', [120002]], ['Mscr', [8499]], ['mstpos', [8766]], ['Mu', [924]], ['mu', [956]], ['multimap', [8888]], ['mumap', [8888]], ['nabla', [8711]], ['Nacute', [323]], ['nacute', [324]], ['nang', [8736, 8402]], ['nap', [8777]], ['napE', [10864, 824]], ['napid', [8779, 824]], ['napos', [329]], ['napprox', [8777]], ['natural', [9838]], ['naturals', [8469]], ['natur', [9838]], ['nbsp', [160]], ['nbump', [8782, 824]], ['nbumpe', [8783, 824]], ['ncap', [10819]], ['Ncaron', [327]], ['ncaron', [328]], ['Ncedil', [325]], ['ncedil', [326]], ['ncong', [8775]], ['ncongdot', [10861, 824]], ['ncup', [10818]], ['Ncy', [1053]], ['ncy', [1085]], ['ndash', [8211]], ['nearhk', [10532]], ['nearr', [8599]], ['neArr', [8663]], ['nearrow', [8599]], ['ne', [8800]], ['nedot', [8784, 824]], ['NegativeMediumSpace', [8203]], ['NegativeThickSpace', [8203]], ['NegativeThinSpace', [8203]], ['NegativeVeryThinSpace', [8203]], ['nequiv', [8802]], ['nesear', [10536]], ['nesim', [8770, 824]], ['NestedGreaterGreater', [8811]], ['NestedLessLess', [8810]], ['nexist', [8708]], ['nexists', [8708]], ['Nfr', [120081]], ['nfr', [120107]], ['ngE', [8807, 824]], ['nge', [8817]], ['ngeq', [8817]], ['ngeqq', [8807, 824]], ['ngeqslant', [10878, 824]], ['nges', [10878, 824]], ['nGg', [8921, 824]], ['ngsim', [8821]], ['nGt', [8811, 8402]], ['ngt', [8815]], ['ngtr', [8815]], ['nGtv', [8811, 824]], ['nharr', [8622]], ['nhArr', [8654]], ['nhpar', [10994]], ['ni', [8715]], ['nis', [8956]], ['nisd', [8954]], ['niv', [8715]], ['NJcy', [1034]], ['njcy', [1114]], ['nlarr', [8602]], ['nlArr', [8653]], ['nldr', [8229]], ['nlE', [8806, 824]], ['nle', [8816]], ['nleftarrow', [8602]], ['nLeftarrow', [8653]], ['nleftrightarrow', [8622]], ['nLeftrightarrow', [8654]], ['nleq', [8816]], ['nleqq', [8806, 824]], ['nleqslant', [10877, 824]], ['nles', [10877, 824]], ['nless', [8814]], ['nLl', [8920, 824]], ['nlsim', [8820]], ['nLt', [8810, 8402]], ['nlt', [8814]], ['nltri', [8938]], ['nltrie', [8940]], ['nLtv', [8810, 824]], ['nmid', [8740]], ['NoBreak', [8288]], ['NonBreakingSpace', [160]], ['nopf', [120159]], ['Nopf', [8469]], ['Not', [10988]], ['not', [172]], ['NotCongruent', [8802]], ['NotCupCap', [8813]], ['NotDoubleVerticalBar', [8742]], ['NotElement', [8713]], ['NotEqual', [8800]], ['NotEqualTilde', [8770, 824]], ['NotExists', [8708]], ['NotGreater', [8815]], ['NotGreaterEqual', [8817]], ['NotGreaterFullEqual', [8807, 824]], ['NotGreaterGreater', [8811, 824]], ['NotGreaterLess', [8825]], ['NotGreaterSlantEqual', [10878, 824]], ['NotGreaterTilde', [8821]], ['NotHumpDownHump', [8782, 824]], ['NotHumpEqual', [8783, 824]], ['notin', [8713]], ['notindot', [8949, 824]], ['notinE', [8953, 824]], ['notinva', [8713]], ['notinvb', [8951]], ['notinvc', [8950]], ['NotLeftTriangleBar', [10703, 824]], ['NotLeftTriangle', [8938]], ['NotLeftTriangleEqual', [8940]], ['NotLess', [8814]], ['NotLessEqual', [8816]], ['NotLessGreater', [8824]], ['NotLessLess', [8810, 824]], ['NotLessSlantEqual', [10877, 824]], ['NotLessTilde', [8820]], ['NotNestedGreaterGreater', [10914, 824]], ['NotNestedLessLess', [10913, 824]], ['notni', [8716]], ['notniva', [8716]], ['notnivb', [8958]], ['notnivc', [8957]], ['NotPrecedes', [8832]], ['NotPrecedesEqual', [10927, 824]], ['NotPrecedesSlantEqual', [8928]], ['NotReverseElement', [8716]], ['NotRightTriangleBar', [10704, 824]], ['NotRightTriangle', [8939]], ['NotRightTriangleEqual', [8941]], ['NotSquareSubset', [8847, 824]], ['NotSquareSubsetEqual', [8930]], ['NotSquareSuperset', [8848, 824]], ['NotSquareSupersetEqual', [8931]], ['NotSubset', [8834, 8402]], ['NotSubsetEqual', [8840]], ['NotSucceeds', [8833]], ['NotSucceedsEqual', [10928, 824]], ['NotSucceedsSlantEqual', [8929]], ['NotSucceedsTilde', [8831, 824]], ['NotSuperset', [8835, 8402]], ['NotSupersetEqual', [8841]], ['NotTilde', [8769]], ['NotTildeEqual', [8772]], ['NotTildeFullEqual', [8775]], ['NotTildeTilde', [8777]], ['NotVerticalBar', [8740]], ['nparallel', [8742]], ['npar', [8742]], ['nparsl', [11005, 8421]], ['npart', [8706, 824]], ['npolint', [10772]], ['npr', [8832]], ['nprcue', [8928]], ['nprec', [8832]], ['npreceq', [10927, 824]], ['npre', [10927, 824]], ['nrarrc', [10547, 824]], ['nrarr', [8603]], ['nrArr', [8655]], ['nrarrw', [8605, 824]], ['nrightarrow', [8603]], ['nRightarrow', [8655]], ['nrtri', [8939]], ['nrtrie', [8941]], ['nsc', [8833]], ['nsccue', [8929]], ['nsce', [10928, 824]], ['Nscr', [119977]], ['nscr', [120003]], ['nshortmid', [8740]], ['nshortparallel', [8742]], ['nsim', [8769]], ['nsime', [8772]], ['nsimeq', [8772]], ['nsmid', [8740]], ['nspar', [8742]], ['nsqsube', [8930]], ['nsqsupe', [8931]], ['nsub', [8836]], ['nsubE', [10949, 824]], ['nsube', [8840]], ['nsubset', [8834, 8402]], ['nsubseteq', [8840]], ['nsubseteqq', [10949, 824]], ['nsucc', [8833]], ['nsucceq', [10928, 824]], ['nsup', [8837]], ['nsupE', [10950, 824]], ['nsupe', [8841]], ['nsupset', [8835, 8402]], ['nsupseteq', [8841]], ['nsupseteqq', [10950, 824]], ['ntgl', [8825]], ['Ntilde', [209]], ['ntilde', [241]], ['ntlg', [8824]], ['ntriangleleft', [8938]], ['ntrianglelefteq', [8940]], ['ntriangleright', [8939]], ['ntrianglerighteq', [8941]], ['Nu', [925]], ['nu', [957]], ['num', [35]], ['numero', [8470]], ['numsp', [8199]], ['nvap', [8781, 8402]], ['nvdash', [8876]], ['nvDash', [8877]], ['nVdash', [8878]], ['nVDash', [8879]], ['nvge', [8805, 8402]], ['nvgt', [62, 8402]], ['nvHarr', [10500]], ['nvinfin', [10718]], ['nvlArr', [10498]], ['nvle', [8804, 8402]], ['nvlt', [60, 8402]], ['nvltrie', [8884, 8402]], ['nvrArr', [10499]], ['nvrtrie', [8885, 8402]], ['nvsim', [8764, 8402]], ['nwarhk', [10531]], ['nwarr', [8598]], ['nwArr', [8662]], ['nwarrow', [8598]], ['nwnear', [10535]], ['Oacute', [211]], ['oacute', [243]], ['oast', [8859]], ['Ocirc', [212]], ['ocirc', [244]], ['ocir', [8858]], ['Ocy', [1054]], ['ocy', [1086]], ['odash', [8861]], ['Odblac', [336]], ['odblac', [337]], ['odiv', [10808]], ['odot', [8857]], ['odsold', [10684]], ['OElig', [338]], ['oelig', [339]], ['ofcir', [10687]], ['Ofr', [120082]], ['ofr', [120108]], ['ogon', [731]], ['Ograve', [210]], ['ograve', [242]], ['ogt', [10689]], ['ohbar', [10677]], ['ohm', [937]], ['oint', [8750]], ['olarr', [8634]], ['olcir', [10686]], ['olcross', [10683]], ['oline', [8254]], ['olt', [10688]], ['Omacr', [332]], ['omacr', [333]], ['Omega', [937]], ['omega', [969]], ['Omicron', [927]], ['omicron', [959]], ['omid', [10678]], ['ominus', [8854]], ['Oopf', [120134]], ['oopf', [120160]], ['opar', [10679]], ['OpenCurlyDoubleQuote', [8220]], ['OpenCurlyQuote', [8216]], ['operp', [10681]], ['oplus', [8853]], ['orarr', [8635]], ['Or', [10836]], ['or', [8744]], ['ord', [10845]], ['order', [8500]], ['orderof', [8500]], ['ordf', [170]], ['ordm', [186]], ['origof', [8886]], ['oror', [10838]], ['orslope', [10839]], ['orv', [10843]], ['oS', [9416]], ['Oscr', [119978]], ['oscr', [8500]], ['Oslash', [216]], ['oslash', [248]], ['osol', [8856]], ['Otilde', [213]], ['otilde', [245]], ['otimesas', [10806]], ['Otimes', [10807]], ['otimes', [8855]], ['Ouml', [214]], ['ouml', [246]], ['ovbar', [9021]], ['OverBar', [8254]], ['OverBrace', [9182]], ['OverBracket', [9140]], ['OverParenthesis', [9180]], ['para', [182]], ['parallel', [8741]], ['par', [8741]], ['parsim', [10995]], ['parsl', [11005]], ['part', [8706]], ['PartialD', [8706]], ['Pcy', [1055]], ['pcy', [1087]], ['percnt', [37]], ['period', [46]], ['permil', [8240]], ['perp', [8869]], ['pertenk', [8241]], ['Pfr', [120083]], ['pfr', [120109]], ['Phi', [934]], ['phi', [966]], ['phiv', [981]], ['phmmat', [8499]], ['phone', [9742]], ['Pi', [928]], ['pi', [960]], ['pitchfork', [8916]], ['piv', [982]], ['planck', [8463]], ['planckh', [8462]], ['plankv', [8463]], ['plusacir', [10787]], ['plusb', [8862]], ['pluscir', [10786]], ['plus', [43]], ['plusdo', [8724]], ['plusdu', [10789]], ['pluse', [10866]], ['PlusMinus', [177]], ['plusmn', [177]], ['plussim', [10790]], ['plustwo', [10791]], ['pm', [177]], ['Poincareplane', [8460]], ['pointint', [10773]], ['popf', [120161]], ['Popf', [8473]], ['pound', [163]], ['prap', [10935]], ['Pr', [10939]], ['pr', [8826]], ['prcue', [8828]], ['precapprox', [10935]], ['prec', [8826]], ['preccurlyeq', [8828]], ['Precedes', [8826]], ['PrecedesEqual', [10927]], ['PrecedesSlantEqual', [8828]], ['PrecedesTilde', [8830]], ['preceq', [10927]], ['precnapprox', [10937]], ['precneqq', [10933]], ['precnsim', [8936]], ['pre', [10927]], ['prE', [10931]], ['precsim', [8830]], ['prime', [8242]], ['Prime', [8243]], ['primes', [8473]], ['prnap', [10937]], ['prnE', [10933]], ['prnsim', [8936]], ['prod', [8719]], ['Product', [8719]], ['profalar', [9006]], ['profline', [8978]], ['profsurf', [8979]], ['prop', [8733]], ['Proportional', [8733]], ['Proportion', [8759]], ['propto', [8733]], ['prsim', [8830]], ['prurel', [8880]], ['Pscr', [119979]], ['pscr', [120005]], ['Psi', [936]], ['psi', [968]], ['puncsp', [8200]], ['Qfr', [120084]], ['qfr', [120110]], ['qint', [10764]], ['qopf', [120162]], ['Qopf', [8474]], ['qprime', [8279]], ['Qscr', [119980]], ['qscr', [120006]], ['quaternions', [8461]], ['quatint', [10774]], ['quest', [63]], ['questeq', [8799]], ['quot', [34]], ['QUOT', [34]], ['rAarr', [8667]], ['race', [8765, 817]], ['Racute', [340]], ['racute', [341]], ['radic', [8730]], ['raemptyv', [10675]], ['rang', [10217]], ['Rang', [10219]], ['rangd', [10642]], ['range', [10661]], ['rangle', [10217]], ['raquo', [187]], ['rarrap', [10613]], ['rarrb', [8677]], ['rarrbfs', [10528]], ['rarrc', [10547]], ['rarr', [8594]], ['Rarr', [8608]], ['rArr', [8658]], ['rarrfs', [10526]], ['rarrhk', [8618]], ['rarrlp', [8620]], ['rarrpl', [10565]], ['rarrsim', [10612]], ['Rarrtl', [10518]], ['rarrtl', [8611]], ['rarrw', [8605]], ['ratail', [10522]], ['rAtail', [10524]], ['ratio', [8758]], ['rationals', [8474]], ['rbarr', [10509]], ['rBarr', [10511]], ['RBarr', [10512]], ['rbbrk', [10099]], ['rbrace', [125]], ['rbrack', [93]], ['rbrke', [10636]], ['rbrksld', [10638]], ['rbrkslu', [10640]], ['Rcaron', [344]], ['rcaron', [345]], ['Rcedil', [342]], ['rcedil', [343]], ['rceil', [8969]], ['rcub', [125]], ['Rcy', [1056]], ['rcy', [1088]], ['rdca', [10551]], ['rdldhar', [10601]], ['rdquo', [8221]], ['rdquor', [8221]], ['CloseCurlyDoubleQuote', [8221]], ['rdsh', [8627]], ['real', [8476]], ['realine', [8475]], ['realpart', [8476]], ['reals', [8477]], ['Re', [8476]], ['rect', [9645]], ['reg', [174]], ['REG', [174]], ['ReverseElement', [8715]], ['ReverseEquilibrium', [8651]], ['ReverseUpEquilibrium', [10607]], ['rfisht', [10621]], ['rfloor', [8971]], ['rfr', [120111]], ['Rfr', [8476]], ['rHar', [10596]], ['rhard', [8641]], ['rharu', [8640]], ['rharul', [10604]], ['Rho', [929]], ['rho', [961]], ['rhov', [1009]], ['RightAngleBracket', [10217]], ['RightArrowBar', [8677]], ['rightarrow', [8594]], ['RightArrow', [8594]], ['Rightarrow', [8658]], ['RightArrowLeftArrow', [8644]], ['rightarrowtail', [8611]], ['RightCeiling', [8969]], ['RightDoubleBracket', [10215]], ['RightDownTeeVector', [10589]], ['RightDownVectorBar', [10581]], ['RightDownVector', [8642]], ['RightFloor', [8971]], ['rightharpoondown', [8641]], ['rightharpoonup', [8640]], ['rightleftarrows', [8644]], ['rightleftharpoons', [8652]], ['rightrightarrows', [8649]], ['rightsquigarrow', [8605]], ['RightTeeArrow', [8614]], ['RightTee', [8866]], ['RightTeeVector', [10587]], ['rightthreetimes', [8908]], ['RightTriangleBar', [10704]], ['RightTriangle', [8883]], ['RightTriangleEqual', [8885]], ['RightUpDownVector', [10575]], ['RightUpTeeVector', [10588]], ['RightUpVectorBar', [10580]], ['RightUpVector', [8638]], ['RightVectorBar', [10579]], ['RightVector', [8640]], ['ring', [730]], ['risingdotseq', [8787]], ['rlarr', [8644]], ['rlhar', [8652]], ['rlm', [8207]], ['rmoustache', [9137]], ['rmoust', [9137]], ['rnmid', [10990]], ['roang', [10221]], ['roarr', [8702]], ['robrk', [10215]], ['ropar', [10630]], ['ropf', [120163]], ['Ropf', [8477]], ['roplus', [10798]], ['rotimes', [10805]], ['RoundImplies', [10608]], ['rpar', [41]], ['rpargt', [10644]], ['rppolint', [10770]], ['rrarr', [8649]], ['Rrightarrow', [8667]], ['rsaquo', [8250]], ['rscr', [120007]], ['Rscr', [8475]], ['rsh', [8625]], ['Rsh', [8625]], ['rsqb', [93]], ['rsquo', [8217]], ['rsquor', [8217]], ['CloseCurlyQuote', [8217]], ['rthree', [8908]], ['rtimes', [8906]], ['rtri', [9657]], ['rtrie', [8885]], ['rtrif', [9656]], ['rtriltri', [10702]], ['RuleDelayed', [10740]], ['ruluhar', [10600]], ['rx', [8478]], ['Sacute', [346]], ['sacute', [347]], ['sbquo', [8218]], ['scap', [10936]], ['Scaron', [352]], ['scaron', [353]], ['Sc', [10940]], ['sc', [8827]], ['sccue', [8829]], ['sce', [10928]], ['scE', [10932]], ['Scedil', [350]], ['scedil', [351]], ['Scirc', [348]], ['scirc', [349]], ['scnap', [10938]], ['scnE', [10934]], ['scnsim', [8937]], ['scpolint', [10771]], ['scsim', [8831]], ['Scy', [1057]], ['scy', [1089]], ['sdotb', [8865]], ['sdot', [8901]], ['sdote', [10854]], ['searhk', [10533]], ['searr', [8600]], ['seArr', [8664]], ['searrow', [8600]], ['sect', [167]], ['semi', [59]], ['seswar', [10537]], ['setminus', [8726]], ['setmn', [8726]], ['sext', [10038]], ['Sfr', [120086]], ['sfr', [120112]], ['sfrown', [8994]], ['sharp', [9839]], ['SHCHcy', [1065]], ['shchcy', [1097]], ['SHcy', [1064]], ['shcy', [1096]], ['ShortDownArrow', [8595]], ['ShortLeftArrow', [8592]], ['shortmid', [8739]], ['shortparallel', [8741]], ['ShortRightArrow', [8594]], ['ShortUpArrow', [8593]], ['shy', [173]], ['Sigma', [931]], ['sigma', [963]], ['sigmaf', [962]], ['sigmav', [962]], ['sim', [8764]], ['simdot', [10858]], ['sime', [8771]], ['simeq', [8771]], ['simg', [10910]], ['simgE', [10912]], ['siml', [10909]], ['simlE', [10911]], ['simne', [8774]], ['simplus', [10788]], ['simrarr', [10610]], ['slarr', [8592]], ['SmallCircle', [8728]], ['smallsetminus', [8726]], ['smashp', [10803]], ['smeparsl', [10724]], ['smid', [8739]], ['smile', [8995]], ['smt', [10922]], ['smte', [10924]], ['smtes', [10924, 65024]], ['SOFTcy', [1068]], ['softcy', [1100]], ['solbar', [9023]], ['solb', [10692]], ['sol', [47]], ['Sopf', [120138]], ['sopf', [120164]], ['spades', [9824]], ['spadesuit', [9824]], ['spar', [8741]], ['sqcap', [8851]], ['sqcaps', [8851, 65024]], ['sqcup', [8852]], ['sqcups', [8852, 65024]], ['Sqrt', [8730]], ['sqsub', [8847]], ['sqsube', [8849]], ['sqsubset', [8847]], ['sqsubseteq', [8849]], ['sqsup', [8848]], ['sqsupe', [8850]], ['sqsupset', [8848]], ['sqsupseteq', [8850]], ['square', [9633]], ['Square', [9633]], ['SquareIntersection', [8851]], ['SquareSubset', [8847]], ['SquareSubsetEqual', [8849]], ['SquareSuperset', [8848]], ['SquareSupersetEqual', [8850]], ['SquareUnion', [8852]], ['squarf', [9642]], ['squ', [9633]], ['squf', [9642]], ['srarr', [8594]], ['Sscr', [119982]], ['sscr', [120008]], ['ssetmn', [8726]], ['ssmile', [8995]], ['sstarf', [8902]], ['Star', [8902]], ['star', [9734]], ['starf', [9733]], ['straightepsilon', [1013]], ['straightphi', [981]], ['strns', [175]], ['sub', [8834]], ['Sub', [8912]], ['subdot', [10941]], ['subE', [10949]], ['sube', [8838]], ['subedot', [10947]], ['submult', [10945]], ['subnE', [10955]], ['subne', [8842]], ['subplus', [10943]], ['subrarr', [10617]], ['subset', [8834]], ['Subset', [8912]], ['subseteq', [8838]], ['subseteqq', [10949]], ['SubsetEqual', [8838]], ['subsetneq', [8842]], ['subsetneqq', [10955]], ['subsim', [10951]], ['subsub', [10965]], ['subsup', [10963]], ['succapprox', [10936]], ['succ', [8827]], ['succcurlyeq', [8829]], ['Succeeds', [8827]], ['SucceedsEqual', [10928]], ['SucceedsSlantEqual', [8829]], ['SucceedsTilde', [8831]], ['succeq', [10928]], ['succnapprox', [10938]], ['succneqq', [10934]], ['succnsim', [8937]], ['succsim', [8831]], ['SuchThat', [8715]], ['sum', [8721]], ['Sum', [8721]], ['sung', [9834]], ['sup1', [185]], ['sup2', [178]], ['sup3', [179]], ['sup', [8835]], ['Sup', [8913]], ['supdot', [10942]], ['supdsub', [10968]], ['supE', [10950]], ['supe', [8839]], ['supedot', [10948]], ['Superset', [8835]], ['SupersetEqual', [8839]], ['suphsol', [10185]], ['suphsub', [10967]], ['suplarr', [10619]], ['supmult', [10946]], ['supnE', [10956]], ['supne', [8843]], ['supplus', [10944]], ['supset', [8835]], ['Supset', [8913]], ['supseteq', [8839]], ['supseteqq', [10950]], ['supsetneq', [8843]], ['supsetneqq', [10956]], ['supsim', [10952]], ['supsub', [10964]], ['supsup', [10966]], ['swarhk', [10534]], ['swarr', [8601]], ['swArr', [8665]], ['swarrow', [8601]], ['swnwar', [10538]], ['szlig', [223]], ['Tab', [9]], ['target', [8982]], ['Tau', [932]], ['tau', [964]], ['tbrk', [9140]], ['Tcaron', [356]], ['tcaron', [357]], ['Tcedil', [354]], ['tcedil', [355]], ['Tcy', [1058]], ['tcy', [1090]], ['tdot', [8411]], ['telrec', [8981]], ['Tfr', [120087]], ['tfr', [120113]], ['there4', [8756]], ['therefore', [8756]], ['Therefore', [8756]], ['Theta', [920]], ['theta', [952]], ['thetasym', [977]], ['thetav', [977]], ['thickapprox', [8776]], ['thicksim', [8764]], ['ThickSpace', [8287, 8202]], ['ThinSpace', [8201]], ['thinsp', [8201]], ['thkap', [8776]], ['thksim', [8764]], ['THORN', [222]], ['thorn', [254]], ['tilde', [732]], ['Tilde', [8764]], ['TildeEqual', [8771]], ['TildeFullEqual', [8773]], ['TildeTilde', [8776]], ['timesbar', [10801]], ['timesb', [8864]], ['times', [215]], ['timesd', [10800]], ['tint', [8749]], ['toea', [10536]], ['topbot', [9014]], ['topcir', [10993]], ['top', [8868]], ['Topf', [120139]], ['topf', [120165]], ['topfork', [10970]], ['tosa', [10537]], ['tprime', [8244]], ['trade', [8482]], ['TRADE', [8482]], ['triangle', [9653]], ['triangledown', [9663]], ['triangleleft', [9667]], ['trianglelefteq', [8884]], ['triangleq', [8796]], ['triangleright', [9657]], ['trianglerighteq', [8885]], ['tridot', [9708]], ['trie', [8796]], ['triminus', [10810]], ['TripleDot', [8411]], ['triplus', [10809]], ['trisb', [10701]], ['tritime', [10811]], ['trpezium', [9186]], ['Tscr', [119983]], ['tscr', [120009]], ['TScy', [1062]], ['tscy', [1094]], ['TSHcy', [1035]], ['tshcy', [1115]], ['Tstrok', [358]], ['tstrok', [359]], ['twixt', [8812]], ['twoheadleftarrow', [8606]], ['twoheadrightarrow', [8608]], ['Uacute', [218]], ['uacute', [250]], ['uarr', [8593]], ['Uarr', [8607]], ['uArr', [8657]], ['Uarrocir', [10569]], ['Ubrcy', [1038]], ['ubrcy', [1118]], ['Ubreve', [364]], ['ubreve', [365]], ['Ucirc', [219]], ['ucirc', [251]], ['Ucy', [1059]], ['ucy', [1091]], ['udarr', [8645]], ['Udblac', [368]], ['udblac', [369]], ['udhar', [10606]], ['ufisht', [10622]], ['Ufr', [120088]], ['ufr', [120114]], ['Ugrave', [217]], ['ugrave', [249]], ['uHar', [10595]], ['uharl', [8639]], ['uharr', [8638]], ['uhblk', [9600]], ['ulcorn', [8988]], ['ulcorner', [8988]], ['ulcrop', [8975]], ['ultri', [9720]], ['Umacr', [362]], ['umacr', [363]], ['uml', [168]], ['UnderBar', [95]], ['UnderBrace', [9183]], ['UnderBracket', [9141]], ['UnderParenthesis', [9181]], ['Union', [8899]], ['UnionPlus', [8846]], ['Uogon', [370]], ['uogon', [371]], ['Uopf', [120140]], ['uopf', [120166]], ['UpArrowBar', [10514]], ['uparrow', [8593]], ['UpArrow', [8593]], ['Uparrow', [8657]], ['UpArrowDownArrow', [8645]], ['updownarrow', [8597]], ['UpDownArrow', [8597]], ['Updownarrow', [8661]], ['UpEquilibrium', [10606]], ['upharpoonleft', [8639]], ['upharpoonright', [8638]], ['uplus', [8846]], ['UpperLeftArrow', [8598]], ['UpperRightArrow', [8599]], ['upsi', [965]], ['Upsi', [978]], ['upsih', [978]], ['Upsilon', [933]], ['upsilon', [965]], ['UpTeeArrow', [8613]], ['UpTee', [8869]], ['upuparrows', [8648]], ['urcorn', [8989]], ['urcorner', [8989]], ['urcrop', [8974]], ['Uring', [366]], ['uring', [367]], ['urtri', [9721]], ['Uscr', [119984]], ['uscr', [120010]], ['utdot', [8944]], ['Utilde', [360]], ['utilde', [361]], ['utri', [9653]], ['utrif', [9652]], ['uuarr', [8648]], ['Uuml', [220]], ['uuml', [252]], ['uwangle', [10663]], ['vangrt', [10652]], ['varepsilon', [1013]], ['varkappa', [1008]], ['varnothing', [8709]], ['varphi', [981]], ['varpi', [982]], ['varpropto', [8733]], ['varr', [8597]], ['vArr', [8661]], ['varrho', [1009]], ['varsigma', [962]], ['varsubsetneq', [8842, 65024]], ['varsubsetneqq', [10955, 65024]], ['varsupsetneq', [8843, 65024]], ['varsupsetneqq', [10956, 65024]], ['vartheta', [977]], ['vartriangleleft', [8882]], ['vartriangleright', [8883]], ['vBar', [10984]], ['Vbar', [10987]], ['vBarv', [10985]], ['Vcy', [1042]], ['vcy', [1074]], ['vdash', [8866]], ['vDash', [8872]], ['Vdash', [8873]], ['VDash', [8875]], ['Vdashl', [10982]], ['veebar', [8891]], ['vee', [8744]], ['Vee', [8897]], ['veeeq', [8794]], ['vellip', [8942]], ['verbar', [124]], ['Verbar', [8214]], ['vert', [124]], ['Vert', [8214]], ['VerticalBar', [8739]], ['VerticalLine', [124]], ['VerticalSeparator', [10072]], ['VerticalTilde', [8768]], ['VeryThinSpace', [8202]], ['Vfr', [120089]], ['vfr', [120115]], ['vltri', [8882]], ['vnsub', [8834, 8402]], ['vnsup', [8835, 8402]], ['Vopf', [120141]], ['vopf', [120167]], ['vprop', [8733]], ['vrtri', [8883]], ['Vscr', [119985]], ['vscr', [120011]], ['vsubnE', [10955, 65024]], ['vsubne', [8842, 65024]], ['vsupnE', [10956, 65024]], ['vsupne', [8843, 65024]], ['Vvdash', [8874]], ['vzigzag', [10650]], ['Wcirc', [372]], ['wcirc', [373]], ['wedbar', [10847]], ['wedge', [8743]], ['Wedge', [8896]], ['wedgeq', [8793]], ['weierp', [8472]], ['Wfr', [120090]], ['wfr', [120116]], ['Wopf', [120142]], ['wopf', [120168]], ['wp', [8472]], ['wr', [8768]], ['wreath', [8768]], ['Wscr', [119986]], ['wscr', [120012]], ['xcap', [8898]], ['xcirc', [9711]], ['xcup', [8899]], ['xdtri', [9661]], ['Xfr', [120091]], ['xfr', [120117]], ['xharr', [10231]], ['xhArr', [10234]], ['Xi', [926]], ['xi', [958]], ['xlarr', [10229]], ['xlArr', [10232]], ['xmap', [10236]], ['xnis', [8955]], ['xodot', [10752]], ['Xopf', [120143]], ['xopf', [120169]], ['xoplus', [10753]], ['xotime', [10754]], ['xrarr', [10230]], ['xrArr', [10233]], ['Xscr', [119987]], ['xscr', [120013]], ['xsqcup', [10758]], ['xuplus', [10756]], ['xutri', [9651]], ['xvee', [8897]], ['xwedge', [8896]], ['Yacute', [221]], ['yacute', [253]], ['YAcy', [1071]], ['yacy', [1103]], ['Ycirc', [374]], ['ycirc', [375]], ['Ycy', [1067]], ['ycy', [1099]], ['yen', [165]], ['Yfr', [120092]], ['yfr', [120118]], ['YIcy', [1031]], ['yicy', [1111]], ['Yopf', [120144]], ['yopf', [120170]], ['Yscr', [119988]], ['yscr', [120014]], ['YUcy', [1070]], ['yucy', [1102]], ['yuml', [255]], ['Yuml', [376]], ['Zacute', [377]], ['zacute', [378]], ['Zcaron', [381]], ['zcaron', [382]], ['Zcy', [1047]], ['zcy', [1079]], ['Zdot', [379]], ['zdot', [380]], ['zeetrf', [8488]], ['ZeroWidthSpace', [8203]], ['Zeta', [918]], ['zeta', [950]], ['zfr', [120119]], ['Zfr', [8488]], ['ZHcy', [1046]], ['zhcy', [1078]], ['zigrarr', [8669]], ['zopf', [120171]], ['Zopf', [8484]], ['Zscr', [119989]], ['zscr', [120015]], ['zwj', [8205]], ['zwnj', [8204]]];
+var DECODE_ONLY_ENTITIES = [['NewLine', [10]]];
+var alphaIndex = {};
+var charIndex = {};
+createIndexes(alphaIndex, charIndex);
+var Html5Entities = /** @class */ (function () {
+    function Html5Entities() {
+    }
+    Html5Entities.prototype.decode = function (str) {
+        if (!str || !str.length) {
+            return '';
+        }
+        return str.replace(/&(#?[\w\d]+);?/g, function (s, entity) {
+            var chr;
+            if (entity.charAt(0) === "#") {
+                var code = entity.charAt(1) === 'x' ?
+                    parseInt(entity.substr(2).toLowerCase(), 16) :
+                    parseInt(entity.substr(1));
+                if (!isNaN(code) || code >= -32768) {
+                    if (code <= 65535) {
+                        chr = String.fromCharCode(code);
+                    }
+                    else {
+                        chr = surrogate_pairs_1.fromCodePoint(code);
+                    }
+                }
+            }
+            else {
+                chr = alphaIndex[entity];
+            }
+            return chr || s;
+        });
+    };
+    Html5Entities.decode = function (str) {
+        return new Html5Entities().decode(str);
+    };
+    Html5Entities.prototype.encode = function (str) {
+        if (!str || !str.length) {
+            return '';
+        }
+        var strLength = str.length;
+        var result = '';
+        var i = 0;
+        while (i < strLength) {
+            var charInfo = charIndex[str.charCodeAt(i)];
+            if (charInfo) {
+                var alpha = charInfo[str.charCodeAt(i + 1)];
+                if (alpha) {
+                    i++;
+                }
+                else {
+                    alpha = charInfo[''];
+                }
+                if (alpha) {
+                    result += "&" + alpha + ";";
+                    i++;
+                    continue;
+                }
+            }
+            result += str.charAt(i);
+            i++;
+        }
+        return result;
+    };
+    Html5Entities.encode = function (str) {
+        return new Html5Entities().encode(str);
+    };
+    Html5Entities.prototype.encodeNonUTF = function (str) {
+        if (!str || !str.length) {
+            return '';
+        }
+        var strLength = str.length;
+        var result = '';
+        var i = 0;
+        while (i < strLength) {
+            var c = str.charCodeAt(i);
+            var charInfo = charIndex[c];
+            if (charInfo) {
+                var alpha = charInfo[str.charCodeAt(i + 1)];
+                if (alpha) {
+                    i++;
+                }
+                else {
+                    alpha = charInfo[''];
+                }
+                if (alpha) {
+                    result += "&" + alpha + ";";
+                    i++;
+                    continue;
+                }
+            }
+            if (c < 32 || c > 126) {
+                if (c >= surrogate_pairs_1.highSurrogateFrom && c <= surrogate_pairs_1.highSurrogateTo) {
+                    result += '&#' + surrogate_pairs_1.getCodePoint(str, i) + ';';
+                    i++;
+                }
+                else {
+                    result += '&#' + c + ';';
+                }
+            }
+            else {
+                result += str.charAt(i);
+            }
+            i++;
+        }
+        return result;
+    };
+    Html5Entities.encodeNonUTF = function (str) {
+        return new Html5Entities().encodeNonUTF(str);
+    };
+    Html5Entities.prototype.encodeNonASCII = function (str) {
+        if (!str || !str.length) {
+            return '';
+        }
+        var strLength = str.length;
+        var result = '';
+        var i = 0;
+        while (i < strLength) {
+            var c = str.charCodeAt(i);
+            if (c <= 255) {
+                result += str[i++];
+                continue;
+            }
+            if (c >= surrogate_pairs_1.highSurrogateFrom && c <= surrogate_pairs_1.highSurrogateTo) {
+                result += '&#' + surrogate_pairs_1.getCodePoint(str, i) + ';';
+                i += 2;
+            }
+            else {
+                result += '&#' + c + ';';
+                i++;
+            }
+        }
+        return result;
+    };
+    Html5Entities.encodeNonASCII = function (str) {
+        return new Html5Entities().encodeNonASCII(str);
+    };
+    return Html5Entities;
+}());
+exports.Html5Entities = Html5Entities;
+function createIndexes(alphaIndex, charIndex) {
+    var i = ENTITIES.length;
+    while (i--) {
+        var _a = ENTITIES[i], alpha = _a[0], _b = _a[1], chr = _b[0], chr2 = _b[1];
+        var addChar = (chr < 32 || chr > 126) || chr === 62 || chr === 60 || chr === 38 || chr === 34 || chr === 39;
+        var charInfo = void 0;
+        if (addChar) {
+            charInfo = charIndex[chr] = charIndex[chr] || {};
+        }
+        if (chr2) {
+            alphaIndex[alpha] = String.fromCharCode(chr) + String.fromCharCode(chr2);
+            addChar && (charInfo[chr2] = alpha);
+        }
+        else {
+            alphaIndex[alpha] = String.fromCharCode(chr);
+            addChar && (charInfo[''] = alpha);
+        }
+    }
+    i = DECODE_ONLY_ENTITIES.length;
+    while (i--) {
+        var _c = DECODE_ONLY_ENTITIES[i], alpha = _c[0], _d = _c[1], chr = _d[0], chr2 = _d[1];
+        alphaIndex[alpha] = String.fromCharCode(chr) + (chr2 ? String.fromCharCode(chr2) : '');
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/html-entities/lib/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/html-entities/lib/index.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var xml_entities_1 = __webpack_require__(/*! ./xml-entities */ "./node_modules/html-entities/lib/xml-entities.js");
+exports.XmlEntities = xml_entities_1.XmlEntities;
+var html4_entities_1 = __webpack_require__(/*! ./html4-entities */ "./node_modules/html-entities/lib/html4-entities.js");
+exports.Html4Entities = html4_entities_1.Html4Entities;
+var html5_entities_1 = __webpack_require__(/*! ./html5-entities */ "./node_modules/html-entities/lib/html5-entities.js");
+exports.Html5Entities = html5_entities_1.Html5Entities;
+exports.AllHtmlEntities = html5_entities_1.Html5Entities;
+
+
+/***/ }),
+
+/***/ "./node_modules/html-entities/lib/surrogate-pairs.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/html-entities/lib/surrogate-pairs.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.fromCodePoint = String.fromCodePoint || function (astralCodePoint) {
+    return String.fromCharCode(Math.floor((astralCodePoint - 0x10000) / 0x400) + 0xD800, (astralCodePoint - 0x10000) % 0x400 + 0xDC00);
+};
+exports.getCodePoint = String.prototype.codePointAt ?
+    function (input, position) {
+        return input.codePointAt(position);
+    } :
+    function (input, position) {
+        return (input.charCodeAt(position) - 0xD800) * 0x400
+            + input.charCodeAt(position + 1) - 0xDC00 + 0x10000;
+    };
+exports.highSurrogateFrom = 0xD800;
+exports.highSurrogateTo = 0xDBFF;
+
+
+/***/ }),
+
+/***/ "./node_modules/html-entities/lib/xml-entities.js":
+/*!********************************************************!*\
+  !*** ./node_modules/html-entities/lib/xml-entities.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var surrogate_pairs_1 = __webpack_require__(/*! ./surrogate-pairs */ "./node_modules/html-entities/lib/surrogate-pairs.js");
+var ALPHA_INDEX = {
+    '&lt': '<',
+    '&gt': '>',
+    '&quot': '"',
+    '&apos': '\'',
+    '&amp': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&apos;': '\'',
+    '&amp;': '&'
+};
+var CHAR_INDEX = {
+    60: 'lt',
+    62: 'gt',
+    34: 'quot',
+    39: 'apos',
+    38: 'amp'
+};
+var CHAR_S_INDEX = {
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    '\'': '&apos;',
+    '&': '&amp;'
+};
+var XmlEntities = /** @class */ (function () {
+    function XmlEntities() {
+    }
+    XmlEntities.prototype.encode = function (str) {
+        if (!str || !str.length) {
+            return '';
+        }
+        return str.replace(/[<>"'&]/g, function (s) {
+            return CHAR_S_INDEX[s];
+        });
+    };
+    XmlEntities.encode = function (str) {
+        return new XmlEntities().encode(str);
+    };
+    XmlEntities.prototype.decode = function (str) {
+        if (!str || !str.length) {
+            return '';
+        }
+        return str.replace(/&#?[0-9a-zA-Z]+;?/g, function (s) {
+            if (s.charAt(1) === '#') {
+                var code = s.charAt(2).toLowerCase() === 'x' ?
+                    parseInt(s.substr(3), 16) :
+                    parseInt(s.substr(2));
+                if (!isNaN(code) || code >= -32768) {
+                    if (code <= 65535) {
+                        return String.fromCharCode(code);
+                    }
+                    else {
+                        return surrogate_pairs_1.fromCodePoint(code);
+                    }
+                }
+                return '';
+            }
+            return ALPHA_INDEX[s] || s;
+        });
+    };
+    XmlEntities.decode = function (str) {
+        return new XmlEntities().decode(str);
+    };
+    XmlEntities.prototype.encodeNonUTF = function (str) {
+        if (!str || !str.length) {
+            return '';
+        }
+        var strLength = str.length;
+        var result = '';
+        var i = 0;
+        while (i < strLength) {
+            var c = str.charCodeAt(i);
+            var alpha = CHAR_INDEX[c];
+            if (alpha) {
+                result += "&" + alpha + ";";
+                i++;
+                continue;
+            }
+            if (c < 32 || c > 126) {
+                if (c >= surrogate_pairs_1.highSurrogateFrom && c <= surrogate_pairs_1.highSurrogateTo) {
+                    result += '&#' + surrogate_pairs_1.getCodePoint(str, i) + ';';
+                    i++;
+                }
+                else {
+                    result += '&#' + c + ';';
+                }
+            }
+            else {
+                result += str.charAt(i);
+            }
+            i++;
+        }
+        return result;
+    };
+    XmlEntities.encodeNonUTF = function (str) {
+        return new XmlEntities().encodeNonUTF(str);
+    };
+    XmlEntities.prototype.encodeNonASCII = function (str) {
+        if (!str || !str.length) {
+            return '';
+        }
+        var strLength = str.length;
+        var result = '';
+        var i = 0;
+        while (i < strLength) {
+            var c = str.charCodeAt(i);
+            if (c <= 255) {
+                result += str[i++];
+                continue;
+            }
+            if (c >= surrogate_pairs_1.highSurrogateFrom && c <= surrogate_pairs_1.highSurrogateTo) {
+                result += '&#' + surrogate_pairs_1.getCodePoint(str, i) + ';';
+                i++;
+            }
+            else {
+                result += '&#' + c + ';';
+            }
+            i++;
+        }
+        return result;
+    };
+    XmlEntities.encodeNonASCII = function (str) {
+        return new XmlEntities().encodeNonASCII(str);
+    };
+    return XmlEntities;
+}());
+exports.XmlEntities = XmlEntities;
+
+
+/***/ }),
+
 /***/ "./node_modules/memize/index.js":
 /*!**************************************!*\
   !*** ./node_modules/memize/index.js ***!
@@ -498,6 +1009,3615 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 
+/***/ "./node_modules/react-owl-carousel/umd/OwlCarousel.js":
+/*!************************************************************!*\
+  !*** ./node_modules/react-owl-carousel/umd/OwlCarousel.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function (global, factory) {
+     true ? module.exports = factory(__webpack_require__(/*! react */ "./node_modules/react/index.js")) :
+    undefined;
+}(this, (function (React) { 'use strict';
+
+    var React__default = 'default' in React ? React['default'] : React;
+
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+    /* global Reflect, Promise */
+
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+
+    function __extends(d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    }
+
+    var __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    };
+
+    function __rest(s, e) {
+        var t = {};
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+            t[p] = s[p];
+        if (s != null && typeof Object.getOwnPropertySymbols === "function")
+            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+                t[p[i]] = s[p[i]];
+        return t;
+    }
+
+    /**
+     * Owl Carousel v2.3.4
+     * Copyright 2013-2018 David Deutsch
+     * Licensed under: SEE LICENSE IN https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE
+     */
+    (function($, window, document, undefined) {
+
+    	/**
+    	 * Creates a carousel.
+    	 * @class The Owl Carousel.
+    	 * @public
+    	 * @param {HTMLElement|jQuery} element - The element to create the carousel for.
+    	 * @param {Object} [options] - The options
+    	 */
+    	function Owl(element, options) {
+
+    		/**
+    		 * Current settings for the carousel.
+    		 * @public
+    		 */
+    		this.settings = null;
+
+    		/**
+    		 * Current options set by the caller including defaults.
+    		 * @public
+    		 */
+    		this.options = $.extend({}, Owl.Defaults, options);
+
+    		/**
+    		 * Plugin element.
+    		 * @public
+    		 */
+    		this.$element = $(element);
+
+    		/**
+    		 * Proxied event handlers.
+    		 * @protected
+    		 */
+    		this._handlers = {};
+
+    		/**
+    		 * References to the running plugins of this carousel.
+    		 * @protected
+    		 */
+    		this._plugins = {};
+
+    		/**
+    		 * Currently suppressed events to prevent them from being retriggered.
+    		 * @protected
+    		 */
+    		this._supress = {};
+
+    		/**
+    		 * Absolute current position.
+    		 * @protected
+    		 */
+    		this._current = null;
+
+    		/**
+    		 * Animation speed in milliseconds.
+    		 * @protected
+    		 */
+    		this._speed = null;
+
+    		/**
+    		 * Coordinates of all items in pixel.
+    		 * @todo The name of this member is missleading.
+    		 * @protected
+    		 */
+    		this._coordinates = [];
+
+    		/**
+    		 * Current breakpoint.
+    		 * @todo Real media queries would be nice.
+    		 * @protected
+    		 */
+    		this._breakpoint = null;
+
+    		/**
+    		 * Current width of the plugin element.
+    		 */
+    		this._width = null;
+
+    		/**
+    		 * All real items.
+    		 * @protected
+    		 */
+    		this._items = [];
+
+    		/**
+    		 * All cloned items.
+    		 * @protected
+    		 */
+    		this._clones = [];
+
+    		/**
+    		 * Merge values of all items.
+    		 * @todo Maybe this could be part of a plugin.
+    		 * @protected
+    		 */
+    		this._mergers = [];
+
+    		/**
+    		 * Widths of all items.
+    		 */
+    		this._widths = [];
+
+    		/**
+    		 * Invalidated parts within the update process.
+    		 * @protected
+    		 */
+    		this._invalidated = {};
+
+    		/**
+    		 * Ordered list of workers for the update process.
+    		 * @protected
+    		 */
+    		this._pipe = [];
+
+    		/**
+    		 * Current state information for the drag operation.
+    		 * @todo #261
+    		 * @protected
+    		 */
+    		this._drag = {
+    			time: null,
+    			target: null,
+    			pointer: null,
+    			stage: {
+    				start: null,
+    				current: null
+    			},
+    			direction: null
+    		};
+
+    		/**
+    		 * Current state information and their tags.
+    		 * @type {Object}
+    		 * @protected
+    		 */
+    		this._states = {
+    			current: {},
+    			tags: {
+    				'initializing': [ 'busy' ],
+    				'animating': [ 'busy' ],
+    				'dragging': [ 'interacting' ]
+    			}
+    		};
+
+    		$.each([ 'onResize', 'onThrottledResize' ], $.proxy(function(i, handler) {
+    			this._handlers[handler] = $.proxy(this[handler], this);
+    		}, this));
+
+    		$.each(Owl.Plugins, $.proxy(function(key, plugin) {
+    			this._plugins[key.charAt(0).toLowerCase() + key.slice(1)]
+    				= new plugin(this);
+    		}, this));
+
+    		$.each(Owl.Workers, $.proxy(function(priority, worker) {
+    			this._pipe.push({
+    				'filter': worker.filter,
+    				'run': $.proxy(worker.run, this)
+    			});
+    		}, this));
+
+    		this.setup();
+    		this.initialize();
+    	}
+
+    	/**
+    	 * Default options for the carousel.
+    	 * @public
+    	 */
+    	Owl.Defaults = {
+    		items: 3,
+    		loop: false,
+    		center: false,
+    		rewind: false,
+    		checkVisibility: true,
+
+    		mouseDrag: true,
+    		touchDrag: true,
+    		pullDrag: true,
+    		freeDrag: false,
+
+    		margin: 0,
+    		stagePadding: 0,
+
+    		merge: false,
+    		mergeFit: true,
+    		autoWidth: false,
+
+    		startPosition: 0,
+    		rtl: false,
+
+    		smartSpeed: 250,
+    		fluidSpeed: false,
+    		dragEndSpeed: false,
+
+    		responsive: {},
+    		responsiveRefreshRate: 200,
+    		responsiveBaseElement: window,
+
+    		fallbackEasing: 'swing',
+    		slideTransition: '',
+
+    		info: false,
+
+    		nestedItemSelector: false,
+    		itemElement: 'div',
+    		stageElement: 'div',
+
+    		refreshClass: 'owl-refresh',
+    		loadedClass: 'owl-loaded',
+    		loadingClass: 'owl-loading',
+    		rtlClass: 'owl-rtl',
+    		responsiveClass: 'owl-responsive',
+    		dragClass: 'owl-drag',
+    		itemClass: 'owl-item',
+    		stageClass: 'owl-stage',
+    		stageOuterClass: 'owl-stage-outer',
+    		grabClass: 'owl-grab'
+    	};
+
+    	/**
+    	 * Enumeration for width.
+    	 * @public
+    	 * @readonly
+    	 * @enum {String}
+    	 */
+    	Owl.Width = {
+    		Default: 'default',
+    		Inner: 'inner',
+    		Outer: 'outer'
+    	};
+
+    	/**
+    	 * Enumeration for types.
+    	 * @public
+    	 * @readonly
+    	 * @enum {String}
+    	 */
+    	Owl.Type = {
+    		Event: 'event',
+    		State: 'state'
+    	};
+
+    	/**
+    	 * Contains all registered plugins.
+    	 * @public
+    	 */
+    	Owl.Plugins = {};
+
+    	/**
+    	 * List of workers involved in the update process.
+    	 */
+    	Owl.Workers = [ {
+    		filter: [ 'width', 'settings' ],
+    		run: function() {
+    			this._width = this.$element.width();
+    		}
+    	}, {
+    		filter: [ 'width', 'items', 'settings' ],
+    		run: function(cache) {
+    			cache.current = this._items && this._items[this.relative(this._current)];
+    		}
+    	}, {
+    		filter: [ 'items', 'settings' ],
+    		run: function() {
+    			this.$stage.children('.cloned').remove();
+    		}
+    	}, {
+    		filter: [ 'width', 'items', 'settings' ],
+    		run: function(cache) {
+    			var margin = this.settings.margin || '',
+    				grid = !this.settings.autoWidth,
+    				rtl = this.settings.rtl,
+    				css = {
+    					'width': 'auto',
+    					'margin-left': rtl ? margin : '',
+    					'margin-right': rtl ? '' : margin
+    				};
+
+    			!grid && this.$stage.children().css(css);
+
+    			cache.css = css;
+    		}
+    	}, {
+    		filter: [ 'width', 'items', 'settings' ],
+    		run: function(cache) {
+    			var width = (this.width() / this.settings.items).toFixed(3) - this.settings.margin,
+    				merge = null,
+    				iterator = this._items.length,
+    				grid = !this.settings.autoWidth,
+    				widths = [];
+
+    			cache.items = {
+    				merge: false,
+    				width: width
+    			};
+
+    			while (iterator--) {
+    				merge = this._mergers[iterator];
+    				merge = this.settings.mergeFit && Math.min(merge, this.settings.items) || merge;
+
+    				cache.items.merge = merge > 1 || cache.items.merge;
+
+    				widths[iterator] = !grid ? this._items[iterator].width() : width * merge;
+    			}
+
+    			this._widths = widths;
+    		}
+    	}, {
+    		filter: [ 'items', 'settings' ],
+    		run: function() {
+    			var clones = [],
+    				items = this._items,
+    				settings = this.settings,
+    				// TODO: Should be computed from number of min width items in stage
+    				view = Math.max(settings.items * 2, 4),
+    				size = Math.ceil(items.length / 2) * 2,
+    				repeat = settings.loop && items.length ? settings.rewind ? view : Math.max(view, size) : 0,
+    				append = '',
+    				prepend = '';
+
+    			repeat /= 2;
+
+    			while (repeat > 0) {
+    				// Switch to only using appended clones
+    				clones.push(this.normalize(clones.length / 2, true));
+    				append = append + items[clones[clones.length - 1]][0].outerHTML;
+    				clones.push(this.normalize(items.length - 1 - (clones.length - 1) / 2, true));
+    				prepend = items[clones[clones.length - 1]][0].outerHTML + prepend;
+    				repeat -= 1;
+    			}
+
+    			this._clones = clones;
+
+    			$(append).addClass('cloned').appendTo(this.$stage);
+    			$(prepend).addClass('cloned').prependTo(this.$stage);
+    		}
+    	}, {
+    		filter: [ 'width', 'items', 'settings' ],
+    		run: function() {
+    			var rtl = this.settings.rtl ? 1 : -1,
+    				size = this._clones.length + this._items.length,
+    				iterator = -1,
+    				previous = 0,
+    				current = 0,
+    				coordinates = [];
+
+    			while (++iterator < size) {
+    				previous = coordinates[iterator - 1] || 0;
+    				current = this._widths[this.relative(iterator)] + this.settings.margin;
+    				coordinates.push(previous + current * rtl);
+    			}
+
+    			this._coordinates = coordinates;
+    		}
+    	}, {
+    		filter: [ 'width', 'items', 'settings' ],
+    		run: function() {
+    			var padding = this.settings.stagePadding,
+    				coordinates = this._coordinates,
+    				css = {
+    					'width': Math.ceil(Math.abs(coordinates[coordinates.length - 1])) + padding * 2,
+    					'padding-left': padding || '',
+    					'padding-right': padding || ''
+    				};
+
+    			this.$stage.css(css);
+    		}
+    	}, {
+    		filter: [ 'width', 'items', 'settings' ],
+    		run: function(cache) {
+    			var iterator = this._coordinates.length,
+    				grid = !this.settings.autoWidth,
+    				items = this.$stage.children();
+
+    			if (grid && cache.items.merge) {
+    				while (iterator--) {
+    					cache.css.width = this._widths[this.relative(iterator)];
+    					items.eq(iterator).css(cache.css);
+    				}
+    			} else if (grid) {
+    				cache.css.width = cache.items.width;
+    				items.css(cache.css);
+    			}
+    		}
+    	}, {
+    		filter: [ 'items' ],
+    		run: function() {
+    			this._coordinates.length < 1 && this.$stage.removeAttr('style');
+    		}
+    	}, {
+    		filter: [ 'width', 'items', 'settings' ],
+    		run: function(cache) {
+    			cache.current = cache.current ? this.$stage.children().index(cache.current) : 0;
+    			cache.current = Math.max(this.minimum(), Math.min(this.maximum(), cache.current));
+    			this.reset(cache.current);
+    		}
+    	}, {
+    		filter: [ 'position' ],
+    		run: function() {
+    			this.animate(this.coordinates(this._current));
+    		}
+    	}, {
+    		filter: [ 'width', 'position', 'items', 'settings' ],
+    		run: function() {
+    			var rtl = this.settings.rtl ? 1 : -1,
+    				padding = this.settings.stagePadding * 2,
+    				begin = this.coordinates(this.current()) + padding,
+    				end = begin + this.width() * rtl,
+    				inner, outer, matches = [], i, n;
+
+    			for (i = 0, n = this._coordinates.length; i < n; i++) {
+    				inner = this._coordinates[i - 1] || 0;
+    				outer = Math.abs(this._coordinates[i]) + padding * rtl;
+
+    				if ((this.op(inner, '<=', begin) && (this.op(inner, '>', end)))
+    					|| (this.op(outer, '<', begin) && this.op(outer, '>', end))) {
+    					matches.push(i);
+    				}
+    			}
+
+    			this.$stage.children('.active').removeClass('active');
+    			this.$stage.children(':eq(' + matches.join('), :eq(') + ')').addClass('active');
+
+    			this.$stage.children('.center').removeClass('center');
+    			if (this.settings.center) {
+    				this.$stage.children().eq(this.current()).addClass('center');
+    			}
+    		}
+    	} ];
+
+    	/**
+    	 * Create the stage DOM element
+    	 */
+    	Owl.prototype.initializeStage = function() {
+    		this.$stage = this.$element.find('.' + this.settings.stageClass);
+
+    		// if the stage is already in the DOM, grab it and skip stage initialization
+    		if (this.$stage.length) {
+    			return;
+    		}
+
+    		this.$element.addClass(this.options.loadingClass);
+
+    		// create stage
+    		this.$stage = $('<' + this.settings.stageElement + '>', {
+    			"class": this.settings.stageClass
+    		}).wrap( $( '<div/>', {
+    			"class": this.settings.stageOuterClass
+    		}));
+
+    		// append stage
+    		this.$element.append(this.$stage.parent());
+    	};
+
+    	/**
+    	 * Create item DOM elements
+    	 */
+    	Owl.prototype.initializeItems = function() {
+    		var $items = this.$element.find('.owl-item');
+
+    		// if the items are already in the DOM, grab them and skip item initialization
+    		if ($items.length) {
+    			this._items = $items.get().map(function(item) {
+    				return $(item);
+    			});
+
+    			this._mergers = this._items.map(function() {
+    				return 1;
+    			});
+
+    			this.refresh();
+
+    			return;
+    		}
+
+    		// append content
+    		this.replace(this.$element.children().not(this.$stage.parent()));
+
+    		// check visibility
+    		if (this.isVisible()) {
+    			// update view
+    			this.refresh();
+    		} else {
+    			// invalidate width
+    			this.invalidate('width');
+    		}
+
+    		this.$element
+    			.removeClass(this.options.loadingClass)
+    			.addClass(this.options.loadedClass);
+    	};
+
+    	/**
+    	 * Initializes the carousel.
+    	 * @protected
+    	 */
+    	Owl.prototype.initialize = function() {
+    		this.enter('initializing');
+    		this.trigger('initialize');
+
+    		this.$element.toggleClass(this.settings.rtlClass, this.settings.rtl);
+
+    		if (this.settings.autoWidth && !this.is('pre-loading')) {
+    			var imgs, nestedSelector, width;
+    			imgs = this.$element.find('img');
+    			nestedSelector = this.settings.nestedItemSelector ? '.' + this.settings.nestedItemSelector : undefined;
+    			width = this.$element.children(nestedSelector).width();
+
+    			if (imgs.length && width <= 0) {
+    				this.preloadAutoWidthImages(imgs);
+    			}
+    		}
+
+    		this.initializeStage();
+    		this.initializeItems();
+
+    		// register event handlers
+    		this.registerEventHandlers();
+
+    		this.leave('initializing');
+    		this.trigger('initialized');
+    	};
+
+    	/**
+    	 * @returns {Boolean} visibility of $element
+    	 *                    if you know the carousel will always be visible you can set `checkVisibility` to `false` to
+    	 *                    prevent the expensive browser layout forced reflow the $element.is(':visible') does
+    	 */
+    	Owl.prototype.isVisible = function() {
+    		return this.settings.checkVisibility
+    			? this.$element.is(':visible')
+    			: true;
+    	};
+
+    	/**
+    	 * Setups the current settings.
+    	 * @todo Remove responsive classes. Why should adaptive designs be brought into IE8?
+    	 * @todo Support for media queries by using `matchMedia` would be nice.
+    	 * @public
+    	 */
+    	Owl.prototype.setup = function() {
+    		var viewport = this.viewport(),
+    			overwrites = this.options.responsive,
+    			match = -1,
+    			settings = null;
+
+    		if (!overwrites) {
+    			settings = $.extend({}, this.options);
+    		} else {
+    			$.each(overwrites, function(breakpoint) {
+    				if (breakpoint <= viewport && breakpoint > match) {
+    					match = Number(breakpoint);
+    				}
+    			});
+
+    			settings = $.extend({}, this.options, overwrites[match]);
+    			if (typeof settings.stagePadding === 'function') {
+    				settings.stagePadding = settings.stagePadding();
+    			}
+    			delete settings.responsive;
+
+    			// responsive class
+    			if (settings.responsiveClass) {
+    				this.$element.attr('class',
+    					this.$element.attr('class').replace(new RegExp('(' + this.options.responsiveClass + '-)\\S+\\s', 'g'), '$1' + match)
+    				);
+    			}
+    		}
+
+    		this.trigger('change', { property: { name: 'settings', value: settings } });
+    		this._breakpoint = match;
+    		this.settings = settings;
+    		this.invalidate('settings');
+    		this.trigger('changed', { property: { name: 'settings', value: this.settings } });
+    	};
+
+    	/**
+    	 * Updates option logic if necessery.
+    	 * @protected
+    	 */
+    	Owl.prototype.optionsLogic = function() {
+    		if (this.settings.autoWidth) {
+    			this.settings.stagePadding = false;
+    			this.settings.merge = false;
+    		}
+    	};
+
+    	/**
+    	 * Prepares an item before add.
+    	 * @todo Rename event parameter `content` to `item`.
+    	 * @protected
+    	 * @returns {jQuery|HTMLElement} - The item container.
+    	 */
+    	Owl.prototype.prepare = function(item) {
+    		var event = this.trigger('prepare', { content: item });
+
+    		if (!event.data) {
+    			event.data = $('<' + this.settings.itemElement + '/>')
+    				.addClass(this.options.itemClass).append(item);
+    		}
+
+    		this.trigger('prepared', { content: event.data });
+
+    		return event.data;
+    	};
+
+    	/**
+    	 * Updates the view.
+    	 * @public
+    	 */
+    	Owl.prototype.update = function() {
+    		var i = 0,
+    			n = this._pipe.length,
+    			filter = $.proxy(function(p) { return this[p] }, this._invalidated),
+    			cache = {};
+
+    		while (i < n) {
+    			if (this._invalidated.all || $.grep(this._pipe[i].filter, filter).length > 0) {
+    				this._pipe[i].run(cache);
+    			}
+    			i++;
+    		}
+
+    		this._invalidated = {};
+
+    		!this.is('valid') && this.enter('valid');
+    	};
+
+    	/**
+    	 * Gets the width of the view.
+    	 * @public
+    	 * @param {Owl.Width} [dimension=Owl.Width.Default] - The dimension to return.
+    	 * @returns {Number} - The width of the view in pixel.
+    	 */
+    	Owl.prototype.width = function(dimension) {
+    		dimension = dimension || Owl.Width.Default;
+    		switch (dimension) {
+    			case Owl.Width.Inner:
+    			case Owl.Width.Outer:
+    				return this._width;
+    			default:
+    				return this._width - this.settings.stagePadding * 2 + this.settings.margin;
+    		}
+    	};
+
+    	/**
+    	 * Refreshes the carousel primarily for adaptive purposes.
+    	 * @public
+    	 */
+    	Owl.prototype.refresh = function() {
+    		this.enter('refreshing');
+    		this.trigger('refresh');
+
+    		this.setup();
+
+    		this.optionsLogic();
+
+    		this.$element.addClass(this.options.refreshClass);
+
+    		this.update();
+
+    		this.$element.removeClass(this.options.refreshClass);
+
+    		this.leave('refreshing');
+    		this.trigger('refreshed');
+    	};
+
+    	/**
+    	 * Checks window `resize` event.
+    	 * @protected
+    	 */
+    	Owl.prototype.onThrottledResize = function() {
+    		window.clearTimeout(this.resizeTimer);
+    		this.resizeTimer = window.setTimeout(this._handlers.onResize, this.settings.responsiveRefreshRate);
+    	};
+
+    	/**
+    	 * Checks window `resize` event.
+    	 * @protected
+    	 */
+    	Owl.prototype.onResize = function() {
+    		if (!this._items.length) {
+    			return false;
+    		}
+
+    		if (this._width === this.$element.width()) {
+    			return false;
+    		}
+
+    		if (!this.isVisible()) {
+    			return false;
+    		}
+
+    		this.enter('resizing');
+
+    		if (this.trigger('resize').isDefaultPrevented()) {
+    			this.leave('resizing');
+    			return false;
+    		}
+
+    		this.invalidate('width');
+
+    		this.refresh();
+
+    		this.leave('resizing');
+    		this.trigger('resized');
+    	};
+
+    	/**
+    	 * Registers event handlers.
+    	 * @todo Check `msPointerEnabled`
+    	 * @todo #261
+    	 * @protected
+    	 */
+    	Owl.prototype.registerEventHandlers = function() {
+    		if ($.support.transition) {
+    			this.$stage.on($.support.transition.end + '.owl.core', $.proxy(this.onTransitionEnd, this));
+    		}
+
+    		if (this.settings.responsive !== false) {
+    			this.on(window, 'resize', this._handlers.onThrottledResize);
+    		}
+
+    		if (this.settings.mouseDrag) {
+    			this.$element.addClass(this.options.dragClass);
+    			this.$stage.on('mousedown.owl.core', $.proxy(this.onDragStart, this));
+    			this.$stage.on('dragstart.owl.core selectstart.owl.core', function() { return false });
+    		}
+
+    		if (this.settings.touchDrag){
+    			this.$stage.on('touchstart.owl.core', $.proxy(this.onDragStart, this));
+    			this.$stage.on('touchcancel.owl.core', $.proxy(this.onDragEnd, this));
+    		}
+    	};
+
+    	/**
+    	 * Handles `touchstart` and `mousedown` events.
+    	 * @todo Horizontal swipe threshold as option
+    	 * @todo #261
+    	 * @protected
+    	 * @param {Event} event - The event arguments.
+    	 */
+    	Owl.prototype.onDragStart = function(event) {
+    		var stage = null;
+
+    		if (event.which === 3) {
+    			return;
+    		}
+
+    		if ($.support.transform) {
+    			stage = this.$stage.css('transform').replace(/.*\(|\)| /g, '').split(',');
+    			stage = {
+    				x: stage[stage.length === 16 ? 12 : 4],
+    				y: stage[stage.length === 16 ? 13 : 5]
+    			};
+    		} else {
+    			stage = this.$stage.position();
+    			stage = {
+    				x: this.settings.rtl ?
+    					stage.left + this.$stage.width() - this.width() + this.settings.margin :
+    					stage.left,
+    				y: stage.top
+    			};
+    		}
+
+    		if (this.is('animating')) {
+    			$.support.transform ? this.animate(stage.x) : this.$stage.stop();
+    			this.invalidate('position');
+    		}
+
+    		this.$element.toggleClass(this.options.grabClass, event.type === 'mousedown');
+
+    		this.speed(0);
+
+    		this._drag.time = new Date().getTime();
+    		this._drag.target = $(event.target);
+    		this._drag.stage.start = stage;
+    		this._drag.stage.current = stage;
+    		this._drag.pointer = this.pointer(event);
+
+    		$(document).on('mouseup.owl.core touchend.owl.core', $.proxy(this.onDragEnd, this));
+
+    		$(document).one('mousemove.owl.core touchmove.owl.core', $.proxy(function(event) {
+    			var delta = this.difference(this._drag.pointer, this.pointer(event));
+
+    			$(document).on('mousemove.owl.core touchmove.owl.core', $.proxy(this.onDragMove, this));
+
+    			if (Math.abs(delta.x) < Math.abs(delta.y) && this.is('valid')) {
+    				return;
+    			}
+
+    			event.preventDefault();
+
+    			this.enter('dragging');
+    			this.trigger('drag');
+    		}, this));
+    	};
+
+    	/**
+    	 * Handles the `touchmove` and `mousemove` events.
+    	 * @todo #261
+    	 * @protected
+    	 * @param {Event} event - The event arguments.
+    	 */
+    	Owl.prototype.onDragMove = function(event) {
+    		var minimum = null,
+    			maximum = null,
+    			pull = null,
+    			delta = this.difference(this._drag.pointer, this.pointer(event)),
+    			stage = this.difference(this._drag.stage.start, delta);
+
+    		if (!this.is('dragging')) {
+    			return;
+    		}
+
+    		event.preventDefault();
+
+    		if (this.settings.loop) {
+    			minimum = this.coordinates(this.minimum());
+    			maximum = this.coordinates(this.maximum() + 1) - minimum;
+    			stage.x = (((stage.x - minimum) % maximum + maximum) % maximum) + minimum;
+    		} else {
+    			minimum = this.settings.rtl ? this.coordinates(this.maximum()) : this.coordinates(this.minimum());
+    			maximum = this.settings.rtl ? this.coordinates(this.minimum()) : this.coordinates(this.maximum());
+    			pull = this.settings.pullDrag ? -1 * delta.x / 5 : 0;
+    			stage.x = Math.max(Math.min(stage.x, minimum + pull), maximum + pull);
+    		}
+
+    		this._drag.stage.current = stage;
+
+    		this.animate(stage.x);
+    	};
+
+    	/**
+    	 * Handles the `touchend` and `mouseup` events.
+    	 * @todo #261
+    	 * @todo Threshold for click event
+    	 * @protected
+    	 * @param {Event} event - The event arguments.
+    	 */
+    	Owl.prototype.onDragEnd = function(event) {
+    		var delta = this.difference(this._drag.pointer, this.pointer(event)),
+    			stage = this._drag.stage.current,
+    			direction = delta.x > 0 ^ this.settings.rtl ? 'left' : 'right';
+
+    		$(document).off('.owl.core');
+
+    		this.$element.removeClass(this.options.grabClass);
+
+    		if (delta.x !== 0 && this.is('dragging') || !this.is('valid')) {
+    			this.speed(this.settings.dragEndSpeed || this.settings.smartSpeed);
+    			this.current(this.closest(stage.x, delta.x !== 0 ? direction : this._drag.direction));
+    			this.invalidate('position');
+    			this.update();
+
+    			this._drag.direction = direction;
+
+    			if (Math.abs(delta.x) > 3 || new Date().getTime() - this._drag.time > 300) {
+    				this._drag.target.one('click.owl.core', function() { return false; });
+    			}
+    		}
+
+    		if (!this.is('dragging')) {
+    			return;
+    		}
+
+    		this.leave('dragging');
+    		this.trigger('dragged');
+    	};
+
+    	/**
+    	 * Gets absolute position of the closest item for a coordinate.
+    	 * @todo Setting `freeDrag` makes `closest` not reusable. See #165.
+    	 * @protected
+    	 * @param {Number} coordinate - The coordinate in pixel.
+    	 * @param {String} direction - The direction to check for the closest item. Ether `left` or `right`.
+    	 * @return {Number} - The absolute position of the closest item.
+    	 */
+    	Owl.prototype.closest = function(coordinate, direction) {
+    		var position = -1,
+    			pull = 30,
+    			width = this.width(),
+    			coordinates = this.coordinates();
+
+    		if (!this.settings.freeDrag) {
+    			// check closest item
+    			$.each(coordinates, $.proxy(function(index, value) {
+    				// on a left pull, check on current index
+    				if (direction === 'left' && coordinate > value - pull && coordinate < value + pull) {
+    					position = index;
+    				// on a right pull, check on previous index
+    				// to do so, subtract width from value and set position = index + 1
+    				} else if (direction === 'right' && coordinate > value - width - pull && coordinate < value - width + pull) {
+    					position = index + 1;
+    				} else if (this.op(coordinate, '<', value)
+    					&& this.op(coordinate, '>', coordinates[index + 1] !== undefined ? coordinates[index + 1] : value - width)) {
+    					position = direction === 'left' ? index + 1 : index;
+    				}
+    				return position === -1;
+    			}, this));
+    		}
+
+    		if (!this.settings.loop) {
+    			// non loop boundries
+    			if (this.op(coordinate, '>', coordinates[this.minimum()])) {
+    				position = coordinate = this.minimum();
+    			} else if (this.op(coordinate, '<', coordinates[this.maximum()])) {
+    				position = coordinate = this.maximum();
+    			}
+    		}
+
+    		return position;
+    	};
+
+    	/**
+    	 * Animates the stage.
+    	 * @todo #270
+    	 * @public
+    	 * @param {Number} coordinate - The coordinate in pixels.
+    	 */
+    	Owl.prototype.animate = function(coordinate) {
+    		var animate = this.speed() > 0;
+
+    		this.is('animating') && this.onTransitionEnd();
+
+    		if (animate) {
+    			this.enter('animating');
+    			this.trigger('translate');
+    		}
+
+    		if ($.support.transform3d && $.support.transition) {
+    			this.$stage.css({
+    				transform: 'translate3d(' + coordinate + 'px,0px,0px)',
+    				transition: (this.speed() / 1000) + 's' + (
+    					this.settings.slideTransition ? ' ' + this.settings.slideTransition : ''
+    				)
+    			});
+    		} else if (animate) {
+    			this.$stage.animate({
+    				left: coordinate + 'px'
+    			}, this.speed(), this.settings.fallbackEasing, $.proxy(this.onTransitionEnd, this));
+    		} else {
+    			this.$stage.css({
+    				left: coordinate + 'px'
+    			});
+    		}
+    	};
+
+    	/**
+    	 * Checks whether the carousel is in a specific state or not.
+    	 * @param {String} state - The state to check.
+    	 * @returns {Boolean} - The flag which indicates if the carousel is busy.
+    	 */
+    	Owl.prototype.is = function(state) {
+    		return this._states.current[state] && this._states.current[state] > 0;
+    	};
+
+    	/**
+    	 * Sets the absolute position of the current item.
+    	 * @public
+    	 * @param {Number} [position] - The new absolute position or nothing to leave it unchanged.
+    	 * @returns {Number} - The absolute position of the current item.
+    	 */
+    	Owl.prototype.current = function(position) {
+    		if (position === undefined) {
+    			return this._current;
+    		}
+
+    		if (this._items.length === 0) {
+    			return undefined;
+    		}
+
+    		position = this.normalize(position);
+
+    		if (this._current !== position) {
+    			var event = this.trigger('change', { property: { name: 'position', value: position } });
+
+    			if (event.data !== undefined) {
+    				position = this.normalize(event.data);
+    			}
+
+    			this._current = position;
+
+    			this.invalidate('position');
+
+    			this.trigger('changed', { property: { name: 'position', value: this._current } });
+    		}
+
+    		return this._current;
+    	};
+
+    	/**
+    	 * Invalidates the given part of the update routine.
+    	 * @param {String} [part] - The part to invalidate.
+    	 * @returns {Array.<String>} - The invalidated parts.
+    	 */
+    	Owl.prototype.invalidate = function(part) {
+    		if ($.type(part) === 'string') {
+    			this._invalidated[part] = true;
+    			this.is('valid') && this.leave('valid');
+    		}
+    		return $.map(this._invalidated, function(v, i) { return i });
+    	};
+
+    	/**
+    	 * Resets the absolute position of the current item.
+    	 * @public
+    	 * @param {Number} position - The absolute position of the new item.
+    	 */
+    	Owl.prototype.reset = function(position) {
+    		position = this.normalize(position);
+
+    		if (position === undefined) {
+    			return;
+    		}
+
+    		this._speed = 0;
+    		this._current = position;
+
+    		this.suppress([ 'translate', 'translated' ]);
+
+    		this.animate(this.coordinates(position));
+
+    		this.release([ 'translate', 'translated' ]);
+    	};
+
+    	/**
+    	 * Normalizes an absolute or a relative position of an item.
+    	 * @public
+    	 * @param {Number} position - The absolute or relative position to normalize.
+    	 * @param {Boolean} [relative=false] - Whether the given position is relative or not.
+    	 * @returns {Number} - The normalized position.
+    	 */
+    	Owl.prototype.normalize = function(position, relative) {
+    		var n = this._items.length,
+    			m = relative ? 0 : this._clones.length;
+
+    		if (!this.isNumeric(position) || n < 1) {
+    			position = undefined;
+    		} else if (position < 0 || position >= n + m) {
+    			position = ((position - m / 2) % n + n) % n + m / 2;
+    		}
+
+    		return position;
+    	};
+
+    	/**
+    	 * Converts an absolute position of an item into a relative one.
+    	 * @public
+    	 * @param {Number} position - The absolute position to convert.
+    	 * @returns {Number} - The converted position.
+    	 */
+    	Owl.prototype.relative = function(position) {
+    		position -= this._clones.length / 2;
+    		return this.normalize(position, true);
+    	};
+
+    	/**
+    	 * Gets the maximum position for the current item.
+    	 * @public
+    	 * @param {Boolean} [relative=false] - Whether to return an absolute position or a relative position.
+    	 * @returns {Number}
+    	 */
+    	Owl.prototype.maximum = function(relative) {
+    		var settings = this.settings,
+    			maximum = this._coordinates.length,
+    			iterator,
+    			reciprocalItemsWidth,
+    			elementWidth;
+
+    		if (settings.loop) {
+    			maximum = this._clones.length / 2 + this._items.length - 1;
+    		} else if (settings.autoWidth || settings.merge) {
+    			iterator = this._items.length;
+    			if (iterator) {
+    				reciprocalItemsWidth = this._items[--iterator].width();
+    				elementWidth = this.$element.width();
+    				while (iterator--) {
+    					reciprocalItemsWidth += this._items[iterator].width() + this.settings.margin;
+    					if (reciprocalItemsWidth > elementWidth) {
+    						break;
+    					}
+    				}
+    			}
+    			maximum = iterator + 1;
+    		} else if (settings.center) {
+    			maximum = this._items.length - 1;
+    		} else {
+    			maximum = this._items.length - settings.items;
+    		}
+
+    		if (relative) {
+    			maximum -= this._clones.length / 2;
+    		}
+
+    		return Math.max(maximum, 0);
+    	};
+
+    	/**
+    	 * Gets the minimum position for the current item.
+    	 * @public
+    	 * @param {Boolean} [relative=false] - Whether to return an absolute position or a relative position.
+    	 * @returns {Number}
+    	 */
+    	Owl.prototype.minimum = function(relative) {
+    		return relative ? 0 : this._clones.length / 2;
+    	};
+
+    	/**
+    	 * Gets an item at the specified relative position.
+    	 * @public
+    	 * @param {Number} [position] - The relative position of the item.
+    	 * @return {jQuery|Array.<jQuery>} - The item at the given position or all items if no position was given.
+    	 */
+    	Owl.prototype.items = function(position) {
+    		if (position === undefined) {
+    			return this._items.slice();
+    		}
+
+    		position = this.normalize(position, true);
+    		return this._items[position];
+    	};
+
+    	/**
+    	 * Gets an item at the specified relative position.
+    	 * @public
+    	 * @param {Number} [position] - The relative position of the item.
+    	 * @return {jQuery|Array.<jQuery>} - The item at the given position or all items if no position was given.
+    	 */
+    	Owl.prototype.mergers = function(position) {
+    		if (position === undefined) {
+    			return this._mergers.slice();
+    		}
+
+    		position = this.normalize(position, true);
+    		return this._mergers[position];
+    	};
+
+    	/**
+    	 * Gets the absolute positions of clones for an item.
+    	 * @public
+    	 * @param {Number} [position] - The relative position of the item.
+    	 * @returns {Array.<Number>} - The absolute positions of clones for the item or all if no position was given.
+    	 */
+    	Owl.prototype.clones = function(position) {
+    		var odd = this._clones.length / 2,
+    			even = odd + this._items.length,
+    			map = function(index) { return index % 2 === 0 ? even + index / 2 : odd - (index + 1) / 2 };
+
+    		if (position === undefined) {
+    			return $.map(this._clones, function(v, i) { return map(i) });
+    		}
+
+    		return $.map(this._clones, function(v, i) { return v === position ? map(i) : null });
+    	};
+
+    	/**
+    	 * Sets the current animation speed.
+    	 * @public
+    	 * @param {Number} [speed] - The animation speed in milliseconds or nothing to leave it unchanged.
+    	 * @returns {Number} - The current animation speed in milliseconds.
+    	 */
+    	Owl.prototype.speed = function(speed) {
+    		if (speed !== undefined) {
+    			this._speed = speed;
+    		}
+
+    		return this._speed;
+    	};
+
+    	/**
+    	 * Gets the coordinate of an item.
+    	 * @todo The name of this method is missleanding.
+    	 * @public
+    	 * @param {Number} position - The absolute position of the item within `minimum()` and `maximum()`.
+    	 * @returns {Number|Array.<Number>} - The coordinate of the item in pixel or all coordinates.
+    	 */
+    	Owl.prototype.coordinates = function(position) {
+    		var multiplier = 1,
+    			newPosition = position - 1,
+    			coordinate;
+
+    		if (position === undefined) {
+    			return $.map(this._coordinates, $.proxy(function(coordinate, index) {
+    				return this.coordinates(index);
+    			}, this));
+    		}
+
+    		if (this.settings.center) {
+    			if (this.settings.rtl) {
+    				multiplier = -1;
+    				newPosition = position + 1;
+    			}
+
+    			coordinate = this._coordinates[position];
+    			coordinate += (this.width() - coordinate + (this._coordinates[newPosition] || 0)) / 2 * multiplier;
+    		} else {
+    			coordinate = this._coordinates[newPosition] || 0;
+    		}
+
+    		coordinate = Math.ceil(coordinate);
+
+    		return coordinate;
+    	};
+
+    	/**
+    	 * Calculates the speed for a translation.
+    	 * @protected
+    	 * @param {Number} from - The absolute position of the start item.
+    	 * @param {Number} to - The absolute position of the target item.
+    	 * @param {Number} [factor=undefined] - The time factor in milliseconds.
+    	 * @returns {Number} - The time in milliseconds for the translation.
+    	 */
+    	Owl.prototype.duration = function(from, to, factor) {
+    		if (factor === 0) {
+    			return 0;
+    		}
+
+    		return Math.min(Math.max(Math.abs(to - from), 1), 6) * Math.abs((factor || this.settings.smartSpeed));
+    	};
+
+    	/**
+    	 * Slides to the specified item.
+    	 * @public
+    	 * @param {Number} position - The position of the item.
+    	 * @param {Number} [speed] - The time in milliseconds for the transition.
+    	 */
+    	Owl.prototype.to = function(position, speed) {
+    		var current = this.current(),
+    			revert = null,
+    			distance = position - this.relative(current),
+    			direction = (distance > 0) - (distance < 0),
+    			items = this._items.length,
+    			minimum = this.minimum(),
+    			maximum = this.maximum();
+
+    		if (this.settings.loop) {
+    			if (!this.settings.rewind && Math.abs(distance) > items / 2) {
+    				distance += direction * -1 * items;
+    			}
+
+    			position = current + distance;
+    			revert = ((position - minimum) % items + items) % items + minimum;
+
+    			if (revert !== position && revert - distance <= maximum && revert - distance > 0) {
+    				current = revert - distance;
+    				position = revert;
+    				this.reset(current);
+    			}
+    		} else if (this.settings.rewind) {
+    			maximum += 1;
+    			position = (position % maximum + maximum) % maximum;
+    		} else {
+    			position = Math.max(minimum, Math.min(maximum, position));
+    		}
+
+    		this.speed(this.duration(current, position, speed));
+    		this.current(position);
+
+    		if (this.isVisible()) {
+    			this.update();
+    		}
+    	};
+
+    	/**
+    	 * Slides to the next item.
+    	 * @public
+    	 * @param {Number} [speed] - The time in milliseconds for the transition.
+    	 */
+    	Owl.prototype.next = function(speed) {
+    		speed = speed || false;
+    		this.to(this.relative(this.current()) + 1, speed);
+    	};
+
+    	/**
+    	 * Slides to the previous item.
+    	 * @public
+    	 * @param {Number} [speed] - The time in milliseconds for the transition.
+    	 */
+    	Owl.prototype.prev = function(speed) {
+    		speed = speed || false;
+    		this.to(this.relative(this.current()) - 1, speed);
+    	};
+
+    	/**
+    	 * Handles the end of an animation.
+    	 * @protected
+    	 * @param {Event} event - The event arguments.
+    	 */
+    	Owl.prototype.onTransitionEnd = function(event) {
+
+    		// if css2 animation then event object is undefined
+    		if (event !== undefined) {
+    			event.stopPropagation();
+
+    			// Catch only owl-stage transitionEnd event
+    			if ((event.target || event.srcElement || event.originalTarget) !== this.$stage.get(0)) {
+    				return false;
+    			}
+    		}
+
+    		this.leave('animating');
+    		this.trigger('translated');
+    	};
+
+    	/**
+    	 * Gets viewport width.
+    	 * @protected
+    	 * @return {Number} - The width in pixel.
+    	 */
+    	Owl.prototype.viewport = function() {
+    		var width;
+    		if (this.options.responsiveBaseElement !== window) {
+    			width = $(this.options.responsiveBaseElement).width();
+    		} else if (window.innerWidth) {
+    			width = window.innerWidth;
+    		} else if (document.documentElement && document.documentElement.clientWidth) {
+    			width = document.documentElement.clientWidth;
+    		} else {
+    			console.warn('Can not detect viewport width.');
+    		}
+    		return width;
+    	};
+
+    	/**
+    	 * Replaces the current content.
+    	 * @public
+    	 * @param {HTMLElement|jQuery|String} content - The new content.
+    	 */
+    	Owl.prototype.replace = function(content) {
+    		this.$stage.empty();
+    		this._items = [];
+
+    		if (content) {
+    			content = (content instanceof jQuery) ? content : $(content);
+    		}
+
+    		if (this.settings.nestedItemSelector) {
+    			content = content.find('.' + this.settings.nestedItemSelector);
+    		}
+
+    		content.filter(function() {
+    			return this.nodeType === 1;
+    		}).each($.proxy(function(index, item) {
+    			item = this.prepare(item);
+    			this.$stage.append(item);
+    			this._items.push(item);
+    			this._mergers.push(item.find('[data-merge]').addBack('[data-merge]').attr('data-merge') * 1 || 1);
+    		}, this));
+
+    		this.reset(this.isNumeric(this.settings.startPosition) ? this.settings.startPosition : 0);
+
+    		this.invalidate('items');
+    	};
+
+    	/**
+    	 * Adds an item.
+    	 * @todo Use `item` instead of `content` for the event arguments.
+    	 * @public
+    	 * @param {HTMLElement|jQuery|String} content - The item content to add.
+    	 * @param {Number} [position] - The relative position at which to insert the item otherwise the item will be added to the end.
+    	 */
+    	Owl.prototype.add = function(content, position) {
+    		var current = this.relative(this._current);
+
+    		position = position === undefined ? this._items.length : this.normalize(position, true);
+    		content = content instanceof jQuery ? content : $(content);
+
+    		this.trigger('add', { content: content, position: position });
+
+    		content = this.prepare(content);
+
+    		if (this._items.length === 0 || position === this._items.length) {
+    			this._items.length === 0 && this.$stage.append(content);
+    			this._items.length !== 0 && this._items[position - 1].after(content);
+    			this._items.push(content);
+    			this._mergers.push(content.find('[data-merge]').addBack('[data-merge]').attr('data-merge') * 1 || 1);
+    		} else {
+    			this._items[position].before(content);
+    			this._items.splice(position, 0, content);
+    			this._mergers.splice(position, 0, content.find('[data-merge]').addBack('[data-merge]').attr('data-merge') * 1 || 1);
+    		}
+
+    		this._items[current] && this.reset(this._items[current].index());
+
+    		this.invalidate('items');
+
+    		this.trigger('added', { content: content, position: position });
+    	};
+
+    	/**
+    	 * Removes an item by its position.
+    	 * @todo Use `item` instead of `content` for the event arguments.
+    	 * @public
+    	 * @param {Number} position - The relative position of the item to remove.
+    	 */
+    	Owl.prototype.remove = function(position) {
+    		position = this.normalize(position, true);
+
+    		if (position === undefined) {
+    			return;
+    		}
+
+    		this.trigger('remove', { content: this._items[position], position: position });
+
+    		this._items[position].remove();
+    		this._items.splice(position, 1);
+    		this._mergers.splice(position, 1);
+
+    		this.invalidate('items');
+
+    		this.trigger('removed', { content: null, position: position });
+    	};
+
+    	/**
+    	 * Preloads images with auto width.
+    	 * @todo Replace by a more generic approach
+    	 * @protected
+    	 */
+    	Owl.prototype.preloadAutoWidthImages = function(images) {
+    		images.each($.proxy(function(i, element) {
+    			this.enter('pre-loading');
+    			element = $(element);
+    			$(new Image()).one('load', $.proxy(function(e) {
+    				element.attr('src', e.target.src);
+    				element.css('opacity', 1);
+    				this.leave('pre-loading');
+    				!this.is('pre-loading') && !this.is('initializing') && this.refresh();
+    			}, this)).attr('src', element.attr('src') || element.attr('data-src') || element.attr('data-src-retina'));
+    		}, this));
+    	};
+
+    	/**
+    	 * Destroys the carousel.
+    	 * @public
+    	 */
+    	Owl.prototype.destroy = function() {
+
+    		this.$element.off('.owl.core');
+    		this.$stage.off('.owl.core');
+    		$(document).off('.owl.core');
+
+    		if (this.settings.responsive !== false) {
+    			window.clearTimeout(this.resizeTimer);
+    			this.off(window, 'resize', this._handlers.onThrottledResize);
+    		}
+
+    		for (var i in this._plugins) {
+    			this._plugins[i].destroy();
+    		}
+
+    		this.$stage.children('.cloned').remove();
+
+    		this.$stage.unwrap();
+    		this.$stage.children().contents().unwrap();
+    		this.$stage.children().unwrap();
+    		this.$stage.remove();
+    		this.$element
+    			.removeClass(this.options.refreshClass)
+    			.removeClass(this.options.loadingClass)
+    			.removeClass(this.options.loadedClass)
+    			.removeClass(this.options.rtlClass)
+    			.removeClass(this.options.dragClass)
+    			.removeClass(this.options.grabClass)
+    			.attr('class', this.$element.attr('class').replace(new RegExp(this.options.responsiveClass + '-\\S+\\s', 'g'), ''))
+    			.removeData('owl.carousel');
+    	};
+
+    	/**
+    	 * Operators to calculate right-to-left and left-to-right.
+    	 * @protected
+    	 * @param {Number} [a] - The left side operand.
+    	 * @param {String} [o] - The operator.
+    	 * @param {Number} [b] - The right side operand.
+    	 */
+    	Owl.prototype.op = function(a, o, b) {
+    		var rtl = this.settings.rtl;
+    		switch (o) {
+    			case '<':
+    				return rtl ? a > b : a < b;
+    			case '>':
+    				return rtl ? a < b : a > b;
+    			case '>=':
+    				return rtl ? a <= b : a >= b;
+    			case '<=':
+    				return rtl ? a >= b : a <= b;
+    			default:
+    				break;
+    		}
+    	};
+
+    	/**
+    	 * Attaches to an internal event.
+    	 * @protected
+    	 * @param {HTMLElement} element - The event source.
+    	 * @param {String} event - The event name.
+    	 * @param {Function} listener - The event handler to attach.
+    	 * @param {Boolean} capture - Wether the event should be handled at the capturing phase or not.
+    	 */
+    	Owl.prototype.on = function(element, event, listener, capture) {
+    		if (element.addEventListener) {
+    			element.addEventListener(event, listener, capture);
+    		} else if (element.attachEvent) {
+    			element.attachEvent('on' + event, listener);
+    		}
+    	};
+
+    	/**
+    	 * Detaches from an internal event.
+    	 * @protected
+    	 * @param {HTMLElement} element - The event source.
+    	 * @param {String} event - The event name.
+    	 * @param {Function} listener - The attached event handler to detach.
+    	 * @param {Boolean} capture - Wether the attached event handler was registered as a capturing listener or not.
+    	 */
+    	Owl.prototype.off = function(element, event, listener, capture) {
+    		if (element.removeEventListener) {
+    			element.removeEventListener(event, listener, capture);
+    		} else if (element.detachEvent) {
+    			element.detachEvent('on' + event, listener);
+    		}
+    	};
+
+    	/**
+    	 * Triggers a public event.
+    	 * @todo Remove `status`, `relatedTarget` should be used instead.
+    	 * @protected
+    	 * @param {String} name - The event name.
+    	 * @param {*} [data=null] - The event data.
+    	 * @param {String} [namespace=carousel] - The event namespace.
+    	 * @param {String} [state] - The state which is associated with the event.
+    	 * @param {Boolean} [enter=false] - Indicates if the call enters the specified state or not.
+    	 * @returns {Event} - The event arguments.
+    	 */
+    	Owl.prototype.trigger = function(name, data, namespace, state, enter) {
+    		var status = {
+    			item: { count: this._items.length, index: this.current() }
+    		}, handler = $.camelCase(
+    			$.grep([ 'on', name, namespace ], function(v) { return v })
+    				.join('-').toLowerCase()
+    		), event = $.Event(
+    			[ name, 'owl', namespace || 'carousel' ].join('.').toLowerCase(),
+    			$.extend({ relatedTarget: this }, status, data)
+    		);
+
+    		if (!this._supress[name]) {
+    			$.each(this._plugins, function(name, plugin) {
+    				if (plugin.onTrigger) {
+    					plugin.onTrigger(event);
+    				}
+    			});
+
+    			this.register({ type: Owl.Type.Event, name: name });
+    			this.$element.trigger(event);
+
+    			if (this.settings && typeof this.settings[handler] === 'function') {
+    				this.settings[handler].call(this, event);
+    			}
+    		}
+
+    		return event;
+    	};
+
+    	/**
+    	 * Enters a state.
+    	 * @param name - The state name.
+    	 */
+    	Owl.prototype.enter = function(name) {
+    		$.each([ name ].concat(this._states.tags[name] || []), $.proxy(function(i, name) {
+    			if (this._states.current[name] === undefined) {
+    				this._states.current[name] = 0;
+    			}
+
+    			this._states.current[name]++;
+    		}, this));
+    	};
+
+    	/**
+    	 * Leaves a state.
+    	 * @param name - The state name.
+    	 */
+    	Owl.prototype.leave = function(name) {
+    		$.each([ name ].concat(this._states.tags[name] || []), $.proxy(function(i, name) {
+    			this._states.current[name]--;
+    		}, this));
+    	};
+
+    	/**
+    	 * Registers an event or state.
+    	 * @public
+    	 * @param {Object} object - The event or state to register.
+    	 */
+    	Owl.prototype.register = function(object) {
+    		if (object.type === Owl.Type.Event) {
+    			if (!$.event.special[object.name]) {
+    				$.event.special[object.name] = {};
+    			}
+
+    			if (!$.event.special[object.name].owl) {
+    				var _default = $.event.special[object.name]._default;
+    				$.event.special[object.name]._default = function(e) {
+    					if (_default && _default.apply && (!e.namespace || e.namespace.indexOf('owl') === -1)) {
+    						return _default.apply(this, arguments);
+    					}
+    					return e.namespace && e.namespace.indexOf('owl') > -1;
+    				};
+    				$.event.special[object.name].owl = true;
+    			}
+    		} else if (object.type === Owl.Type.State) {
+    			if (!this._states.tags[object.name]) {
+    				this._states.tags[object.name] = object.tags;
+    			} else {
+    				this._states.tags[object.name] = this._states.tags[object.name].concat(object.tags);
+    			}
+
+    			this._states.tags[object.name] = $.grep(this._states.tags[object.name], $.proxy(function(tag, i) {
+    				return $.inArray(tag, this._states.tags[object.name]) === i;
+    			}, this));
+    		}
+    	};
+
+    	/**
+    	 * Suppresses events.
+    	 * @protected
+    	 * @param {Array.<String>} events - The events to suppress.
+    	 */
+    	Owl.prototype.suppress = function(events) {
+    		$.each(events, $.proxy(function(index, event) {
+    			this._supress[event] = true;
+    		}, this));
+    	};
+
+    	/**
+    	 * Releases suppressed events.
+    	 * @protected
+    	 * @param {Array.<String>} events - The events to release.
+    	 */
+    	Owl.prototype.release = function(events) {
+    		$.each(events, $.proxy(function(index, event) {
+    			delete this._supress[event];
+    		}, this));
+    	};
+
+    	/**
+    	 * Gets unified pointer coordinates from event.
+    	 * @todo #261
+    	 * @protected
+    	 * @param {Event} - The `mousedown` or `touchstart` event.
+    	 * @returns {Object} - Contains `x` and `y` coordinates of current pointer position.
+    	 */
+    	Owl.prototype.pointer = function(event) {
+    		var result = { x: null, y: null };
+
+    		event = event.originalEvent || event || window.event;
+
+    		event = event.touches && event.touches.length ?
+    			event.touches[0] : event.changedTouches && event.changedTouches.length ?
+    				event.changedTouches[0] : event;
+
+    		if (event.pageX) {
+    			result.x = event.pageX;
+    			result.y = event.pageY;
+    		} else {
+    			result.x = event.clientX;
+    			result.y = event.clientY;
+    		}
+
+    		return result;
+    	};
+
+    	/**
+    	 * Determines if the input is a Number or something that can be coerced to a Number
+    	 * @protected
+    	 * @param {Number|String|Object|Array|Boolean|RegExp|Function|Symbol} - The input to be tested
+    	 * @returns {Boolean} - An indication if the input is a Number or can be coerced to a Number
+    	 */
+    	Owl.prototype.isNumeric = function(number) {
+    		return !isNaN(parseFloat(number));
+    	};
+
+    	/**
+    	 * Gets the difference of two vectors.
+    	 * @todo #261
+    	 * @protected
+    	 * @param {Object} - The first vector.
+    	 * @param {Object} - The second vector.
+    	 * @returns {Object} - The difference.
+    	 */
+    	Owl.prototype.difference = function(first, second) {
+    		return {
+    			x: first.x - second.x,
+    			y: first.y - second.y
+    		};
+    	};
+
+    	/**
+    	 * The jQuery Plugin for the Owl Carousel
+    	 * @todo Navigation plugin `next` and `prev`
+    	 * @public
+    	 */
+    	$.fn.owlCarousel = function(option) {
+    		var args = Array.prototype.slice.call(arguments, 1);
+
+    		return this.each(function() {
+    			var $this = $(this),
+    				data = $this.data('owl.carousel');
+
+    			if (!data) {
+    				data = new Owl(this, typeof option == 'object' && option);
+    				$this.data('owl.carousel', data);
+
+    				$.each([
+    					'next', 'prev', 'to', 'destroy', 'refresh', 'replace', 'add', 'remove'
+    				], function(i, event) {
+    					data.register({ type: Owl.Type.Event, name: event });
+    					data.$element.on(event + '.owl.carousel.core', $.proxy(function(e) {
+    						if (e.namespace && e.relatedTarget !== this) {
+    							this.suppress([ event ]);
+    							data[event].apply(this, [].slice.call(arguments, 1));
+    							this.release([ event ]);
+    						}
+    					}, data));
+    				});
+    			}
+
+    			if (typeof option == 'string' && option.charAt(0) !== '_') {
+    				data[option].apply(data, args);
+    			}
+    		});
+    	};
+
+    	/**
+    	 * The constructor for the jQuery Plugin
+    	 * @public
+    	 */
+    	$.fn.owlCarousel.Constructor = Owl;
+
+    })(window.Zepto || window.jQuery, window, document);
+    (function($, window, document, undefined) {
+
+    	/**
+    	 * Creates the auto refresh plugin.
+    	 * @class The Auto Refresh Plugin
+    	 * @param {Owl} carousel - The Owl Carousel
+    	 */
+    	var AutoRefresh = function(carousel) {
+    		/**
+    		 * Reference to the core.
+    		 * @protected
+    		 * @type {Owl}
+    		 */
+    		this._core = carousel;
+
+    		/**
+    		 * Refresh interval.
+    		 * @protected
+    		 * @type {number}
+    		 */
+    		this._interval = null;
+
+    		/**
+    		 * Whether the element is currently visible or not.
+    		 * @protected
+    		 * @type {Boolean}
+    		 */
+    		this._visible = null;
+
+    		/**
+    		 * All event handlers.
+    		 * @protected
+    		 * @type {Object}
+    		 */
+    		this._handlers = {
+    			'initialized.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace && this._core.settings.autoRefresh) {
+    					this.watch();
+    				}
+    			}, this)
+    		};
+
+    		// set default options
+    		this._core.options = $.extend({}, AutoRefresh.Defaults, this._core.options);
+
+    		// register event handlers
+    		this._core.$element.on(this._handlers);
+    	};
+
+    	/**
+    	 * Default options.
+    	 * @public
+    	 */
+    	AutoRefresh.Defaults = {
+    		autoRefresh: true,
+    		autoRefreshInterval: 500
+    	};
+
+    	/**
+    	 * Watches the element.
+    	 */
+    	AutoRefresh.prototype.watch = function() {
+    		if (this._interval) {
+    			return;
+    		}
+
+    		this._visible = this._core.isVisible();
+    		this._interval = window.setInterval($.proxy(this.refresh, this), this._core.settings.autoRefreshInterval);
+    	};
+
+    	/**
+    	 * Refreshes the element.
+    	 */
+    	AutoRefresh.prototype.refresh = function() {
+    		if (this._core.isVisible() === this._visible) {
+    			return;
+    		}
+
+    		this._visible = !this._visible;
+
+    		this._core.$element.toggleClass('owl-hidden', !this._visible);
+
+    		this._visible && (this._core.invalidate('width') && this._core.refresh());
+    	};
+
+    	/**
+    	 * Destroys the plugin.
+    	 */
+    	AutoRefresh.prototype.destroy = function() {
+    		var handler, property;
+
+    		window.clearInterval(this._interval);
+
+    		for (handler in this._handlers) {
+    			this._core.$element.off(handler, this._handlers[handler]);
+    		}
+    		for (property in Object.getOwnPropertyNames(this)) {
+    			typeof this[property] != 'function' && (this[property] = null);
+    		}
+    	};
+
+    	$.fn.owlCarousel.Constructor.Plugins.AutoRefresh = AutoRefresh;
+
+    })(window.Zepto || window.jQuery, window, document);
+    (function($, window, document, undefined) {
+
+    	/**
+    	 * Creates the lazy plugin.
+    	 * @class The Lazy Plugin
+    	 * @param {Owl} carousel - The Owl Carousel
+    	 */
+    	var Lazy = function(carousel) {
+
+    		/**
+    		 * Reference to the core.
+    		 * @protected
+    		 * @type {Owl}
+    		 */
+    		this._core = carousel;
+
+    		/**
+    		 * Already loaded items.
+    		 * @protected
+    		 * @type {Array.<jQuery>}
+    		 */
+    		this._loaded = [];
+
+    		/**
+    		 * Event handlers.
+    		 * @protected
+    		 * @type {Object}
+    		 */
+    		this._handlers = {
+    			'initialized.owl.carousel change.owl.carousel resized.owl.carousel': $.proxy(function(e) {
+    				if (!e.namespace) {
+    					return;
+    				}
+
+    				if (!this._core.settings || !this._core.settings.lazyLoad) {
+    					return;
+    				}
+
+    				if ((e.property && e.property.name == 'position') || e.type == 'initialized') {
+    					var settings = this._core.settings,
+    						n = (settings.center && Math.ceil(settings.items / 2) || settings.items),
+    						i = ((settings.center && n * -1) || 0),
+    						position = (e.property && e.property.value !== undefined ? e.property.value : this._core.current()) + i,
+    						clones = this._core.clones().length,
+    						load = $.proxy(function(i, v) { this.load(v); }, this);
+    					//TODO: Need documentation for this new option
+    					if (settings.lazyLoadEager > 0) {
+    						n += settings.lazyLoadEager;
+    						// If the carousel is looping also preload images that are to the "left"
+    						if (settings.loop) {
+                  position -= settings.lazyLoadEager;
+                  n++;
+                }
+    					}
+
+    					while (i++ < n) {
+    						this.load(clones / 2 + this._core.relative(position));
+    						clones && $.each(this._core.clones(this._core.relative(position)), load);
+    						position++;
+    					}
+    				}
+    			}, this)
+    		};
+
+    		// set the default options
+    		this._core.options = $.extend({}, Lazy.Defaults, this._core.options);
+
+    		// register event handler
+    		this._core.$element.on(this._handlers);
+    	};
+
+    	/**
+    	 * Default options.
+    	 * @public
+    	 */
+    	Lazy.Defaults = {
+    		lazyLoad: false,
+    		lazyLoadEager: 0
+    	};
+
+    	/**
+    	 * Loads all resources of an item at the specified position.
+    	 * @param {Number} position - The absolute position of the item.
+    	 * @protected
+    	 */
+    	Lazy.prototype.load = function(position) {
+    		var $item = this._core.$stage.children().eq(position),
+    			$elements = $item && $item.find('.owl-lazy');
+
+    		if (!$elements || $.inArray($item.get(0), this._loaded) > -1) {
+    			return;
+    		}
+
+    		$elements.each($.proxy(function(index, element) {
+    			var $element = $(element), image,
+                    url = (window.devicePixelRatio > 1 && $element.attr('data-src-retina')) || $element.attr('data-src') || $element.attr('data-srcset');
+
+    			this._core.trigger('load', { element: $element, url: url }, 'lazy');
+
+    			if ($element.is('img')) {
+    				$element.one('load.owl.lazy', $.proxy(function() {
+    					$element.css('opacity', 1);
+    					this._core.trigger('loaded', { element: $element, url: url }, 'lazy');
+    				}, this)).attr('src', url);
+                } else if ($element.is('source')) {
+                    $element.one('load.owl.lazy', $.proxy(function() {
+                        this._core.trigger('loaded', { element: $element, url: url }, 'lazy');
+                    }, this)).attr('srcset', url);
+    			} else {
+    				image = new Image();
+    				image.onload = $.proxy(function() {
+    					$element.css({
+    						'background-image': 'url("' + url + '")',
+    						'opacity': '1'
+    					});
+    					this._core.trigger('loaded', { element: $element, url: url }, 'lazy');
+    				}, this);
+    				image.src = url;
+    			}
+    		}, this));
+
+    		this._loaded.push($item.get(0));
+    	};
+
+    	/**
+    	 * Destroys the plugin.
+    	 * @public
+    	 */
+    	Lazy.prototype.destroy = function() {
+    		var handler, property;
+
+    		for (handler in this.handlers) {
+    			this._core.$element.off(handler, this.handlers[handler]);
+    		}
+    		for (property in Object.getOwnPropertyNames(this)) {
+    			typeof this[property] != 'function' && (this[property] = null);
+    		}
+    	};
+
+    	$.fn.owlCarousel.Constructor.Plugins.Lazy = Lazy;
+
+    })(window.Zepto || window.jQuery, window, document);
+    (function($, window, document, undefined) {
+
+    	/**
+    	 * Creates the auto height plugin.
+    	 * @class The Auto Height Plugin
+    	 * @param {Owl} carousel - The Owl Carousel
+    	 */
+    	var AutoHeight = function(carousel) {
+    		/**
+    		 * Reference to the core.
+    		 * @protected
+    		 * @type {Owl}
+    		 */
+    		this._core = carousel;
+
+    		this._previousHeight = null;
+
+    		/**
+    		 * All event handlers.
+    		 * @protected
+    		 * @type {Object}
+    		 */
+    		this._handlers = {
+    			'initialized.owl.carousel refreshed.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace && this._core.settings.autoHeight) {
+    					this.update();
+    				}
+    			}, this),
+    			'changed.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace && this._core.settings.autoHeight && e.property.name === 'position'){
+    					this.update();
+    				}
+    			}, this),
+    			'loaded.owl.lazy': $.proxy(function(e) {
+    				if (e.namespace && this._core.settings.autoHeight
+    					&& e.element.closest('.' + this._core.settings.itemClass).index() === this._core.current()) {
+    					this.update();
+    				}
+    			}, this)
+    		};
+
+    		// set default options
+    		this._core.options = $.extend({}, AutoHeight.Defaults, this._core.options);
+
+    		// register event handlers
+    		this._core.$element.on(this._handlers);
+    		this._intervalId = null;
+    		var refThis = this;
+
+    		// These changes have been taken from a PR by gavrochelegnou proposed in #1575
+    		// and have been made compatible with the latest jQuery version
+    		$(window).on('load', function() {
+    			if (refThis._core.settings.autoHeight) {
+    				refThis.update();
+    			}
+    		});
+
+    		// Autoresize the height of the carousel when window is resized
+    		// When carousel has images, the height is dependent on the width
+    		// and should also change on resize
+    		$(window).resize(function() {
+    			if (refThis._core.settings.autoHeight) {
+    				if (refThis._intervalId != null) {
+    					clearTimeout(refThis._intervalId);
+    				}
+
+    				refThis._intervalId = setTimeout(function() {
+    					refThis.update();
+    				}, 250);
+    			}
+    		});
+
+    	};
+
+    	/**
+    	 * Default options.
+    	 * @public
+    	 */
+    	AutoHeight.Defaults = {
+    		autoHeight: false,
+    		autoHeightClass: 'owl-height'
+    	};
+
+    	/**
+    	 * Updates the view.
+    	 */
+    	AutoHeight.prototype.update = function() {
+    		var start = this._core._current,
+    			end = start + this._core.settings.items,
+    			lazyLoadEnabled = this._core.settings.lazyLoad,
+    			visible = this._core.$stage.children().toArray().slice(start, end),
+    			heights = [],
+    			maxheight = 0;
+
+    		$.each(visible, function(index, item) {
+    			heights.push($(item).height());
+    		});
+
+    		maxheight = Math.max.apply(null, heights);
+
+    		if (maxheight <= 1 && lazyLoadEnabled && this._previousHeight) {
+    			maxheight = this._previousHeight;
+    		}
+
+    		this._previousHeight = maxheight;
+
+    		this._core.$stage.parent()
+    			.height(maxheight)
+    			.addClass(this._core.settings.autoHeightClass);
+    	};
+
+    	AutoHeight.prototype.destroy = function() {
+    		var handler, property;
+
+    		for (handler in this._handlers) {
+    			this._core.$element.off(handler, this._handlers[handler]);
+    		}
+    		for (property in Object.getOwnPropertyNames(this)) {
+    			typeof this[property] !== 'function' && (this[property] = null);
+    		}
+    	};
+
+    	$.fn.owlCarousel.Constructor.Plugins.AutoHeight = AutoHeight;
+
+    })(window.Zepto || window.jQuery, window, document);
+    (function($, window, document, undefined) {
+
+    	/**
+    	 * Creates the video plugin.
+    	 * @class The Video Plugin
+    	 * @param {Owl} carousel - The Owl Carousel
+    	 */
+    	var Video = function(carousel) {
+    		/**
+    		 * Reference to the core.
+    		 * @protected
+    		 * @type {Owl}
+    		 */
+    		this._core = carousel;
+
+    		/**
+    		 * Cache all video URLs.
+    		 * @protected
+    		 * @type {Object}
+    		 */
+    		this._videos = {};
+
+    		/**
+    		 * Current playing item.
+    		 * @protected
+    		 * @type {jQuery}
+    		 */
+    		this._playing = null;
+
+    		/**
+    		 * All event handlers.
+    		 * @todo The cloned content removale is too late
+    		 * @protected
+    		 * @type {Object}
+    		 */
+    		this._handlers = {
+    			'initialized.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace) {
+    					this._core.register({ type: 'state', name: 'playing', tags: [ 'interacting' ] });
+    				}
+    			}, this),
+    			'resize.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace && this._core.settings.video && this.isInFullScreen()) {
+    					e.preventDefault();
+    				}
+    			}, this),
+    			'refreshed.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace && this._core.is('resizing')) {
+    					this._core.$stage.find('.cloned .owl-video-frame').remove();
+    				}
+    			}, this),
+    			'changed.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace && e.property.name === 'position' && this._playing) {
+    					this.stop();
+    				}
+    			}, this),
+    			'prepared.owl.carousel': $.proxy(function(e) {
+    				if (!e.namespace) {
+    					return;
+    				}
+
+    				var $element = $(e.content).find('.owl-video');
+
+    				if ($element.length) {
+    					$element.css('display', 'none');
+    					this.fetch($element, $(e.content));
+    				}
+    			}, this)
+    		};
+
+    		// set default options
+    		this._core.options = $.extend({}, Video.Defaults, this._core.options);
+
+    		// register event handlers
+    		this._core.$element.on(this._handlers);
+
+    		this._core.$element.on('click.owl.video', '.owl-video-play-icon', $.proxy(function(e) {
+    			this.play(e);
+    		}, this));
+    	};
+
+    	/**
+    	 * Default options.
+    	 * @public
+    	 */
+    	Video.Defaults = {
+    		video: false,
+    		videoHeight: false,
+    		videoWidth: false
+    	};
+
+    	/**
+    	 * Gets the video ID and the type (YouTube/Vimeo/vzaar only).
+    	 * @protected
+    	 * @param {jQuery} target - The target containing the video data.
+    	 * @param {jQuery} item - The item containing the video.
+    	 */
+    	Video.prototype.fetch = function(target, item) {
+    			var type = (function() {
+    					if (target.attr('data-vimeo-id')) {
+    						return 'vimeo';
+    					} else if (target.attr('data-vzaar-id')) {
+    						return 'vzaar'
+    					} else {
+    						return 'youtube';
+    					}
+    				})(),
+    				id = target.attr('data-vimeo-id') || target.attr('data-youtube-id') || target.attr('data-vzaar-id'),
+    				width = target.attr('data-width') || this._core.settings.videoWidth,
+    				height = target.attr('data-height') || this._core.settings.videoHeight,
+    				url = target.attr('href');
+
+    		if (url) {
+
+    			/*
+    					Parses the id's out of the following urls (and probably more):
+    					https://www.youtube.com/watch?v=:id
+    					https://youtu.be/:id
+    					https://vimeo.com/:id
+    					https://vimeo.com/channels/:channel/:id
+    					https://vimeo.com/groups/:group/videos/:id
+    					https://app.vzaar.com/videos/:id
+
+    					Visual example: https://regexper.com/#(http%3A%7Chttps%3A%7C)%5C%2F%5C%2F(player.%7Cwww.%7Capp.)%3F(vimeo%5C.com%7Cyoutu(be%5C.com%7C%5C.be%7Cbe%5C.googleapis%5C.com)%7Cvzaar%5C.com)%5C%2F(video%5C%2F%7Cvideos%5C%2F%7Cembed%5C%2F%7Cchannels%5C%2F.%2B%5C%2F%7Cgroups%5C%2F.%2B%5C%2F%7Cwatch%5C%3Fv%3D%7Cv%5C%2F)%3F(%5BA-Za-z0-9._%25-%5D*)(%5C%26%5CS%2B)%3F
+    			*/
+
+    			id = url.match(/(http:|https:|)\/\/(player.|www.|app.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com|be\-nocookie\.com)|vzaar\.com)\/(video\/|videos\/|embed\/|channels\/.+\/|groups\/.+\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(\&\S+)?/);
+
+    			if (id[3].indexOf('youtu') > -1) {
+    				type = 'youtube';
+    			} else if (id[3].indexOf('vimeo') > -1) {
+    				type = 'vimeo';
+    			} else if (id[3].indexOf('vzaar') > -1) {
+    				type = 'vzaar';
+    			} else {
+    				throw new Error('Video URL not supported.');
+    			}
+    			id = id[6];
+    		} else {
+    			throw new Error('Missing video URL.');
+    		}
+
+    		this._videos[url] = {
+    			type: type,
+    			id: id,
+    			width: width,
+    			height: height
+    		};
+
+    		item.attr('data-video', url);
+
+    		this.thumbnail(target, this._videos[url]);
+    	};
+
+    	/**
+    	 * Creates video thumbnail.
+    	 * @protected
+    	 * @param {jQuery} target - The target containing the video data.
+    	 * @param {Object} info - The video info object.
+    	 * @see `fetch`
+    	 */
+    	Video.prototype.thumbnail = function(target, video) {
+    		var tnLink,
+    			icon,
+    			path,
+    			dimensions = video.width && video.height ? 'width:' + video.width + 'px;height:' + video.height + 'px;' : '',
+    			customTn = target.find('img'),
+    			srcType = 'src',
+    			lazyClass = '',
+    			settings = this._core.settings,
+    			create = function(path) {
+    				icon = '<div class="owl-video-play-icon"></div>';
+
+    				if (settings.lazyLoad) {
+    					tnLink = $('<div/>',{
+    						"class": 'owl-video-tn ' + lazyClass,
+    						"srcType": path
+    					});
+    				} else {
+    					tnLink = $( '<div/>', {
+    						"class": "owl-video-tn",
+    						"style": 'opacity:1;background-image:url(' + path + ')'
+    					});
+    				}
+    				target.after(tnLink);
+    				target.after(icon);
+    			};
+
+    		// wrap video content into owl-video-wrapper div
+    		target.wrap( $( '<div/>', {
+    			"class": "owl-video-wrapper",
+    			"style": dimensions
+    		}));
+
+    		if (this._core.settings.lazyLoad) {
+    			srcType = 'data-src';
+    			lazyClass = 'owl-lazy';
+    		}
+
+    		// custom thumbnail
+    		if (customTn.length) {
+    			create(customTn.attr(srcType));
+    			customTn.remove();
+    			return false;
+    		}
+
+    		if (video.type === 'youtube') {
+    			path = "//img.youtube.com/vi/" + video.id + "/hqdefault.jpg";
+    			create(path);
+    		} else if (video.type === 'vimeo') {
+    			$.ajax({
+    				type: 'GET',
+    				url: '//vimeo.com/api/v2/video/' + video.id + '.json',
+    				jsonp: 'callback',
+    				dataType: 'jsonp',
+    				success: function(data) {
+    					path = data[0].thumbnail_large;
+    					create(path);
+    				}
+    			});
+    		} else if (video.type === 'vzaar') {
+    			$.ajax({
+    				type: 'GET',
+    				url: '//vzaar.com/api/videos/' + video.id + '.json',
+    				jsonp: 'callback',
+    				dataType: 'jsonp',
+    				success: function(data) {
+    					path = data.framegrab_url;
+    					create(path);
+    				}
+    			});
+    		}
+    	};
+
+    	/**
+    	 * Stops the current video.
+    	 * @public
+    	 */
+    	Video.prototype.stop = function() {
+    		this._core.trigger('stop', null, 'video');
+    		this._playing.find('.owl-video-frame').remove();
+    		this._playing.removeClass('owl-video-playing');
+    		this._playing = null;
+    		this._core.leave('playing');
+    		this._core.trigger('stopped', null, 'video');
+    	};
+
+    	/**
+    	 * Starts the current video.
+    	 * @public
+    	 * @param {Event} event - The event arguments.
+    	 */
+    	Video.prototype.play = function(event) {
+    		var target = $(event.target),
+    			item = target.closest('.' + this._core.settings.itemClass),
+    			video = this._videos[item.attr('data-video')],
+    			width = video.width || '100%',
+    			height = video.height || this._core.$stage.height(),
+    			html,
+    			iframe;
+
+    		if (this._playing) {
+    			return;
+    		}
+
+    		this._core.enter('playing');
+    		this._core.trigger('play', null, 'video');
+
+    		item = this._core.items(this._core.relative(item.index()));
+
+    		this._core.reset(item.index());
+
+    		html = $( '<iframe frameborder="0" allowfullscreen mozallowfullscreen webkitAllowFullScreen ></iframe>' );
+    		html.attr( 'height', height );
+    		html.attr( 'width', width );
+    		if (video.type === 'youtube') {
+    			html.attr( 'src', '//www.youtube.com/embed/' + video.id + '?autoplay=1&rel=0&v=' + video.id );
+    		} else if (video.type === 'vimeo') {
+    			html.attr( 'src', '//player.vimeo.com/video/' + video.id + '?autoplay=1' );
+    		} else if (video.type === 'vzaar') {
+    			html.attr( 'src', '//view.vzaar.com/' + video.id + '/player?autoplay=true' );
+    		}
+
+    		iframe = $(html).wrap( '<div class="owl-video-frame" />' ).insertAfter(item.find('.owl-video'));
+
+    		this._playing = item.addClass('owl-video-playing');
+    	};
+
+    	/**
+    	 * Checks whether an video is currently in full screen mode or not.
+    	 * @todo Bad style because looks like a readonly method but changes members.
+    	 * @protected
+    	 * @returns {Boolean}
+    	 */
+    	Video.prototype.isInFullScreen = function() {
+    		var element = document.fullscreenElement || document.mozFullScreenElement ||
+    				document.webkitFullscreenElement;
+
+    		return element && $(element).parent().hasClass('owl-video-frame');
+    	};
+
+    	/**
+    	 * Destroys the plugin.
+    	 */
+    	Video.prototype.destroy = function() {
+    		var handler, property;
+
+    		this._core.$element.off('click.owl.video');
+
+    		for (handler in this._handlers) {
+    			this._core.$element.off(handler, this._handlers[handler]);
+    		}
+    		for (property in Object.getOwnPropertyNames(this)) {
+    			typeof this[property] != 'function' && (this[property] = null);
+    		}
+    	};
+
+    	$.fn.owlCarousel.Constructor.Plugins.Video = Video;
+
+    })(window.Zepto || window.jQuery, window, document);
+    (function($, window, document, undefined) {
+
+    	/**
+    	 * Creates the animate plugin.
+    	 * @class The Navigation Plugin
+    	 * @param {Owl} scope - The Owl Carousel
+    	 */
+    	var Animate = function(scope) {
+    		this.core = scope;
+    		this.core.options = $.extend({}, Animate.Defaults, this.core.options);
+    		this.swapping = true;
+    		this.previous = undefined;
+    		this.next = undefined;
+
+    		this.handlers = {
+    			'change.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace && e.property.name == 'position') {
+    					this.previous = this.core.current();
+    					this.next = e.property.value;
+    				}
+    			}, this),
+    			'drag.owl.carousel dragged.owl.carousel translated.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace) {
+    					this.swapping = e.type == 'translated';
+    				}
+    			}, this),
+    			'translate.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace && this.swapping && (this.core.options.animateOut || this.core.options.animateIn)) {
+    					this.swap();
+    				}
+    			}, this)
+    		};
+
+    		this.core.$element.on(this.handlers);
+    	};
+
+    	/**
+    	 * Default options.
+    	 * @public
+    	 */
+    	Animate.Defaults = {
+    		animateOut: false,
+    		animateIn: false
+    	};
+
+    	/**
+    	 * Toggles the animation classes whenever an translations starts.
+    	 * @protected
+    	 * @returns {Boolean|undefined}
+    	 */
+    	Animate.prototype.swap = function() {
+
+    		if (this.core.settings.items !== 1) {
+    			return;
+    		}
+
+    		if (!$.support.animation || !$.support.transition) {
+    			return;
+    		}
+
+    		this.core.speed(0);
+
+    		var left,
+    			clear = $.proxy(this.clear, this),
+    			previous = this.core.$stage.children().eq(this.previous),
+    			next = this.core.$stage.children().eq(this.next),
+    			incoming = this.core.settings.animateIn,
+    			outgoing = this.core.settings.animateOut;
+
+    		if (this.core.current() === this.previous) {
+    			return;
+    		}
+
+    		if (outgoing) {
+    			left = this.core.coordinates(this.previous) - this.core.coordinates(this.next);
+    			previous.one($.support.animation.end, clear)
+    				.css( { 'left': left + 'px' } )
+    				.addClass('animated owl-animated-out')
+    				.addClass(outgoing);
+    		}
+
+    		if (incoming) {
+    			next.one($.support.animation.end, clear)
+    				.addClass('animated owl-animated-in')
+    				.addClass(incoming);
+    		}
+    	};
+
+    	Animate.prototype.clear = function(e) {
+    		$(e.target).css( { 'left': '' } )
+    			.removeClass('animated owl-animated-out owl-animated-in')
+    			.removeClass(this.core.settings.animateIn)
+    			.removeClass(this.core.settings.animateOut);
+    		this.core.onTransitionEnd();
+    	};
+
+    	/**
+    	 * Destroys the plugin.
+    	 * @public
+    	 */
+    	Animate.prototype.destroy = function() {
+    		var handler, property;
+
+    		for (handler in this.handlers) {
+    			this.core.$element.off(handler, this.handlers[handler]);
+    		}
+    		for (property in Object.getOwnPropertyNames(this)) {
+    			typeof this[property] != 'function' && (this[property] = null);
+    		}
+    	};
+
+    	$.fn.owlCarousel.Constructor.Plugins.Animate = Animate;
+
+    })(window.Zepto || window.jQuery, window, document);
+    (function($, window, document, undefined) {
+
+    	/**
+    	 * Creates the autoplay plugin.
+    	 * @class The Autoplay Plugin
+    	 * @param {Owl} scope - The Owl Carousel
+    	 */
+    	var Autoplay = function(carousel) {
+    		/**
+    		 * Reference to the core.
+    		 * @protected
+    		 * @type {Owl}
+    		 */
+    		this._core = carousel;
+
+    		/**
+    		 * The autoplay timeout id.
+    		 * @type {Number}
+    		 */
+    		this._call = null;
+
+    		/**
+    		 * Depending on the state of the plugin, this variable contains either
+    		 * the start time of the timer or the current timer value if it's
+    		 * paused. Since we start in a paused state we initialize the timer
+    		 * value.
+    		 * @type {Number}
+    		 */
+    		this._time = 0;
+
+    		/**
+    		 * Stores the timeout currently used.
+    		 * @type {Number}
+    		 */
+    		this._timeout = 0;
+
+    		/**
+    		 * Indicates whenever the autoplay is paused.
+    		 * @type {Boolean}
+    		 */
+    		this._paused = true;
+
+    		/**
+    		 * All event handlers.
+    		 * @protected
+    		 * @type {Object}
+    		 */
+    		this._handlers = {
+    			'changed.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace && e.property.name === 'settings') {
+    					if (this._core.settings.autoplay) {
+    						this.play();
+    					} else {
+    						this.stop();
+    					}
+    				} else if (e.namespace && e.property.name === 'position' && this._paused) {
+    					// Reset the timer. This code is triggered when the position
+    					// of the carousel was changed through user interaction.
+    					this._time = 0;
+    				}
+    			}, this),
+    			'initialized.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace && this._core.settings.autoplay) {
+    					this.play();
+    				}
+    			}, this),
+    			'play.owl.autoplay': $.proxy(function(e, t, s) {
+    				if (e.namespace) {
+    					this.play(t, s);
+    				}
+    			}, this),
+    			'stop.owl.autoplay': $.proxy(function(e) {
+    				if (e.namespace) {
+    					this.stop();
+    				}
+    			}, this),
+    			'mouseover.owl.autoplay': $.proxy(function() {
+    				if (this._core.settings.autoplayHoverPause && this._core.is('rotating')) {
+    					this.pause();
+    				}
+    			}, this),
+    			'mouseleave.owl.autoplay': $.proxy(function() {
+    				if (this._core.settings.autoplayHoverPause && this._core.is('rotating')) {
+    					this.play();
+    				}
+    			}, this),
+    			'touchstart.owl.core': $.proxy(function() {
+    				if (this._core.settings.autoplayHoverPause && this._core.is('rotating')) {
+    					this.pause();
+    				}
+    			}, this),
+    			'touchend.owl.core': $.proxy(function() {
+    				if (this._core.settings.autoplayHoverPause) {
+    					this.play();
+    				}
+    			}, this)
+    		};
+
+    		// register event handlers
+    		this._core.$element.on(this._handlers);
+
+    		// set default options
+    		this._core.options = $.extend({}, Autoplay.Defaults, this._core.options);
+    	};
+
+    	/**
+    	 * Default options.
+    	 * @public
+    	 */
+    	Autoplay.Defaults = {
+    		autoplay: false,
+    		autoplayTimeout: 5000,
+    		autoplayHoverPause: false,
+    		autoplaySpeed: false
+    	};
+
+    	/**
+    	 * Transition to the next slide and set a timeout for the next transition.
+    	 * @private
+    	 * @param {Number} [speed] - The animation speed for the animations.
+    	 */
+    	Autoplay.prototype._next = function(speed) {
+    		this._call = window.setTimeout(
+    			$.proxy(this._next, this, speed),
+    			this._timeout * (Math.round(this.read() / this._timeout) + 1) - this.read()
+    		);
+
+    		if (this._core.is('interacting') || document.hidden) {
+    			return;
+    		}
+    		this._core.next(speed || this._core.settings.autoplaySpeed);
+    	};
+
+    	/**
+    	 * Reads the current timer value when the timer is playing.
+    	 * @public
+    	 */
+    	Autoplay.prototype.read = function() {
+    		return new Date().getTime() - this._time;
+    	};
+
+    	/**
+    	 * Starts the autoplay.
+    	 * @public
+    	 * @param {Number} [timeout] - The interval before the next animation starts.
+    	 * @param {Number} [speed] - The animation speed for the animations.
+    	 */
+    	Autoplay.prototype.play = function(timeout, speed) {
+    		var elapsed;
+
+    		if (!this._core.is('rotating')) {
+    			this._core.enter('rotating');
+    		}
+
+    		timeout = timeout || this._core.settings.autoplayTimeout;
+
+    		// Calculate the elapsed time since the last transition. If the carousel
+    		// wasn't playing this calculation will yield zero.
+    		elapsed = Math.min(this._time % (this._timeout || timeout), timeout);
+
+    		if (this._paused) {
+    			// Start the clock.
+    			this._time = this.read();
+    			this._paused = false;
+    		} else {
+    			// Clear the active timeout to allow replacement.
+    			window.clearTimeout(this._call);
+    		}
+
+    		// Adjust the origin of the timer to match the new timeout value.
+    		this._time += this.read() % timeout - elapsed;
+
+    		this._timeout = timeout;
+    		this._call = window.setTimeout($.proxy(this._next, this, speed), timeout - elapsed);
+    	};
+
+    	/**
+    	 * Stops the autoplay.
+    	 * @public
+    	 */
+    	Autoplay.prototype.stop = function() {
+    		if (this._core.is('rotating')) {
+    			// Reset the clock.
+    			this._time = 0;
+    			this._paused = true;
+
+    			window.clearTimeout(this._call);
+    			this._core.leave('rotating');
+    		}
+    	};
+
+    	/**
+    	 * Pauses the autoplay.
+    	 * @public
+    	 */
+    	Autoplay.prototype.pause = function() {
+    		if (this._core.is('rotating') && !this._paused) {
+    			// Pause the clock.
+    			this._time = this.read();
+    			this._paused = true;
+
+    			window.clearTimeout(this._call);
+    		}
+    	};
+
+    	/**
+    	 * Destroys the plugin.
+    	 */
+    	Autoplay.prototype.destroy = function() {
+    		var handler, property;
+
+    		this.stop();
+
+    		for (handler in this._handlers) {
+    			this._core.$element.off(handler, this._handlers[handler]);
+    		}
+    		for (property in Object.getOwnPropertyNames(this)) {
+    			typeof this[property] != 'function' && (this[property] = null);
+    		}
+    	};
+
+    	$.fn.owlCarousel.Constructor.Plugins.autoplay = Autoplay;
+
+    })(window.Zepto || window.jQuery, window, document);
+    (function($, window, document, undefined) {
+
+    	/**
+    	 * Creates the navigation plugin.
+    	 * @class The Navigation Plugin
+    	 * @param {Owl} carousel - The Owl Carousel.
+    	 */
+    	var Navigation = function(carousel) {
+    		/**
+    		 * Reference to the core.
+    		 * @protected
+    		 * @type {Owl}
+    		 */
+    		this._core = carousel;
+
+    		/**
+    		 * Indicates whether the plugin is initialized or not.
+    		 * @protected
+    		 * @type {Boolean}
+    		 */
+    		this._initialized = false;
+
+    		/**
+    		 * The current paging indexes.
+    		 * @protected
+    		 * @type {Array}
+    		 */
+    		this._pages = [];
+
+    		/**
+    		 * All DOM elements of the user interface.
+    		 * @protected
+    		 * @type {Object}
+    		 */
+    		this._controls = {};
+
+    		/**
+    		 * Markup for an indicator.
+    		 * @protected
+    		 * @type {Array.<String>}
+    		 */
+    		this._templates = [];
+
+    		/**
+    		 * The carousel element.
+    		 * @type {jQuery}
+    		 */
+    		this.$element = this._core.$element;
+
+    		/**
+    		 * Overridden methods of the carousel.
+    		 * @protected
+    		 * @type {Object}
+    		 */
+    		this._overrides = {
+    			next: this._core.next,
+    			prev: this._core.prev,
+    			to: this._core.to
+    		};
+
+    		/**
+    		 * All event handlers.
+    		 * @protected
+    		 * @type {Object}
+    		 */
+    		this._handlers = {
+    			'prepared.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace && this._core.settings.dotsData) {
+    					this._templates.push('<div class="' + this._core.settings.dotClass + '">' +
+    						$(e.content).find('[data-dot]').addBack('[data-dot]').attr('data-dot') + '</div>');
+    				}
+    			}, this),
+    			'added.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace && this._core.settings.dotsData) {
+    					this._templates.splice(e.position, 0, this._templates.pop());
+    				}
+    			}, this),
+    			'remove.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace && this._core.settings.dotsData) {
+    					this._templates.splice(e.position, 1);
+    				}
+    			}, this),
+    			'changed.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace && e.property.name == 'position') {
+    					this.draw();
+    				}
+    			}, this),
+    			'initialized.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace && !this._initialized) {
+    					this._core.trigger('initialize', null, 'navigation');
+    					this.initialize();
+    					this.update();
+    					this.draw();
+    					this._initialized = true;
+    					this._core.trigger('initialized', null, 'navigation');
+    				}
+    			}, this),
+    			'refreshed.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace && this._initialized) {
+    					this._core.trigger('refresh', null, 'navigation');
+    					this.update();
+    					this.draw();
+    					this._core.trigger('refreshed', null, 'navigation');
+    				}
+    			}, this)
+    		};
+
+    		// set default options
+    		this._core.options = $.extend({}, Navigation.Defaults, this._core.options);
+
+    		// register event handlers
+    		this.$element.on(this._handlers);
+    	};
+
+    	/**
+    	 * Default options.
+    	 * @public
+    	 * @todo Rename `slideBy` to `navBy`
+    	 */
+    	Navigation.Defaults = {
+    		nav: false,
+    		navText: [
+    			'<span aria-label="' + 'Previous' + '">&#x2039;</span>',
+    			'<span aria-label="' + 'Next' + '">&#x203a;</span>'
+    		],
+    		navSpeed: false,
+    		navElement: 'button type="button" role="presentation"',
+    		navContainer: false,
+    		navContainerClass: 'owl-nav',
+    		navClass: [
+    			'owl-prev',
+    			'owl-next'
+    		],
+    		slideBy: 1,
+    		dotClass: 'owl-dot',
+    		dotsClass: 'owl-dots',
+    		dots: true,
+    		dotsEach: false,
+    		dotsData: false,
+    		dotsSpeed: false,
+    		dotsContainer: false
+    	};
+
+    	/**
+    	 * Initializes the layout of the plugin and extends the carousel.
+    	 * @protected
+    	 */
+    	Navigation.prototype.initialize = function() {
+    		var override,
+    			settings = this._core.settings;
+
+    		// create DOM structure for relative navigation
+    		this._controls.$relative = (settings.navContainer ? $(settings.navContainer)
+    			: $('<div>').addClass(settings.navContainerClass).appendTo(this.$element)).addClass('disabled');
+
+    		this._controls.$previous = $('<' + settings.navElement + '>')
+    			.addClass(settings.navClass[0])
+    			.html(settings.navText[0])
+    			.prependTo(this._controls.$relative)
+    			.on('click', $.proxy(function(e) {
+    				this.prev(settings.navSpeed);
+    			}, this));
+    		this._controls.$next = $('<' + settings.navElement + '>')
+    			.addClass(settings.navClass[1])
+    			.html(settings.navText[1])
+    			.appendTo(this._controls.$relative)
+    			.on('click', $.proxy(function(e) {
+    				this.next(settings.navSpeed);
+    			}, this));
+
+    		// create DOM structure for absolute navigation
+    		if (!settings.dotsData) {
+    			this._templates = [ $('<button role="button">')
+    				.addClass(settings.dotClass)
+    				.append($('<span>'))
+    				.prop('outerHTML') ];
+    		}
+
+    		this._controls.$absolute = (settings.dotsContainer ? $(settings.dotsContainer)
+    			: $('<div>').addClass(settings.dotsClass).appendTo(this.$element)).addClass('disabled');
+
+    		this._controls.$absolute.on('click', 'button', $.proxy(function(e) {
+    			var index = $(e.target).parent().is(this._controls.$absolute)
+    				? $(e.target).index() : $(e.target).parent().index();
+
+    			e.preventDefault();
+
+    			this.to(index, settings.dotsSpeed);
+    		}, this));
+
+    		/*$el.on('focusin', function() {
+    			$(document).off(".carousel");
+
+    			$(document).on('keydown.carousel', function(e) {
+    				if(e.keyCode == 37) {
+    					$el.trigger('prev.owl')
+    				}
+    				if(e.keyCode == 39) {
+    					$el.trigger('next.owl')
+    				}
+    			});
+    		});*/
+
+    		// override public methods of the carousel
+    		for (override in this._overrides) {
+    			this._core[override] = $.proxy(this[override], this);
+    		}
+    	};
+
+    	/**
+    	 * Destroys the plugin.
+    	 * @protected
+    	 */
+    	Navigation.prototype.destroy = function() {
+    		var handler, control, property, override, settings;
+    		settings = this._core.settings;
+
+    		for (handler in this._handlers) {
+    			this.$element.off(handler, this._handlers[handler]);
+    		}
+    		for (control in this._controls) {
+    			if (control === '$relative' && settings.navContainer) {
+    				this._controls[control].html('');
+    			} else {
+    				this._controls[control].remove();
+    			}
+    		}
+    		for (override in this.overides) {
+    			this._core[override] = this._overrides[override];
+    		}
+    		for (property in Object.getOwnPropertyNames(this)) {
+    			typeof this[property] != 'function' && (this[property] = null);
+    		}
+    	};
+
+    	/**
+    	 * Updates the internal state.
+    	 * @protected
+    	 */
+    	Navigation.prototype.update = function() {
+    		var i, j, k,
+    			lower = this._core.clones().length / 2,
+    			upper = lower + this._core.items().length,
+    			maximum = this._core.maximum(true),
+    			settings = this._core.settings,
+    			size = settings.center || settings.autoWidth || settings.dotsData
+    				? 1 : settings.dotsEach || settings.items;
+
+    		if (settings.slideBy !== 'page') {
+    			settings.slideBy = Math.min(settings.slideBy, settings.items);
+    		}
+
+    		if (settings.dots || settings.slideBy == 'page') {
+    			this._pages = [];
+
+    			for (i = lower, j = 0, k = 0; i < upper; i++) {
+    				if (j >= size || j === 0) {
+    					this._pages.push({
+    						start: Math.min(maximum, i - lower),
+    						end: i - lower + size - 1
+    					});
+    					if (Math.min(maximum, i - lower) === maximum) {
+    						break;
+    					}
+    					j = 0, ++k;
+    				}
+    				j += this._core.mergers(this._core.relative(i));
+    			}
+    		}
+    	};
+
+    	/**
+    	 * Draws the user interface.
+    	 * @todo The option `dotsData` wont work.
+    	 * @protected
+    	 */
+    	Navigation.prototype.draw = function() {
+    		var difference,
+    			settings = this._core.settings,
+    			disabled = this._core.items().length <= settings.items,
+    			index = this._core.relative(this._core.current()),
+    			loop = settings.loop || settings.rewind;
+
+    		this._controls.$relative.toggleClass('disabled', !settings.nav || disabled);
+
+    		if (settings.nav) {
+    			this._controls.$previous.toggleClass('disabled', !loop && index <= this._core.minimum(true));
+    			this._controls.$next.toggleClass('disabled', !loop && index >= this._core.maximum(true));
+    		}
+
+    		this._controls.$absolute.toggleClass('disabled', !settings.dots || disabled);
+
+    		if (settings.dots) {
+    			difference = this._pages.length - this._controls.$absolute.children().length;
+
+    			if (settings.dotsData && difference !== 0) {
+    				this._controls.$absolute.html(this._templates.join(''));
+    			} else if (difference > 0) {
+    				this._controls.$absolute.append(new Array(difference + 1).join(this._templates[0]));
+    			} else if (difference < 0) {
+    				this._controls.$absolute.children().slice(difference).remove();
+    			}
+
+    			this._controls.$absolute.find('.active').removeClass('active');
+    			this._controls.$absolute.children().eq($.inArray(this.current(), this._pages)).addClass('active');
+    		}
+    	};
+
+    	/**
+    	 * Extends event data.
+    	 * @protected
+    	 * @param {Event} event - The event object which gets thrown.
+    	 */
+    	Navigation.prototype.onTrigger = function(event) {
+    		var settings = this._core.settings;
+
+    		event.page = {
+    			index: $.inArray(this.current(), this._pages),
+    			count: this._pages.length,
+    			size: settings && (settings.center || settings.autoWidth || settings.dotsData
+    				? 1 : settings.dotsEach || settings.items)
+    		};
+    	};
+
+    	/**
+    	 * Gets the current page position of the carousel.
+    	 * @protected
+    	 * @returns {Number}
+    	 */
+    	Navigation.prototype.current = function() {
+    		var current = this._core.relative(this._core.current());
+    		return $.grep(this._pages, $.proxy(function(page, index) {
+    			return page.start <= current && page.end >= current;
+    		}, this)).pop();
+    	};
+
+    	/**
+    	 * Gets the current succesor/predecessor position.
+    	 * @protected
+    	 * @returns {Number}
+    	 */
+    	Navigation.prototype.getPosition = function(successor) {
+    		var position, length,
+    			settings = this._core.settings;
+
+    		if (settings.slideBy == 'page') {
+    			position = $.inArray(this.current(), this._pages);
+    			length = this._pages.length;
+    			successor ? ++position : --position;
+    			position = this._pages[((position % length) + length) % length].start;
+    		} else {
+    			position = this._core.relative(this._core.current());
+    			length = this._core.items().length;
+    			successor ? position += settings.slideBy : position -= settings.slideBy;
+    		}
+
+    		return position;
+    	};
+
+    	/**
+    	 * Slides to the next item or page.
+    	 * @public
+    	 * @param {Number} [speed=false] - The time in milliseconds for the transition.
+    	 */
+    	Navigation.prototype.next = function(speed) {
+    		$.proxy(this._overrides.to, this._core)(this.getPosition(true), speed);
+    	};
+
+    	/**
+    	 * Slides to the previous item or page.
+    	 * @public
+    	 * @param {Number} [speed=false] - The time in milliseconds for the transition.
+    	 */
+    	Navigation.prototype.prev = function(speed) {
+    		$.proxy(this._overrides.to, this._core)(this.getPosition(false), speed);
+    	};
+
+    	/**
+    	 * Slides to the specified item or page.
+    	 * @public
+    	 * @param {Number} position - The position of the item or page.
+    	 * @param {Number} [speed] - The time in milliseconds for the transition.
+    	 * @param {Boolean} [standard=false] - Whether to use the standard behaviour or not.
+    	 */
+    	Navigation.prototype.to = function(position, speed, standard) {
+    		var length;
+
+    		if (!standard && this._pages.length) {
+    			length = this._pages.length;
+    			$.proxy(this._overrides.to, this._core)(this._pages[((position % length) + length) % length].start, speed);
+    		} else {
+    			$.proxy(this._overrides.to, this._core)(position, speed);
+    		}
+    	};
+
+    	$.fn.owlCarousel.Constructor.Plugins.Navigation = Navigation;
+
+    })(window.Zepto || window.jQuery, window, document);
+    (function($, window, document, undefined) {
+
+    	/**
+    	 * Creates the hash plugin.
+    	 * @class The Hash Plugin
+    	 * @param {Owl} carousel - The Owl Carousel
+    	 */
+    	var Hash = function(carousel) {
+    		/**
+    		 * Reference to the core.
+    		 * @protected
+    		 * @type {Owl}
+    		 */
+    		this._core = carousel;
+
+    		/**
+    		 * Hash index for the items.
+    		 * @protected
+    		 * @type {Object}
+    		 */
+    		this._hashes = {};
+
+    		/**
+    		 * The carousel element.
+    		 * @type {jQuery}
+    		 */
+    		this.$element = this._core.$element;
+
+    		/**
+    		 * All event handlers.
+    		 * @protected
+    		 * @type {Object}
+    		 */
+    		this._handlers = {
+    			'initialized.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace && this._core.settings.startPosition === 'URLHash') {
+    					$(window).trigger('hashchange.owl.navigation');
+    				}
+    			}, this),
+    			'prepared.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace) {
+    					var hash = $(e.content).find('[data-hash]').addBack('[data-hash]').attr('data-hash');
+
+    					if (!hash) {
+    						return;
+    					}
+
+    					this._hashes[hash] = e.content;
+    				}
+    			}, this),
+    			'changed.owl.carousel': $.proxy(function(e) {
+    				if (e.namespace && e.property.name === 'position') {
+    					var current = this._core.items(this._core.relative(this._core.current())),
+    						hash = $.map(this._hashes, function(item, hash) {
+    							return item === current ? hash : null;
+    						}).join();
+
+    					if (!hash || window.location.hash.slice(1) === hash) {
+    						return;
+    					}
+
+    					window.location.hash = hash;
+    				}
+    			}, this)
+    		};
+
+    		// set default options
+    		this._core.options = $.extend({}, Hash.Defaults, this._core.options);
+
+    		// register the event handlers
+    		this.$element.on(this._handlers);
+
+    		// register event listener for hash navigation
+    		$(window).on('hashchange.owl.navigation', $.proxy(function(e) {
+    			var hash = window.location.hash.substring(1),
+    				items = this._core.$stage.children(),
+    				position = this._hashes[hash] && items.index(this._hashes[hash]);
+
+    			if (position === undefined || position === this._core.current()) {
+    				return;
+    			}
+
+    			this._core.to(this._core.relative(position), false, true);
+    		}, this));
+    	};
+
+    	/**
+    	 * Default options.
+    	 * @public
+    	 */
+    	Hash.Defaults = {
+    		URLhashListener: false
+    	};
+
+    	/**
+    	 * Destroys the plugin.
+    	 * @public
+    	 */
+    	Hash.prototype.destroy = function() {
+    		var handler, property;
+
+    		$(window).off('hashchange.owl.navigation');
+
+    		for (handler in this._handlers) {
+    			this._core.$element.off(handler, this._handlers[handler]);
+    		}
+    		for (property in Object.getOwnPropertyNames(this)) {
+    			typeof this[property] != 'function' && (this[property] = null);
+    		}
+    	};
+
+    	$.fn.owlCarousel.Constructor.Plugins.Hash = Hash;
+
+    })(window.Zepto || window.jQuery, window, document);
+    (function($, window, document, undefined) {
+
+    	var style = $('<support>').get(0).style,
+    		prefixes = 'Webkit Moz O ms'.split(' '),
+    		events = {
+    			transition: {
+    				end: {
+    					WebkitTransition: 'webkitTransitionEnd',
+    					MozTransition: 'transitionend',
+    					OTransition: 'oTransitionEnd',
+    					transition: 'transitionend'
+    				}
+    			},
+    			animation: {
+    				end: {
+    					WebkitAnimation: 'webkitAnimationEnd',
+    					MozAnimation: 'animationend',
+    					OAnimation: 'oAnimationEnd',
+    					animation: 'animationend'
+    				}
+    			}
+    		},
+    		tests = {
+    			csstransforms: function() {
+    				return !!test('transform');
+    			},
+    			csstransforms3d: function() {
+    				return !!test('perspective');
+    			},
+    			csstransitions: function() {
+    				return !!test('transition');
+    			},
+    			cssanimations: function() {
+    				return !!test('animation');
+    			}
+    		};
+
+    	function test(property, prefixed) {
+    		var result = false,
+    			upper = property.charAt(0).toUpperCase() + property.slice(1);
+
+    		$.each((property + ' ' + prefixes.join(upper + ' ') + upper).split(' '), function(i, property) {
+    			if (style[property] !== undefined) {
+    				result = prefixed ? property : true;
+    				return false;
+    			}
+    		});
+
+    		return result;
+    	}
+
+    	function prefixed(property) {
+    		return test(property, true);
+    	}
+
+    	if (tests.csstransitions()) {
+    		/* jshint -W053 */
+    		$.support.transition = new String(prefixed('transition'));
+    		$.support.transition.end = events.transition.end[ $.support.transition ];
+    	}
+
+    	if (tests.cssanimations()) {
+    		/* jshint -W053 */
+    		$.support.animation = new String(prefixed('animation'));
+    		$.support.animation.end = events.animation.end[ $.support.animation ];
+    	}
+
+    	if (tests.csstransforms()) {
+    		/* jshint -W053 */
+    		$.support.transform = new String(prefixed('transform'));
+    		$.support.transform3d = tests.csstransforms3d();
+    	}
+
+    })(window.Zepto || window.jQuery, window, document);
+
+    var $ = window.jQuery;
+    var ReactOwlCarousel = /** @class */ (function (_super) {
+        __extends(ReactOwlCarousel, _super);
+        function ReactOwlCarousel(props) {
+            var _this = _super.call(this, props) || this;
+            _this.containerRef = function (inst) {
+                _this.container = inst;
+            };
+            var _a = filterOptions(_this.props), options = _a[0], propsWithoutOptions = _a[1];
+            _this.options = options;
+            _this.propsWithoutOptions = propsWithoutOptions;
+            return _this;
+        }
+        ReactOwlCarousel.prototype.componentDidMount = function () {
+            this.$ele = $(this.container);
+            this.create();
+        };
+        ReactOwlCarousel.prototype.UNSAFE_componentWillReceiveProps = function () {
+            this.destory();
+        };
+        ReactOwlCarousel.prototype.componentDidUpdate = function () {
+            var _a = filterOptions(this.props), options = _a[0], propsWithoutOptions = _a[1];
+            this.options = options;
+            this.propsWithoutOptions = propsWithoutOptions;
+            this.create();
+        };
+        ReactOwlCarousel.prototype.next = function (speed) {
+            if (!this.$ele)
+                throw new Error('OwlCarousel is not created');
+            if (typeof speed === 'number') {
+                this.$ele.trigger('next.owl.carousel', [speed]);
+            }
+            else {
+                this.$ele.trigger('next.owl.carousel', speed);
+            }
+        };
+        ReactOwlCarousel.prototype.prev = function (speed) {
+            if (!this.$ele)
+                throw new Error('OwlCarousel is not created');
+            if (typeof speed === 'number') {
+                this.$ele.trigger('prev.owl.carousel', [speed]);
+            }
+            else {
+                this.$ele.trigger('prev.owl.carousel', speed);
+            }
+        };
+        ReactOwlCarousel.prototype.to = function (position, speed) {
+            if (!this.$ele)
+                throw new Error('OwlCarousel is not created');
+            if (typeof position === 'number' && typeof speed === 'number') {
+                this.$ele.trigger('to.owl.carousel', [position, speed]);
+            }
+            else {
+                this.$ele.trigger('to.owl.carousel');
+            }
+        };
+        ReactOwlCarousel.prototype.create = function (options) {
+            if (!this.$ele)
+                throw new Error('OwlCarousel is not created');
+            this.$ele.owlCarousel(options || this.options);
+        };
+        ReactOwlCarousel.prototype.destory = function () {
+            if (!this.$ele)
+                throw new Error('OwlCarousel is not created');
+            this.$ele.trigger('destroy.owl.carousel');
+        };
+        ReactOwlCarousel.prototype.play = function (timeout, speed) {
+            if (!this.$ele)
+                throw new Error('OwlCarousel is not created');
+            if (typeof timeout === 'number' && typeof speed === 'number') {
+                this.$ele.trigger('play.owl.autoplay', [timeout, speed]);
+            }
+            else {
+                this.$ele.trigger('play.owl.autoplay');
+            }
+        };
+        ReactOwlCarousel.prototype.stop = function () {
+            if (!this.$ele)
+                throw new Error('OwlCarousel is not created');
+            this.$ele.trigger('stop.owl.autoplay');
+        };
+        ReactOwlCarousel.prototype.render = function () {
+            var _a = this.propsWithoutOptions, className = _a.className, props = __rest(_a, ["className"]);
+            return (React__default.createElement("div", __assign({ className: "owl-carousel " + className, ref: this.containerRef }, props)));
+        };
+        return ReactOwlCarousel;
+    }(React.Component));
+    var OPTIONS = new Set([
+        'items',
+        'margin',
+        'loop',
+        'center',
+        'mouseDrag',
+        'touchDrag',
+        'pullDrag',
+        'freeDrag',
+        'stagePadding',
+        'merge',
+        'mergeFit',
+        'autoWidth',
+        'startPosition',
+        'URLhashListener',
+        'nav',
+        'rewind',
+        'navText',
+        'navElement',
+        'slideBy',
+        'dots',
+        'dotsEach',
+        'dotData',
+        'lazyLoad',
+        'lazyContent',
+        'autoplay',
+        'autoplayTimeout',
+        'autoplayHoverPause',
+        'smartSpeed',
+        'fluidSpeed',
+        'autoplaySpeed',
+        'navSpeed',
+        'dotsSpeed',
+        'dragEndSpeed',
+        'callbacks',
+        'responsive',
+        'responsiveRefreshRate',
+        'responsiveBaseElement',
+        'video',
+        'videoHeight',
+        'videoWidth',
+        'animateOut',
+        'animateIn',
+        'fallbackEasing',
+        'info',
+        'nestedItemSelector',
+        'itemElement',
+        'stageElement',
+        'navContainer',
+        'dotsContainer',
+        // 'CLASSES'
+        'refreshClass',
+        'loadingClass',
+        'loadedClass',
+        'rtlClass',
+        'dragClass',
+        'grabClass',
+        'stageClass',
+        'stageOuterClass',
+        'navContainerClass',
+        'navClass',
+        'controlsClass',
+        'dotClass',
+        'dotsClass',
+        'autoHeightClass',
+        'responsiveClass',
+        // 'EVENTS'
+        'onInitialize',
+        'onInitialized',
+        'onResize',
+        'onResized',
+        'onRefresh',
+        'onRefreshed',
+        'onDrag',
+        'onDragged',
+        'onTranslate',
+        'onTranslated',
+        'onChange',
+        'onChanged',
+        'onLoadLazy',
+        'onLoadedLazy',
+        'onStopVideo',
+        'onPlayVideo',
+    ]);
+    function filterOptions(item) {
+        var options = {};
+        var propsWithoutOptions = {};
+        Object.keys(item).forEach(function (key) {
+            if (OPTIONS.has(key)) {
+                options[key] = item[key];
+            }
+            else {
+                propsWithoutOptions[key] = item[key];
+            }
+        });
+        return [options, propsWithoutOptions];
+    }
+
+    return ReactOwlCarousel;
+
+})));
+
+
+/***/ }),
+
 /***/ "./node_modules/react/cjs/react.development.js":
 /*!*****************************************************!*\
   !*** ./node_modules/react/cjs/react.development.js ***!
@@ -506,7 +4626,7 @@ module.exports = ReactPropTypesSecret;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.13.1
+/** @license React v16.14.0
  * react.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -526,7 +4646,7 @@ if (true) {
 var _assign = __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js");
 var checkPropTypes = __webpack_require__(/*! prop-types/checkPropTypes */ "./node_modules/prop-types/checkPropTypes.js");
 
-var ReactVersion = '16.13.1';
+var ReactVersion = '16.14.0';
 
 // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
 // nor polyfill, then a plain number is used for performance.
@@ -3519,6 +7639,19 @@ var blocksDetail = {
     }), wp.element.createElement("path", {
       d: "m21.25 24h-18.5c-1.517 0-2.75-1.233-2.75-2.75v-18.5c0-1.517 1.233-2.75 2.75-2.75h18.5c1.517 0 2.75 1.233 2.75 2.75v18.5c0 1.517-1.233 2.75-2.75 2.75zm-18.5-22.5c-.689 0-1.25.561-1.25 1.25v18.5c0 .689.561 1.25 1.25 1.25h18.5c.689 0 1.25-.561 1.25-1.25v-18.5c0-.689-.561-1.25-1.25-1.25z"
     }))
+  },
+  ubl_block_product: {
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Th Product", "unlimited-blocks"),
+    description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("This block is for Product Blocks.", "unlimited-blocks"),
+    keywords: ["product"],
+    icon: wp.element.createElement("svg", {
+      focusable: "false",
+      "aria-hidden": "true",
+      viewBox: "0 0 24 24",
+      "data-testid": "LocalGroceryStoreIcon"
+    }, wp.element.createElement("path", {
+      d: "M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"
+    }))
   }
 };
 
@@ -3621,7 +7754,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var _wp = wp,
-    apiFetch = _wp.apiFetch; //<<<<<<<<<<<-------->>>>>>>>>>>>>>
+    apiFetch = _wp.apiFetch;
+/**
+ * this api setting for post
+ */
+//<<<<<<<<<<<-------->>>>>>>>>>>>>>
 
 var postDataInit = function postDataInit() {
   var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -3922,7 +8059,11 @@ var showTagsFn = function showTagsFn(tags_, tag_r) {
       }, returnH.name);
     });
   }
-}; //<<<<<<<<<<<-------->>>>>>>>>>>>>>
+};
+/**
+ * this api setting for post end ---------------------------------------------------
+ */
+//<<<<<<<<<<<-------->>>>>>>>>>>>>>
 
 var PostLoader = function PostLoader() {
   return wp.element.createElement("div", {
@@ -5390,10 +9531,12 @@ var Border = /*#__PURE__*/function (_Component) {
 
       return wp.element.createElement("div", {
         className: "icon-border-setting"
-      }, wp.element.createElement("div", {
+      }, wp.element.createElement("label", {
+        className: "label_"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Border Style", "unlimited-blocks")), wp.element.createElement("div", {
         className: "ubl-multiple-select"
-      }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["SelectControl"], {
-        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Border Style", "unlimited-blocks"),
+      }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["SelectControl"] // label={__("Border Style", "unlimited-blocks")}
+      , {
         value: this.state.borderStyle,
         onChange: function onChange(choosen) {
           _this2.updateState("borderStyle", choosen);
@@ -5978,6 +10121,441 @@ var Dimension = /*#__PURE__*/function (_Component) {
               }}
             /> */
 }
+
+/***/ }),
+
+/***/ "./src/blocks/block-assets/woocommerce/product-functions.js":
+/*!******************************************************************!*\
+  !*** ./src/blocks/block-assets/woocommerce/product-functions.js ***!
+  \******************************************************************/
+/*! exports provided: productDataInit, firstTimeInitProduct */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "productDataInit", function() { return productDataInit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "firstTimeInitProduct", function() { return firstTimeInitProduct; });
+/* harmony import */ var _wordpress_html_entities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/html-entities */ "@wordpress/html-entities");
+/* harmony import */ var _wordpress_html_entities__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_html_entities__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+var _wp = wp,
+    apiFetch = _wp.apiFetch;
+/**
+ * this api setting for product ---------------------------------------------------
+ */
+
+var productDataInit = function productDataInit() {
+  var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var sendData = data;
+  return apiFetch({
+    path: "/unlimited-blocks-product-api/v3/product/",
+    method: "POST",
+    data: sendData
+  }).then(function (postsData) {
+    return postsData;
+  }).catch(function (error) {
+    return console.error(error);
+  });
+}; // //<<<<<<<<<<<-------->>>>>>>>>>>>>>
+// export const filterProductInit = async (this_, data_ = {}) => {
+//   let argData = data_;
+//   //number of post
+//   if (!("numberOfPosts" in argData)) {
+//     argData["numberOfPosts"] = this_.props.attributes.numberOfPosts;
+//   }
+//   // choose category
+//   let categoryIes =
+//     "product_cate" in argData
+//       ? argData.product_cate
+//       : this_.props.attributes.product_cate;
+//   if (categoryIes) {
+//     argData["product_cate"] = categoryIes.join(",");
+//   }
+//   // featured image
+//   if ("featured_image" in argData && argData.featured_image == "1") {
+//     argData["featured_image"] = 1;
+//   }
+//   let postData = await productDataInit(argData);
+//   if (postData) {
+//     // all posts
+//     if ("posts" in postData && postData.posts != "") {
+//       let posts_ = postData.posts;
+//       this_.setState({ posts: posts_ });
+//     } else {
+//       this_.setState({ posts: null });
+//     }
+//     //total post
+//     if ("totalPost" in postData && postData.totalPost != "") {
+//       let totalPost_ = postData.totalPost;
+//       this_.setState({ totalPost: totalPost_ });
+//     } else {
+//       this_.setState({ totalPost: null });
+//     }
+//   }
+// };
+//<<<<<<<<<<<-------->>>>>>>>>>>>>>
+
+var firstTimeInitProduct = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(this_) {
+    var data_,
+        _this_$props$attribut,
+        numberOfPosts,
+        product_cate,
+        sendData,
+        postData,
+        posts_,
+        category_,
+        setobjasArray,
+        objKey,
+        totalPost_,
+        _args = arguments;
+
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            data_ = _args.length > 1 && _args[1] !== undefined ? _args[1] : {};
+            _this_$props$attribut = this_.props.attributes, numberOfPosts = _this_$props$attribut.numberOfPosts, product_cate = _this_$props$attribut.product_cate;
+            sendData = {
+              initialize: 1,
+              numberOfPosts: numberOfPosts
+            }; // featured image
+
+            if ("featured_image" in data_) {
+              sendData["featured_image"] = 1;
+            } // choose category
+
+
+            if (product_cate.length) {
+              sendData["product_cate"] = product_cate.join(",");
+            }
+
+            _context.next = 7;
+            return productDataInit(sendData);
+
+          case 7:
+            postData = _context.sent;
+            console.log("postData->", postData);
+
+            if (postData) {
+              // // all posts
+              if ("posts" in postData && postData.posts != "") {
+                posts_ = postData.posts;
+                this_.setState({
+                  posts: posts_
+                });
+              } else {
+                this_.setState({
+                  posts: null
+                });
+              } // //all categories
+
+
+              if ("category" in postData && postData.category != "") {
+                category_ = postData.category;
+
+                if (category_ instanceof Object && Object.keys(category_).length) {
+                  setobjasArray = [];
+
+                  for (objKey in category_) {
+                    setobjasArray.push(category_[objKey]);
+                  }
+
+                  this_.setState({
+                    category: setobjasArray
+                  });
+                } else {
+                  this_.setState({
+                    category: category_
+                  });
+                }
+              } else {
+                this_.setState({
+                  category: null
+                });
+              } // //total post
+
+
+              if ("totalPost" in postData && postData.totalPost != "") {
+                totalPost_ = postData.totalPost;
+                this_.setState({
+                  totalPost: totalPost_
+                });
+              } else {
+                this_.setState({
+                  totalPost: null
+                });
+              }
+            }
+
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function firstTimeInitProduct(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+/**
+ * this api setting for product end ---------------------------------------------------
+ */
+
+/***/ }),
+
+/***/ "./src/blocks/block-assets/woocommerce/productCategory.js":
+/*!****************************************************************!*\
+  !*** ./src/blocks/block-assets/woocommerce/productCategory.js ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var productCategory = /*#__PURE__*/function (_Component) {
+  _inherits(productCategory, _Component);
+
+  var _super = _createSuper(productCategory);
+
+  function productCategory(props) {
+    var _this;
+
+    _classCallCheck(this, productCategory);
+
+    _this = _super.call(this, props);
+
+    _defineProperty(_assertThisInitialized(_this), "updatePropsCategory", function (cate) {
+      var operator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+
+      var selectedCate = _toConsumableArray(_this.props.value);
+
+      if (cate == "removeall") {
+        selectedCate = [];
+      } else if (operator == "remove") {
+        if (selectedCate.length) {
+          var getIndex = selectedCate.indexOf(cate);
+
+          if (getIndex > -1) {
+            selectedCate.splice(getIndex, 1);
+          }
+        }
+      } else {
+        selectedCate.unshift(cate);
+      }
+
+      _this.props.onMovement(selectedCate);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "renderCategory", function () {
+      var renderCategory = _this.props.category;
+      var noCateFound = wp.element.createElement("span", {
+        className: "noCateFound"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("No Category Found..", "unlimited-blocks"));
+      var selectedCate = _this.props.value; // let selectedCate = ["accessories", "dairy-products"];
+
+      if (renderCategory || _this.state.category) {
+        renderCategory = _this.state.category ? _this.state.category : renderCategory;
+
+        if (renderCategory != "no") {
+          return renderCategory.map(function (val) {
+            var slug_ = val.slug;
+            var selectedCateCl = selectedCate.includes(slug_) ? "selected" : "";
+            return wp.element.createElement("div", {
+              className: "cate-radio-caontainer ".concat(selectedCateCl),
+              onClick: function onClick() {
+                var operator_ = !selectedCateCl ? "add" : "remove";
+
+                _this.updatePropsCategory(slug_, operator_);
+              }
+            }, wp.element.createElement("div", {
+              className: "radio-title"
+            }, wp.element.createElement("span", {
+              className: "r_"
+            }), wp.element.createElement("span", {
+              className: "t_"
+            }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])(val.name, "unlimited-blocks"))), wp.element.createElement("div", {
+              className: "total_"
+            }, wp.element.createElement("span", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])(val.count + " Products", "unlimited-blocks"))));
+          });
+        } else {
+          return noCateFound;
+        }
+      } else {
+        return noCateFound;
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "cateFilter", function (val) {
+      // console.log("val", val);
+      var setStateCate = {
+        category: false
+      };
+
+      if (val != "") {
+        val = val.toLowerCase();
+
+        var renderCategory = _toConsumableArray(_this.props.category);
+
+        var filter_ = function filter_(val_) {
+          var title_ = val_.name.toLowerCase();
+          var getIndex = title_.indexOf(val);
+          return getIndex > -1;
+        };
+
+        var filterCate = renderCategory.filter(filter_);
+
+        if (filterCate.length) {
+          setStateCate = {
+            category: filterCate
+          };
+        } else {
+          setStateCate = {
+            category: "no"
+          };
+        }
+      } // set state
+
+
+      _this.setState(setStateCate); // set state
+
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "categorySearch", function () {
+      return wp.element.createElement("div", {
+        className: "categoriesSearch_"
+      }, wp.element.createElement("span", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Search for product categories", "unlimited-blocks")), wp.element.createElement("input", {
+        type: "text",
+        onKeyUp: function onKeyUp(e) {
+          var val = e.target.value;
+
+          _this.cateFilter(val);
+        }
+      }));
+    });
+
+    _this.state = {
+      category: false
+    };
+    return _this;
+  }
+
+  _createClass(productCategory, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {// console.log("category Filter", this.props);
+    }
+  }, {
+    key: "categorySelected",
+    value: function categorySelected() {
+      var _this2 = this;
+
+      var renderCategory = _toConsumableArray(this.props.category);
+
+      if (renderCategory.length) {
+        //   let selectedCate = ["accessories", "dairy-products"];
+        var selectedCate = this.props.value;
+        var selectedCateLength = selectedCate.length;
+
+        var getName = function getName(slug_) {
+          var filterName = function filterName(val_) {
+            return val_.slug == slug_;
+          };
+
+          var filtered = renderCategory.filter(filterName);
+          return filtered[0].name;
+        };
+
+        return wp.element.createElement("div", {
+          className: "categoriesSelected"
+        }, wp.element.createElement("div", {
+          className: "title_"
+        }, wp.element.createElement("span", {
+          className: "t_"
+        }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("".concat(selectedCateLength, " ").concat(selectedCateLength == 1 ? "category" : "categories", " Selected"), "unlimited-blocks")), selectedCateLength ? wp.element.createElement("span", {
+          onClick: function onClick() {
+            _this2.updatePropsCategory("removeall");
+          },
+          className: "c_"
+        }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Clear All", "unlimited-blocks")) : ""), selectedCateLength ? wp.element.createElement("div", {
+          className: "list_"
+        }, selectedCate.map(function (cateVal_) {
+          return wp.element.createElement("span", null, getName(cateVal_), " ", wp.element.createElement("i", {
+            onClick: function onClick() {
+              _this2.updatePropsCategory(cateVal_, "remove");
+            },
+            className: "dashicons dashicons-dismiss"
+          }));
+        })) : "");
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      // console.log("category->", this.props);
+      return wp.element.createElement("div", {
+        className: "categories_component"
+      }, this.categorySelected(), this.categorySearch(), wp.element.createElement("div", {
+        className: "categories_"
+      }, this.renderCategory()));
+    }
+  }]);
+
+  return productCategory;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (productCategory);
 
 /***/ }),
 
@@ -21518,6 +26096,304 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__["registerBlockType"])("unl
 
 /***/ }),
 
+/***/ "./src/blocks/simple-product/edit.js":
+/*!*******************************************!*\
+  !*** ./src/blocks/simple-product/edit.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_owl_carousel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-owl-carousel */ "./node_modules/react-owl-carousel/umd/OwlCarousel.js");
+/* harmony import */ var react_owl_carousel__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_owl_carousel__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var html_entities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! html-entities */ "./node_modules/html-entities/lib/index.js");
+/* harmony import */ var html_entities__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(html_entities__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _block_assets_woocommerce_product_functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../block-assets/woocommerce/product-functions */ "./src/blocks/block-assets/woocommerce/product-functions.js");
+/* harmony import */ var _block_assets_woocommerce_productCategory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../block-assets/woocommerce/productCategory */ "./src/blocks/block-assets/woocommerce/productCategory.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+ // import { decodeEntity } from "html-entities";
+
+ // const result = decodeEntities( '&aacute;' );
+
+
+
+
+
+
+var Edit = /*#__PURE__*/function (_Component) {
+  _inherits(Edit, _Component);
+
+  var _super = _createSuper(Edit);
+
+  function Edit(props) {
+    var _this;
+
+    _classCallCheck(this, Edit);
+
+    _this = _super.call(this, props);
+
+    _defineProperty(_assertThisInitialized(_this), "updateObj", function (parent_key, child_key, initialValue, value_) {
+      var newNewValue = _toConsumableArray(initialValue);
+
+      newNewValue[0][child_key] = value_;
+      var setAttr_ = {};
+      setAttr_[parent_key] = newNewValue;
+
+      _this.props.setAttributes(setAttr_);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "returnHtml", function (postAttr) {
+      return wp.element.createElement("div", {
+        className: "elemento-product-outer-wrap"
+      }, wp.element.createElement("div", {
+        className: "elemento-product-simple-inner-wrap"
+      }, postAttr.sale ? postAttr.sale : "", wp.element.createElement("a", {
+        href: "#",
+        className: "elemento-addons-quickview-simple"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Quick View", "unlimited-blocks")), wp.element.createElement("a", {
+        class: "img_",
+        href: "#",
+        target: "_blank"
+      }, postAttr.product_image), wp.element.createElement("a", {
+        class: "elemento-addons-product-title",
+        href: "#",
+        target: "_blank"
+      }, postAttr.product_title), postAttr.rating ? postAttr.rating : ""));
+    });
+
+    _this.state = {
+      // pages state from post
+      posts: [],
+      category: [],
+      totalPost: null
+    };
+    return _this;
+  }
+
+  _createClass(Edit, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var sendData = {
+        featured_image: 1
+      };
+      Object(_block_assets_woocommerce_product_functions__WEBPACK_IMPORTED_MODULE_6__["firstTimeInitProduct"])(this, sendData);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      // ++++++++++++++===============
+      console.log("product props", this.props);
+      console.log("product state", this.state); // const {} = this.state;
+
+      var _this$props = this.props,
+          attributes = _this$props.attributes,
+          setAttributes = _this$props.setAttributes; // const { posts, category, totalPost } = this.state;
+
+      var product_cate = attributes.product_cate,
+          numberOfPosts = attributes.numberOfPosts,
+          numberOfColumn = attributes.numberOfColumn; // let heading_ = heading[0];
+      // let thumbnail_ = thumbnail[0];
+      // let excerpt_ = excerpt[0];
+      // let date_ = date[0];
+      // let author_ = author[0];
+      // let meta_style_ = meta_style[0];
+      // let title_ = title[0];
+      // let showTag_ = showTag[0];
+      // let showCate_ = showCate[0];
+      // let layout_ = layout[0];
+      // // category init
+      // let cateGory = [];
+      // if (!category) {
+      //   cateGory = false;
+      // } else {
+      //   cateGory = categoryList(category);
+      // }
+
+      var slider_options_ = {
+        items: numberOfColumn // nav: true,
+        // navText: [
+        //   "<div class='ul-kk nav-btn prev-slide'>Prev</div>",
+        //   "<div class='ul-kk nav-btn next-slide'>Next</div>",
+        // ],
+
+      };
+
+      var OwlSlider = function OwlSlider() {
+        return wp.element.createElement(react_owl_carousel__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({
+          className: "owl-theme"
+        }, slider_options_), _this2.state.posts.map(function (val_) {
+          return wp.element.createElement("div", {
+            className: "item"
+          }, _this2.returnHtml(val_));
+        }));
+      };
+
+      return wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["InspectorControls"], null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
+        initialOpen: true
+      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Number of Column", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
+        value: numberOfColumn,
+        min: 1,
+        max: 24,
+        onChange: function onChange(e) {
+          setAttributes({
+            numberOfColumn: e
+          });
+        }
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Number of Post Display", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
+        value: numberOfPosts,
+        min: 1,
+        max: 24,
+        onChange: function onChange(e) {
+          setAttributes({
+            numberOfPosts: e
+          });
+        }
+      }), wp.element.createElement(_block_assets_woocommerce_productCategory__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        value: product_cate,
+        category: this.state.category,
+        onMovement: function onMovement(category) {
+          setAttributes({
+            product_cate: category
+          });
+        }
+      }))), wp.element.createElement("div", null, wp.element.createElement("h1", null, "hello product editor"), this.state.posts.length ? wp.element.createElement(OwlSlider, null) : "")); // ++++++++++++++===============
+    }
+  }]);
+
+  return Edit;
+}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Edit); // $salePrice = $regularPrice - $currentPrice;
+//             // $saleText = __('Sale', 'elemento-addons');
+//             $currency_ = get_woocommerce_currency_symbol();
+//             $ps_sale = '<div class="elemento-addons-sale">
+//                         <span class="elemento-addons-sale-tag">-' . $currency_ . $salePrice . '</span>
+//                     </div>';
+// $productHtml .= $ps_sale;
+// $productHtml .= '<a class="img_" href="' . get_permalink($productId) . '" target="_blank">
+//                           ' . $product->get_image() . '
+//                           </a>';
+// $productHtml .= '<a class="elemento-addons-product-title" href="' . get_permalink($productId) . '" target="_blank">' . $product->get_name() . '</a>';
+// $productHtml .= $ratingHtml ? '<div class="elemento-addons-rating">' . $ratingHtml . '</div>' : '';
+// // add to cart
+// $productHtml .=  $price;
+// $productHtml .=  '</div>';
+// ------------------------------------------------
+// $productHtml .=  "<div class='elemento-product-simple-inner-bottom'>";
+// $productHtml .=  $addToCart;
+// if ($wishlist_ || $compare_) {
+//   // buttons icon
+//   $productHtml .=  "<div class='buttons_'>";
+//   $productHtml .=  $wishlist_;
+//   $productHtml .=  $compare_;
+//   $productHtml .=  "</div>";
+// buttons icon
+// }
+
+/***/ }),
+
+/***/ "./src/blocks/simple-product/editor.scss":
+/*!***********************************************!*\
+  !*** ./src/blocks/simple-product/editor.scss ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/blocks/simple-product/index.js":
+/*!********************************************!*\
+  !*** ./src/blocks/simple-product/index.js ***!
+  \********************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/simple-product/editor.scss");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_editor_scss__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/blocks/simple-product/edit.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _block_assets_blocks_detail__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../block-assets/blocks-detail */ "./src/blocks/block-assets/blocks-detail.js");
+
+
+
+
+
+var ubl_block_product = _block_assets_blocks_detail__WEBPACK_IMPORTED_MODULE_4__["blocksDetail"].ubl_block_product;
+Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unlimited-blocks/ubl-product", {
+  title: ubl_block_product.title,
+  description: ubl_block_product.description,
+  icon: ubl_block_product.icon,
+  keywords: ubl_block_product.keywords,
+  category: "unlimited-blocks-category",
+  getEditWrapperProps: function getEditWrapperProps(attributes) {// let attr_ = { "data-align": "full" };
+    // return attr_;
+  },
+  example: function example() {},
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  save: function save() {
+    return null;
+  }
+});
+
+/***/ }),
+
 /***/ "./src/blocks/ubl-block-slider/edit.js":
 /*!*********************************************!*\
   !*** ./src/blocks/ubl-block-slider/edit.js ***!
@@ -24091,6 +28967,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _blocks_post_image_layout_six_post__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./blocks/post-image-layout-six-post */ "./src/blocks/post-image-layout-six-post/index.js");
 /* harmony import */ var _blocks_block_layout_pre__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./blocks/block-layout-pre */ "./src/blocks/block-layout-pre/index.js");
 /* harmony import */ var _blocks_column_blocks_column__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./blocks/column-blocks-column */ "./src/blocks/column-blocks-column/index.js");
+/* harmony import */ var _blocks_simple_product__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./blocks/simple-product */ "./src/blocks/simple-product/index.js");
  // for core styling need add
 
  // for core styling need add
@@ -24113,6 +28990,8 @@ __webpack_require__.r(__webpack_exports__);
 
  // layout block
 
+
+ //woocommerce blocks
 
 
 
