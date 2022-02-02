@@ -89,7 +89,7 @@ if (!function_exists('unlimited_blocks_render_latest_post_block')) {
                             $paginationLink .= '<div class="ubl-image-section-np ' . $disabled_ . ' pagination" data-page="' . $it . '" style="' . $nextPrevStyle . '">' . $it . '</div>';
                         }
                         if ($pagesOfPost >= 4) {
-                            $paginationLink .= '<div class="dots pagination" ><span>...</span></div>';
+                            $paginationLink .= '<div class="dots pagination"><span>...</span></div>';
                             $paginationLink .= '<div class="ubl-image-section-np pagination" data-page="' . $pagesOfPost . '" style="' . $nextPrevStyle . '">' . $pagesOfPost . '</div>';
                         }
                         $paginationLink .= '</section>';

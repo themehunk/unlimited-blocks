@@ -22,3 +22,5 @@ import "./blocks/post-image-layout-six-post";
 // layout block
 import "./blocks/block-layout-pre";
 import "./blocks/column-blocks-column";
+//woocommerce blocks
+import "./blocks/simple-product";

@@ -235,7 +235,9 @@ class Edit extends Component {
             initialOpen={false}
           >
             <p>
-              <strong>{__("Number Of Post Display", "unlimited-blocks")}</strong>
+              <strong>
+                {__("Number Of Post Display", "unlimited-blocks")}
+              </strong>
             </p>
             <RangeControl
               value={numberOfPosts}
@@ -407,7 +409,9 @@ class Edit extends Component {
                 }
               />
             )}
-            <p className="block-inside">{__("Slider Effect", "unlimited-blocks")}</p>
+            <p className="block-inside">
+              {__("Slider Effect", "unlimited-blocks")}
+            </p>
             <div class="ubl-switcher-button-section">
               <span
                 onClick={() =>
@@ -564,7 +568,9 @@ class Edit extends Component {
                           }}
                         />
                         <p>
-                          <strong>{__("Active Color", "unlimited-blocks")}</strong>
+                          <strong>
+                            {__("Active Color", "unlimited-blocks")}
+                          </strong>
                         </p>
                         <ColorPicker
                           color={sliderSetting.linearTrigger.activeColor}
@@ -627,7 +633,9 @@ class Edit extends Component {
                       }
                     />
                     <p>
-                      <strong>{__("Background Color", "unlimited-blocks")}</strong>
+                      <strong>
+                        {__("Background Color", "unlimited-blocks")}
+                      </strong>
                     </p>
                     <ColorPicker
                       color={sliderSetting.leftRightTrigger.backgroundColor}
@@ -723,7 +731,10 @@ class Edit extends Component {
               }
             />
           </PanelBody>
-          <PanelBody title={__("Excerpt", "unlimited-blocks")} initialOpen={false}>
+          <PanelBody
+            title={__("Excerpt", "unlimited-blocks")}
+            initialOpen={false}
+          >
             <ToggleControl
               label={
                 excerpt_.enable
@@ -769,7 +780,10 @@ class Edit extends Component {
               </>
             )}
           </PanelBody>
-          <PanelBody title={__("Post Meta", "unlimited-blocks")} initialOpen={false}>
+          <PanelBody
+            title={__("Post Meta", "unlimited-blocks")}
+            initialOpen={false}
+          >
             <p>
               <strong>{__("Choose Category", "unlimited-blocks")}</strong>
             </p>
@@ -828,9 +842,13 @@ class Edit extends Component {
               checked={showTag_.enable}
               onChange={(e) => this.updateObj("showTag", "enable", showTag, e)}
             />
-            <p class="block-inside">{__("Meta Custom Style", "unlimited-blocks")}</p>
+            <p class="block-inside">
+              {__("Meta Custom Style", "unlimited-blocks")}
+            </p>
             <p>
-              <strong>{__("Author/Dates Font Size", "unlimited-blocks")}</strong>
+              <strong>
+                {__("Author/Dates Font Size", "unlimited-blocks")}
+              </strong>
             </p>
             <RangeControl
               value={meta_style_.fontSize}
@@ -901,7 +919,9 @@ class Edit extends Component {
                       }
                     />
                     <p>
-                      <strong>{__("Background Color", "unlimited-blocks")}</strong>
+                      <strong>
+                        {__("Background Color", "unlimited-blocks")}
+                      </strong>
                     </p>
                     <ColorPicker
                       color={showCate_.backgroundColor}
@@ -925,7 +945,9 @@ class Edit extends Component {
                   {__("Tags Custom Style", "unlimited-blocks")}
                 </p>
                 <p>
-                  <strong>{__("Number Tags Per Post", "unlimited-blocks")}</strong>
+                  <strong>
+                    {__("Number Tags Per Post", "unlimited-blocks")}
+                  </strong>
                 </p>
                 <RangeControl
                   value={showTag_.count}

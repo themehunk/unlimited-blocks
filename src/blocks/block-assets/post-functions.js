@@ -2,6 +2,11 @@ import { decodeEntities } from "@wordpress/html-entities";
 import { __ } from "@wordpress/i18n";
 
 const { apiFetch } = wp;
+
+/**
+ * this api setting for post
+ */
+
 //<<<<<<<<<<<-------->>>>>>>>>>>>>>
 export const postDataInit = (data = {}) => {
   let sendData = data;
@@ -187,6 +192,11 @@ export const showTagsFn = (tags_, tag_r) => {
     ));
   }
 };
+
+/**
+ * this api setting for post end ---------------------------------------------------
+ */
+
 //<<<<<<<<<<<-------->>>>>>>>>>>>>>
 export const PostLoader = () => {
   return (
@@ -201,6 +211,7 @@ export const PostLoader = () => {
   );
 };
 //<<<<<<<<<<<-------->>>>>>>>>>>>>>
+
 export const PostNotfound = () => {
   return (
     <div className="no-post-found">

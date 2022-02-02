@@ -223,7 +223,9 @@ class Edit extends Component {
               }}
             />
             <p>
-              <strong>{__("Number of Post Display", "unlimited-blocks")}</strong>
+              <strong>
+                {__("Number of Post Display", "unlimited-blocks")}
+              </strong>
             </p>
             <RangeControl
               value={numberOfPosts}
@@ -245,7 +247,9 @@ class Edit extends Component {
               }
             />
             <p>
-              <strong>{__("Block Background Color", "unlimited-blocks")}</strong>
+              <strong>
+                {__("Block Background Color", "unlimited-blocks")}
+              </strong>
             </p>
             {/* bg color  */}
             <div class="ubl-switcher-button-section">
@@ -456,7 +460,10 @@ class Edit extends Component {
               </>
             )}
           </PanelBody>
-          <PanelBody title={__("Post Meta", "unlimited-blocks")} initialOpen={false}>
+          <PanelBody
+            title={__("Post Meta", "unlimited-blocks")}
+            initialOpen={false}
+          >
             {/* category */}
             <p>
               <strong>{__("Choose Category", "unlimited-blocks")}</strong>
@@ -474,8 +481,8 @@ class Edit extends Component {
                     setAttributes({ postCategories: choosen });
                     filterPostInit(this, {
                       postCategories: choosen,
-                      featured_image: this.props.attributes.thumbnail[0]
-                        .typeShow,
+                      featured_image:
+                        this.props.attributes.thumbnail[0].typeShow,
                     });
                   }}
                   options={cateGory}
@@ -519,9 +526,13 @@ class Edit extends Component {
               checked={showTag_.enable}
               onChange={(e) => this.updateObj("showTag", "enable", showTag, e)}
             />
-            <p class="block-inside">{__("Meta Custom Style", "unlimited-blocks")}</p>
+            <p class="block-inside">
+              {__("Meta Custom Style", "unlimited-blocks")}
+            </p>
             <p>
-              <strong>{__("Author/Dates Font Size", "unlimited-blocks")}</strong>
+              <strong>
+                {__("Author/Dates Font Size", "unlimited-blocks")}
+              </strong>
             </p>
             <RangeControl
               value={meta_style_.fontSize}
@@ -592,7 +603,9 @@ class Edit extends Component {
                       }
                     />
                     <p>
-                      <strong>{__("Background Color", "unlimited-blocks")}</strong>
+                      <strong>
+                        {__("Background Color", "unlimited-blocks")}
+                      </strong>
                     </p>
                     <ColorPicker
                       color={showCate_.backgroundColor}
@@ -616,7 +629,9 @@ class Edit extends Component {
                   {__("Tags Custom Style", "unlimited-blocks")}
                 </p>
                 <p>
-                  <strong>{__("Number Tags Per Post", "unlimited-blocks")}</strong>
+                  <strong>
+                    {__("Number Tags Per Post", "unlimited-blocks")}
+                  </strong>
                 </p>
                 <RangeControl
                   value={showTag_.count}
@@ -679,7 +694,9 @@ class Edit extends Component {
               {meta_style_.npEnable && (
                 <>
                   <p>
-                    <strong>{__("Pagination Number", "unlimited-blocks")}</strong>
+                    <strong>
+                      {__("Pagination Number", "unlimited-blocks")}
+                    </strong>
                   </p>
                   <ToggleControl
                     label={
@@ -723,7 +740,9 @@ class Edit extends Component {
                     }
                   />
                   <p>
-                    <strong>{__("Background Color", "unlimited-blocks")}</strong>
+                    <strong>
+                      {__("Background Color", "unlimited-blocks")}
+                    </strong>
                   </p>
                   <ColorPicker
                     color={meta_style_.npBgColor}
@@ -864,7 +883,9 @@ class Edit extends Component {
                                 }}
                                 className="post-date-last-modified"
                               >
-                                <span>{__("Modified:", "unlimited-blocks")} </span>
+                                <span>
+                                  {__("Modified:", "unlimited-blocks")}{" "}
+                                </span>
                                 <span>{post.post_modified_date}</span>
                               </p>
                             </>
@@ -979,7 +1000,9 @@ class Edit extends Component {
                                 }}
                                 className="post-date-last-modified"
                               >
-                                <span>{__("Modified:", "unlimited-blocks")} </span>
+                                <span>
+                                  {__("Modified:", "unlimited-blocks")}{" "}
+                                </span>
                                 <span>{post.post_modified_date}</span>
                               </p>
                             </>

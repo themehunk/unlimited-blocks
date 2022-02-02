@@ -154,9 +154,12 @@ class Border extends Component {
 
     return (
       <div className="icon-border-setting">
+        <label className="label_">
+          {__("Border Style", "unlimited-blocks")}
+        </label>
         <div className="ubl-multiple-select">
           <SelectControl
-            label={__("Border Style", "unlimited-blocks")}
+            // label={__("Border Style", "unlimited-blocks")}
             value={this.state.borderStyle}
             onChange={(choosen) => {
               this.updateState("borderStyle", choosen);

@@ -9,3 +9,4 @@ include_once "ubl-post-layout-list/ubl-post-layout-list.php";
 include_once "ubl-post-layout-grid/ubl-post-layout-grid.php";
 ////////////////---------------**************
 include_once "post-api/post-api.php";
+include_once "post-api/product-api.php";
