@@ -7152,7 +7152,7 @@ Tokenizer.prototype._emitPartial = function(value) {
 module.exports = Stream;
 
 var Parser = __webpack_require__(/*! ./Parser.js */ "./node_modules/react-html-parser/node_modules/htmlparser2/lib/Parser.js");
-var WritableStream = __webpack_require__(/*! readable-stream */ 21).Writable;
+var WritableStream = __webpack_require__(/*! readable-stream */ 0).Writable;
 var StringDecoder = __webpack_require__(/*! string_decoder */ "./node_modules/string_decoder/lib/string_decoder.js").StringDecoder;
 var Buffer = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js").Buffer;
 
@@ -35631,7 +35631,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 21:
+/***/ 0:
 /*!*********************************!*\
   !*** readable-stream (ignored) ***!
   \*********************************/
