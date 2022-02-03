@@ -17,42 +17,44 @@ export const productDataInit = (data = {}) => {
     .catch((error) => console.error(error));
 };
 // //<<<<<<<<<<<-------->>>>>>>>>>>>>>
-// export const filterProductInit = async (this_, data_ = {}) => {
-//   let argData = data_;
-//   //number of post
-//   if (!("numberOfPosts" in argData)) {
-//     argData["numberOfPosts"] = this_.props.attributes.numberOfPosts;
-//   }
-//   // choose category
-//   let categoryIes =
-//     "product_cate" in argData
-//       ? argData.product_cate
-//       : this_.props.attributes.product_cate;
-//   if (categoryIes) {
-//     argData["product_cate"] = categoryIes.join(",");
-//   }
-//   // featured image
-//   if ("featured_image" in argData && argData.featured_image == "1") {
-//     argData["featured_image"] = 1;
-//   }
-//   let postData = await productDataInit(argData);
-//   if (postData) {
-//     // all posts
-//     if ("posts" in postData && postData.posts != "") {
-//       let posts_ = postData.posts;
-//       this_.setState({ posts: posts_ });
-//     } else {
-//       this_.setState({ posts: null });
-//     }
-//     //total post
-//     if ("totalPost" in postData && postData.totalPost != "") {
-//       let totalPost_ = postData.totalPost;
-//       this_.setState({ totalPost: totalPost_ });
-//     } else {
-//       this_.setState({ totalPost: null });
-//     }
-//   }
-// };
+export const filterProductInit = async (this_, data_ = {}) => {
+  //   numberOfPosts
+  // product_cate
+
+  let argData = data_;
+  //   number of post
+  if (!("numberOfPosts" in argData)) {
+    argData["numberOfPosts"] = this_.props.attributes.numberOfPosts;
+  }
+  //    choose category
+  let categoryIes =
+    "product_cate" in argData
+      ? argData.product_cate
+      : this_.props.attributes.product_cate;
+
+  if (categoryIes) {
+    argData["product_cate"] = categoryIes.join(",");
+  }
+  // featured image
+  let postData = await productDataInit(argData);
+  // console.log("postData second time->", postData);
+  if (postData) {
+    // all posts
+    if ("posts" in postData && postData.posts != "") {
+      let posts_ = postData.posts;
+      this_.setState({ posts: posts_ });
+    } else {
+      this_.setState({ posts: null });
+    }
+    //total post
+    if ("totalPost" in postData && postData.totalPost != "") {
+      let totalPost_ = postData.totalPost;
+      this_.setState({ totalPost: totalPost_ });
+    } else {
+      this_.setState({ totalPost: null });
+    }
+  }
+};
 //<<<<<<<<<<<-------->>>>>>>>>>>>>>
 export const firstTimeInitProduct = async (this_, data_ = {}) => {
   let { numberOfPosts, product_cate } = this_.props.attributes;
@@ -60,16 +62,13 @@ export const firstTimeInitProduct = async (this_, data_ = {}) => {
     initialize: 1,
     numberOfPosts: numberOfPosts,
   };
-  // featured image
-  if ("featured_image" in data_) {
-    sendData["featured_image"] = 1;
-  }
+  sendData = { ...sendData, ...data_ };
   // choose category
   if (product_cate.length) {
     sendData["product_cate"] = product_cate.join(",");
   }
   let postData = await productDataInit(sendData);
-  console.log("postData->", postData);
+  // console.log("postData first time->", postData);
   if (postData) {
     // // all posts
     if ("posts" in postData && postData.posts != "") {

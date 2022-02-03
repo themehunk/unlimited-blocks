@@ -1,6 +1,6 @@
-// common block script 
+// common block script
 import "./blocks/block-assets/script";
-// common block script 
+// common block script
 import "./blocks/icon-block/script";
 import "./blocks/pricing-table/script";
 import "./blocks/service-section/script";
@@ -15,7 +15,8 @@ import "./blocks/post-image-layout/script";
 import "./blocks/post-image-layout-three-post/script";
 import "./blocks/post-image-layout-four-post/script";
 import "./blocks/post-image-layout-five-post/script";
-// wrapper and column 
+// wrapper and column
 import "./blocks/column-wrapper/script";
 import "./blocks/column-blocks-column/script";
-
+// woocommerce block
+import "./blocks/simple-product/script";
