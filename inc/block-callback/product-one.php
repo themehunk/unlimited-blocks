@@ -3,6 +3,8 @@ if (!defined('ABSPATH')) exit;
 unlimited_blocks_register_block_fn('ubl-product',  [
     "render_callback" => "unlimited_blocks_product_one",
     'attributes' => [
+        // save client id
+        'client_id' => ["type" => 'string', "default" => false],
         // layout 
         "product_cate" => [
             "type" => "array",
@@ -40,7 +42,7 @@ unlimited_blocks_register_block_fn('ubl-product',  [
         "boxStyle" => [
             "type" => "object",
             "default" => [
-                "bgColor" => "",
+                "bgColor" => "#b1b1b1",
                 "borderWidthLink" => true,
                 "borderStyle" => "solid",
                 "borderWidth" => 0,

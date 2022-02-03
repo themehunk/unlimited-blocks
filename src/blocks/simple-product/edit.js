@@ -21,6 +21,7 @@ import {
   firstTimeInitProduct,
 } from "../block-assets/woocommerce/product-functions";
 import ProductCategory from "../block-assets/woocommerce/productCategory";
+import UblStyler from "../block-assets/Styler";
 
 class Edit extends Component {
   constructor(props) {
@@ -33,16 +34,42 @@ class Edit extends Component {
       preview: false,
     };
   }
+
+  saveClientId = () => {
+    let { attributes, setAttributes, clientId } = this.props;
+    let { client_id } = attributes;
+    if (!client_id) {
+      setAttributes({ client_id: clientId });
+    }
+  };
   componentDidMount() {
+    this.saveClientId();
     let sendData = { productlayout: "simple_layout" };
     firstTimeInitProduct(this, sendData);
+    // content box style
+    this.styleAdd();
   }
-  updateObj = (parent_key, child_key, initialValue, value_) => {
-    let newNewValue = [...initialValue];
-    newNewValue[0][child_key] = value_;
-    let setAttr_ = {};
-    setAttr_[parent_key] = newNewValue;
-    this.props.setAttributes(setAttr_);
+
+  styleAdd = () => {
+    let { attributes } = this.props;
+    let { boxStyle } = attributes;
+    let wrapperId = attributes.client_id;
+    UblStyler(
+      `${wrapperId}-box-bg`,
+      `${wrapperId} .ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap`,
+      `background-color:${boxStyle.bgColor}`
+    );
+  };
+
+  updateStyle = (key_, value, multiple = false) => {
+    const { attributes, setAttributes } = this.props;
+    let getStyle = { ...attributes.styles };
+    if (multiple) {
+      getStyle = { ...getStyle, ...multiple };
+    } else {
+      getStyle[key_] = value;
+    }
+    setAttributes({ styles: getStyle });
   };
   updateProduct(key_, val_) {
     let SendObj = {};
@@ -54,12 +81,12 @@ class Edit extends Component {
   render() {
     // ++++++++++++++===============
 
-    // console.log("product props", this.props);
+    console.log("product props", this.props);
     // console.log("product state", this.state);
     // const {} = this.state;
     const { attributes, setAttributes } = this.props;
     // const { posts, category, totalPost } = this.state;
-    let { product_cate, numberOfPosts, numberOfColumn } = attributes;
+    let { product_cate, numberOfPosts, numberOfColumn, boxStyle } = attributes;
 
     const slider_options_ = {
       items: numberOfColumn,
@@ -87,6 +114,15 @@ class Edit extends Component {
               label={__("Preview", "unlimited-blocks")}
               checked={this.state.preview}
               onChange={(e) => this.setState({ preview: e })}
+            />
+            <p>
+              <strong>{__("Background Color", "unlimited-blocks")}</strong>
+            </p>
+            <ColorPalette
+              value={boxStyle.bgColor}
+              onChange={(color) => {
+                // this.updateObj("title", "color", title, color)
+              }}
             />
             <p>
               <strong>{__("Number of Column", "unlimited-blocks")}</strong>

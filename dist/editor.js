@@ -14003,6 +14003,39 @@ module.exports = function(originalModule) {
 
 /***/ }),
 
+/***/ "./src/blocks/block-assets/Styler.js":
+/*!*******************************************!*\
+  !*** ./src/blocks/block-assets/Styler.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var ContentStyler = function ContentStyler(name_) {
+  var selector = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var setyl_ = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+  if (selector && setyl_) {
+    var textStyle = "".concat(selector, "{").concat(setyl_, ";}");
+    var addStyleHead = document.getElementById(name_);
+
+    if (!addStyleHead) {
+      var element = document.createElement("style");
+      element.type = "text/css";
+      element.textContent = textStyle;
+      element.setAttribute("id", name_);
+      document.getElementsByTagName("head")[0].appendChild(element);
+    } else if (addStyleHead.tagName == "STYLE") {
+      addStyleHead.textContent = textStyle;
+    }
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ContentStyler);
+
+/***/ }),
+
 /***/ "./src/blocks/block-assets/blocks-detail.js":
 /*!**************************************************!*\
   !*** ./src/blocks/block-assets/blocks-detail.js ***!
@@ -32793,21 +32826,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _block_assets_woocommerce_product_functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../block-assets/woocommerce/product-functions */ "./src/blocks/block-assets/woocommerce/product-functions.js");
 /* harmony import */ var _block_assets_woocommerce_productCategory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../block-assets/woocommerce/productCategory */ "./src/blocks/block-assets/woocommerce/productCategory.js");
+/* harmony import */ var _block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../block-assets/Styler */ "./src/blocks/block-assets/Styler.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -32840,6 +32866,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var Edit = /*#__PURE__*/function (_Component) {
   _inherits(Edit, _Component);
 
@@ -32852,14 +32879,44 @@ var Edit = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
 
-    _defineProperty(_assertThisInitialized(_this), "updateObj", function (parent_key, child_key, initialValue, value_) {
-      var newNewValue = _toConsumableArray(initialValue);
+    _defineProperty(_assertThisInitialized(_this), "saveClientId", function () {
+      var _this$props = _this.props,
+          attributes = _this$props.attributes,
+          setAttributes = _this$props.setAttributes,
+          clientId = _this$props.clientId;
+      var client_id = attributes.client_id;
 
-      newNewValue[0][child_key] = value_;
-      var setAttr_ = {};
-      setAttr_[parent_key] = newNewValue;
+      if (!client_id) {
+        setAttributes({
+          client_id: clientId
+        });
+      }
+    });
 
-      _this.props.setAttributes(setAttr_);
+    _defineProperty(_assertThisInitialized(_this), "styleAdd", function () {
+      var attributes = _this.props.attributes;
+      var boxStyle = attributes.boxStyle;
+      var wrapperId = attributes.client_id;
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapperId, "-box-bg"), "".concat(wrapperId, " .ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap"), "background-color:".concat(boxStyle.bgColor));
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "updateStyle", function (key_, value) {
+      var multiple = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+      var _this$props2 = _this.props,
+          attributes = _this$props2.attributes,
+          setAttributes = _this$props2.setAttributes;
+
+      var getStyle = _objectSpread({}, attributes.styles);
+
+      if (multiple) {
+        getStyle = _objectSpread(_objectSpread({}, getStyle), multiple);
+      } else {
+        getStyle[key_] = value;
+      }
+
+      setAttributes({
+        styles: getStyle
+      });
     });
 
     _this.state = {
@@ -32875,10 +32932,13 @@ var Edit = /*#__PURE__*/function (_Component) {
   _createClass(Edit, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.saveClientId();
       var sendData = {
         productlayout: "simple_layout"
       };
-      Object(_block_assets_woocommerce_product_functions__WEBPACK_IMPORTED_MODULE_6__["firstTimeInitProduct"])(this, sendData);
+      Object(_block_assets_woocommerce_product_functions__WEBPACK_IMPORTED_MODULE_6__["firstTimeInitProduct"])(this, sendData); // content box style
+
+      this.styleAdd();
     }
   }, {
     key: "updateProduct",
@@ -32894,16 +32954,17 @@ var Edit = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       // ++++++++++++++===============
-      // console.log("product props", this.props);
-      // console.log("product state", this.state);
+      console.log("product props", this.props); // console.log("product state", this.state);
       // const {} = this.state;
-      var _this$props = this.props,
-          attributes = _this$props.attributes,
-          setAttributes = _this$props.setAttributes; // const { posts, category, totalPost } = this.state;
+
+      var _this$props3 = this.props,
+          attributes = _this$props3.attributes,
+          setAttributes = _this$props3.setAttributes; // const { posts, category, totalPost } = this.state;
 
       var product_cate = attributes.product_cate,
           numberOfPosts = attributes.numberOfPosts,
-          numberOfColumn = attributes.numberOfColumn;
+          numberOfColumn = attributes.numberOfColumn,
+          boxStyle = attributes.boxStyle;
       var slider_options_ = {
         items: numberOfColumn // nav: true,
         // navText: [
@@ -32932,6 +32993,10 @@ var Edit = /*#__PURE__*/function (_Component) {
           return _this2.setState({
             preview: e
           });
+        }
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
+        value: boxStyle.bgColor,
+        onChange: function onChange(color) {// this.updateObj("title", "color", title, color)
         }
       }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Number of Column", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
         value: numberOfColumn,
