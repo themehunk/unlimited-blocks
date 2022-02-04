@@ -223,11 +223,8 @@ class Th_Simple_Product
         $productHtml .= "<div class='elemento-owl-slider-common-secript' data-setting='" . $dataSetting . "'>";
         if (isset($availNextPrevious)) {
             $arrowType = '-alt'; //1
-            // if ($options['arrow_type'] == '2') {
-            //     $arrowType = '-alt2'; //2
-            // } else if ($options['arrow_type'] == '3') {
-            //     $arrowType = ''; //3
-            // }
+
+
             $productHtml .= '<div class="elemento-addons-owl-np-cln elemento-addons-owl-prev"><span class="dashicons dashicons-arrow-left' . $arrowType . '"></span></div>';
             $productHtml .= '<div class="elemento-addons-owl-np-cln elemento-addons-owl-next"><span class="dashicons dashicons-arrow-right' . $arrowType . '"></span></div>';
         }
