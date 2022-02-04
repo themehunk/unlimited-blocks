@@ -198,11 +198,14 @@ export const showTagsFn = (tags_, tag_r) => {
  */
 
 //<<<<<<<<<<<-------->>>>>>>>>>>>>>
-export const PostLoader = () => {
+export const PostLoader = ({ msg }) => {
+  msg = msg
+    ? __(msg, "unlimited-blocks")
+    : __("Post Loading...", "unlimited-blocks");
   return (
     <div className="post-loader">
       <div className="active linear-bubble ubl-block-loader">
-        {__("Post Loading...", "unlimited-blocks")}
+        {msg}
         <div>
           <span></span>
         </div>
@@ -212,10 +215,13 @@ export const PostLoader = () => {
 };
 //<<<<<<<<<<<-------->>>>>>>>>>>>>>
 
-export const PostNotfound = () => {
+export const PostNotfound = ({ msg }) => {
+  msg = msg
+    ? __(msg, "unlimited-blocks")
+    : __("No Post Found", "unlimited-blocks");
   return (
     <div className="no-post-found">
-      <p>{__("No Post Found", "unlimited-blocks")}</p>
+      <p>{msg}</p>
     </div>
   );
 };

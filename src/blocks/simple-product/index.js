@@ -11,8 +11,10 @@ registerBlockType("unlimited-blocks/ubl-product", {
   keywords: ubl_block_product.keywords,
   category: "unlimited-blocks-category",
   getEditWrapperProps(attributes) {
-    // let attr_ = { "data-align": "full" };
-    // return attr_;
+    const { align } = attributes;
+    if (align) {
+      return { "data-align": align };
+    }
   },
   example: () => {},
   edit: Edit,

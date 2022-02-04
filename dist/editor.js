@@ -14730,18 +14730,22 @@ var showTagsFn = function showTagsFn(tags_, tag_r) {
  */
 //<<<<<<<<<<<-------->>>>>>>>>>>>>>
 
-var PostLoader = function PostLoader() {
+var PostLoader = function PostLoader(_ref3) {
+  var msg = _ref3.msg;
+  msg = msg ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])(msg, "unlimited-blocks") : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Post Loading...", "unlimited-blocks");
   return wp.element.createElement("div", {
     className: "post-loader"
   }, wp.element.createElement("div", {
     className: "active linear-bubble ubl-block-loader"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Post Loading...", "unlimited-blocks"), wp.element.createElement("div", null, wp.element.createElement("span", null))));
+  }, msg, wp.element.createElement("div", null, wp.element.createElement("span", null))));
 }; //<<<<<<<<<<<-------->>>>>>>>>>>>>>
 
-var PostNotfound = function PostNotfound() {
+var PostNotfound = function PostNotfound(_ref4) {
+  var msg = _ref4.msg;
+  msg = msg ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])(msg, "unlimited-blocks") : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("No Post Found", "unlimited-blocks");
   return wp.element.createElement("div", {
     className: "no-post-found"
-  }, wp.element.createElement("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("No Post Found", "unlimited-blocks")));
+  }, wp.element.createElement("p", null, msg));
 }; //<<<<<<<<<<<-------->>>>>>>>>>>>>>
 
 var UBLGraDientColors = [{
@@ -32827,6 +32831,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_assets_woocommerce_product_functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../block-assets/woocommerce/product-functions */ "./src/blocks/block-assets/woocommerce/product-functions.js");
 /* harmony import */ var _block_assets_woocommerce_productCategory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../block-assets/woocommerce/productCategory */ "./src/blocks/block-assets/woocommerce/productCategory.js");
 /* harmony import */ var _block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../block-assets/Styler */ "./src/blocks/block-assets/Styler.js");
+/* harmony import */ var _block_assets_post_functions__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../block-assets/post-functions */ "./src/blocks/block-assets/post-functions.js");
+/* harmony import */ var _block_assets_utility_components_BasicToggleNav__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../block-assets/utility-components/BasicToggleNav */ "./src/blocks/block-assets/utility-components/BasicToggleNav.js");
+/* harmony import */ var _block_assets_utility_components_border__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../block-assets/utility-components/border */ "./src/blocks/block-assets/utility-components/border/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -32867,6 +32874,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
+
+
 var Edit = /*#__PURE__*/function (_Component) {
   _inherits(Edit, _Component);
 
@@ -32884,11 +32894,10 @@ var Edit = /*#__PURE__*/function (_Component) {
           attributes = _this$props.attributes,
           setAttributes = _this$props.setAttributes,
           clientId = _this$props.clientId;
-      var client_id = attributes.client_id;
 
-      if (!client_id) {
+      if (!attributes.wrapper_id) {
         setAttributes({
-          client_id: clientId
+          wrapper_id: "ubl" + clientId
         });
       }
     });
@@ -32896,35 +32905,47 @@ var Edit = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "styleAdd", function () {
       var attributes = _this.props.attributes;
       var boxStyle = attributes.boxStyle;
-      var wrapperId = attributes.client_id;
-      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapperId, "-box-bg"), "".concat(wrapperId, " .ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap"), "background-color:".concat(boxStyle.bgColor));
+      var wrapper_id = _this.state.wrapper_id; // bg color for box
+
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom:before"), "background-color:".concat(boxStyle.bgColor));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg-boxShadow"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "color:".concat(boxStyle.boxShadowColor));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg-boxShadowhover"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap:hover .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap:hover .elemento-product-simple-inner-bottom"), "color:".concat(boxStyle.boxShadowColorHover)); // --------------------------------box border--------------------------------
+
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-width"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-width:".concat(boxStyle.borderWidth));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-style"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-style:".concat(boxStyle.borderStyle));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-color"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-color:".concat(boxStyle.borderColor));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-radius"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-radius:".concat(boxStyle.borderRadius)); // --------------------------------box border--------------------------------
     });
 
-    _defineProperty(_assertThisInitialized(_this), "updateStyle", function (key_, value) {
-      var multiple = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+    _defineProperty(_assertThisInitialized(_this), "updateStyle", function (key_, value, key2) {
+      var multiple = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
       var _this$props2 = _this.props,
           attributes = _this$props2.attributes,
           setAttributes = _this$props2.setAttributes;
 
-      var getStyle = _objectSpread({}, attributes.styles);
+      var getStyle = _objectSpread({}, attributes[key_]);
 
       if (multiple) {
         getStyle = _objectSpread(_objectSpread({}, getStyle), multiple);
       } else {
-        getStyle[key_] = value;
+        getStyle[key2] = value;
       }
 
-      setAttributes({
-        styles: getStyle
-      });
+      var SetAttr = {};
+      SetAttr[key_] = getStyle;
+      setAttributes(SetAttr);
     });
 
+    var _wrapper_id = props.attributes.wrapper_id;
     _this.state = {
       // pages state from post
       posts: [],
       category: [],
       totalPost: null,
-      preview: false
+      preview: false,
+      wrapper_id: _wrapper_id ? _wrapper_id : "ubl" + props.clientId,
+      openPanel: "style" // openPanel: "layout",
+
     };
     return _this;
   }
@@ -32942,6 +32963,7 @@ var Edit = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "updateProduct",
+    // this will call api
     value: function updateProduct(key_, val_) {
       var SendObj = {};
       SendObj[key_] = val_;
@@ -32955,56 +32977,105 @@ var Edit = /*#__PURE__*/function (_Component) {
 
       // ++++++++++++++===============
       console.log("product props", this.props); // console.log("product state", this.state);
-      // const {} = this.state;
 
+      var _this$state = this.state,
+          wrapper_id = _this$state.wrapper_id,
+          preview = _this$state.preview,
+          posts = _this$state.posts,
+          totalPost = _this$state.totalPost;
       var _this$props3 = this.props,
           attributes = _this$props3.attributes,
-          setAttributes = _this$props3.setAttributes; // const { posts, category, totalPost } = this.state;
-
+          setAttributes = _this$props3.setAttributes;
       var product_cate = attributes.product_cate,
           numberOfPosts = attributes.numberOfPosts,
-          numberOfColumn = attributes.numberOfColumn,
-          boxStyle = attributes.boxStyle;
-      var slider_options_ = {
-        items: numberOfColumn // nav: true,
-        // navText: [
-        //   "<div class='ul-kk nav-btn prev-slide'>Prev</div>",
-        //   "<div class='ul-kk nav-btn next-slide'>Next</div>",
-        // ],
+          boxStyle = attributes.boxStyle,
+          sliderSettings = attributes.sliderSettings; // slider options
 
+      var slider_options_ = {
+        // items: 1,
+        // nav: true,
+        // navText: [
+        //   "<div className='nav-btn prev-slide'></div>",
+        //   "<div className='nav-btn next-slide'></div>",
+        // ],
+        // rewind: true,
+        // autoplay: true,
+        // slideBy: 1,
+        // dots: true,
+        // dotsEach: true,
+        // dotData: true,
+        mouseDrag: true,
+        touchDrag: true
       };
+
+      if (numberOfPosts) {
+        if (numberOfPosts > sliderSettings.numberOfColumn) {
+          slider_options_["items"] = sliderSettings.numberOfColumn;
+        } else {
+          slider_options_["items"] = numberOfPosts;
+        }
+      }
+
+      if (sliderSettings.autoplay) {
+        slider_options_["autoplay"] = true;
+      }
+
+      if (sliderSettings.loop == "on") {
+        slider_options_["loop"] = true;
+      }
+
+      if (sliderSettings.margin) {
+        slider_options_["margin"] = sliderSettings.margin;
+      } // margin: 30, box-spacing
+
 
       var OwlSlider = function OwlSlider() {
         return wp.element.createElement(react_owl_carousel__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({
           className: "owl-theme ul-simple-product-slider"
-        }, slider_options_), _this2.state.posts.map(function (val_) {
+        }, slider_options_), posts.map(function (val_) {
           return wp.element.createElement("div", {
             className: "item"
           }, react_html_parser__WEBPACK_IMPORTED_MODULE_3___default()(val_));
         }));
       };
 
-      return wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["InspectorControls"], null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
+      return wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["BlockControls"], {
+        key: "controls"
+      }, wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["BlockAlignmentToolbar"], {
+        value: attributes.align,
+        onChange: function onChange(align) {
+          return setAttributes({
+            align: align
+          });
+        },
+        controls: ["wide", "full"]
+      })), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["InspectorControls"], null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
         initialOpen: true
+      }, wp.element.createElement(_block_assets_utility_components_BasicToggleNav__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        value: this.state.openPanel,
+        navItem: [{
+          name: "layout",
+          title: "Layout",
+          icon: "dashicons dashicons-editor-table"
+        }, {
+          name: "style",
+          title: "Style",
+          icon: "dashicons dashicons-admin-customizer"
+        }],
+        clickme: function clickme(value_) {
+          _this2.setState({
+            openPanel: value_
+          });
+        }
+      })), this.state.openPanel == "layout" ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
+        initialOpen: true,
+        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Product Settings", "unlimited-blocks")
       }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ToggleControl"], {
         label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Preview", "unlimited-blocks"),
-        checked: this.state.preview,
+        checked: preview,
         onChange: function onChange(e) {
           return _this2.setState({
             preview: e
-          });
-        }
-      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
-        value: boxStyle.bgColor,
-        onChange: function onChange(color) {// this.updateObj("title", "color", title, color)
-        }
-      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Number of Column", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
-        value: numberOfColumn,
-        min: 1,
-        max: 24,
-        onChange: function onChange(e) {
-          setAttributes({
-            numberOfColumn: e
           });
         }
       }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Number of Post Display", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
@@ -33028,9 +33099,91 @@ var Edit = /*#__PURE__*/function (_Component) {
 
           _this2.updateProduct("product_cate", category);
         }
-      }))), wp.element.createElement("div", {
-        className: "ul-blocks-simple-product ".concat(this.state.preview ? "elemento-simple-product-previewon" : "")
-      }, this.state.posts.length ? wp.element.createElement(OwlSlider, null) : "")); // ++++++++++++++===============
+      })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
+        initialOpen: false,
+        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Slider Settings", "unlimited-blocks")
+      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Number of Column", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
+        value: sliderSettings.numberOfColumn,
+        min: 1,
+        max: 6,
+        onChange: function onChange(e) {
+          _this2.updateStyle("sliderSettings", e, "numberOfColumn");
+        }
+      }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ToggleControl"], {
+        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("AutoPlay", "unlimited-blocks"),
+        checked: sliderSettings.autoplay == "on",
+        onChange: function onChange(e) {
+          var put = e ? "on" : "";
+
+          _this2.updateStyle("sliderSettings", put, "autoplay");
+        }
+      }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ToggleControl"], {
+        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Loop", "unlimited-blocks"),
+        checked: sliderSettings.loop == "on",
+        onChange: function onChange(e) {
+          var put = e ? "on" : "";
+
+          _this2.updateStyle("sliderSettings", put, "loop");
+        }
+      }))) : wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
+        initialOpen: false,
+        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Product Box Style", "unlimited-blocks")
+      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
+        value: boxStyle.bgColor,
+        onChange: function onChange(color) {
+          _this2.updateStyle("boxStyle", color, "bgColor");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n                      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "background-color:".concat(color));
+        }
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Box Spacing", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
+        value: sliderSettings.margin,
+        min: 1,
+        max: 50,
+        onChange: function onChange(e) {
+          _this2.updateStyle("sliderSettings", e, "margin");
+        }
+      })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
+        initialOpen: false,
+        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Box Border & BoxShadow", "unlimited-blocks")
+      }, wp.element.createElement(_block_assets_utility_components_border__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        value: {
+          allUnit: "px",
+          borderStyle: boxStyle.borderStyle,
+          borderWidth: boxStyle.borderWidth,
+          borderColor: boxStyle.borderColor,
+          borderRadius: boxStyle.borderRadius,
+          borderWidthLink: boxStyle.borderWidthLink,
+          borderRadiusLink: boxStyle.borderRadiusLink
+        },
+        changeme: function changeme(getProperty) {
+          _this2.updateStyle("boxStyle", true, true, getProperty);
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-width"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom:before"), "border-width:".concat(getProperty.borderWidth));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-style"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-style:".concat(getProperty.borderStyle));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-color"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-color:".concat(getProperty.borderColor));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-radius"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-radius:".concat(getProperty.borderRadius));
+        }
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Box Shadow Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
+        value: boxStyle.boxShadowColor,
+        onChange: function onChange(color) {
+          _this2.updateStyle("boxStyle", color, "boxShadowColor");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg-boxShadow"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n                      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "color:".concat(color));
+        }
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Box Shadow Hover Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
+        value: boxStyle.boxShadowColorHover,
+        onChange: function onChange(color) {
+          _this2.updateStyle("boxStyle", color, "boxShadowColorHover");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg-boxShadowhover"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap:hover .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap:hover .elemento-product-simple-inner-bottom"), "color:".concat(color));
+        }
+      })))), wp.element.createElement("div", {
+        className: "".concat(wrapper_id, " ul-blocks-simple-product ").concat(preview ? "elemento-simple-product-previewon" : "")
+      }, !posts ? wp.element.createElement(_block_assets_post_functions__WEBPACK_IMPORTED_MODULE_9__["PostNotfound"], {
+        msg: "Product Not Found."
+      }) : posts.length ? wp.element.createElement(OwlSlider, null) : wp.element.createElement(_block_assets_post_functions__WEBPACK_IMPORTED_MODULE_9__["PostLoader"], {
+        msg: "Product Loading..."
+      }))); // ++++++++++++++===============
     }
   }]);
 
@@ -33081,8 +33234,14 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
   icon: ubl_block_product.icon,
   keywords: ubl_block_product.keywords,
   category: "unlimited-blocks-category",
-  getEditWrapperProps: function getEditWrapperProps(attributes) {// let attr_ = { "data-align": "full" };
-    // return attr_;
+  getEditWrapperProps: function getEditWrapperProps(attributes) {
+    var align = attributes.align;
+
+    if (align) {
+      return {
+        "data-align": align
+      };
+    }
   },
   example: function example() {},
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],

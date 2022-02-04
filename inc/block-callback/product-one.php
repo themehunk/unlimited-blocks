@@ -4,7 +4,8 @@ unlimited_blocks_register_block_fn('ubl-product',  [
     "render_callback" => "unlimited_blocks_product_one",
     'attributes' => [
         // save client id
-        'client_id' => ["type" => 'string', "default" => false],
+        'wrapper_id' => ["type" => 'string', "default" => false],
+        'align' => ['type' => "string", 'default' => false],
         // layout 
         "product_cate" => [
             "type" => "array",
@@ -18,25 +19,17 @@ unlimited_blocks_register_block_fn('ubl-product',  [
             "type" => "string",
             "default" => 'recent'
         ],
-        "numberOfColumn" => [
-            "type" => "number",
-            "default" => 3
-        ],
-        "numberOfrow" => [
-            "type" => "number",
-            "default" => 3
-        ],
-        "autoplay" => [
-            "type" => "string",
-            "default" => 'off'
-        ],
-        "infiniteLoop" => [
-            "type" => "string",
-            "default" => 'off'
-        ],
-        "sliderControl" => [
-            "type" => "string",
-            "default" => 'dots'
+
+        'sliderSettings' => [
+            'type' => "object",
+            "default" => [
+                "numberOfColumn" => 3,
+                "numberOfrow" => 2,
+                "autoplay" => "",
+                "loop" => "",
+                "sliderControl" => 'dots',
+                "margin" => 10 // box spacing
+            ]
         ],
         // style 
         "boxStyle" => [
@@ -49,6 +42,8 @@ unlimited_blocks_register_block_fn('ubl-product',  [
                 "borderColor" => "#f8c045",
                 "borderRadiusLink" => true,
                 "borderRadius" => 0,
+                'boxShadowColor' => '#4b58ff40',
+                'boxShadowColorHover' => '#4b58ff40',
             ]
         ],
         "title" => [
