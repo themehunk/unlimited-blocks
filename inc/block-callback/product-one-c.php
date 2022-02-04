@@ -4,11 +4,11 @@ if (!defined('ABSPATH')) exit;
 if (!function_exists('unlimited_blocks_product_one')) {
     function unlimited_blocks_product_one($attr)
     {
-        echo "<pre>";
-        print_r($attr);
-        echo "</pre>";
-        $postClass = new Th_Simple_Product();
-        $products_ = $postClass->simple_product_slider();
-        return "<h1>product ff aadded. </h1>";
+        // echo "<pre>";
+        // print_r($attr);
+        // echo "</pre>";
+        // $postClass = new Th_Simple_Product();
+        // $products_ = $postClass->simple_product_slider();
+        // return "<h1>product ff aadded. </h1>";
     }
 }
