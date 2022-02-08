@@ -193,8 +193,14 @@ class Th_Simple_Product
             'items' => $options['number_of_column_slide'],
         ];
         // number of column mobile and tablet
-        $sliderSetting['items_mobile'] = $options['number_of_column_slide_mobile'];
-        $sliderSetting['items_tablet'] = $options['number_of_column_slide_tablet'];
+        if (isset($options['number_of_column_slide_mobile'])) {
+            $sliderSetting['items_mobile'] = $options['number_of_column_slide_mobile'];
+        }
+        if (isset($options['number_of_column_slide_tablet'])) {
+            $sliderSetting['items_tablet'] = $options['number_of_column_slide_tablet'];
+        }
+
+
         // slider autoplay and speed 
         if (isset($options['slider_auto_play']) && $options['slider_auto_play'] == 'on' && isset($options['autoPlaySpeed']) && intval($options['autoPlaySpeed'])) {
             $sliderSetting['autoplay'] = true;
