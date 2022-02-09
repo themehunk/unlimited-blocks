@@ -301,7 +301,7 @@ export const blocksDetail = {
     ),
   },
   ubl_block_product: {
-    title: __("Th Product", "unlimited-blocks"),
+    title: __("Product Slider", "unlimited-blocks"),
     description: __("This block is for Product Blocks.", "unlimited-blocks"),
     keywords: ["product"],
     icon: (

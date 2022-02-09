@@ -1,9 +1,15 @@
 import "./style.scss";
+// import
 let stateCheck = setInterval(() => {
   if (document.readyState === "complete") {
     clearInterval(stateCheck);
+
     // header style functionality
     putStyleInHeader();
+    // all blocks style add in header
+    putAllBlockStyle();
+    // all blocks style add in header
+
     ublBlocksComponentStyler();
     ublWrapperInit();
     //slide slider
@@ -25,6 +31,53 @@ function putStyleInHeader() {
     document.getElementsByTagName("head")[0].appendChild(element);
   }
 }
+function putAllBlockStyle() {
+  // console.log("get all style");
+  let getStylesContainer = document.querySelectorAll("[ubl-block-style]");
+  let addStyleHead = document.getElementById("ubl-front-end-styler");
+
+  if (getStylesContainer.length) {
+    // check avail or not
+    for (let getIndex in getStylesContainer) {
+      //looping nodes
+      let SingleNode = getStylesContainer[getIndex];
+      if (SingleNode.nodeName) {
+        singleStyle(SingleNode);
+        // remove attr --------------------------------------
+        SingleNode.removeAttribute("ubl-block-style");
+        // remove attr --------------------------------------
+      }
+      //looping nodes
+    }
+    function singleStyle(SingleNode) {
+      let getStyle = SingleNode.getAttribute("ubl-block-style");
+      let getStyleStingyFy = checkVAlidJson(getStyle);
+      if (getStyleStingyFy) {
+        // console.log("getStyleStingyFy->", getStyleStingyFy);
+        let Css = "";
+        getStyleStingyFy.map((val_) => {
+          if (val_.selector && val_.css) {
+            Css += `${val_.selector}{${val_.css}}`;
+          }
+        });
+        if (Css) {
+          addStyleHead.textContent += Css;
+        }
+      }
+    }
+    // check avail or not
+  }
+}
+
+function checkVAlidJson(json_) {
+  try {
+    JSON.parse(json_);
+  } catch (e) {
+    return false;
+  }
+  return JSON.parse(json_);
+}
+
 function ublBlocksComponentStyler() {
   let getAllContentStyler = document.querySelectorAll("[ubl-blocks-styler]");
   for (let stylerIndex in getAllContentStyler) {
