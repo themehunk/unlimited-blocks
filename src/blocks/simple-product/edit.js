@@ -298,7 +298,8 @@ class Edit extends Component {
                     UblStyler(
                       `${wrapper_id}-box-bg`,
                       `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,
-                      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`,
+                      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom,
+                      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom:before`,
                       `background-color:${color}`
                     );
                   }}
@@ -335,8 +336,7 @@ class Edit extends Component {
                     UblStyler(
                       `${wrapper_id}-box-border-width`,
                       `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,
-      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom,
-      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom:before`,
+      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`,
                       `border-width:${getProperty.borderWidth}`
                     );
                     UblStyler(
