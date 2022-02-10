@@ -27,6 +27,7 @@ import UblStyler from "../block-assets/Styler";
 import { PostNotfound, PostLoader } from "../block-assets/post-functions";
 import BasicToggleNav from "../block-assets/utility-components/BasicToggleNav";
 import Border from "../block-assets/utility-components/border";
+import Switcher from "../block-assets/utility-components/TwoSwitcher";
 class Edit extends Component {
   constructor(props) {
     super(props);
@@ -39,7 +40,8 @@ class Edit extends Component {
       preview: false,
       wrapper_id: wrapper_id ? wrapper_id : "ubl" + props.clientId,
       openPanel: "style",
-      // openPanel: "layout",
+      productBoxBoxShadow: "normal",
+      aTcart: "normal",
     };
   }
   saveClientId = () => {
@@ -58,7 +60,7 @@ class Edit extends Component {
 
   styleAdd = () => {
     let { attributes } = this.props;
-    let { boxStyle } = attributes;
+    let { boxStyle, addToCart } = attributes;
     let { wrapper_id } = this.state;
     // bg color for box
     UblStyler(
@@ -106,6 +108,49 @@ class Edit extends Component {
       `border-radius:${boxStyle.borderRadius}`
     );
     // --------------------------------box border--------------------------------
+    // --------------------------------Add To cart Style --------------------------------
+    UblStyler(
+      `${wrapper_id}-atc-border-width`,
+      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn`,
+      `border-width:${addToCart.borderWidth}`
+    );
+    UblStyler(
+      `${wrapper_id}-atc-border-style`,
+      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn`,
+      `border-style:${addToCart.borderStyle}`
+    );
+    UblStyler(
+      `${wrapper_id}-atc-border-color`,
+      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn`,
+      `border-color:${addToCart.borderColor}`
+    );
+    UblStyler(
+      `${wrapper_id}-atc-border-radius`,
+      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn`,
+      `border-radius:${addToCart.borderRadius}`
+    );
+
+    UblStyler(
+      `${wrapper_id}-atc-Color`,
+      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn`,
+      `color:${addToCart.Color}`
+    );
+    UblStyler(
+      `${wrapper_id}-atc-ColorHover`,
+      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover`,
+      `color:${addToCart.ColorHover}`
+    );
+    UblStyler(
+      `${wrapper_id}-atc-bgColor`,
+      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn`,
+      `background-color:${addToCart.bgColor}`
+    );
+    UblStyler(
+      `${wrapper_id}-atc-bgColorHover`,
+      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover`,
+      `background-color:${addToCart.bgColorHover}`
+    );
+    // --------------------------------Add To cart Style --------------------------------
   };
   // 'attributes' => [ "boxStyle" => ["bgColor" => "#b1b1b1",]]
   // -------------------key----------key2---------value
@@ -133,9 +178,17 @@ class Edit extends Component {
     // ++++++++++++++===============
     console.log("product props", this.props);
     // console.log("product state", this.state);
-    const { wrapper_id, preview, posts, totalPost } = this.state;
+    const {
+      wrapper_id,
+      preview,
+      posts,
+      totalPost,
+      productBoxBoxShadow,
+      aTcart,
+    } = this.state;
     const { attributes, setAttributes } = this.props;
-    let { product_cate, numberOfPosts, boxStyle, sliderSettings } = attributes;
+    let { product_cate, numberOfPosts, boxStyle, addToCart, sliderSettings } =
+      attributes;
     // slider options
     const slider_options_ = {
       // items: 1,
@@ -249,6 +302,7 @@ class Edit extends Component {
                   }}
                 />
               </PanelBody>
+
               <PanelBody
                 initialOpen={false}
                 title={__("Slider Settings", "unlimited-blocks")}
@@ -315,11 +369,9 @@ class Edit extends Component {
                     this.updateStyle("sliderSettings", e, "margin");
                   }}
                 />
-              </PanelBody>
-              <PanelBody
-                initialOpen={false}
-                title={__("Box Border & BoxShadow", "unlimited-blocks")}
-              >
+                <p>
+                  <strong>{__("Border", "unlimited-blocks")}</strong>
+                </p>
                 <Border
                   value={{
                     allUnit: "px",
@@ -336,7 +388,7 @@ class Edit extends Component {
                     UblStyler(
                       `${wrapper_id}-box-border-width`,
                       `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,
-      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`,
+              .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`,
                       `border-width:${getProperty.borderWidth}`
                     );
                     UblStyler(
@@ -362,35 +414,179 @@ class Edit extends Component {
                 <p>
                   <strong>{__("Box Shadow Color", "unlimited-blocks")}</strong>
                 </p>
-                <ColorPalette
-                  value={boxStyle.boxShadowColor}
-                  onChange={(color) => {
-                    this.updateStyle("boxStyle", color, "boxShadowColor");
-                    UblStyler(
-                      `${wrapper_id}-box-bg-boxShadow`,
-                      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,
-                      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`,
-                      `color:${color}`
-                    );
+                <Switcher
+                  value={productBoxBoxShadow}
+                  navItem={[
+                    {
+                      name: "normal",
+                      title: "Normal",
+                    },
+                    {
+                      name: "hover",
+                      title: "Hover",
+                    },
+                  ]}
+                  clickme={(value_) => {
+                    this.setState({ productBoxBoxShadow: value_ });
                   }}
                 />
-                <p>
-                  <strong>
-                    {__("Box Shadow Hover Color", "unlimited-blocks")}
-                  </strong>
-                </p>
-                <ColorPalette
-                  value={boxStyle.boxShadowColorHover}
-                  onChange={(color) => {
-                    this.updateStyle("boxStyle", color, "boxShadowColorHover");
-                    UblStyler(
-                      `${wrapper_id}-box-bg-boxShadowhover`,
-                      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap:hover .elemento-product-simple-inner-wrap,
+                {productBoxBoxShadow == "hover" ? (
+                  <ColorPalette
+                    value={boxStyle.boxShadowColorHover}
+                    onChange={(color) => {
+                      this.updateStyle(
+                        "boxStyle",
+                        color,
+                        "boxShadowColorHover"
+                      );
+                      UblStyler(
+                        `${wrapper_id}-box-bg-boxShadowhover`,
+                        `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap:hover .elemento-product-simple-inner-wrap,
       .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap:hover .elemento-product-simple-inner-bottom`,
-                      `color:${color}`
+                        `color:${color}`
+                      );
+                    }}
+                  />
+                ) : (
+                  <ColorPalette
+                    value={boxStyle.boxShadowColor}
+                    onChange={(color) => {
+                      this.updateStyle("boxStyle", color, "boxShadowColor");
+                      UblStyler(
+                        `${wrapper_id}-box-bg-boxShadow`,
+                        `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,
+                      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`,
+                        `color:${color}`
+                      );
+                    }}
+                  />
+                )}
+              </PanelBody>
+              <PanelBody
+                title={__("Add To Cart Button", "unlimited-blocks")}
+                initialOpen={true}
+              >
+                <p>
+                  <strong>{__("Border", "unlimited-blocks")}</strong>
+                </p>
+                <Border
+                  value={{
+                    allUnit: "px",
+                    borderStyle: addToCart.borderStyle,
+                    borderWidth: addToCart.borderWidth,
+                    borderColor: addToCart.borderColor,
+                    borderRadius: addToCart.borderRadius,
+                    borderWidthLink: addToCart.borderWidthLink,
+                    borderRadiusLink: addToCart.borderRadiusLink,
+                  }}
+                  changeme={(getProperty) => {
+                    // console.log("getProperty", getProperty);
+                    this.updateStyle("boxStyle", true, true, getProperty);
+                    UblStyler(
+                      `${wrapper_id}-atc-border-width`,
+                      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn`,
+                      `border-width:${getProperty.borderWidth}`
+                    );
+                    UblStyler(
+                      `${wrapper_id}-atc-border-style`,
+                      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn`,
+                      `border-style:${getProperty.borderStyle}`
+                    );
+                    UblStyler(
+                      `${wrapper_id}-atc-border-color`,
+                      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn`,
+                      `border-color:${getProperty.borderColor}`
+                    );
+                    UblStyler(
+                      `${wrapper_id}-atc-border-radius`,
+                      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn`,
+                      `border-radius:${getProperty.borderRadius}`
                     );
                   }}
                 />
+                <Switcher
+                  value={aTcart}
+                  navItem={[
+                    {
+                      name: "normal",
+                      title: "Normal",
+                    },
+                    {
+                      name: "hover",
+                      title: "Hover",
+                    },
+                  ]}
+                  clickme={(value_) => {
+                    this.setState({ aTcart: value_ });
+                  }}
+                />
+                {aTcart == "hover" ? (
+                  <>
+                    <p>
+                      <strong>{__("Color", "unlimited-blocks")}</strong>
+                    </p>
+                    <ColorPalette
+                      value={addToCart.ColorHover}
+                      onChange={(color) => {
+                        this.updateStyle("addToCart", color, "ColorHover");
+                        UblStyler(
+                          `${wrapper_id}-atc-ColorHover`,
+                          `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover`,
+                          `color:${color}`
+                        );
+                      }}
+                    />
+                    <p>
+                      <strong>
+                        {__("Background Color", "unlimited-blocks")}
+                      </strong>
+                    </p>
+                    <ColorPalette
+                      value={addToCart.bgColorHover}
+                      onChange={(color) => {
+                        this.updateStyle("addToCart", color, "bgColorHover");
+                        UblStyler(
+                          `${wrapper_id}-atc-bgColorHover`,
+                          `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover`,
+                          `background-color:${color}`
+                        );
+                      }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      <strong>{__("Color", "unlimited-blocks")}</strong>
+                    </p>
+                    <ColorPalette
+                      value={addToCart.Color}
+                      onChange={(color) => {
+                        this.updateStyle("addToCart", color, "Color");
+                        UblStyler(
+                          `${wrapper_id}-atc-Color`,
+                          `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn`,
+                          `color:${color}`
+                        );
+                      }}
+                    />
+                    <p>
+                      <strong>
+                        {__("Background Color", "unlimited-blocks")}
+                      </strong>
+                    </p>
+                    <ColorPalette
+                      value={addToCart.bgColor}
+                      onChange={(color) => {
+                        this.updateStyle("addToCart", color, "bgColor");
+                        UblStyler(
+                          `${wrapper_id}-atc-bgColor`,
+                          `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover`,
+                          `background-color:${color}`
+                        );
+                      }}
+                    />
+                  </>
+                )}
               </PanelBody>
             </>
           )}

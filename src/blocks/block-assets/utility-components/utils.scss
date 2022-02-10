@@ -247,3 +247,31 @@
     padding: 10px;
   }
 }
+
+.ul-switch-nav {
+  border: 1px solid #939393;
+  display: flex;
+  position: relative;
+  padding: 7px 0;
+  border-radius: 2px;
+  margin: 10px 0;
+  > div {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    &.bg-switch {
+      background-color: black;
+      width: 50%;
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      height: calc(100% - 4px);
+      border-radius: 2px;
+      transition: 0.2s all ease;
+    }
+    &.active {
+      color: white;
+    }
+  }
+}

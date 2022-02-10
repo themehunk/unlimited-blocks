@@ -53,6 +53,10 @@
             if ("items" in dataSetting) {
               owlCarouselArg["items"] = dataSetting.items;
             }
+            // margin
+            if ("slide_spacing" in dataSetting) {
+              owlCarouselArg["margin"] = dataSetting.slide_spacing;
+            }
             //autoplay
             if ("autoplay" in dataSetting) {
               owlCarouselArg["autoplay"] = true;

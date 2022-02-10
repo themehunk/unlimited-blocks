@@ -35,7 +35,7 @@ unlimited_blocks_register_block_fn('ubl-product',  [
         "boxStyle" => [
             "type" => "object",
             "default" => [
-                "bgColor" => "#b1b1b1",
+                "bgColor" => "#ffffff",
                 "borderWidthLink" => true,
                 "borderStyle" => "solid",
                 "borderWidth" => 0,
@@ -44,6 +44,21 @@ unlimited_blocks_register_block_fn('ubl-product',  [
                 "borderRadius" => 0,
                 'boxShadowColor' => '#4b58ff40',
                 'boxShadowColorHover' => '#4b58ff40',
+            ]
+        ],
+        "addToCart" => [
+            "type" => "object",
+            "default" => [
+                "Color" => "#20c9ae",
+                "bgColor" => "#89767603",
+                "ColorHover" => "#20c9ae",
+                "bgColorHover" => "#89767603",
+                "borderWidth" => "1px",
+                "borderWidthLink" => true,
+                "borderStyle" => "solid",
+                "borderColor" => "#20c9ae",
+                "borderRadius" => "5px",
+                "borderRadiusLink" => true,
             ]
         ],
         "title" => [

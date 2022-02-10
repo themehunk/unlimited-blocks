@@ -28,6 +28,7 @@ if (!function_exists('unlimited_blocks_product_one')) {
         $options['add_to_cart_icon_on'] = 'on';
         $options['autoPlaySpeed'] = 3;
         $sliderSetting['slider_controll'] = $options['sliderSettings']['slider_controll'];
+        $sliderSetting['slide_spacing'] = $options['sliderSettings']['margin'];
         if (isset($attr['product_cate']) && !empty($attr['product_cate'])) {
             $cate = $attr['product_cate'];
         }
@@ -37,8 +38,9 @@ if (!function_exists('unlimited_blocks_product_one')) {
 
 
         $addStyles = [];
-        // box style 
         $WrapperID = '.' . $attr['wrapper_id'];
+        // box style 
+        // bgColor,borderStyle,borderWidth,borderColor,borderRadius,boxShadowColor,boxShadowColorHover
         $addStyles[] = [
             'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap," .
                 "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom",
@@ -52,7 +54,41 @@ if (!function_exists('unlimited_blocks_product_one')) {
             'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap:hover,{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom:hover",
             'css' => "color:{$attr['boxStyle']['boxShadowColorHover']};"
         ];
-        // bgColor,borderStyle,borderWidth,borderColor,borderRadius,boxShadowColor,boxShadowColorHover
+        // box style 
+        // add to cart style
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn",
+            'css' => "border-width:{$attr['addToCart']['borderWidth']};"
+        ];
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn",
+            'css' => "border-style:{$attr['addToCart']['borderStyle']};"
+        ];
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn",
+            'css' => "border-color:{$attr['addToCart']['borderColor']};"
+        ];
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn",
+            'css' => "border-radius:{$attr['addToCart']['borderRadius']};"
+        ];
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn",
+            'css' => "color:{$attr['addToCart']['Color']};"
+        ];
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover",
+            'css' => "color:{$attr['addToCart']['ColorHover']};"
+        ];
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn",
+            'css' => "background-color:{$attr['addToCart']['bgColor']};"
+        ];
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover",
+            'css' => "background-color:{$attr['addToCart']['bgColorHover']};"
+        ];
+        // add to cart style
 
         $styleAdd = wp_json_encode($addStyles);
         if ($products_) {

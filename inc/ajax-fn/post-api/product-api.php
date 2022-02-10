@@ -140,7 +140,7 @@ class Th_Simple_Product
 {
     public function simple_product_slider($cate = [], $options = [])
     {
-        if (is_array($cate) && !empty($cate)) {
+        if (isset($options['number_of_product'])) {
             $numOfproduct = $options['number_of_product'];
             $args = array(
                 'post_type' => 'product',
@@ -157,9 +157,11 @@ class Th_Simple_Product
                 )
             );
             $stringCate = '';
-            $stringCate = implode(",", $cate);
-            if (!in_array('all', $cate)) {
-                $args['product_cat'] = $stringCate;
+            if (is_array($cate) && !empty($cate)) {
+                $stringCate = implode(",", $cate);
+                if (!in_array('all', $cate)) {
+                    $args['product_cat'] = $stringCate;
+                }
             }
             // random, featured, recently 
             if (isset($options['product_show_by'])) {

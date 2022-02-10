@@ -14911,6 +14911,101 @@ var BasicToggleNav = function BasicToggleNav(props) {
 
 /***/ }),
 
+/***/ "./src/blocks/block-assets/utility-components/TwoSwitcher.js":
+/*!*******************************************************************!*\
+  !*** ./src/blocks/block-assets/utility-components/TwoSwitcher.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// const switcher = (props) => {
+//   return (
+//     <div class="ubl-switcher-bg-clr-gradient clor_color">
+//       <span class="bg-span"></span>
+//       <span class="selected">Border</span>
+//       <span class="">Box Shadow</span>
+//     </div>
+//   );
+// };
+// export default switcher;
+var Switcher = function Switcher(props) {
+  var navItem = props.navItem,
+      clickme = props.clickme,
+      value = props.value,
+      wrapperClass = props.wrapperClass;
+
+  if (navItem) {
+    var default_class = "ul-switch-nav";
+
+    if (wrapperClass) {
+      default_class = default_class.concat(" ", wrapperClass);
+    }
+
+    var getIndexValue = navItem.findIndex(function (val) {
+      return val.name == value;
+    });
+    console.log("items->", navItem);
+    console.log("get->" + value, getIndexValue);
+    var styleBack = null;
+
+    if (getIndexValue > 0) {
+      styleBack = {
+        left: "calc(50% - 2px)"
+      };
+    }
+
+    return wp.element.createElement("div", {
+      className: default_class
+    }, wp.element.createElement("div", {
+      className: "bg-switch",
+      style: styleBack
+    }), navItem.map(function (nav_val, key_) {
+      return wp.element.createElement("div", {
+        key: key_,
+        onClick: function onClick() {
+          if (nav_val.name != value) {
+            clickme(nav_val.name);
+          }
+        },
+        className: value == nav_val.name ? "active" : null
+      }, nav_val.icon && wp.element.createElement("span", {
+        className: "icon_"
+      }, wp.element.createElement("span", {
+        className: nav_val.icon
+      })), wp.element.createElement("span", {
+        className: "title_"
+      }, nav_val.title));
+    }));
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Switcher); // component
+
+{
+  /* <Switcher
+              value={this.state.openPanel}
+              navItem={[
+                {
+                  name: "layout",
+                  title: "Layout",
+                  icon: "dashicons dashicons-editor-table",
+                },
+                {
+                  name: "style",
+                  title: "Style",
+                  icon: "dashicons dashicons-admin-customizer",
+                },
+              ]}
+              clickme={(value_) => {
+                this.setState({ openPanel: value_ });
+              }}
+            /> */
+} // component
+
+/***/ }),
+
 /***/ "./src/blocks/block-assets/utility-components/animations/animateclasses.js":
 /*!*********************************************************************************!*\
   !*** ./src/blocks/block-assets/utility-components/animations/animateclasses.js ***!
@@ -32834,6 +32929,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_assets_post_functions__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../block-assets/post-functions */ "./src/blocks/block-assets/post-functions.js");
 /* harmony import */ var _block_assets_utility_components_BasicToggleNav__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../block-assets/utility-components/BasicToggleNav */ "./src/blocks/block-assets/utility-components/BasicToggleNav.js");
 /* harmony import */ var _block_assets_utility_components_border__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../block-assets/utility-components/border */ "./src/blocks/block-assets/utility-components/border/index.js");
+/* harmony import */ var _block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../block-assets/utility-components/TwoSwitcher */ "./src/blocks/block-assets/utility-components/TwoSwitcher.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -32877,6 +32973,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var Edit = /*#__PURE__*/function (_Component) {
   _inherits(Edit, _Component);
 
@@ -32904,7 +33001,8 @@ var Edit = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "styleAdd", function () {
       var attributes = _this.props.attributes;
-      var boxStyle = attributes.boxStyle;
+      var boxStyle = attributes.boxStyle,
+          addToCart = attributes.addToCart;
       var wrapper_id = _this.state.wrapper_id; // bg color for box
 
       Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom:before"), "background-color:".concat(boxStyle.bgColor));
@@ -32915,6 +33013,16 @@ var Edit = /*#__PURE__*/function (_Component) {
       Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-style"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-style:".concat(boxStyle.borderStyle));
       Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-color"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-color:".concat(boxStyle.borderColor));
       Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-radius"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-radius:".concat(boxStyle.borderRadius)); // --------------------------------box border--------------------------------
+      // --------------------------------Add To cart Style --------------------------------
+
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-width"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "border-width:".concat(addToCart.borderWidth));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-style"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "border-style:".concat(addToCart.borderStyle));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-color"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "border-color:".concat(addToCart.borderColor));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-radius"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "border-radius:".concat(addToCart.borderRadius));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-Color"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "color:".concat(addToCart.Color));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-ColorHover"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover"), "color:".concat(addToCart.ColorHover));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-bgColor"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "background-color:".concat(addToCart.bgColor));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-bgColorHover"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover"), "background-color:".concat(addToCart.bgColorHover)); // --------------------------------Add To cart Style --------------------------------
     });
 
     _defineProperty(_assertThisInitialized(_this), "updateStyle", function (key_, value, key2) {
@@ -32944,8 +33052,9 @@ var Edit = /*#__PURE__*/function (_Component) {
       totalPost: null,
       preview: false,
       wrapper_id: _wrapper_id ? _wrapper_id : "ubl" + props.clientId,
-      openPanel: "style" // openPanel: "layout",
-
+      openPanel: "style",
+      productBoxBoxShadow: "normal",
+      aTcart: "normal"
     };
     return _this;
   }
@@ -32982,13 +33091,16 @@ var Edit = /*#__PURE__*/function (_Component) {
           wrapper_id = _this$state.wrapper_id,
           preview = _this$state.preview,
           posts = _this$state.posts,
-          totalPost = _this$state.totalPost;
+          totalPost = _this$state.totalPost,
+          productBoxBoxShadow = _this$state.productBoxBoxShadow,
+          aTcart = _this$state.aTcart;
       var _this$props3 = this.props,
           attributes = _this$props3.attributes,
           setAttributes = _this$props3.setAttributes;
       var product_cate = attributes.product_cate,
           numberOfPosts = attributes.numberOfPosts,
           boxStyle = attributes.boxStyle,
+          addToCart = attributes.addToCart,
           sliderSettings = attributes.sliderSettings; // slider options
 
       var slider_options_ = {
@@ -33142,10 +33254,7 @@ var Edit = /*#__PURE__*/function (_Component) {
         onChange: function onChange(e) {
           _this2.updateStyle("sliderSettings", e, "margin");
         }
-      })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
-        initialOpen: false,
-        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Box Border & BoxShadow", "unlimited-blocks")
-      }, wp.element.createElement(_block_assets_utility_components_border__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Border", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_border__WEBPACK_IMPORTED_MODULE_11__["default"], {
         value: {
           allUnit: "px",
           borderStyle: boxStyle.borderStyle,
@@ -33158,26 +33267,104 @@ var Edit = /*#__PURE__*/function (_Component) {
         changeme: function changeme(getProperty) {
           _this2.updateStyle("boxStyle", true, true, getProperty);
 
-          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-width"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-width:".concat(getProperty.borderWidth));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-width"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n              .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-width:".concat(getProperty.borderWidth));
           Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-style"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-style:".concat(getProperty.borderStyle));
           Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-color"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-color:".concat(getProperty.borderColor));
           Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-radius"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-radius:".concat(getProperty.borderRadius));
         }
-      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Box Shadow Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
-        value: boxStyle.boxShadowColor,
-        onChange: function onChange(color) {
-          _this2.updateStyle("boxStyle", color, "boxShadowColor");
-
-          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg-boxShadow"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n                      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "color:".concat(color));
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Box Shadow Color", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        value: productBoxBoxShadow,
+        navItem: [{
+          name: "normal",
+          title: "Normal"
+        }, {
+          name: "hover",
+          title: "Hover"
+        }],
+        clickme: function clickme(value_) {
+          _this2.setState({
+            productBoxBoxShadow: value_
+          });
         }
-      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Box Shadow Hover Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
+      }), productBoxBoxShadow == "hover" ? wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
         value: boxStyle.boxShadowColorHover,
         onChange: function onChange(color) {
           _this2.updateStyle("boxStyle", color, "boxShadowColorHover");
 
           Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg-boxShadowhover"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap:hover .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap:hover .elemento-product-simple-inner-bottom"), "color:".concat(color));
         }
-      })))), wp.element.createElement("div", {
+      }) : wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
+        value: boxStyle.boxShadowColor,
+        onChange: function onChange(color) {
+          _this2.updateStyle("boxStyle", color, "boxShadowColor");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg-boxShadow"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n                      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "color:".concat(color));
+        }
+      })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
+        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Add To Cart Button", "unlimited-blocks"),
+        initialOpen: true
+      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Border", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_border__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        value: {
+          allUnit: "px",
+          borderStyle: addToCart.borderStyle,
+          borderWidth: addToCart.borderWidth,
+          borderColor: addToCart.borderColor,
+          borderRadius: addToCart.borderRadius,
+          borderWidthLink: addToCart.borderWidthLink,
+          borderRadiusLink: addToCart.borderRadiusLink
+        },
+        changeme: function changeme(getProperty) {
+          // console.log("getProperty", getProperty);
+          _this2.updateStyle("boxStyle", true, true, getProperty);
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-width"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "border-width:".concat(getProperty.borderWidth));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-style"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "border-style:".concat(getProperty.borderStyle));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-color"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "border-color:".concat(getProperty.borderColor));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-radius"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "border-radius:".concat(getProperty.borderRadius));
+        }
+      }), wp.element.createElement(_block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        value: aTcart,
+        navItem: [{
+          name: "normal",
+          title: "Normal"
+        }, {
+          name: "hover",
+          title: "Hover"
+        }],
+        clickme: function clickme(value_) {
+          _this2.setState({
+            aTcart: value_
+          });
+        }
+      }), aTcart == "hover" ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
+        value: addToCart.ColorHover,
+        onChange: function onChange(color) {
+          _this2.updateStyle("addToCart", color, "ColorHover");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-ColorHover"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover"), "color:".concat(color));
+        }
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
+        value: addToCart.bgColorHover,
+        onChange: function onChange(color) {
+          _this2.updateStyle("addToCart", color, "bgColorHover");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-bgColorHover"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover"), "background-color:".concat(color));
+        }
+      })) : wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
+        value: addToCart.Color,
+        onChange: function onChange(color) {
+          _this2.updateStyle("addToCart", color, "Color");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-Color"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "color:".concat(color));
+        }
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
+        value: addToCart.bgColor,
+        onChange: function onChange(color) {
+          _this2.updateStyle("addToCart", color, "bgColor");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-bgColor"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover"), "background-color:".concat(color));
+        }
+      }))))), wp.element.createElement("div", {
         className: "".concat(wrapper_id, " ul-blocks-simple-product ").concat(preview ? "elemento-simple-product-previewon" : "")
       }, !posts ? wp.element.createElement(_block_assets_post_functions__WEBPACK_IMPORTED_MODULE_9__["PostNotfound"], {
         msg: "Product Not Found."

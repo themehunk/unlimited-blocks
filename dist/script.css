@@ -1673,10 +1673,11 @@
   font-weight: 700;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 .ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover {
   color: #20c9ae;
-  background-color: #c4c4c4;
+  background-color: #f5f5f5;
 }
 .ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn.loading {
   opacity: 0.5;
