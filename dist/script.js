@@ -10990,12 +10990,16 @@ return jQuery;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/block-assets/style.scss");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_0__);
+ // import
 
 var stateCheck = setInterval(function () {
   if (document.readyState === "complete") {
     clearInterval(stateCheck); // header style functionality
 
-    putStyleInHeader();
+    putStyleInHeader(); // all blocks style add in header
+
+    putAllBlockStyle(); // all blocks style add in header
+
     ublBlocksComponentStyler();
     ublWrapperInit(); //slide slider
 
@@ -11016,6 +11020,57 @@ function putStyleInHeader() {
     element.setAttribute("id", "ubl-front-end-styler");
     document.getElementsByTagName("head")[0].appendChild(element);
   }
+}
+
+function putAllBlockStyle() {
+  // console.log("get all style");
+  var getStylesContainer = document.querySelectorAll("[ubl-block-style]");
+  var addStyleHead = document.getElementById("ubl-front-end-styler");
+
+  if (getStylesContainer.length) {
+    // check avail or not
+    for (var getIndex in getStylesContainer) {
+      //looping nodes
+      var SingleNode = getStylesContainer[getIndex];
+
+      if (SingleNode.nodeName) {
+        singleStyle(SingleNode); // remove attr --------------------------------------
+
+        SingleNode.removeAttribute("ubl-block-style"); // remove attr --------------------------------------
+      } //looping nodes
+
+    }
+
+    function singleStyle(SingleNode) {
+      var getStyle = SingleNode.getAttribute("ubl-block-style");
+      var getStyleStingyFy = checkVAlidJson(getStyle);
+
+      if (getStyleStingyFy) {
+        // console.log("getStyleStingyFy->", getStyleStingyFy);
+        var Css = "";
+        getStyleStingyFy.map(function (val_) {
+          if (val_.selector && val_.css) {
+            Css += "".concat(val_.selector, "{").concat(val_.css, "}");
+          }
+        });
+
+        if (Css) {
+          addStyleHead.textContent += Css;
+        }
+      }
+    } // check avail or not
+
+  }
+}
+
+function checkVAlidJson(json_) {
+  try {
+    JSON.parse(json_);
+  } catch (e) {
+    return false;
+  }
+
+  return JSON.parse(json_);
 }
 
 function ublBlocksComponentStyler() {

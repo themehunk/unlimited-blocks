@@ -14306,7 +14306,7 @@ var blocksDetail = {
     }))
   },
   ubl_block_product: {
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Th Product", "unlimited-blocks"),
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Product Slider", "unlimited-blocks"),
     description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("This block is for Product Blocks.", "unlimited-blocks"),
     keywords: ["product"],
     icon: wp.element.createElement("svg", {

@@ -35,11 +35,31 @@ if (!function_exists('unlimited_blocks_product_one')) {
         // options 
         $products_ = $postClass->simple_product_slider($cate, $options);
 
+
+        $addStyles = [];
+        // box style 
+        $WrapperID = '.' . $attr['wrapper_id'];
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap," .
+                "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom",
+            'css' => "background-color:{$attr['boxStyle']['bgColor']};border-style:{$attr['boxStyle']['borderStyle']};border-color:{$attr['boxStyle']['borderColor']};border-radius:{$attr['boxStyle']['borderRadius']};color:{$attr['boxStyle']['boxShadowColor']};border-width:{$attr['boxStyle']['borderWidth']};"
+        ];
+        $addStyles[] = [
+            'selector' => "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom:before",
+            'css' => "background-color:{$attr['boxStyle']['bgColor']};"
+        ];
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap:hover,{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom:hover",
+            'css' => "color:{$attr['boxStyle']['boxShadowColorHover']};"
+        ];
+        // bgColor,borderStyle,borderWidth,borderColor,borderRadius,boxShadowColor,boxShadowColorHover
+
+        $styleAdd = wp_json_encode($addStyles);
         if ($products_) {
-            return '<div ubl-block-style="" class="ul-blocks-simple-product ' . $attr['wrapper_id'] . '" ubl-block-styler="">' . $products_ . '</div>';
+            return sprintf("<div ubl-block-style='%s' class='ul-blocks-simple-product %s'>%s</div>", $styleAdd, $attr['wrapper_id'], $products_);
         }
 
-        return $products_;
+        // return $products_;
         // return "<h1>product ff aadded. </h1>";
     }
 }
