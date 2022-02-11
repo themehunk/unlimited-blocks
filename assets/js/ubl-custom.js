@@ -33,6 +33,9 @@
         let dataSetting = slider.attr("data-setting");
         if (dataSetting) {
           dataSetting = JSON.parse(dataSetting);
+
+          // console.log("dataSetting", dataSetting);
+
           if (dataSetting) {
             let owlCarouselArg = {
               slideTransition: "linear",

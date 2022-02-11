@@ -42,7 +42,7 @@
     padding: 15px 0px 100px;
   }
   .item {
-    padding: 0 12px;
+    padding: 0 6px;
   }
   .elemento-product-outer-wrap {
     position: relative;
@@ -249,15 +249,16 @@
       position: relative;
       z-index: 1000;
       text-align: center;
-      color: #3b3b3b;
+      color: #20c9ae;
+      font-size: 14px;
       del {
         margin-right: 0.5rem;
         color: #878787;
         font-weight: normal;
       }
-      ins {
-        color: #20c9ae;
-      }
+      // ins {
+      //   color: #20c9ae;
+      // }
     }
     .elemento-addons-rating {
       .star-rating {
@@ -344,12 +345,13 @@
   display: flex;
   position: relative;
   z-index: 1000;
+  justify-content: center;
   .star-rating {
     float: unset;
     // float: right;
     overflow: hidden;
     position: relative;
-    height: 1em;
+    height: 14px;
     line-height: 1;
     font-size: 1em;
     width: 5.4em;

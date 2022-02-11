@@ -59,13 +59,40 @@ unlimited_blocks_register_block_fn('ubl-product',  [
                 "borderColor" => "#20c9ae",
                 "borderRadius" => "5px",
                 "borderRadiusLink" => true,
+                "paddingV" => '6',
+                "paddingH" => '18',
             ]
         ],
-        "title" => [
+        "productTitle" => [
             "type" => "object",
             "default" => [
-                'color' => "",
-                'font-size' => ""
+                'color' => "#3b3b3b",
+                'colorHover' => "#3b3b3b",
+                'fontSize' => 14
+            ]
+        ],
+        "ratingStyle" => [
+            "type" => "object",
+            "default" => [
+                'color' => "#fa8e1e",
+                'bgColor' => "#d3ced2",
+                'fontSize' => "14"
+            ]
+        ],
+        "priceStyle" => [
+            "type" => "object",
+            "default" => [
+                'color' => "#20c9ae",
+                'discountColor' => "#d3ced2",
+                'fontSize' => 14
+            ]
+        ],
+        "saleStyle" => [
+            "type" => "object",
+            "default" => [
+                'color' => "white",
+                'bgColor' => "black",
+                'fontSize' => 12
             ]
         ],
     ]

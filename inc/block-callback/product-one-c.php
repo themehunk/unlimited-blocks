@@ -27,8 +27,8 @@ if (!function_exists('unlimited_blocks_product_one')) {
         $options['add_to_cart_text'] = __("Add To Cart", 'unlimited-blocks');
         $options['add_to_cart_icon_on'] = 'on';
         $options['autoPlaySpeed'] = 3;
-        $sliderSetting['slider_controll'] = $options['sliderSettings']['slider_controll'];
-        $sliderSetting['slide_spacing'] = $options['sliderSettings']['margin'];
+        $options['slider_controll'] = $attr['sliderSettings']['slider_controll'];
+        $options['slide_spacing'] = $attr['sliderSettings']['margin'];
         if (isset($attr['product_cate']) && !empty($attr['product_cate'])) {
             $cate = $attr['product_cate'];
         }
@@ -56,45 +56,59 @@ if (!function_exists('unlimited_blocks_product_one')) {
         ];
         // box style 
         // add to cart style
+        $addtoCartSelector = "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn";
         $addStyles[] = [
-            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn",
-            'css' => "border-width:{$attr['addToCart']['borderWidth']};"
+            'selector' =>  "{$addtoCartSelector}",
+            'css' => "border-width:{$attr['addToCart']['borderWidth']};border-style:{$attr['addToCart']['borderStyle']};border-color:{$attr['addToCart']['borderColor']};border-radius:{$attr['addToCart']['borderRadius']};color:{$attr['addToCart']['Color']};background-color:{$attr['addToCart']['bgColor']};padding:{$attr['addToCart']['paddingV']}px {$attr['addToCart']['paddingH']}px {$attr['addToCart']['paddingV']}px {$attr['addToCart']['paddingH']}px;"
         ];
-        $addStyles[] = [
-            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn",
-            'css' => "border-style:{$attr['addToCart']['borderStyle']};"
-        ];
-        $addStyles[] = [
-            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn",
-            'css' => "border-color:{$attr['addToCart']['borderColor']};"
-        ];
-        $addStyles[] = [
-            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn",
-            'css' => "border-radius:{$attr['addToCart']['borderRadius']};"
-        ];
-        $addStyles[] = [
-            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn",
-            'css' => "color:{$attr['addToCart']['Color']};"
-        ];
-        $addStyles[] = [
-            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover",
-            'css' => "color:{$attr['addToCart']['ColorHover']};"
-        ];
-        $addStyles[] = [
-            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn",
-            'css' => "background-color:{$attr['addToCart']['bgColor']};"
-        ];
-        $addStyles[] = [
-            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover",
-            'css' => "background-color:{$attr['addToCart']['bgColorHover']};"
-        ];
-        // add to cart style
 
+        $addStyles[] = [
+            'selector' =>  "{$addtoCartSelector}:hover",
+            'css' => "color:{$attr['addToCart']['ColorHover']};background-color:{$attr['addToCart']['bgColorHover']};"
+        ];
+
+        // add to cart style
+        // title style
+        $titleSelector = "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-product-title";
+        $addStyles[] = [
+            'selector' =>  "{$titleSelector}",
+            'css' => "color:{$attr['productTitle']['color']};font-size:{$attr['productTitle']['fontSize']}px;"
+        ];
+        $addStyles[] = [
+            'selector' =>  "{$titleSelector}:hover",
+            'css' => "color:{$attr['productTitle']['colorHover']};"
+        ];
+        // title style
+        // rating style
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-rating .star-rating",
+            'css' => "font-size:{$attr['ratingStyle']['fontSize']}px;color:{$attr['ratingStyle']['color']};"
+        ];
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-rating .star-rating:before",
+            'css' => "color:{$attr['ratingStyle']['bgColor']};"
+        ];
+        // rating style
+        // price style
+        $priceStyleSelector = "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-price";
+        $addStyles[] = [
+            'selector' =>  "{$priceStyleSelector}",
+            'css' => "font-size:{$attr['priceStyle']['fontSize']}px;color:{$attr['priceStyle']['color']};"
+        ];
+        $addStyles[] = [
+            'selector' =>  "{$priceStyleSelector} del",
+            'css' => "color:{$attr['priceStyle']['discountColor']};"
+        ];
+        // sale text style
+        // $addStyles[] = [
+        //     'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-sale > span",
+        //     'css' => "font-size:{$attr['saleStyle']['fontSize']}px; color:{$attr['saleStyle']['color']}; background-color:{$attr['saleStyle']['bgColor']};"
+        // ];
+        // price style
         $styleAdd = wp_json_encode($addStyles);
         if ($products_) {
             return sprintf("<div ubl-block-style='%s' class='ul-blocks-simple-product %s'>%s</div>", $styleAdd, $attr['wrapper_id'], $products_);
         }
-
         // return $products_;
         // return "<h1>product ff aadded. </h1>";
     }

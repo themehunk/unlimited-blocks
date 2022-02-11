@@ -33002,27 +33002,53 @@ var Edit = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "styleAdd", function () {
       var attributes = _this.props.attributes;
       var boxStyle = attributes.boxStyle,
-          addToCart = attributes.addToCart;
-      var wrapper_id = _this.state.wrapper_id; // bg color for box
+          addToCart = attributes.addToCart,
+          productTitle = attributes.productTitle,
+          ratingStyle = attributes.ratingStyle,
+          priceStyle = attributes.priceStyle,
+          saleStyle = attributes.saleStyle;
+      var wrapper_id = _this.state.wrapper_id; // --------------------------------box style--------------------------------
 
-      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom:before"), "background-color:".concat(boxStyle.bgColor));
-      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg-boxShadow"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "color:".concat(boxStyle.boxShadowColor));
-      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg-boxShadowhover"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap:hover .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap:hover .elemento-product-simple-inner-bottom"), "color:".concat(boxStyle.boxShadowColorHover)); // --------------------------------box border--------------------------------
+      var BoxSelector1 = ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap");
+      var BoxSelector2 = ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom");
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg"), "".concat(BoxSelector1, ",\n      ").concat(BoxSelector2, ",\n      ").concat(BoxSelector2, ":before"), "background-color:".concat(boxStyle.bgColor));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg-boxShadow"), "".concat(BoxSelector1, ",\n      ").concat(BoxSelector2), "color:".concat(boxStyle.boxShadowColor));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg-boxShadowhover"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap:hover .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap:hover .elemento-product-simple-inner-bottom"), "color:".concat(boxStyle.boxShadowColorHover));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-width"), "".concat(BoxSelector1, ",\n      ").concat(BoxSelector2), "border-width:".concat(boxStyle.borderWidth));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-style"), "".concat(BoxSelector1, ",\n      ").concat(BoxSelector2), "border-style:".concat(boxStyle.borderStyle));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-color"), "".concat(BoxSelector1, ",\n      ").concat(BoxSelector2), "border-color:".concat(boxStyle.borderColor));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-radius"), "".concat(BoxSelector1, ",\n      ").concat(BoxSelector2), "border-radius:".concat(boxStyle.borderRadius)); // --------------------------------Add To cart Style --------------------------------
 
-      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-width"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-width:".concat(boxStyle.borderWidth));
-      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-style"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-style:".concat(boxStyle.borderStyle));
-      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-color"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-color:".concat(boxStyle.borderColor));
-      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-radius"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-radius:".concat(boxStyle.borderRadius)); // --------------------------------box border--------------------------------
-      // --------------------------------Add To cart Style --------------------------------
+      var addToCartSelector = ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn");
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-width"), "".concat(addToCartSelector), "border-width:".concat(addToCart.borderWidth));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-style"), "".concat(addToCartSelector), "border-style:".concat(addToCart.borderStyle));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-color"), "".concat(addToCartSelector), "border-color:".concat(addToCart.borderColor));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-radius"), "".concat(addToCartSelector), "border-radius:".concat(addToCart.borderRadius));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-Color"), "".concat(addToCartSelector), "color:".concat(addToCart.Color));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-ColorHover"), "".concat(addToCartSelector, ":hover"), "color:".concat(addToCart.ColorHover));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-bgColor"), "".concat(addToCartSelector), "background-color:".concat(addToCart.bgColor));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-bgColorHover"), "".concat(addToCartSelector, ":hover"), "background-color:".concat(addToCart.bgColorHover));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-v"), "".concat(addToCartSelector), "padding-top:".concat(addToCart.paddingV, "px;padding-bottom:").concat(addToCart.paddingV, "px;"));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-h"), "".concat(addToCartSelector), "padding-left:".concat(addToCart.paddingH, "px;padding-right:").concat(addToCart.paddingH, "px;")); // --------------------------------title style--------------------------------
 
-      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-width"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "border-width:".concat(addToCart.borderWidth));
-      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-style"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "border-style:".concat(addToCart.borderStyle));
-      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-color"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "border-color:".concat(addToCart.borderColor));
-      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-radius"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "border-radius:".concat(addToCart.borderRadius));
-      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-Color"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "color:".concat(addToCart.Color));
-      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-ColorHover"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover"), "color:".concat(addToCart.ColorHover));
-      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-bgColor"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "background-color:".concat(addToCart.bgColor));
-      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-bgColorHover"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover"), "background-color:".concat(addToCart.bgColorHover)); // --------------------------------Add To cart Style --------------------------------
+      var titleSelector = ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-product-title");
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-ptitle-fontSize"), "".concat(titleSelector), "font-size:".concat(productTitle.fontSize, "px"));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-ptitle-ColorHover"), "".concat(titleSelector, ":hover"), "color:".concat(productTitle.colorHover));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-ptitle-Color"), "".concat(titleSelector), "color:".concat(productTitle.color)); // --------------------------------rating style--------------------------------
+
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-ratingStyle-fontSize"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-rating .star-rating"), "font-size:".concat(ratingStyle.fontSize, "px"));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-ratingStyle-color"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-rating .star-rating"), "color:".concat(ratingStyle.color));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-ratingStyle-bgColor"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-rating .star-rating:before"), "color:".concat(ratingStyle.bgColor)); // --------------------------------price style--------------------------------
+
+      var priceStyleSelector = ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-price");
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-priceStyle-fontSize"), "".concat(priceStyleSelector), "font-size:".concat(priceStyle.fontSize, "px"));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-priceStyle-color"), "".concat(priceStyleSelector), "color:".concat(priceStyle.color));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-priceStyle-discountColor"), "".concat(priceStyleSelector, " del"), "color:".concat(priceStyle.discountColor)); // --------------------------------sale text style--------------------------------
+
+      var saleStyleSelector = ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-sale > span");
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-saleStyle-fontSize"), "".concat(saleStyleSelector), "font-size:".concat(saleStyle.fontSize, "px"));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-saleStyle-color"), "".concat(saleStyleSelector), "color:".concat(saleStyle.color));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-saleStyle-bgColor"), "".concat(saleStyleSelector), "background-color:".concat(saleStyle.bgColor)); // --------------------------------sale text style--------------------------------
     });
 
     _defineProperty(_assertThisInitialized(_this), "updateStyle", function (key_, value, key2) {
@@ -33052,9 +33078,10 @@ var Edit = /*#__PURE__*/function (_Component) {
       totalPost: null,
       preview: false,
       wrapper_id: _wrapper_id ? _wrapper_id : "ubl" + props.clientId,
-      openPanel: "style",
+      openPanel: "layout",
       productBoxBoxShadow: "normal",
-      aTcart: "normal"
+      aTcart: "normal",
+      pTitle: "normal"
     };
     return _this;
   }
@@ -33091,7 +33118,7 @@ var Edit = /*#__PURE__*/function (_Component) {
           wrapper_id = _this$state.wrapper_id,
           preview = _this$state.preview,
           posts = _this$state.posts,
-          totalPost = _this$state.totalPost,
+          pTitle = _this$state.pTitle,
           productBoxBoxShadow = _this$state.productBoxBoxShadow,
           aTcart = _this$state.aTcart;
       var _this$props3 = this.props,
@@ -33101,7 +33128,17 @@ var Edit = /*#__PURE__*/function (_Component) {
           numberOfPosts = attributes.numberOfPosts,
           boxStyle = attributes.boxStyle,
           addToCart = attributes.addToCart,
-          sliderSettings = attributes.sliderSettings; // slider options
+          sliderSettings = attributes.sliderSettings,
+          productTitle = attributes.productTitle,
+          ratingStyle = attributes.ratingStyle,
+          priceStyle = attributes.priceStyle,
+          saleStyle = attributes.saleStyle;
+      var BoxSelector1 = ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap");
+      var BoxSelector2 = ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom");
+      var addToCartSelector = ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn");
+      var titleSelector = ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-product-title");
+      var priceStyleSelector = ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-price");
+      var saleStyleSelector = ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-sale > span"); // slider options
 
       var slider_options_ = {
         // items: 1,
@@ -33190,7 +33227,7 @@ var Edit = /*#__PURE__*/function (_Component) {
             preview: e
           });
         }
-      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Number of Post Display", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Number of Post", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
         value: numberOfPosts,
         min: 1,
         max: 24,
@@ -33201,7 +33238,17 @@ var Edit = /*#__PURE__*/function (_Component) {
 
           _this2.updateProduct("numberOfPosts", e);
         }
-      }), wp.element.createElement(_block_assets_woocommerce_productCategory__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Number of Column", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
+        value: sliderSettings.numberOfColumn,
+        min: 1,
+        max: 6,
+        onChange: function onChange(e) {
+          _this2.updateStyle("sliderSettings", e, "numberOfColumn");
+        }
+      })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
+        initialOpen: false,
+        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Product Category", "unlimited-blocks")
+      }, wp.element.createElement(_block_assets_woocommerce_productCategory__WEBPACK_IMPORTED_MODULE_7__["default"], {
         value: product_cate,
         category: this.state.category,
         onMovement: function onMovement(category) {
@@ -33214,14 +33261,7 @@ var Edit = /*#__PURE__*/function (_Component) {
       })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
         initialOpen: false,
         title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Slider Settings", "unlimited-blocks")
-      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Number of Column", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
-        value: sliderSettings.numberOfColumn,
-        min: 1,
-        max: 6,
-        onChange: function onChange(e) {
-          _this2.updateStyle("sliderSettings", e, "numberOfColumn");
-        }
-      }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ToggleControl"], {
+      }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ToggleControl"], {
         label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("AutoPlay", "unlimited-blocks"),
         checked: sliderSettings.autoplay == "on",
         onChange: function onChange(e) {
@@ -33245,7 +33285,7 @@ var Edit = /*#__PURE__*/function (_Component) {
         onChange: function onChange(color) {
           _this2.updateStyle("boxStyle", color, "bgColor");
 
-          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n                      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom,\n                      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom:before"), "background-color:".concat(color));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg"), "".concat(BoxSelector1, ",\n                      ").concat(BoxSelector2, ",\n                      ").concat(BoxSelector2, ":before"), "background-color:".concat(color));
         }
       }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Box Spacing", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
         value: sliderSettings.margin,
@@ -33267,10 +33307,10 @@ var Edit = /*#__PURE__*/function (_Component) {
         changeme: function changeme(getProperty) {
           _this2.updateStyle("boxStyle", true, true, getProperty);
 
-          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-width"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n              .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-width:".concat(getProperty.borderWidth));
-          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-style"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-style:".concat(getProperty.borderStyle));
-          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-color"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-color:".concat(getProperty.borderColor));
-          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-radius"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "border-radius:".concat(getProperty.borderRadius));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-width"), "".concat(BoxSelector1, ",\n              ").concat(BoxSelector2), "border-width:".concat(getProperty.borderWidth));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-style"), "".concat(BoxSelector1, ",\n      ").concat(BoxSelector2), "border-style:".concat(getProperty.borderStyle));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-color"), "".concat(BoxSelector1, ",\n      ").concat(BoxSelector2), "border-color:".concat(getProperty.borderColor));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-border-radius"), "".concat(BoxSelector1, ",\n      ").concat(BoxSelector2), "border-radius:".concat(getProperty.borderRadius));
         }
       }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Box Shadow Color", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_12__["default"], {
         value: productBoxBoxShadow,
@@ -33298,31 +33338,12 @@ var Edit = /*#__PURE__*/function (_Component) {
         onChange: function onChange(color) {
           _this2.updateStyle("boxStyle", color, "boxShadowColor");
 
-          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg-boxShadow"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,\n                      .").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom"), "color:".concat(color));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-box-bg-boxShadow"), "".concat(BoxSelector1, ",\n                      ").concat(BoxSelector2), "color:".concat(color));
         }
       })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
         title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Add To Cart Button", "unlimited-blocks"),
-        initialOpen: true
-      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Border", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_border__WEBPACK_IMPORTED_MODULE_11__["default"], {
-        value: {
-          allUnit: "px",
-          borderStyle: addToCart.borderStyle,
-          borderWidth: addToCart.borderWidth,
-          borderColor: addToCart.borderColor,
-          borderRadius: addToCart.borderRadius,
-          borderWidthLink: addToCart.borderWidthLink,
-          borderRadiusLink: addToCart.borderRadiusLink
-        },
-        changeme: function changeme(getProperty) {
-          // console.log("getProperty", getProperty);
-          _this2.updateStyle("boxStyle", true, true, getProperty);
-
-          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-width"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "border-width:".concat(getProperty.borderWidth));
-          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-style"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "border-style:".concat(getProperty.borderStyle));
-          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-color"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "border-color:".concat(getProperty.borderColor));
-          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-radius"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "border-radius:".concat(getProperty.borderRadius));
-        }
-      }), wp.element.createElement(_block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        initialOpen: false
+      }, wp.element.createElement(_block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_12__["default"], {
         value: aTcart,
         navItem: [{
           name: "normal",
@@ -33341,30 +33362,185 @@ var Edit = /*#__PURE__*/function (_Component) {
         onChange: function onChange(color) {
           _this2.updateStyle("addToCart", color, "ColorHover");
 
-          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-ColorHover"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover"), "color:".concat(color));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-ColorHover"), "".concat(addToCartSelector, ":hover"), "color:".concat(color));
         }
       }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
         value: addToCart.bgColorHover,
         onChange: function onChange(color) {
           _this2.updateStyle("addToCart", color, "bgColorHover");
 
-          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-bgColorHover"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover"), "background-color:".concat(color));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-bgColorHover"), "".concat(addToCartSelector, ":hover"), "background-color:".concat(color));
         }
       })) : wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
         value: addToCart.Color,
         onChange: function onChange(color) {
           _this2.updateStyle("addToCart", color, "Color");
 
-          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-Color"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn"), "color:".concat(color));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-Color"), "".concat(addToCartSelector), "color:".concat(color));
         }
       }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
         value: addToCart.bgColor,
         onChange: function onChange(color) {
           _this2.updateStyle("addToCart", color, "bgColor");
 
-          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-bgColor"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover"), "background-color:".concat(color));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-bgColor"), "".concat(addToCartSelector), "background-color:".concat(color));
         }
-      }))))), wp.element.createElement("div", {
+      })), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Height", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
+        value: addToCart.paddingV,
+        min: 1,
+        max: 100,
+        onChange: function onChange(e) {
+          _this2.updateStyle("addToCart", e, "paddingV");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-v"), "".concat(addToCartSelector), "padding-top:".concat(e, "px;padding-bottom:").concat(e, "px;"));
+        }
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Width", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
+        value: addToCart.paddingH,
+        min: 1,
+        max: 100,
+        onChange: function onChange(e) {
+          _this2.updateStyle("addToCart", e, "paddingH");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-h"), "".concat(addToCartSelector), "padding-left:".concat(e, "px;padding-right:").concat(e, "px;"));
+        }
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Border", "unlimited-blocks"))), wp.element.createElement(_block_assets_utility_components_border__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        value: {
+          allUnit: "px",
+          borderStyle: addToCart.borderStyle,
+          borderWidth: addToCart.borderWidth,
+          borderColor: addToCart.borderColor,
+          borderRadius: addToCart.borderRadius,
+          borderWidthLink: addToCart.borderWidthLink,
+          borderRadiusLink: addToCart.borderRadiusLink
+        },
+        changeme: function changeme(getProperty) {
+          // console.log("getProperty", getProperty);
+          _this2.updateStyle("boxStyle", true, true, getProperty);
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-width"), "".concat(addToCartSelector), "border-width:".concat(getProperty.borderWidth));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-style"), "".concat(addToCartSelector), "border-style:".concat(getProperty.borderStyle));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-color"), "".concat(addToCartSelector), "border-color:".concat(getProperty.borderColor));
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-atc-border-radius"), "".concat(addToCartSelector), "border-radius:".concat(getProperty.borderRadius));
+        }
+      })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
+        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Title", "unlimited-blocks"),
+        initialOpen: false
+      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Font Size", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
+        value: productTitle.fontSize,
+        min: 1,
+        max: 50,
+        onChange: function onChange(e) {
+          _this2.updateStyle("productTitle", e, "fontSize");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-ptitle-fontSize"), "".concat(titleSelector), "font-size:".concat(e, "px"));
+        }
+      }), wp.element.createElement(_block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        value: pTitle,
+        navItem: [{
+          name: "normal",
+          title: "Normal"
+        }, {
+          name: "hover",
+          title: "Hover"
+        }],
+        clickme: function clickme(value_) {
+          _this2.setState({
+            pTitle: value_
+          });
+        }
+      }), pTitle == "hover" ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
+        value: productTitle.ColorHover,
+        onChange: function onChange(color) {
+          _this2.updateStyle("productTitle", color, "colorHover");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-ptitle-ColorHover"), "".concat(titleSelector, ":hover"), "color:".concat(color));
+        }
+      })) : wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
+        value: productTitle.Color,
+        onChange: function onChange(color) {
+          _this2.updateStyle("productTitle", color, "color");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-ptitle-Color"), "".concat(titleSelector), "color:".concat(color));
+        }
+      }))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
+        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Rating", "unlimited-blocks"),
+        initialOpen: false
+      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Font Size", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
+        value: ratingStyle.fontSize,
+        min: 1,
+        max: 50,
+        onChange: function onChange(e) {
+          _this2.updateStyle("ratingStyle", e, "fontSize");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-ratingStyle-fontSize"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-rating .star-rating"), "font-size:".concat(e, "px"));
+        }
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
+        value: ratingStyle.bgColor,
+        onChange: function onChange(color) {
+          _this2.updateStyle("ratingStyle", color, "bgColor");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-ratingStyle-bgColor"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-rating .star-rating:before"), "color:".concat(color));
+        }
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
+        value: ratingStyle.color,
+        onChange: function onChange(color) {
+          _this2.updateStyle("ratingStyle", color, "color");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-ratingStyle-color"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-rating .star-rating"), "color:".concat(color));
+        }
+      })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
+        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Price", "unlimited-blocks"),
+        initialOpen: false
+      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Font Size", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
+        value: priceStyle.fontSize,
+        min: 1,
+        max: 50,
+        onChange: function onChange(e) {
+          _this2.updateStyle("priceStyle", e, "fontSize");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-priceStyle-fontSize"), "".concat(priceStyleSelector), "font-size:".concat(e, "px"));
+        }
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
+        value: priceStyle.color,
+        onChange: function onChange(color) {
+          _this2.updateStyle("priceStyle", color, "color");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-priceStyle-color"), "".concat(priceStyleSelector), "color:".concat(color));
+        }
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Discount Price Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
+        value: priceStyle.bgColor,
+        onChange: function onChange(color) {
+          _this2.updateStyle("priceStyle", color, "discountColor");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-priceStyle-discountColor"), "".concat(priceStyleSelector, " del"), "color:".concat(color));
+        }
+      })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
+        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Sale Text", "unlimited-blocks"),
+        initialOpen: false
+      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Font Size", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
+        value: saleStyle.fontSize,
+        min: 1,
+        max: 50,
+        onChange: function onChange(e) {
+          _this2.updateStyle("saleStyle", e, "fontSize");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-saleStyle-fontSize"), "".concat(saleStyleSelector), "font-size:".concat(e, "px"));
+        }
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
+        value: saleStyle.color,
+        onChange: function onChange(color) {
+          _this2.updateStyle("saleStyle", color, "color");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-saleStyle-color"), "".concat(saleStyleSelector), "color:".concat(color));
+        }
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["ColorPalette"], {
+        value: saleStyle.bgColor,
+        onChange: function onChange(color) {
+          _this2.updateStyle("saleStyle", color, "bgColor");
+
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-saleStyle-bgColor"), "".concat(saleStyleSelector), "background-color:".concat(color));
+        }
+      })))), wp.element.createElement("div", {
         className: "".concat(wrapper_id, " ul-blocks-simple-product ").concat(preview ? "elemento-simple-product-previewon" : "")
       }, !posts ? wp.element.createElement(_block_assets_post_functions__WEBPACK_IMPORTED_MODULE_9__["PostNotfound"], {
         msg: "Product Not Found."
