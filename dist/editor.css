@@ -2410,6 +2410,13 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
   font-size: 16px;
 }
 @charset "UTF-8";
+.ul-blocks-simple-product .ea-simple-product-slider .elemento-product-outer-wrap .buttons_ > button {
+  min-width: unset;
+}
+.ul-blocks-simple-product .ea-simple-product-slider .elemento-product-outer-wrap .buttons_ > button i {
+  font-family: "Font Awesome 5 Free";
+}
+
 .ul-blocks-simple-product.elemento-simple-product-previewon .owl-stage-outer {
   margin: -15px 0px -100px;
   padding: 15px 0px 100px;
@@ -2452,6 +2459,9 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
 .ul-blocks-simple-product .elemento-product-outer-wrap {
   position: relative;
 }
+.ul-blocks-simple-product .elemento-product-outer-wrap + .elemento-product-outer-wrap {
+  margin-top: 12px;
+}
 .ul-blocks-simple-product .elemento-product-outer-wrap.hovered .elemento-addons-quickview-simple {
   opacity: 1;
 }
@@ -2486,7 +2496,7 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  grid-gap: 5px;
+  grid-gap: 10px;
   background: #ffffff;
   padding: 10px;
   position: absolute;
@@ -2551,6 +2561,7 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
   transition: 0.3s all linear;
   font-weight: 500;
   border: none;
+  min-height: unset;
 }
 .ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button:hover {
   color: black;
@@ -2561,12 +2572,12 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
   border-radius: 0;
 }
 .ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button.woosw-btn {
-  font-size: 0;
+  font-size: 0 !important;
 }
 .ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button.woosw-btn:before {
-  content: "";
+  content: "";
   font-size: 14px;
-  font-family: "FontAwesome";
+  font-family: "Font Awesome 5 Free";
   margin: 0;
 }
 .ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button.woosw-btn.woosw-added::before {

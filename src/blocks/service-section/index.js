@@ -281,7 +281,9 @@ registerBlockType("unlimited-blocks/icon-image-content", {
               {contentORborder == "content" ? (
                 <>
                   <p>
-                    <strong>{__("Background image", "unlimited-blocks")}</strong>
+                    <strong>
+                      {__("Background image", "unlimited-blocks")}
+                    </strong>
                   </p>
                   <MediaUpload
                     allowedType="image"
@@ -886,51 +888,21 @@ registerBlockType("unlimited-blocks/icon-image-content", {
           title={__("Background Color", "unlimited-blocks")}
           initialOpen={false}
         >
-          <div class="ubl-switcher-button-section">
-            <span
-              onClick={() => {
-                let getBgcolor = { ...containerBgColor };
-                getBgcolor["type"] = "color";
-                setAttributes({ containerBgColor: getBgcolor });
-              }}
-              className={containerBgColor.type == "color" ? "selected" : ""}
-            >
-              {__("Solid", "unlimited-blocks")}
-            </span>
-            <span
-              onClick={() => {
-                let getBgcolor = { ...containerBgColor };
-                getBgcolor["type"] = "gradient";
-                setAttributes({ containerBgColor: getBgcolor });
-              }}
-              className={containerBgColor.type == "gradient" ? "selected" : ""}
-            >
-              {__("Gradient", "unlimited-blocks")}
-            </span>
-          </div>
-          {"color" == containerBgColor.type ? (
-            <ColorPicker
-              color={containerBgColor.color}
-              onChangeComplete={(colorBg) => {
-                let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                let getBgcolor = { ...containerBgColor };
-                getBgcolor["color"] = color;
-                setAttributes({ containerBgColor: getBgcolor });
-              }}
-            />
-          ) : (
-            <GradientPicker
-              disableCustomGradients={false}
-              value={containerBgColor.gradient}
-              gradients={UBLGraDientColors}
-              onChange={(newGradient) => {
-                let getBgcolor = { ...containerBgColor };
-                getBgcolor["gradient"] = newGradient;
-                setAttributes({ containerBgColor: getBgcolor });
-              }}
-            />
-          )}
-          {/* bg color  */}
+          <BackgroundColor
+            value={{
+              backgroundColorType: containerBgColor.type,
+              backgroundColor: containerBgColor.color,
+              backgroundImageGradient: containerBgColor.gradient,
+            }}
+            changeme={(_properties) => {
+              let saveObj = {
+                type: _properties.backgroundColorType,
+                color: _properties.backgroundColor,
+                gradient: _properties.backgroundImageGradient,
+              };
+              setAttributes({ containerBgColor: saveObj });
+            }}
+          />
         </PanelBody>
         <PanelBody
           title={__("Container Border Settings", "unlimited-blocks")}

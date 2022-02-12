@@ -29,6 +29,8 @@ if (!function_exists('unlimited_blocks_product_one')) {
         $options['autoPlaySpeed'] = 3;
         $options['slider_controll'] = $attr['sliderSettings']['slider_controll'];
         $options['slide_spacing'] = $attr['sliderSettings']['margin'];
+        $options['number_of_row'] = $attr['sliderSettings']['numberOfrow'];
+
         if (isset($attr['product_cate']) && !empty($attr['product_cate'])) {
             $cate = $attr['product_cate'];
         }
@@ -108,9 +110,32 @@ if (!function_exists('unlimited_blocks_product_one')) {
             'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-sale span",
             'css' => "font-size:{$attr['saleStyle']['fontSize']}px; color:{$attr['saleStyle']['color']}; background-color:{$attr['saleStyle']['bgColor']};"
         ];
+
+        if ($attr['sliderSettings']['numberOfrow'] == "2") {
+            $addStyles[] = [
+                'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap + .elemento-product-outer-wrap",
+                'css' => "margin-top:calc({$attr['sliderSettings']['margin']}px + 12px);"
+            ];
+        }
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button.woosw-btn:before,{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button.woosw-btn:after,{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button",
+            'css' => "font-size:{$attr['buttonsStyle']['fontSize']}px;"
+        ];
+        $addStyles[] = [
+            'selector' => "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button",
+            'css' => "color:{$attr['buttonsStyle']['color']};"
+        ];
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button:hover",
+            'css' => "color:{$attr['buttonsStyle']['colorHover']};"
+        ];
+
         // echo "<pre>";
-        // echo "<h1>hello</h1>";
+        // // echo "<h1>hello</h1>";
         // print_r($addStyles);
+        // echo "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button";
+        // echo "<br>";
+        // echo $attr['buttonsStyle']['color'];
         // echo "</pre>";
         // return;
 

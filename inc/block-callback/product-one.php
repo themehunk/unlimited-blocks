@@ -24,7 +24,7 @@ unlimited_blocks_register_block_fn('ubl-product',  [
             'type' => "object",
             "default" => [
                 "numberOfColumn" => 3,
-                "numberOfrow" => 2,
+                "numberOfrow" => 1,
                 "autoplay" => "",
                 "loop" => "",
                 "sliderControl" => 'dots',
@@ -93,6 +93,14 @@ unlimited_blocks_register_block_fn('ubl-product',  [
                 'color' => "white",
                 'bgColor' => "black",
                 'fontSize' => 12
+            ]
+        ],
+        "buttonsStyle" => [
+            "type" => "object",
+            "default" => [
+                'color' => "#555555",
+                'colorHover' => "#555555",
+                'fontSize' => 14
             ]
         ],
     ]

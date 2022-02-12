@@ -2,6 +2,7 @@ import { Component } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
 import OwlCarousel from "react-owl-carousel";
 import ReactHtmlParser from "react-html-parser";
+import _l from "lodash";
 
 import {
   InspectorControls,
@@ -43,6 +44,7 @@ class Edit extends Component {
       productBoxBoxShadow: "normal",
       aTcart: "normal",
       pTitle: "normal",
+      buttonsStyleType: "normal",
     };
   }
   saveClientId = () => {
@@ -68,8 +70,19 @@ class Edit extends Component {
       ratingStyle,
       priceStyle,
       saleStyle,
+      sliderSettings,
+      buttonsStyle,
     } = attributes;
     let { wrapper_id } = this.state;
+    // --------------------------------box spacing--------------------------------
+    if (sliderSettings.numberOfrow == "2") {
+      UblStyler(
+        `${wrapper_id}-box-spacing`,
+        `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap + .elemento-product-outer-wrap`,
+        `margin-top:calc(${sliderSettings.margin}px + 12px)`
+      );
+    }
+    // --------------------------------box spacing--------------------------------
     // --------------------------------box style--------------------------------
     let BoxSelector1 = `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap`;
     let BoxSelector2 = `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`;
@@ -238,6 +251,23 @@ class Edit extends Component {
       `background-color:${saleStyle.bgColor}`
     );
     // --------------------------------sale text style--------------------------------
+    // --------------------------------Buttons style--------------------------------
+    UblStyler(
+      `${wrapper_id}-buttonsStyle-fontSize`,
+      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button.woosw-btn:before,.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button.woosw-btn:after,.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button`,
+      `font-size:${buttonsStyle.fontSize}px`
+    );
+    UblStyler(
+      `${wrapper_id}-buttonsStyle-ColorHover`,
+      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button:hover`,
+      `color:${buttonsStyle.colorHover}`
+    );
+    UblStyler(
+      `${wrapper_id}-buttonsStyle-Color`,
+      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button`,
+      `color:${buttonsStyle.color}`
+    );
+    // --------------------------------Buttons style--------------------------------
   };
   // 'attributes' => [ "boxStyle" => ["bgColor" => "#b1b1b1",]]
   // -------------------key----------key2---------value
@@ -263,10 +293,17 @@ class Edit extends Component {
 
   render() {
     // ++++++++++++++===============
-    console.log("product props", this.props);
+    // console.log("product props", this.props);
     // console.log("product state", this.state);
-    const { wrapper_id, preview, posts, pTitle, productBoxBoxShadow, aTcart } =
-      this.state;
+    const {
+      wrapper_id,
+      preview,
+      posts,
+      pTitle,
+      productBoxBoxShadow,
+      aTcart,
+      buttonsStyleType,
+    } = this.state;
     const { attributes, setAttributes } = this.props;
     let {
       product_cate,
@@ -278,6 +315,7 @@ class Edit extends Component {
       ratingStyle,
       priceStyle,
       saleStyle,
+      buttonsStyle,
     } = attributes;
 
     let BoxSelector1 = `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap`;
@@ -321,19 +359,39 @@ class Edit extends Component {
     if (sliderSettings.margin) {
       slider_options_["margin"] = sliderSettings.margin;
     }
-
     // margin: 30, box-spacing
 
-    const OwlSlider = () => (
-      <OwlCarousel
-        className="owl-theme ul-simple-product-slider"
-        {...slider_options_}
-      >
-        {posts.map((val_) => (
-          <div className="item">{ReactHtmlParser(val_)}</div>
-        ))}
-      </OwlCarousel>
-    );
+    const OwlSlider = () => {
+      // console.log("OwlSlider->", this.props);
+      let numberOfrow = sliderSettings.numberOfrow;
+      numberOfrow = numberOfrow ? parseInt(numberOfrow) : 1;
+      let Posts_ = [...posts];
+      if (numberOfrow == 2) {
+        Posts_ = _l.chunk(Posts_, 2);
+        // console.log("chunksProducts->", chunksProducts);
+      }
+      let productRow = (val_) => {
+        let return_;
+        if (numberOfrow == 2) {
+          return_ = (
+            <div className="item">
+              {val_.map((val2) => ReactHtmlParser(val2))}
+            </div>
+          );
+        } else {
+          return_ = <div className="item">{ReactHtmlParser(val_)}</div>;
+        }
+        return return_;
+      };
+      return (
+        <OwlCarousel
+          className="owl-theme ul-simple-product-slider"
+          {...slider_options_}
+        >
+          {Posts_.map((val_) => productRow(val_))}
+        </OwlCarousel>
+      );
+    };
     return (
       <>
         <BlockControls key="controls">
@@ -398,6 +456,25 @@ class Edit extends Component {
                   onChange={(e) => {
                     this.updateStyle("sliderSettings", e, "numberOfColumn");
                   }}
+                />
+                <p>
+                  <strong>{__("Number of Row", "unlimited-blocks")}</strong>
+                </p>
+                <SelectControl
+                  value={sliderSettings.numberOfrow}
+                  onChange={(choosen) => {
+                    this.updateStyle("sliderSettings", choosen, "numberOfrow");
+                  }}
+                  options={[
+                    {
+                      value: 1,
+                      label: 1,
+                    },
+                    {
+                      value: 2,
+                      label: 2,
+                    },
+                  ]}
                 />
               </PanelBody>
 
@@ -467,6 +544,13 @@ class Edit extends Component {
                   max={50}
                   onChange={(e) => {
                     this.updateStyle("sliderSettings", e, "margin");
+                    if (sliderSettings.numberOfrow == "2") {
+                      UblStyler(
+                        `${wrapper_id}-box-spacing`,
+                        `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap + .elemento-product-outer-wrap`,
+                        `margin-top:calc(${e}px + 12px)`
+                      );
+                    }
                   }}
                 />
                 <p>
@@ -893,6 +977,79 @@ class Edit extends Component {
                     );
                   }}
                 />
+              </PanelBody>
+              <PanelBody
+                title={__("Buttons Style", "unlimited-blocks")}
+                initialOpen={false}
+              >
+                <p>
+                  <strong>{__("Font Size", "unlimited-blocks")}</strong>
+                </p>
+                <RangeControl
+                  value={buttonsStyle.fontSize}
+                  min={1}
+                  max={50}
+                  onChange={(e) => {
+                    this.updateStyle("buttonsStyle", e, "fontSize");
+                    UblStyler(
+                      `${wrapper_id}-buttonsStyle-fontSize`,
+                      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button.woosw-btn:before,.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button.woosw-btn:after,.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button`,
+                      `font-size:${e}px`
+                    );
+                  }}
+                />
+                <Switcher
+                  value={buttonsStyleType}
+                  navItem={[
+                    {
+                      name: "normal",
+                      title: "Normal",
+                    },
+                    {
+                      name: "hover",
+                      title: "Hover",
+                    },
+                  ]}
+                  clickme={(value_) => {
+                    this.setState({ buttonsStyleType: value_ });
+                  }}
+                />
+                {buttonsStyleType == "hover" ? (
+                  <>
+                    <p>
+                      <strong>{__("Color", "unlimited-blocks")}</strong>
+                    </p>
+                    <ColorPalette
+                      value={buttonsStyle.colorHover}
+                      onChange={(color) => {
+                        this.updateStyle("buttonsStyle", color, "colorHover");
+                        UblStyler(
+                          `${wrapper_id}-buttonsStyle-ColorHover`,
+                          `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button:hover`,
+                          `color:${color}`
+                        );
+                      }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      <strong>{__("Color", "unlimited-blocks")}</strong>
+                    </p>
+                    <ColorPalette
+                      value={productTitle.Color}
+                      onChange={(color) => {
+                        this.updateStyle("buttonsStyle", color, "color");
+                        UblStyler(
+                          `${wrapper_id}-buttonsStyle-Color`,
+                          `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button`,
+                          `color:${color}`
+                        );
+                      }}
+                    />
+                  </>
+                )}
+                {/* ------------------------------------------------ */}
               </PanelBody>
               <PanelBody
                 title={__("Sale Text", "unlimited-blocks")}
