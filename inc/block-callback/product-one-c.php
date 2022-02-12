@@ -96,14 +96,25 @@ if (!function_exists('unlimited_blocks_product_one')) {
             'css' => "font-size:{$attr['priceStyle']['fontSize']}px;color:{$attr['priceStyle']['color']};"
         ];
         $addStyles[] = [
-            'selector' =>  "{$priceStyleSelector} del",
+            'selector' =>  "{$priceStyleSelector}  del",
             'css' => "color:{$attr['priceStyle']['discountColor']};"
         ];
-        // sale text style
         // $addStyles[] = [
-        //     'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-sale > span",
-        //     'css' => "font-size:{$attr['saleStyle']['fontSize']}px; color:{$attr['saleStyle']['color']}; background-color:{$attr['saleStyle']['bgColor']};"
+        //     'selector' =>  "{$priceStyleSelector} del",
+        //     'css' => "color:{$attr['priceStyle']['discountColor']};"
         // ];
+        // sale text style
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-sale span",
+            'css' => "font-size:{$attr['saleStyle']['fontSize']}px; color:{$attr['saleStyle']['color']}; background-color:{$attr['saleStyle']['bgColor']};"
+        ];
+        // echo "<pre>";
+        // echo "<h1>hello</h1>";
+        // print_r($addStyles);
+        // echo "</pre>";
+        // return;
+
+
         // price style
         $styleAdd = wp_json_encode($addStyles);
         if ($products_) {
