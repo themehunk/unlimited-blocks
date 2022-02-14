@@ -2,6 +2,7 @@ import { Component } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
 import OwlCarousel from "react-owl-carousel";
 import ReactHtmlParser from "react-html-parser";
+import _l from "lodash";
 
 import {
   InspectorControls,
@@ -27,6 +28,7 @@ import UblStyler from "../block-assets/Styler";
 import { PostNotfound, PostLoader } from "../block-assets/post-functions";
 import BasicToggleNav from "../block-assets/utility-components/BasicToggleNav";
 import Border from "../block-assets/utility-components/border";
+import Switcher from "../block-assets/utility-components/TwoSwitcher";
 class Edit extends Component {
   constructor(props) {
     super(props);
@@ -38,8 +40,11 @@ class Edit extends Component {
       totalPost: null,
       preview: false,
       wrapper_id: wrapper_id ? wrapper_id : "ubl" + props.clientId,
-      openPanel: "style",
-      // openPanel: "layout",
+      openPanel: "layout",
+      productBoxBoxShadow: "normal",
+      aTcart: "normal",
+      pTitle: "normal",
+      buttonsStyleType: "normal",
     };
   }
   saveClientId = () => {
@@ -58,20 +63,40 @@ class Edit extends Component {
 
   styleAdd = () => {
     let { attributes } = this.props;
-    let { boxStyle } = attributes;
+    let {
+      boxStyle,
+      addToCart,
+      productTitle,
+      ratingStyle,
+      priceStyle,
+      saleStyle,
+      sliderSettings,
+      buttonsStyle,
+    } = attributes;
     let { wrapper_id } = this.state;
-    // bg color for box
+    // --------------------------------box spacing--------------------------------
+    if (sliderSettings.numberOfrow == "2") {
+      UblStyler(
+        `${wrapper_id}-box-spacing`,
+        `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap + .elemento-product-outer-wrap`,
+        `margin-top:calc(${sliderSettings.margin}px + 12px)`
+      );
+    }
+    // --------------------------------box spacing--------------------------------
+    // --------------------------------box style--------------------------------
+    let BoxSelector1 = `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap`;
+    let BoxSelector2 = `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`;
     UblStyler(
       `${wrapper_id}-box-bg`,
-      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,
-      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom,
-      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom:before`,
+      `${BoxSelector1},
+      ${BoxSelector2},
+      ${BoxSelector2}:before`,
       `background-color:${boxStyle.bgColor}`
     );
     UblStyler(
       `${wrapper_id}-box-bg-boxShadow`,
-      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,
-      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`,
+      `${BoxSelector1},
+      ${BoxSelector2}`,
       `color:${boxStyle.boxShadowColor}`
     );
     UblStyler(
@@ -80,32 +105,169 @@ class Edit extends Component {
       .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap:hover .elemento-product-simple-inner-bottom`,
       `color:${boxStyle.boxShadowColorHover}`
     );
-    // --------------------------------box border--------------------------------
     UblStyler(
       `${wrapper_id}-box-border-width`,
-      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,
-      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`,
+      `${BoxSelector1},
+      ${BoxSelector2}`,
       `border-width:${boxStyle.borderWidth}`
     );
     UblStyler(
       `${wrapper_id}-box-border-style`,
-      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,
-      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`,
+      `${BoxSelector1},
+      ${BoxSelector2}`,
       `border-style:${boxStyle.borderStyle}`
     );
     UblStyler(
       `${wrapper_id}-box-border-color`,
-      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,
-      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`,
+      `${BoxSelector1},
+      ${BoxSelector2}`,
       `border-color:${boxStyle.borderColor}`
     );
     UblStyler(
       `${wrapper_id}-box-border-radius`,
-      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,
-      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`,
+      `${BoxSelector1},
+      ${BoxSelector2}`,
       `border-radius:${boxStyle.borderRadius}`
     );
-    // --------------------------------box border--------------------------------
+    // --------------------------------Add To cart Style --------------------------------
+    let addToCartSelector = `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn`;
+    UblStyler(
+      `${wrapper_id}-atc-border-width`,
+      `${addToCartSelector}`,
+      `border-width:${addToCart.borderWidth}`
+    );
+    UblStyler(
+      `${wrapper_id}-atc-border-style`,
+      `${addToCartSelector}`,
+      `border-style:${addToCart.borderStyle}`
+    );
+    UblStyler(
+      `${wrapper_id}-atc-border-color`,
+      `${addToCartSelector}`,
+      `border-color:${addToCart.borderColor}`
+    );
+    UblStyler(
+      `${wrapper_id}-atc-border-radius`,
+      `${addToCartSelector}`,
+      `border-radius:${addToCart.borderRadius}`
+    );
+
+    UblStyler(
+      `${wrapper_id}-atc-Color`,
+      `${addToCartSelector}`,
+      `color:${addToCart.Color}`
+    );
+    UblStyler(
+      `${wrapper_id}-atc-ColorHover`,
+      `${addToCartSelector}:hover`,
+      `color:${addToCart.ColorHover}`
+    );
+    UblStyler(
+      `${wrapper_id}-atc-bgColor`,
+      `${addToCartSelector}`,
+      `background-color:${addToCart.bgColor}`
+    );
+    UblStyler(
+      `${wrapper_id}-atc-bgColorHover`,
+      `${addToCartSelector}:hover`,
+      `background-color:${addToCart.bgColorHover}`
+    );
+    UblStyler(
+      `${wrapper_id}-atc-v`,
+      `${addToCartSelector}`,
+      `padding-top:${addToCart.paddingV}px;padding-bottom:${addToCart.paddingV}px;`
+    );
+    UblStyler(
+      `${wrapper_id}-atc-h`,
+      `${addToCartSelector}`,
+      `padding-left:${addToCart.paddingH}px;padding-right:${addToCart.paddingH}px;`
+    );
+
+    // --------------------------------title style--------------------------------
+    let titleSelector = `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-product-title`;
+    UblStyler(
+      `${wrapper_id}-ptitle-fontSize`,
+      `${titleSelector}`,
+      `font-size:${productTitle.fontSize}px`
+    );
+    UblStyler(
+      `${wrapper_id}-ptitle-ColorHover`,
+      `${titleSelector}:hover`,
+      `color:${productTitle.colorHover}`
+    );
+    UblStyler(
+      `${wrapper_id}-ptitle-Color`,
+      `${titleSelector}`,
+      `color:${productTitle.color}`
+    );
+    // --------------------------------rating style--------------------------------
+    UblStyler(
+      `${wrapper_id}-ratingStyle-fontSize`,
+      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-rating .star-rating`,
+      `font-size:${ratingStyle.fontSize}px`
+    );
+    UblStyler(
+      `${wrapper_id}-ratingStyle-color`,
+      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-rating .star-rating`,
+      `color:${ratingStyle.color}`
+    );
+    UblStyler(
+      `${wrapper_id}-ratingStyle-bgColor`,
+      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-rating .star-rating:before`,
+      `color:${ratingStyle.bgColor}`
+    );
+    // --------------------------------price style--------------------------------
+    let priceStyleSelector = `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-price`;
+    UblStyler(
+      `${wrapper_id}-priceStyle-fontSize`,
+      `${priceStyleSelector}`,
+      `font-size:${priceStyle.fontSize}px`
+    );
+    UblStyler(
+      `${wrapper_id}-priceStyle-color`,
+      `${priceStyleSelector}`,
+      `color:${priceStyle.color}`
+    );
+    UblStyler(
+      `${wrapper_id}-priceStyle-discountColor`,
+      `${priceStyleSelector} del`,
+      `color:${priceStyle.discountColor}`
+    );
+    // --------------------------------sale text style--------------------------------
+    let saleStyleSelector = `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-sale > span`;
+    UblStyler(
+      `${wrapper_id}-saleStyle-fontSize`,
+      `${saleStyleSelector}`,
+      `font-size:${saleStyle.fontSize}px`
+    );
+    UblStyler(
+      `${wrapper_id}-saleStyle-color`,
+      `${saleStyleSelector}`,
+      `color:${saleStyle.color}`
+    );
+    UblStyler(
+      `${wrapper_id}-saleStyle-bgColor`,
+      `${saleStyleSelector}`,
+      `background-color:${saleStyle.bgColor}`
+    );
+    // --------------------------------sale text style--------------------------------
+    // --------------------------------Buttons style--------------------------------
+    UblStyler(
+      `${wrapper_id}-buttonsStyle-fontSize`,
+      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button.woosw-btn:before,.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button.woosw-btn:after,.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button`,
+      `font-size:${buttonsStyle.fontSize}px`
+    );
+    UblStyler(
+      `${wrapper_id}-buttonsStyle-ColorHover`,
+      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button:hover`,
+      `color:${buttonsStyle.colorHover}`
+    );
+    UblStyler(
+      `${wrapper_id}-buttonsStyle-Color`,
+      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button`,
+      `color:${buttonsStyle.color}`
+    );
+    // --------------------------------Buttons style--------------------------------
   };
   // 'attributes' => [ "boxStyle" => ["bgColor" => "#b1b1b1",]]
   // -------------------key----------key2---------value
@@ -131,11 +293,38 @@ class Edit extends Component {
 
   render() {
     // ++++++++++++++===============
-    console.log("product props", this.props);
+    // console.log("product props", this.props);
     // console.log("product state", this.state);
-    const { wrapper_id, preview, posts, totalPost } = this.state;
+    const {
+      wrapper_id,
+      preview,
+      posts,
+      pTitle,
+      productBoxBoxShadow,
+      aTcart,
+      buttonsStyleType,
+    } = this.state;
     const { attributes, setAttributes } = this.props;
-    let { product_cate, numberOfPosts, boxStyle, sliderSettings } = attributes;
+    let {
+      product_cate,
+      numberOfPosts,
+      boxStyle,
+      addToCart,
+      sliderSettings,
+      productTitle,
+      ratingStyle,
+      priceStyle,
+      saleStyle,
+      buttonsStyle,
+    } = attributes;
+
+    let BoxSelector1 = `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap`;
+    let BoxSelector2 = `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`;
+    let addToCartSelector = `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn`;
+    let titleSelector = `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-product-title`;
+    let priceStyleSelector = `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-price`;
+    let saleStyleSelector = `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-sale > span`;
+
     // slider options
     const slider_options_ = {
       // items: 1,
@@ -170,19 +359,39 @@ class Edit extends Component {
     if (sliderSettings.margin) {
       slider_options_["margin"] = sliderSettings.margin;
     }
-
     // margin: 30, box-spacing
 
-    const OwlSlider = () => (
-      <OwlCarousel
-        className="owl-theme ul-simple-product-slider"
-        {...slider_options_}
-      >
-        {posts.map((val_) => (
-          <div className="item">{ReactHtmlParser(val_)}</div>
-        ))}
-      </OwlCarousel>
-    );
+    const OwlSlider = () => {
+      // console.log("OwlSlider->", this.props);
+      let numberOfrow = sliderSettings.numberOfrow;
+      numberOfrow = numberOfrow ? parseInt(numberOfrow) : 1;
+      let Posts_ = [...posts];
+      if (numberOfrow == 2) {
+        Posts_ = _l.chunk(Posts_, 2);
+        // console.log("chunksProducts->", chunksProducts);
+      }
+      let productRow = (val_) => {
+        let return_;
+        if (numberOfrow == 2) {
+          return_ = (
+            <div className="item">
+              {val_.map((val2) => ReactHtmlParser(val2))}
+            </div>
+          );
+        } else {
+          return_ = <div className="item">{ReactHtmlParser(val_)}</div>;
+        }
+        return return_;
+      };
+      return (
+        <OwlCarousel
+          className="owl-theme ul-simple-product-slider"
+          {...slider_options_}
+        >
+          {Posts_.map((val_) => productRow(val_))}
+        </OwlCarousel>
+      );
+    };
     return (
       <>
         <BlockControls key="controls">
@@ -226,9 +435,7 @@ class Edit extends Component {
                   onChange={(e) => this.setState({ preview: e })}
                 />
                 <p>
-                  <strong>
-                    {__("Number of Post Display", "unlimited-blocks")}
-                  </strong>
+                  <strong>{__("Number of Post", "unlimited-blocks")}</strong>
                 </p>
                 <RangeControl
                   value={numberOfPosts}
@@ -239,7 +446,42 @@ class Edit extends Component {
                     this.updateProduct("numberOfPosts", e);
                   }}
                 />
+                <p>
+                  <strong>{__("Number of Column", "unlimited-blocks")}</strong>
+                </p>
+                <RangeControl
+                  value={sliderSettings.numberOfColumn}
+                  min={1}
+                  max={6}
+                  onChange={(e) => {
+                    this.updateStyle("sliderSettings", e, "numberOfColumn");
+                  }}
+                />
+                <p>
+                  <strong>{__("Number of Row", "unlimited-blocks")}</strong>
+                </p>
+                <SelectControl
+                  value={sliderSettings.numberOfrow}
+                  onChange={(choosen) => {
+                    this.updateStyle("sliderSettings", choosen, "numberOfrow");
+                  }}
+                  options={[
+                    {
+                      value: 1,
+                      label: 1,
+                    },
+                    {
+                      value: 2,
+                      label: 2,
+                    },
+                  ]}
+                />
+              </PanelBody>
 
+              <PanelBody
+                initialOpen={false}
+                title={__("Product Category", "unlimited-blocks")}
+              >
                 <ProductCategory
                   value={product_cate}
                   category={this.state.category}
@@ -253,17 +495,6 @@ class Edit extends Component {
                 initialOpen={false}
                 title={__("Slider Settings", "unlimited-blocks")}
               >
-                <p>
-                  <strong>{__("Number of Column", "unlimited-blocks")}</strong>
-                </p>
-                <RangeControl
-                  value={sliderSettings.numberOfColumn}
-                  min={1}
-                  max={6}
-                  onChange={(e) => {
-                    this.updateStyle("sliderSettings", e, "numberOfColumn");
-                  }}
-                />
                 <ToggleControl
                   label={__("AutoPlay", "unlimited-blocks")}
                   checked={sliderSettings.autoplay == "on"}
@@ -297,9 +528,9 @@ class Edit extends Component {
                     this.updateStyle("boxStyle", color, "bgColor");
                     UblStyler(
                       `${wrapper_id}-box-bg`,
-                      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,
-                      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom,
-                      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom:before`,
+                      `${BoxSelector1},
+                      ${BoxSelector2},
+                      ${BoxSelector2}:before`,
                       `background-color:${color}`
                     );
                   }}
@@ -313,13 +544,18 @@ class Edit extends Component {
                   max={50}
                   onChange={(e) => {
                     this.updateStyle("sliderSettings", e, "margin");
+                    if (sliderSettings.numberOfrow == "2") {
+                      UblStyler(
+                        `${wrapper_id}-box-spacing`,
+                        `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap + .elemento-product-outer-wrap`,
+                        `margin-top:calc(${e}px + 12px)`
+                      );
+                    }
                   }}
                 />
-              </PanelBody>
-              <PanelBody
-                initialOpen={false}
-                title={__("Box Border & BoxShadow", "unlimited-blocks")}
-              >
+                <p>
+                  <strong>{__("Border", "unlimited-blocks")}</strong>
+                </p>
                 <Border
                   value={{
                     allUnit: "px",
@@ -335,26 +571,26 @@ class Edit extends Component {
 
                     UblStyler(
                       `${wrapper_id}-box-border-width`,
-                      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,
-      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`,
+                      `${BoxSelector1},
+              ${BoxSelector2}`,
                       `border-width:${getProperty.borderWidth}`
                     );
                     UblStyler(
                       `${wrapper_id}-box-border-style`,
-                      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,
-      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`,
+                      `${BoxSelector1},
+      ${BoxSelector2}`,
                       `border-style:${getProperty.borderStyle}`
                     );
                     UblStyler(
                       `${wrapper_id}-box-border-color`,
-                      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,
-      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`,
+                      `${BoxSelector1},
+      ${BoxSelector2}`,
                       `border-color:${getProperty.borderColor}`
                     );
                     UblStyler(
                       `${wrapper_id}-box-border-radius`,
-                      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,
-      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`,
+                      `${BoxSelector1},
+      ${BoxSelector2}`,
                       `border-radius:${getProperty.borderRadius}`
                     );
                   }}
@@ -362,32 +598,504 @@ class Edit extends Component {
                 <p>
                   <strong>{__("Box Shadow Color", "unlimited-blocks")}</strong>
                 </p>
-                <ColorPalette
-                  value={boxStyle.boxShadowColor}
-                  onChange={(color) => {
-                    this.updateStyle("boxStyle", color, "boxShadowColor");
+                <Switcher
+                  value={productBoxBoxShadow}
+                  navItem={[
+                    {
+                      name: "normal",
+                      title: "Normal",
+                    },
+                    {
+                      name: "hover",
+                      title: "Hover",
+                    },
+                  ]}
+                  clickme={(value_) => {
+                    this.setState({ productBoxBoxShadow: value_ });
+                  }}
+                />
+                {productBoxBoxShadow == "hover" ? (
+                  <ColorPalette
+                    value={boxStyle.boxShadowColorHover}
+                    onChange={(color) => {
+                      this.updateStyle(
+                        "boxStyle",
+                        color,
+                        "boxShadowColorHover"
+                      );
+                      UblStyler(
+                        `${wrapper_id}-box-bg-boxShadowhover`,
+                        `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap:hover .elemento-product-simple-inner-wrap,
+      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap:hover .elemento-product-simple-inner-bottom`,
+                        `color:${color}`
+                      );
+                    }}
+                  />
+                ) : (
+                  <ColorPalette
+                    value={boxStyle.boxShadowColor}
+                    onChange={(color) => {
+                      this.updateStyle("boxStyle", color, "boxShadowColor");
+                      UblStyler(
+                        `${wrapper_id}-box-bg-boxShadow`,
+                        `${BoxSelector1},
+                      ${BoxSelector2}`,
+                        `color:${color}`
+                      );
+                    }}
+                  />
+                )}
+              </PanelBody>
+              <PanelBody
+                title={__("Add To Cart Button", "unlimited-blocks")}
+                initialOpen={false}
+              >
+                <Switcher
+                  value={aTcart}
+                  navItem={[
+                    {
+                      name: "normal",
+                      title: "Normal",
+                    },
+                    {
+                      name: "hover",
+                      title: "Hover",
+                    },
+                  ]}
+                  clickme={(value_) => {
+                    this.setState({ aTcart: value_ });
+                  }}
+                />
+                {aTcart == "hover" ? (
+                  <>
+                    <p>
+                      <strong>{__("Color", "unlimited-blocks")}</strong>
+                    </p>
+                    <ColorPalette
+                      value={addToCart.ColorHover}
+                      onChange={(color) => {
+                        this.updateStyle("addToCart", color, "ColorHover");
+                        UblStyler(
+                          `${wrapper_id}-atc-ColorHover`,
+                          `${addToCartSelector}:hover`,
+                          `color:${color}`
+                        );
+                      }}
+                    />
+                    <p>
+                      <strong>
+                        {__("Background Color", "unlimited-blocks")}
+                      </strong>
+                    </p>
+                    <ColorPalette
+                      value={addToCart.bgColorHover}
+                      onChange={(color) => {
+                        this.updateStyle("addToCart", color, "bgColorHover");
+                        UblStyler(
+                          `${wrapper_id}-atc-bgColorHover`,
+                          `${addToCartSelector}:hover`,
+                          `background-color:${color}`
+                        );
+                      }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      <strong>{__("Color", "unlimited-blocks")}</strong>
+                    </p>
+                    <ColorPalette
+                      value={addToCart.Color}
+                      onChange={(color) => {
+                        this.updateStyle("addToCart", color, "Color");
+                        UblStyler(
+                          `${wrapper_id}-atc-Color`,
+                          `${addToCartSelector}`,
+                          `color:${color}`
+                        );
+                      }}
+                    />
+                    <p>
+                      <strong>
+                        {__("Background Color", "unlimited-blocks")}
+                      </strong>
+                    </p>
+                    <ColorPalette
+                      value={addToCart.bgColor}
+                      onChange={(color) => {
+                        this.updateStyle("addToCart", color, "bgColor");
+                        UblStyler(
+                          `${wrapper_id}-atc-bgColor`,
+                          `${addToCartSelector}`,
+                          `background-color:${color}`
+                        );
+                      }}
+                    />
+                  </>
+                )}
+                <p>
+                  <strong>{__("Height", "unlimited-blocks")}</strong>
+                </p>
+                <RangeControl
+                  value={addToCart.paddingV}
+                  min={1}
+                  max={100}
+                  onChange={(e) => {
+                    this.updateStyle("addToCart", e, "paddingV");
                     UblStyler(
-                      `${wrapper_id}-box-bg-boxShadow`,
-                      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap,
-                      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`,
+                      `${wrapper_id}-atc-v`,
+                      `${addToCartSelector}`,
+                      `padding-top:${e}px;padding-bottom:${e}px;`
+                    );
+                  }}
+                />
+                <p>
+                  <strong>{__("Width", "unlimited-blocks")}</strong>
+                </p>
+                <RangeControl
+                  value={addToCart.paddingH}
+                  min={1}
+                  max={100}
+                  onChange={(e) => {
+                    this.updateStyle("addToCart", e, "paddingH");
+                    UblStyler(
+                      `${wrapper_id}-atc-h`,
+                      `${addToCartSelector}`,
+                      `padding-left:${e}px;padding-right:${e}px;`
+                    );
+                  }}
+                />
+                <p>
+                  <strong>{__("Border", "unlimited-blocks")}</strong>
+                </p>
+                <Border
+                  value={{
+                    allUnit: "px",
+                    borderStyle: addToCart.borderStyle,
+                    borderWidth: addToCart.borderWidth,
+                    borderColor: addToCart.borderColor,
+                    borderRadius: addToCart.borderRadius,
+                    borderWidthLink: addToCart.borderWidthLink,
+                    borderRadiusLink: addToCart.borderRadiusLink,
+                  }}
+                  changeme={(getProperty) => {
+                    // console.log("getProperty", getProperty);
+                    this.updateStyle("boxStyle", true, true, getProperty);
+                    UblStyler(
+                      `${wrapper_id}-atc-border-width`,
+                      `${addToCartSelector}`,
+                      `border-width:${getProperty.borderWidth}`
+                    );
+                    UblStyler(
+                      `${wrapper_id}-atc-border-style`,
+                      `${addToCartSelector}`,
+                      `border-style:${getProperty.borderStyle}`
+                    );
+                    UblStyler(
+                      `${wrapper_id}-atc-border-color`,
+                      `${addToCartSelector}`,
+                      `border-color:${getProperty.borderColor}`
+                    );
+                    UblStyler(
+                      `${wrapper_id}-atc-border-radius`,
+                      `${addToCartSelector}`,
+                      `border-radius:${getProperty.borderRadius}`
+                    );
+                  }}
+                />
+              </PanelBody>
+              <PanelBody
+                title={__("Title", "unlimited-blocks")}
+                initialOpen={false}
+              >
+                {/* title ____________________________________________________________________________________ */}
+                <p>
+                  <strong>{__("Font Size", "unlimited-blocks")}</strong>
+                </p>
+                <RangeControl
+                  value={productTitle.fontSize}
+                  min={1}
+                  max={50}
+                  onChange={(e) => {
+                    this.updateStyle("productTitle", e, "fontSize");
+                    UblStyler(
+                      `${wrapper_id}-ptitle-fontSize`,
+                      `${titleSelector}`,
+                      `font-size:${e}px`
+                    );
+                  }}
+                />
+                <Switcher
+                  value={pTitle}
+                  navItem={[
+                    {
+                      name: "normal",
+                      title: "Normal",
+                    },
+                    {
+                      name: "hover",
+                      title: "Hover",
+                    },
+                  ]}
+                  clickme={(value_) => {
+                    this.setState({ pTitle: value_ });
+                  }}
+                />
+                {pTitle == "hover" ? (
+                  <>
+                    <p>
+                      <strong>{__("Color", "unlimited-blocks")}</strong>
+                    </p>
+                    <ColorPalette
+                      value={productTitle.ColorHover}
+                      onChange={(color) => {
+                        this.updateStyle("productTitle", color, "colorHover");
+                        UblStyler(
+                          `${wrapper_id}-ptitle-ColorHover`,
+                          `${titleSelector}:hover`,
+                          `color:${color}`
+                        );
+                      }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      <strong>{__("Color", "unlimited-blocks")}</strong>
+                    </p>
+                    <ColorPalette
+                      value={productTitle.Color}
+                      onChange={(color) => {
+                        this.updateStyle("productTitle", color, "color");
+                        UblStyler(
+                          `${wrapper_id}-ptitle-Color`,
+                          `${titleSelector}`,
+                          `color:${color}`
+                        );
+                      }}
+                    />
+                  </>
+                )}
+                {/* title ____________________________________________________________________________________ */}
+              </PanelBody>
+              <PanelBody
+                title={__("Rating", "unlimited-blocks")}
+                initialOpen={false}
+              >
+                <p>
+                  <strong>{__("Font Size", "unlimited-blocks")}</strong>
+                </p>
+                <RangeControl
+                  value={ratingStyle.fontSize}
+                  min={1}
+                  max={50}
+                  onChange={(e) => {
+                    this.updateStyle("ratingStyle", e, "fontSize");
+                    UblStyler(
+                      `${wrapper_id}-ratingStyle-fontSize`,
+                      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-rating .star-rating`,
+                      `font-size:${e}px`
+                    );
+                  }}
+                />
+                <p>
+                  <strong>{__("Color", "unlimited-blocks")}</strong>
+                </p>
+                <ColorPalette
+                  value={ratingStyle.bgColor}
+                  onChange={(color) => {
+                    this.updateStyle("ratingStyle", color, "bgColor");
+                    UblStyler(
+                      `${wrapper_id}-ratingStyle-bgColor`,
+                      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-rating .star-rating:before`,
+                      `color:${color}`
+                    );
+                  }}
+                />
+                <p>
+                  <strong>{__("Background Color", "unlimited-blocks")}</strong>
+                </p>
+                <ColorPalette
+                  value={ratingStyle.color}
+                  onChange={(color) => {
+                    this.updateStyle("ratingStyle", color, "color");
+                    UblStyler(
+                      `${wrapper_id}-ratingStyle-color`,
+                      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-rating .star-rating`,
+                      `color:${color}`
+                    );
+                  }}
+                />
+              </PanelBody>
+              <PanelBody
+                title={__("Price", "unlimited-blocks")}
+                initialOpen={false}
+              >
+                <p>
+                  <strong>{__("Font Size", "unlimited-blocks")}</strong>
+                </p>
+                <RangeControl
+                  value={priceStyle.fontSize}
+                  min={1}
+                  max={50}
+                  onChange={(e) => {
+                    this.updateStyle("priceStyle", e, "fontSize");
+                    UblStyler(
+                      `${wrapper_id}-priceStyle-fontSize`,
+                      `${priceStyleSelector}`,
+                      `font-size:${e}px`
+                    );
+                  }}
+                />
+                <p>
+                  <strong>{__("Color", "unlimited-blocks")}</strong>
+                </p>
+                <ColorPalette
+                  value={priceStyle.color}
+                  onChange={(color) => {
+                    this.updateStyle("priceStyle", color, "color");
+                    UblStyler(
+                      `${wrapper_id}-priceStyle-color`,
+                      `${priceStyleSelector}`,
                       `color:${color}`
                     );
                   }}
                 />
                 <p>
                   <strong>
-                    {__("Box Shadow Hover Color", "unlimited-blocks")}
+                    {__("Discount Price Color", "unlimited-blocks")}
                   </strong>
                 </p>
                 <ColorPalette
-                  value={boxStyle.boxShadowColorHover}
+                  value={priceStyle.bgColor}
                   onChange={(color) => {
-                    this.updateStyle("boxStyle", color, "boxShadowColorHover");
+                    this.updateStyle("priceStyle", color, "discountColor");
                     UblStyler(
-                      `${wrapper_id}-box-bg-boxShadowhover`,
-                      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap:hover .elemento-product-simple-inner-wrap,
-      .${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap:hover .elemento-product-simple-inner-bottom`,
+                      `${wrapper_id}-priceStyle-discountColor`,
+                      `${priceStyleSelector} del`,
                       `color:${color}`
+                    );
+                  }}
+                />
+              </PanelBody>
+              <PanelBody
+                title={__("Buttons Style", "unlimited-blocks")}
+                initialOpen={false}
+              >
+                <p>
+                  <strong>{__("Font Size", "unlimited-blocks")}</strong>
+                </p>
+                <RangeControl
+                  value={buttonsStyle.fontSize}
+                  min={1}
+                  max={50}
+                  onChange={(e) => {
+                    this.updateStyle("buttonsStyle", e, "fontSize");
+                    UblStyler(
+                      `${wrapper_id}-buttonsStyle-fontSize`,
+                      `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button.woosw-btn:before,.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button.woosw-btn:after,.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button`,
+                      `font-size:${e}px`
+                    );
+                  }}
+                />
+                <Switcher
+                  value={buttonsStyleType}
+                  navItem={[
+                    {
+                      name: "normal",
+                      title: "Normal",
+                    },
+                    {
+                      name: "hover",
+                      title: "Hover",
+                    },
+                  ]}
+                  clickme={(value_) => {
+                    this.setState({ buttonsStyleType: value_ });
+                  }}
+                />
+                {buttonsStyleType == "hover" ? (
+                  <>
+                    <p>
+                      <strong>{__("Color", "unlimited-blocks")}</strong>
+                    </p>
+                    <ColorPalette
+                      value={buttonsStyle.colorHover}
+                      onChange={(color) => {
+                        this.updateStyle("buttonsStyle", color, "colorHover");
+                        UblStyler(
+                          `${wrapper_id}-buttonsStyle-ColorHover`,
+                          `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button:hover`,
+                          `color:${color}`
+                        );
+                      }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      <strong>{__("Color", "unlimited-blocks")}</strong>
+                    </p>
+                    <ColorPalette
+                      value={productTitle.Color}
+                      onChange={(color) => {
+                        this.updateStyle("buttonsStyle", color, "color");
+                        UblStyler(
+                          `${wrapper_id}-buttonsStyle-Color`,
+                          `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button`,
+                          `color:${color}`
+                        );
+                      }}
+                    />
+                  </>
+                )}
+                {/* ------------------------------------------------ */}
+              </PanelBody>
+              <PanelBody
+                title={__("Sale Text", "unlimited-blocks")}
+                initialOpen={false}
+              >
+                <p>
+                  <strong>{__("Font Size", "unlimited-blocks")}</strong>
+                </p>
+                <RangeControl
+                  value={saleStyle.fontSize}
+                  min={1}
+                  max={50}
+                  onChange={(e) => {
+                    this.updateStyle("saleStyle", e, "fontSize");
+                    UblStyler(
+                      `${wrapper_id}-saleStyle-fontSize`,
+                      `${saleStyleSelector}`,
+                      `font-size:${e}px`
+                    );
+                  }}
+                />
+                <p>
+                  <strong>{__("Color", "unlimited-blocks")}</strong>
+                </p>
+                <ColorPalette
+                  value={saleStyle.color}
+                  onChange={(color) => {
+                    this.updateStyle("saleStyle", color, "color");
+                    UblStyler(
+                      `${wrapper_id}-saleStyle-color`,
+                      `${saleStyleSelector}`,
+                      `color:${color}`
+                    );
+                  }}
+                />
+                <p>
+                  <strong>{__("Background Color", "unlimited-blocks")}</strong>
+                </p>
+                <ColorPalette
+                  value={saleStyle.bgColor}
+                  onChange={(color) => {
+                    this.updateStyle("saleStyle", color, "bgColor");
+                    UblStyler(
+                      `${wrapper_id}-saleStyle-bgColor`,
+                      `${saleStyleSelector}`,
+                      `background-color:${color}`
                     );
                   }}
                 />

@@ -91,18 +91,6 @@ if (!function_exists('unlimited_blocks_script')) {
 	// enque css icon file
 	function unlimited_blocks_script()
 	{
-		// wp_register_style(
-		// 	'owl-slider-css',
-		// 	UNLIMITED_BLOCKS . 'assets/css/owl-slider-min.css',
-		// 	array('wp-edit-blocks'),
-		// 	1
-		// );
-		// wp_register_style(
-		// 	'owl-slider-css-default',
-		// 	UNLIMITED_BLOCKS . 'assets/css/ow.slided.default.css',
-		// 	array('wp-edit-blocks'),
-		// 	1
-		// );
 		wp_enqueue_style('owl-slider-css', UNLIMITED_BLOCKS . 'assets/css/owl-slider-min.css', false);
 		wp_enqueue_style('owl-slider-css-default', UNLIMITED_BLOCKS . 'assets/css/ow.slided.default.css', false);
 

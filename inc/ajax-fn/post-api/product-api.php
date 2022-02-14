@@ -1,7 +1,7 @@
 <?php
 
 /**
- * for porduct ------------------------------------- woocommerce ------------------------
+ * for porduct ------------------- ddd ------------------ woocommerce ------------------------
  */
 
 if (!function_exists('unlimited_blocks_product_api_result')) {
@@ -140,7 +140,7 @@ class Th_Simple_Product
 {
     public function simple_product_slider($cate = [], $options = [])
     {
-        if (is_array($cate) && !empty($cate)) {
+        if (isset($options['number_of_product'])) {
             $numOfproduct = $options['number_of_product'];
             $args = array(
                 'post_type' => 'product',
@@ -157,9 +157,11 @@ class Th_Simple_Product
                 )
             );
             $stringCate = '';
-            $stringCate = implode(",", $cate);
-            if (!in_array('all', $cate)) {
-                $args['product_cat'] = $stringCate;
+            if (is_array($cate) && !empty($cate)) {
+                $stringCate = implode(",", $cate);
+                if (!in_array('all', $cate)) {
+                    $args['product_cat'] = $stringCate;
+                }
             }
             // random, featured, recently 
             if (isset($options['product_show_by'])) {
@@ -222,9 +224,14 @@ class Th_Simple_Product
             $sliderSetting['autoPlayDirection'] = 'l';
         }
         // slider_auto_play
+        // slider margin 
+        if (isset($options['slide_spacing'])) {
+            $sliderSetting['slide_spacing'] = $options['slide_spacing'];
+        }
 
         $dataSetting = wp_json_encode($sliderSetting);
-
+        // print_r($dataSetting);
+        // print_r($options);
         $productHtml = '';
         $productHtml .= "<div class='elemento-owl-slider-common-secript' data-setting='" . $dataSetting . "'>";
         if (isset($availNextPrevious)) {

@@ -633,6 +633,34 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
   padding: 10px;
 }
 
+.ul-switch-nav {
+  border: 1px solid #939393;
+  display: flex;
+  position: relative;
+  padding: 7px 0;
+  border-radius: 2px;
+  margin: 10px 0;
+}
+.ul-switch-nav > div {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+}
+.ul-switch-nav > div.bg-switch {
+  background-color: black;
+  width: 50%;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  height: calc(100% - 4px);
+  border-radius: 2px;
+  transition: 0.2s all ease;
+}
+.ul-switch-nav > div.active {
+  color: white;
+}
+
 .categories_component {
   display: flex;
   flex-direction: column;
@@ -2382,6 +2410,13 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
   font-size: 16px;
 }
 @charset "UTF-8";
+.ul-blocks-simple-product .ea-simple-product-slider .elemento-product-outer-wrap .buttons_ > button {
+  min-width: unset;
+}
+.ul-blocks-simple-product .ea-simple-product-slider .elemento-product-outer-wrap .buttons_ > button i {
+  font-family: "Font Awesome 5 Free";
+}
+
 .ul-blocks-simple-product.elemento-simple-product-previewon .owl-stage-outer {
   margin: -15px 0px -100px;
   padding: 15px 0px 100px;
@@ -2419,10 +2454,13 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
   padding: 15px 0px 100px;
 }
 .ul-blocks-simple-product .item {
-  padding: 0 12px;
+  padding: 0 6px;
 }
 .ul-blocks-simple-product .elemento-product-outer-wrap {
   position: relative;
+}
+.ul-blocks-simple-product .elemento-product-outer-wrap + .elemento-product-outer-wrap {
+  margin-top: 12px;
 }
 .ul-blocks-simple-product .elemento-product-outer-wrap.hovered .elemento-addons-quickview-simple {
   opacity: 1;
@@ -2458,7 +2496,7 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  grid-gap: 5px;
+  grid-gap: 10px;
   background: #ffffff;
   padding: 10px;
   position: absolute;
@@ -2523,6 +2561,7 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
   transition: 0.3s all linear;
   font-weight: 500;
   border: none;
+  min-height: unset;
 }
 .ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button:hover {
   color: black;
@@ -2533,12 +2572,12 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
   border-radius: 0;
 }
 .ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button.woosw-btn {
-  font-size: 0;
+  font-size: 0 !important;
 }
 .ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button.woosw-btn:before {
-  content: "";
+  content: "";
   font-size: 14px;
-  font-family: "FontAwesome";
+  font-family: "Font Awesome 5 Free";
   margin: 0;
 }
 .ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button.woosw-btn.woosw-added::before {
@@ -2563,10 +2602,11 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
   font-weight: 700;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 .ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover {
   color: #20c9ae;
-  background-color: #c4c4c4;
+  background-color: #f5f5f5;
 }
 .ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn.loading {
   opacity: 0.5;
@@ -2617,15 +2657,13 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
   position: relative;
   z-index: 1000;
   text-align: center;
-  color: #3b3b3b;
+  color: #20c9ae;
+  font-size: 14px;
 }
 .ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-price del {
   margin-right: 0.5rem;
   color: #878787;
   font-weight: normal;
-}
-.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-price ins {
-  color: #20c9ae;
 }
 .ul-blocks-simple-product .elemento-product-outer-wrap .elemento-addons-rating .star-rating {
   float: unset;
@@ -2691,12 +2729,13 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
   display: flex;
   position: relative;
   z-index: 1000;
+  justify-content: center;
 }
 .elemento-addons-rating .star-rating {
   float: unset;
   overflow: hidden;
   position: relative;
-  height: 1em;
+  height: 14px;
   line-height: 1;
   font-size: 1em;
   width: 5.4em;

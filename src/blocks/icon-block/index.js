@@ -14,9 +14,7 @@ import {
   PanelBody,
   RangeControl,
   ToggleControl,
-  ColorPicker,
   SelectControl,
-  __experimentalGradientPicker as GradientPicker,
   // Toolbar,
   // ToolbarItem,
   // Button,
@@ -24,7 +22,7 @@ import {
   // ResponsiveWrapper
 } from "@wordpress/components";
 import fontFamily from "../block-assets/font-family";
-import { UBLGraDientColors } from "../block-assets/post-functions";
+import BackgroundColor from "../block-assets/utility-components/backgroundType/backgroundColor";
 
 import { blocksDetail } from "../block-assets/blocks-detail";
 const { icon_block } = blocksDetail;
@@ -112,6 +110,7 @@ registerBlockType("unlimited-blocks/icon-block", {
       type: "string",
       default: "Ubuntu Mono",
     },
+    // icon border
     iconBorder: {
       type: "boolean",
       default: false,
@@ -128,6 +127,7 @@ registerBlockType("unlimited-blocks/icon-block", {
       type: "string",
       default: "#ffa600",
     },
+    // icon border
     iconSpace: {
       type: "number",
       default: 79,
@@ -393,35 +393,37 @@ registerBlockType("unlimited-blocks/icon-block", {
               onChange={(e) => setAttributes({ iconBorder: e })}
             />
             {iconBorder && (
-              <div className="icon-border-setting">
-                <RangeControl
-                  label={__("Border Width", "unlimited-blocks")}
-                  value={iconBorderWidth}
-                  min={0}
-                  max={100}
-                  onChange={(e) => setAttributes({ iconBorderWidth: e })}
-                />
-                <RangeControl
-                  label={__("Border Radius", "unlimited-blocks")}
-                  value={iconBorderRadius}
-                  min={0}
-                  max={50}
-                  onChange={(e) => setAttributes({ iconBorderRadius: e })}
-                />
-                <p>{__("Border Color", "unlimited-blocks")}</p>
-                <ColorPalette
-                  onChange={(color) =>
-                    setAttributes({ iconBorderColor: color })
-                  }
-                />
-                <RangeControl
-                  label={__("Icon Space", "unlimited-blocks")}
-                  value={iconSpace}
-                  min={0}
-                  max={200}
-                  onChange={(e) => setAttributes({ iconSpace: e })}
-                />
-              </div>
+              <>
+                <div className="icon-border-setting">
+                  <RangeControl
+                    label={__("Border Width", "unlimited-blocks")}
+                    value={iconBorderWidth}
+                    min={0}
+                    max={100}
+                    onChange={(e) => setAttributes({ iconBorderWidth: e })}
+                  />
+                  <RangeControl
+                    label={__("Border Radius", "unlimited-blocks")}
+                    value={iconBorderRadius}
+                    min={0}
+                    max={50}
+                    onChange={(e) => setAttributes({ iconBorderRadius: e })}
+                  />
+                  <p>{__("Border Color", "unlimited-blocks")}</p>
+                  <ColorPalette
+                    onChange={(color) =>
+                      setAttributes({ iconBorderColor: color })
+                    }
+                  />
+                  <RangeControl
+                    label={__("Icon Space", "unlimited-blocks")}
+                    value={iconSpace}
+                    min={0}
+                    max={200}
+                    onChange={(e) => setAttributes({ iconSpace: e })}
+                  />
+                </div>
+              </>
             )}
           </PanelBody>
           <PanelBody
@@ -511,55 +513,21 @@ registerBlockType("unlimited-blocks/icon-block", {
             title={__("Color Setting", "unlimited-blocks")}
             initialOpen={false}
           >
-            <p>
-              <strong>{__("Background Color", "unlimited-blocks")}</strong>
-            </p>
-            {/* bg color  */}
-            <div class="ubl-switcher-button-section">
-              <span
-                onClick={() => {
-                  let getBgcolor = { ...iconBgColor };
-                  getBgcolor["type"] = "color";
-                  setAttributes({ iconBgColor: getBgcolor });
-                }}
-                className={iconBgColor.type == "color" ? "selected" : ""}
-              >
-                {__("Solid", "unlimited-blocks")}
-              </span>
-              <span
-                onClick={() => {
-                  let getBgcolor = { ...iconBgColor };
-                  getBgcolor["type"] = "gradient";
-                  setAttributes({ iconBgColor: getBgcolor });
-                }}
-                className={iconBgColor.type == "gradient" ? "selected" : ""}
-              >
-                {__("Gradient", "unlimited-blocks")}
-              </span>
-            </div>
-            {"color" == iconBgColor.type ? (
-              <ColorPicker
-                color={iconBgColor.color}
-                onChangeComplete={(colorBg) => {
-                  let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                  let getBgcolor = { ...iconBgColor };
-                  getBgcolor["color"] = color;
-                  setAttributes({ iconBgColor: getBgcolor });
-                }}
-              />
-            ) : (
-              <GradientPicker
-                disableCustomGradients={false}
-                value={iconBgColor.gradient}
-                gradients={UBLGraDientColors}
-                onChange={(newGradient) => {
-                  let getBgcolor = { ...iconBgColor };
-                  getBgcolor["gradient"] = newGradient;
-                  setAttributes({ iconBgColor: getBgcolor });
-                }}
-              />
-            )}
-            {/* bg color  */}
+            <BackgroundColor
+              value={{
+                backgroundColorType: iconBgColor.type,
+                backgroundColor: iconBgColor.color,
+                backgroundImageGradient: iconBgColor.gradient,
+              }}
+              changeme={(_properties) => {
+                let saveObj = {
+                  type: _properties.backgroundColorType,
+                  color: _properties.backgroundColor,
+                  gradient: _properties.backgroundImageGradient,
+                };
+                setAttributes({ iconBgColor: saveObj });
+              }}
+            />
 
             <p>
               <strong>{__("Icon Color", "unlimited-blocks")}</strong>
@@ -682,10 +650,6 @@ registerBlockType("unlimited-blocks/icon-block", {
                 setAttributes({ itemAlign: side });
               }}
             />
-            {/* <Toolbar label="Options">
-              <ToolbarItem as={Button}>I am a toolbar button</ToolbarItem>
-              <ToolbarItem as="button">I am another toolbar button</ToolbarItem>
-            </Toolbar> */}
           </BlockControls>
           <div
             className="themehunk-icon-block"

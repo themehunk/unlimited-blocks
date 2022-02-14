@@ -1,8 +1,17 @@
+.ul-blocks-simple-product {
+  .ea-simple-product-slider .elemento-product-outer-wrap .buttons_ > button {
+    min-width: unset;
+    i {
+      font-family: "Font Awesome 5 Free";
+    }
+  }
+}
 .ul-blocks-simple-product.elemento-simple-product-previewon {
   .owl-stage-outer {
     margin: -15px 0px -100px;
     padding: 15px 0px 100px;
   }
+
   .elemento-product-outer-wrap {
     .elemento-addons-quickview-simple {
       opacity: 1;
@@ -42,9 +51,12 @@
     padding: 15px 0px 100px;
   }
   .item {
-    padding: 0 12px;
+    padding: 0 6px;
   }
   .elemento-product-outer-wrap {
+    + .elemento-product-outer-wrap {
+      margin-top: 12px;
+    }
     position: relative;
     &.hovered {
       .elemento-addons-quickview-simple {
@@ -65,7 +77,7 @@
         border-bottom-width: 0px !important;
       }
     }
-
+    // .ul-blocks-simple-product .elemento-product-outer-wrap + .elemento-product-outer-wrap
     .elemento-product-simple-inner-wrap {
       display: flex;
       flex-direction: column;
@@ -83,7 +95,7 @@
       justify-content: center;
       flex-direction: column;
       align-items: center;
-      grid-gap: 5px;
+      grid-gap: 10px;
       background: #ffffff;
       padding: 10px;
       position: absolute;
@@ -127,6 +139,7 @@
       width: fit-content;
       text-align: center;
     }
+
     .buttons_ {
       display: flex;
       justify-content: center;
@@ -147,6 +160,7 @@
         transition: 0.3s all linear;
         font-weight: 500;
         border: none;
+        min-height: unset;
         &:hover {
           color: black;
         }
@@ -157,11 +171,11 @@
         }
       }
       button.woosw-btn {
-        font-size: 0;
+        font-size: 0 !important;
         &:before {
-          content: "";
+          content: "\f004";
           font-size: 14px;
-          font-family: "FontAwesome";
+          font-family: "Font Awesome 5 Free";
           margin: 0;
         }
         &.woosw-added::before {
@@ -190,9 +204,10 @@
       font-weight: 700;
       justify-content: center;
       align-items: center;
+      position: relative;
       &:hover {
         color: #20c9ae;
-        background-color: #c4c4c4;
+        background-color: #f5f5f5;
       }
 
       &.loading {
@@ -248,15 +263,16 @@
       position: relative;
       z-index: 1000;
       text-align: center;
-      color: #3b3b3b;
+      color: #20c9ae;
+      font-size: 14px;
       del {
         margin-right: 0.5rem;
         color: #878787;
         font-weight: normal;
       }
-      ins {
-        color: #20c9ae;
-      }
+      // ins {
+      //   color: #20c9ae;
+      // }
     }
     .elemento-addons-rating {
       .star-rating {
@@ -343,12 +359,13 @@
   display: flex;
   position: relative;
   z-index: 1000;
+  justify-content: center;
   .star-rating {
     float: unset;
     // float: right;
     overflow: hidden;
     position: relative;
-    height: 1em;
+    height: 14px;
     line-height: 1;
     font-size: 1em;
     width: 5.4em;

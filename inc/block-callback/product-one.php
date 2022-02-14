@@ -24,7 +24,7 @@ unlimited_blocks_register_block_fn('ubl-product',  [
             'type' => "object",
             "default" => [
                 "numberOfColumn" => 3,
-                "numberOfrow" => 2,
+                "numberOfrow" => 1,
                 "autoplay" => "",
                 "loop" => "",
                 "sliderControl" => 'dots',
@@ -35,7 +35,7 @@ unlimited_blocks_register_block_fn('ubl-product',  [
         "boxStyle" => [
             "type" => "object",
             "default" => [
-                "bgColor" => "#b1b1b1",
+                "bgColor" => "#ffffff",
                 "borderWidthLink" => true,
                 "borderStyle" => "solid",
                 "borderWidth" => 0,
@@ -46,11 +46,61 @@ unlimited_blocks_register_block_fn('ubl-product',  [
                 'boxShadowColorHover' => '#4b58ff40',
             ]
         ],
-        "title" => [
+        "addToCart" => [
             "type" => "object",
             "default" => [
-                'color' => "",
-                'font-size' => ""
+                "Color" => "#20c9ae",
+                "bgColor" => "#89767603",
+                "ColorHover" => "#20c9ae",
+                "bgColorHover" => "#89767603",
+                "borderWidth" => "1px",
+                "borderWidthLink" => true,
+                "borderStyle" => "solid",
+                "borderColor" => "#20c9ae",
+                "borderRadius" => "5px",
+                "borderRadiusLink" => true,
+                "paddingV" => '6',
+                "paddingH" => '18',
+            ]
+        ],
+        "productTitle" => [
+            "type" => "object",
+            "default" => [
+                'color' => "#3b3b3b",
+                'colorHover' => "#3b3b3b",
+                'fontSize' => 14
+            ]
+        ],
+        "ratingStyle" => [
+            "type" => "object",
+            "default" => [
+                'color' => "#fa8e1e",
+                'bgColor' => "#d3ced2",
+                'fontSize' => "14"
+            ]
+        ],
+        "priceStyle" => [
+            "type" => "object",
+            "default" => [
+                'color' => "#20c9ae",
+                'discountColor' => "#d3ced2",
+                'fontSize' => 14
+            ]
+        ],
+        "saleStyle" => [
+            "type" => "object",
+            "default" => [
+                'color' => "white",
+                'bgColor' => "black",
+                'fontSize' => 12
+            ]
+        ],
+        "buttonsStyle" => [
+            "type" => "object",
+            "default" => [
+                'color' => "#555555",
+                'colorHover' => "#555555",
+                'fontSize' => 14
             ]
         ],
     ]

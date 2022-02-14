@@ -33,6 +33,9 @@
         let dataSetting = slider.attr("data-setting");
         if (dataSetting) {
           dataSetting = JSON.parse(dataSetting);
+
+          // console.log("dataSetting", dataSetting);
+
           if (dataSetting) {
             let owlCarouselArg = {
               slideTransition: "linear",
@@ -52,6 +55,10 @@
             // number of column
             if ("items" in dataSetting) {
               owlCarouselArg["items"] = dataSetting.items;
+            }
+            // margin
+            if ("slide_spacing" in dataSetting) {
+              owlCarouselArg["margin"] = dataSetting.slide_spacing;
             }
             //autoplay
             if ("autoplay" in dataSetting) {
