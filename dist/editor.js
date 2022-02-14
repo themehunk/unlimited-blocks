@@ -32191,9 +32191,9 @@ var Switcher = function Switcher(props) {
 
     var getIndexValue = navItem.findIndex(function (val) {
       return val.name == value;
-    });
-    console.log("items->", navItem);
-    console.log("get->" + value, getIndexValue);
+    }); // console.log("items->", navItem);
+    // console.log("get->" + value, getIndexValue);
+
     var styleBack = null;
 
     if (getIndexValue > 0) {
@@ -33092,7 +33092,8 @@ var BackgroundColor = /*#__PURE__*/function (_Component) {
       backgroundColorType: "color",
       backgroundColor: "",
       backgroundImageGradient: "",
-      backgroundOpacity: ""
+      backgroundOpacity: "",
+      title: "Background Color"
     };
     return _this;
   }
@@ -33106,7 +33107,8 @@ var BackgroundColor = /*#__PURE__*/function (_Component) {
             backgroundColorType = _this$props$value.backgroundColorType,
             backgroundColor = _this$props$value.backgroundColor,
             backgroundImageGradient = _this$props$value.backgroundImageGradient,
-            backgroundOpacity = _this$props$value.backgroundOpacity;
+            backgroundOpacity = _this$props$value.backgroundOpacity,
+            title = _this$props$value.title;
         var setStateObj = {};
         var checkB = false; //   if (backgroundType) {
         //     setStateObj["backgroundType"] = backgroundType;
@@ -33131,6 +33133,10 @@ var BackgroundColor = /*#__PURE__*/function (_Component) {
         if (backgroundOpacity) {
           setStateObj["backgroundOpacity"] = backgroundOpacity;
           checkB = true;
+        }
+
+        if (title && title == "") {
+          setStateObj["title"] = title;
         }
 
         if (checkB) {
@@ -33161,7 +33167,7 @@ var BackgroundColor = /*#__PURE__*/function (_Component) {
     value: function colorGradient() {
       var _this2 = this;
 
-      return wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement("div", {
+      return wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])(this.state.title, "unlimited-blocks"))), wp.element.createElement("div", {
         class: "ubl-switcher-bg-clr-gradient clor_".concat(this.state.backgroundColorType)
       }, wp.element.createElement("span", {
         className: "bg-span"
@@ -45980,9 +45986,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _block_assets_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../block-assets/icons */ "./src/blocks/block-assets/icons.js");
-/* harmony import */ var _block_assets_post_functions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../block-assets/post-functions */ "./src/blocks/block-assets/post-functions.js");
-/* harmony import */ var _block_assets_blocks_detail__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../block-assets/blocks-detail */ "./src/blocks/block-assets/blocks-detail.js");
+/* harmony import */ var _block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../block-assets/utility-components/TwoSwitcher */ "./src/blocks/block-assets/utility-components/TwoSwitcher.js");
+/* harmony import */ var _block_assets_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../block-assets/icons */ "./src/blocks/block-assets/icons.js");
+/* harmony import */ var _block_assets_post_functions__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../block-assets/post-functions */ "./src/blocks/block-assets/post-functions.js");
+/* harmony import */ var _block_assets_utility_components_backgroundType_backgroundColor__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../block-assets/utility-components/backgroundType/backgroundColor */ "./src/blocks/block-assets/utility-components/backgroundType/backgroundColor.js");
+/* harmony import */ var _block_assets_blocks_detail__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../block-assets/blocks-detail */ "./src/blocks/block-assets/blocks-detail.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -46010,6 +46018,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 // import "./parent";
+
+
 
 
 
@@ -46262,7 +46272,7 @@ var attrS = {
   }
 };
 
-var pricing_table = _block_assets_blocks_detail__WEBPACK_IMPORTED_MODULE_9__["blocksDetail"].pricing_table;
+var pricing_table = _block_assets_blocks_detail__WEBPACK_IMPORTED_MODULE_11__["blocksDetail"].pricing_table;
 Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unlimited-blocks/pricing-table-table", {
   title: pricing_table.title,
   description: pricing_table.description,
@@ -46463,7 +46473,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
         activeIconContainer = _useState20[0],
         activeIconContainerSet = _useState20[1];
 
-    var _useState21 = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["useState"])(_block_assets_icons__WEBPACK_IMPORTED_MODULE_7__["default"]),
+    var _useState21 = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["useState"])(_block_assets_icons__WEBPACK_IMPORTED_MODULE_8__["default"]),
         _useState22 = _slicedToArray(_useState21, 2),
         iconList = _useState22[0],
         setIconList = _useState22[1];
@@ -46557,19 +46567,19 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
     return [wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InspectorControls"], null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["PanelBody"], {
       title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Header Section", "unlimited-blocks"),
       initialOpen: false
-    }, wp.element.createElement("div", {
-      class: "ubl-switcher-button-section"
-    }, wp.element.createElement("span", {
-      onClick: function onClick() {
-        setheaderSection("content");
-      },
-      className: headerSection == "content" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Content", "unlimited-blocks")), wp.element.createElement("span", {
-      onClick: function onClick() {
-        setheaderSection("style");
-      },
-      className: headerSection == "style" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Style", "unlimited-blocks"))), headerSection == "content" ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("div", {
+    }, wp.element.createElement(_block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      value: headerSection,
+      navItem: [{
+        name: "content",
+        title: "Content"
+      }, {
+        name: "style",
+        title: "Style"
+      }],
+      clickme: function clickme(value_) {
+        setheaderSection(value_);
+      }
+    }), headerSection == "content" ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("div", {
       className: "ubl-panel-custom"
     }, wp.element.createElement("label", {
       className: "normal-label"
@@ -46628,50 +46638,21 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
           headingDescription: e
         });
       }
-    }))) : wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement("div", {
-      class: "ubl-switcher-button-section"
-    }, wp.element.createElement("span", {
-      onClick: function onClick() {
-        var getBgcolor = _objectSpread({}, headerBackground);
-
-        getBgcolor["type"] = "color";
-        setAttributes({
-          headerBackground: getBgcolor
-        });
+    }))) : wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_block_assets_utility_components_backgroundType_backgroundColor__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      value: {
+        backgroundColorType: headerBackground.type,
+        backgroundColor: headerBackground.color,
+        backgroundImageGradient: headerBackground.gradient
       },
-      className: headerBackground.type == "color" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Solid", "unlimited-blocks")), wp.element.createElement("span", {
-      onClick: function onClick() {
-        var getBgcolor = _objectSpread({}, headerBackground);
-
-        getBgcolor["type"] = "gradient";
+      changeme: function changeme(_properties) {
+        // console.log("_properties", _properties);
+        var saveObj = {
+          type: _properties.backgroundColorType,
+          color: _properties.backgroundColor,
+          gradient: _properties.backgroundImageGradient
+        };
         setAttributes({
-          headerBackground: getBgcolor
-        });
-      },
-      className: headerBackground.type == "gradient" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Gradient", "unlimited-blocks"))), "color" == headerBackground.type ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["ColorPicker"], {
-      color: headerBackground.color,
-      onChangeComplete: function onChangeComplete(colorBg) {
-        var color = "rgba(".concat(colorBg.rgb.r, ",").concat(colorBg.rgb.g, ",").concat(colorBg.rgb.b, ",").concat(colorBg.rgb.a, ")");
-
-        var getBgcolor = _objectSpread({}, headerBackground);
-
-        getBgcolor["color"] = color;
-        setAttributes({
-          headerBackground: getBgcolor
-        });
-      }
-    }) : wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["__experimentalGradientPicker"], {
-      disableCustomGradients: false,
-      value: headerBackground.gradient,
-      gradients: _block_assets_post_functions__WEBPACK_IMPORTED_MODULE_8__["UBLGraDientColors"],
-      onChange: function onChange(newGradient) {
-        var getBgcolor = _objectSpread({}, headerBackground);
-
-        getBgcolor["gradient"] = newGradient;
-        setAttributes({
-          headerBackground: getBgcolor
+          headerBackground: saveObj
         });
       }
     }), wp.element.createElement("div", {
@@ -46805,19 +46786,19 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
     }))))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["PanelBody"], {
       title: "Price",
       initialOpen: false
-    }, wp.element.createElement("div", {
-      class: "ubl-switcher-button-section"
-    }, wp.element.createElement("span", {
-      onClick: function onClick() {
-        setpricingSection("content");
-      },
-      className: pricingSection == "content" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Content", "unlimited-blocks")), wp.element.createElement("span", {
-      onClick: function onClick() {
-        setpricingSection("style");
-      },
-      className: pricingSection == "style" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Style", "unlimited-blocks"))), pricingSection == "content" ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("div", {
+    }, wp.element.createElement(_block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      value: pricingSection,
+      navItem: [{
+        name: "content",
+        title: "Content"
+      }, {
+        name: "style",
+        title: "Style"
+      }],
+      clickme: function clickme(value_) {
+        setpricingSection(value_);
+      }
+    }), pricingSection == "content" ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("div", {
       className: "flex-section sec-50-40"
     }, wp.element.createElement("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Currency", "unlimited-blocks")), wp.element.createElement("select", {
       value: currencyC,
@@ -46845,7 +46826,6 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
     }, wp.element.createElement("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Formate", "unlimited-blocks")), wp.element.createElement("select", {
       value: currencyFormate,
       onChange: function onChange(e) {
-        var raised = e.target.value == "1" ? true : false;
         setAttributes({
           currencyFormate: e.target.value
         });
@@ -46867,52 +46847,22 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
           priceMonthPrice: e.target.value
         });
       }
-    }))) : wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("label", {
-      className: "normal-label"
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Background Color", "unlimited-blocks")), wp.element.createElement("div", {
-      class: "ubl-switcher-button-section"
-    }, wp.element.createElement("span", {
-      onClick: function onClick() {
-        var getBgcolor = _objectSpread({}, priceBgColor);
-
-        getBgcolor["type"] = "color";
-        setAttributes({
-          priceBgColor: getBgcolor
-        });
+    }))) : wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_block_assets_utility_components_backgroundType_backgroundColor__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      value: {
+        title: "Background Color",
+        backgroundColorType: priceBgColor.type,
+        backgroundColor: priceBgColor.color,
+        backgroundImageGradient: priceBgColor.gradient
       },
-      className: priceBgColor.type == "color" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Solid", "unlimited-blocks")), wp.element.createElement("span", {
-      onClick: function onClick() {
-        var getBgcolor = _objectSpread({}, priceBgColor);
-
-        getBgcolor["type"] = "gradient";
+      changeme: function changeme(_properties) {
+        // console.log("_properties", _properties);
+        var saveObj = {
+          type: _properties.backgroundColorType,
+          color: _properties.backgroundColor,
+          gradient: _properties.backgroundImageGradient
+        };
         setAttributes({
-          priceBgColor: getBgcolor
-        });
-      },
-      className: priceBgColor.type == "gradient" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Gradient", "unlimited-blocks"))), "color" == priceBgColor.type ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["ColorPicker"], {
-      color: priceBgColor.color,
-      onChangeComplete: function onChangeComplete(colorBg) {
-        var color = "rgba(".concat(colorBg.rgb.r, ",").concat(colorBg.rgb.g, ",").concat(colorBg.rgb.b, ",").concat(colorBg.rgb.a, ")");
-
-        var getBgcolor = _objectSpread({}, priceBgColor);
-
-        getBgcolor["color"] = color;
-        setAttributes({
-          priceBgColor: getBgcolor
-        });
-      }
-    }) : wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["__experimentalGradientPicker"], {
-      disableCustomGradients: false,
-      value: priceBgColor.gradient,
-      gradients: _block_assets_post_functions__WEBPACK_IMPORTED_MODULE_8__["UBLGraDientColors"],
-      onChange: function onChange(newGradient) {
-        var getBgcolor = _objectSpread({}, priceBgColor);
-
-        getBgcolor["gradient"] = newGradient;
-        setAttributes({
-          priceBgColor: getBgcolor
+          priceBgColor: saveObj
         });
       }
     }), wp.element.createElement("div", {
@@ -47176,19 +47126,19 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
     }))))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["PanelBody"], {
       title: "List Section",
       initialOpen: false
-    }, wp.element.createElement("div", {
-      class: "ubl-switcher-button-section"
-    }, wp.element.createElement("span", {
-      onClick: function onClick() {
-        return setmiddleSecNav("content");
-      },
-      className: middleSecNav == "content" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Content", "unlimited-blocks")), wp.element.createElement("span", {
-      onClick: function onClick() {
-        return setmiddleSecNav("style");
-      },
-      className: middleSecNav == "style" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Style", "unlimited-blocks"))), middleSecNav == "content" ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("div", {
+    }, wp.element.createElement(_block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      value: middleSecNav,
+      navItem: [{
+        name: "content",
+        title: "Content"
+      }, {
+        name: "style",
+        title: "Style"
+      }],
+      clickme: function clickme(value_) {
+        setmiddleSecNav(value_);
+      }
+    }), middleSecNav == "content" ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("div", {
       className: "slides-option"
     }, middleSection.sections.map(function (section, index_) {
       return wp.element.createElement("div", {
@@ -47244,7 +47194,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
           var value_ = e.target.value;
 
           if (value_ != "") {
-            var newAr = _block_assets_icons__WEBPACK_IMPORTED_MODULE_7__["default"].filter(function (checkStr) {
+            var newAr = _block_assets_icons__WEBPACK_IMPORTED_MODULE_8__["default"].filter(function (checkStr) {
               return checkStr.search(value_) != -1;
             });
 
@@ -47252,7 +47202,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
               setIconList(newAr);
             }
           } else {
-            setIconList(_block_assets_icons__WEBPACK_IMPORTED_MODULE_7__["default"]);
+            setIconList(_block_assets_icons__WEBPACK_IMPORTED_MODULE_8__["default"]);
           }
         }
       }))), wp.element.createElement("div", {
@@ -47293,43 +47243,26 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
       }
     }, wp.element.createElement("i", {
       class: "fas fa-plus"
-    }), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Add New", "unlimited-blocks")))) : wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement("div", {
-      class: "ubl-switcher-button-section sub"
-    }, wp.element.createElement("span", {
-      onClick: function onClick() {
-        var getBgcolor = _objectSpread({}, middleSection.textCommonStyle.backgroundColor);
-
-        getBgcolor["type"] = "color";
-        updateSlides("textCommonStyle", getBgcolor, "backgroundColor", true);
+    }), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Add New", "unlimited-blocks")))) : wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_block_assets_utility_components_backgroundType_backgroundColor__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      value: {
+        title: "Background Color",
+        backgroundColorType: middleSection.textCommonStyle.backgroundColor.type,
+        backgroundColor: middleSection.textCommonStyle.backgroundColor.color,
+        backgroundImageGradient: middleSection.textCommonStyle.backgroundColor.gradient
       },
-      className: middleSection.textCommonStyle.backgroundColor.type == "color" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Solid", "unlimited-blocks")), wp.element.createElement("span", {
-      onClick: function onClick() {
-        var getBgcolor = _objectSpread({}, middleSection.textCommonStyle.backgroundColor);
+      changeme: function changeme(_properties) {
+        var saveObj = {
+          type: _properties.backgroundColorType,
+          color: _properties.backgroundColor,
+          gradient: _properties.backgroundImageGradient
+        };
 
-        getBgcolor["type"] = "gradient";
-        updateSlides("textCommonStyle", getBgcolor, "backgroundColor", true);
-      },
-      className: middleSection.textCommonStyle.backgroundColor.type == "gradient" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Gradient", "unlimited-blocks"))), "color" == middleSection.textCommonStyle.backgroundColor.type ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["ColorPicker"], {
-      color: middleSection.textCommonStyle.backgroundColor.color,
-      onChangeComplete: function onChangeComplete(colorBg) {
-        var color = "rgba(".concat(colorBg.rgb.r, ",").concat(colorBg.rgb.g, ",").concat(colorBg.rgb.b, ",").concat(colorBg.rgb.a, ")");
+        var middleSection_ = _objectSpread({}, middleSection);
 
-        var getBgcolor = _objectSpread({}, middleSection.textCommonStyle.backgroundColor);
-
-        getBgcolor["color"] = color;
-        updateSlides("textCommonStyle", getBgcolor, "backgroundColor", true);
-      }
-    }) : wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["__experimentalGradientPicker"], {
-      disableCustomGradients: false,
-      value: middleSection.textCommonStyle.backgroundColor.gradient,
-      gradients: _block_assets_post_functions__WEBPACK_IMPORTED_MODULE_8__["UBLGraDientColors"],
-      onChange: function onChange(newGradient) {
-        var getBgcolor = _objectSpread({}, middleSection.textCommonStyle.backgroundColor);
-
-        getBgcolor["gradient"] = newGradient;
-        updateSlides("textCommonStyle", getBgcolor, "backgroundColor", true);
+        middleSection_.textCommonStyle.backgroundColor = saveObj;
+        setAttributes({
+          middleSection: middleSection_
+        });
       }
     }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Text Align", "unlimited-blocks"))), wp.element.createElement("div", {
       className: "ubl-alignment"
@@ -47449,19 +47382,19 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
     })))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["PanelBody"], {
       title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Button Section", "unlimited-blocks"),
       initialOpen: false
-    }, wp.element.createElement("div", {
-      class: "ubl-switcher-button-section sub"
-    }, wp.element.createElement("span", {
-      onClick: function onClick() {
-        return setfooterButtonSec("content");
-      },
-      className: footerButtonSec == "content" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Content", "unlimited-blocks")), wp.element.createElement("span", {
-      onClick: function onClick() {
-        return setfooterButtonSec("style");
-      },
-      className: footerButtonSec == "style" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Style", "unlimited-blocks"))), footerButtonSec == "content" ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("div", {
+    }, wp.element.createElement(_block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      value: footerButtonSec,
+      navItem: [{
+        name: "content",
+        title: "Content"
+      }, {
+        name: "style",
+        title: "Style"
+      }],
+      clickme: function clickme(value_) {
+        setfooterButtonSec(value_);
+      }
+    }), footerButtonSec == "content" ? wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("div", {
       className: "ubl-panel-custom"
     }, wp.element.createElement("label", {
       className: "normal-label"
@@ -47511,50 +47444,21 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
           shortDescription: shortDesc
         });
       }
-    }))) : wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement("div", {
-      class: "ubl-switcher-button-section sub"
-    }, wp.element.createElement("span", {
-      onClick: function onClick() {
-        var getBgcolor = _objectSpread({}, footerBgColor);
-
-        getBgcolor["type"] = "color";
-        setAttributes({
-          footerBgColor: getBgcolor
-        });
+    }))) : wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_block_assets_utility_components_backgroundType_backgroundColor__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      value: {
+        title: "Background Color",
+        backgroundColorType: footerBgColor.type,
+        backgroundColor: footerBgColor.color,
+        backgroundImageGradient: footerBgColor.gradient
       },
-      className: footerBgColor.type == "color" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Solid", "unlimited-blocks")), wp.element.createElement("span", {
-      onClick: function onClick() {
-        var getBgcolor = _objectSpread({}, footerBgColor);
-
-        getBgcolor["type"] = "gradient";
+      changeme: function changeme(_properties) {
+        var saveObj = {
+          type: _properties.backgroundColorType,
+          color: _properties.backgroundColor,
+          gradient: _properties.backgroundImageGradient
+        };
         setAttributes({
-          footerBgColor: getBgcolor
-        });
-      },
-      className: footerBgColor.type == "gradient" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Gradient", "unlimited-blocks"))), "color" == footerBgColor.type ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["ColorPicker"], {
-      color: footerBgColor.color,
-      onChangeComplete: function onChangeComplete(colorBg) {
-        var color = "rgba(".concat(colorBg.rgb.r, ",").concat(colorBg.rgb.g, ",").concat(colorBg.rgb.b, ",").concat(colorBg.rgb.a, ")");
-
-        var getBgcolor = _objectSpread({}, footerBgColor);
-
-        getBgcolor["color"] = color;
-        setAttributes({
-          footerBgColor: getBgcolor
-        });
-      }
-    }) : wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["__experimentalGradientPicker"], {
-      disableCustomGradients: false,
-      value: footerBgColor.gradient,
-      gradients: _block_assets_post_functions__WEBPACK_IMPORTED_MODULE_8__["UBLGraDientColors"],
-      onChange: function onChange(newGradient) {
-        var getBgcolor = _objectSpread({}, footerBgColor);
-
-        getBgcolor["gradient"] = newGradient;
-        setAttributes({
-          footerBgColor: getBgcolor
+          footerBgColor: saveObj
         });
       }
     }), wp.element.createElement("div", {
@@ -47623,50 +47527,25 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
       value: "bold"
     }, "Bold"), wp.element.createElement("option", {
       value: "bolder"
-    }, "Bolder"))), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement("div", {
-      class: "ubl-switcher-button-section sub"
-    }, wp.element.createElement("span", {
-      onClick: function onClick() {
-        var link = _objectSpread({}, linkContent);
-
-        link.backgroundColor["type"] = "color";
-        setAttributes({
-          linkContent: link
-        });
+    }, "Bolder"))), wp.element.createElement(_block_assets_utility_components_backgroundType_backgroundColor__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      value: {
+        title: "Background Color",
+        backgroundColorType: linkContent.backgroundColor.type,
+        backgroundColor: linkContent.backgroundColor.color,
+        backgroundImageGradient: linkContent.backgroundColor.gradient
       },
-      className: linkContent.backgroundColor.type == "color" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Solid", "unlimited-blocks")), wp.element.createElement("span", {
-      onClick: function onClick() {
-        var link = _objectSpread({}, linkContent);
+      changeme: function changeme(_properties) {
+        var saveObj = {
+          type: _properties.backgroundColorType,
+          color: _properties.backgroundColor,
+          gradient: _properties.backgroundImageGradient
+        };
 
-        link.backgroundColor["type"] = "gradient";
+        var LinkBg = _objectSpread({}, linkContent);
+
+        LinkBg["backgroundColor"] = saveObj;
         setAttributes({
-          linkContent: link
-        });
-      },
-      className: linkContent.backgroundColor.type == "gradient" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Gradient", "unlimited-blocks"))), "color" == linkContent.backgroundColor.type ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["ColorPicker"], {
-      color: linkContent.backgroundColor.color,
-      onChangeComplete: function onChangeComplete(colorBg) {
-        var color = "rgba(".concat(colorBg.rgb.r, ",").concat(colorBg.rgb.g, ",").concat(colorBg.rgb.b, ",").concat(colorBg.rgb.a, ")");
-
-        var link = _objectSpread({}, linkContent);
-
-        link.backgroundColor["color"] = color;
-        setAttributes({
-          linkContent: link
-        });
-      }
-    }) : wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["__experimentalGradientPicker"], {
-      disableCustomGradients: false,
-      value: linkContent.backgroundColor.gradient,
-      gradients: _block_assets_post_functions__WEBPACK_IMPORTED_MODULE_8__["UBLGraDientColors"],
-      onChange: function onChange(newGradient) {
-        var link = _objectSpread({}, linkContent);
-
-        link.backgroundColor["gradient"] = newGradient;
-        setAttributes({
-          linkContent: link
+          linkContent: LinkBg
         });
       }
     }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["RangeControl"], {
@@ -48778,15 +48657,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _block_assets_post_functions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../block-assets/post-functions */ "./src/blocks/block-assets/post-functions.js");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _block_assets_blocks_detail__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../block-assets/blocks-detail */ "./src/blocks/block-assets/blocks-detail.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+/* harmony import */ var _block_assets_utility_components_backgroundType_backgroundColor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../block-assets/utility-components/backgroundType/backgroundColor */ "./src/blocks/block-assets/utility-components/backgroundType/backgroundColor.js");
+/* harmony import */ var _block_assets_post_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../block-assets/post-functions */ "./src/blocks/block-assets/post-functions.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _block_assets_blocks_detail__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../block-assets/blocks-detail */ "./src/blocks/block-assets/blocks-detail.js");
 
 
 
@@ -48801,7 +48676,7 @@ var attrs_ = {
   },
   percentTitle: {
     type: "string",
-    default: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Percent title", "unlimited-blocks")
+    default: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])("Percent title", "unlimited-blocks")
   },
   titleFs: {
     type: "number"
@@ -48849,7 +48724,7 @@ var attrs_ = {
   }
 };
 
-var linear_progress = _block_assets_blocks_detail__WEBPACK_IMPORTED_MODULE_6__["blocksDetail"].linear_progress;
+var linear_progress = _block_assets_blocks_detail__WEBPACK_IMPORTED_MODULE_7__["blocksDetail"].linear_progress;
 Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unlimited-blocks/progress-block", {
   title: linear_progress.title,
   description: linear_progress.description,
@@ -48897,10 +48772,10 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
     }
 
     return [wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["InspectorControls"], null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
-      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Title Setting", "unlimited-blocks"),
+      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])("Title Setting", "unlimited-blocks"),
       initialOpen: false
     }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ToggleControl"], {
-      label: titleIn ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Outside", "unlimited-blocks") : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Inside", "unlimited-blocks"),
+      label: titleIn ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])("Outside", "unlimited-blocks") : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])("Inside", "unlimited-blocks"),
       checked: titleIn,
       onChange: function onChange(e) {
         return setAttributes({
@@ -48908,7 +48783,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
         });
       }
     }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["RangeControl"], {
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Font Size", "unlimited-blocks"),
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])("Font Size", "unlimited-blocks"),
       value: titleFs,
       min: 1,
       max: 100,
@@ -48917,7 +48792,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
           titleFs: e
         });
       }
-    }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["ColorPalette"], {
+    }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])("Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["ColorPalette"], {
       value: titleColor,
       onChange: function onChange(color) {
         return setAttributes({
@@ -48925,10 +48800,10 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
         });
       }
     })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
-      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Progress Bar Setting", "unlimited-blocks"),
+      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])("Progress Bar Setting", "unlimited-blocks"),
       initialOpen: false
     }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["RangeControl"], {
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Height", "unlimited-blocks"),
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])("Height", "unlimited-blocks"),
       value: progressHeight,
       min: 1,
       max: 50,
@@ -48938,7 +48813,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
         });
       }
     }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["RangeControl"], {
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Percent", "unlimited-blocks"),
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])("Percent", "unlimited-blocks"),
       value: percent,
       min: 1,
       max: 100,
@@ -48948,7 +48823,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
         });
       }
     }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["RangeControl"], {
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Border Radius", "unlimited-blocks"),
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])("Border Radius", "unlimited-blocks"),
       value: borderRadius,
       min: 1,
       max: 60,
@@ -48958,7 +48833,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
         });
       }
     }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["RangeControl"], {
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Animation Delay", "unlimited-blocks"),
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])("Animation Delay", "unlimited-blocks"),
       value: animationDelay,
       min: 1,
       max: 100,
@@ -48967,96 +48842,39 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
           animationDelay: e
         });
       }
-    }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Color", "unlimited-blocks"))), wp.element.createElement("div", {
-      class: "ubl-switcher-button-section"
-    }, wp.element.createElement("span", {
-      onClick: function onClick() {
-        var getBgcolor = _objectSpread({}, percentColor);
-
-        getBgcolor["type"] = "color";
-        setAttributes({
-          percentColor: getBgcolor
-        });
+    }), wp.element.createElement(_block_assets_utility_components_backgroundType_backgroundColor__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      value: {
+        title: "Color",
+        backgroundColorType: percentColor.type,
+        backgroundColor: percentColor.color,
+        backgroundImageGradient: percentColor.gradient
       },
-      className: percentColor.type == "color" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Solid", "unlimited-blocks")), wp.element.createElement("span", {
-      onClick: function onClick() {
-        var getBgcolor = _objectSpread({}, percentColor);
-
-        getBgcolor["type"] = "gradient";
+      changeme: function changeme(_properties) {
+        // console.log("_properties", _properties);
+        var saveObj = {
+          type: _properties.backgroundColorType,
+          color: _properties.backgroundColor,
+          gradient: _properties.backgroundImageGradient
+        };
         setAttributes({
-          percentColor: getBgcolor
-        });
-      },
-      className: percentColor.type == "gradient" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Gradient", "unlimited-blocks"))), "color" == percentColor.type ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ColorPicker"], {
-      color: percentColor.color,
-      onChangeComplete: function onChangeComplete(colorBg) {
-        var color = "rgba(".concat(colorBg.rgb.r, ",").concat(colorBg.rgb.g, ",").concat(colorBg.rgb.b, ",").concat(colorBg.rgb.a, ")");
-
-        var getBgcolor = _objectSpread({}, percentColor);
-
-        getBgcolor["color"] = color;
-        setAttributes({
-          percentColor: getBgcolor
+          percentColor: saveObj
         });
       }
-    }) : wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["__experimentalGradientPicker"], {
-      disableCustomGradients: false,
-      value: percentColor.gradient,
-      gradients: _block_assets_post_functions__WEBPACK_IMPORTED_MODULE_4__["UBLGraDientColors"],
-      onChange: function onChange(newGradient) {
-        var getBgcolor = _objectSpread({}, percentColor);
-
-        getBgcolor["gradient"] = newGradient;
-        setAttributes({
-          percentColor: getBgcolor
-        });
-      }
-    }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Background Color", "unlimited-blocks"))), wp.element.createElement("div", {
-      class: "ubl-switcher-button-section"
-    }, wp.element.createElement("span", {
-      onClick: function onClick() {
-        var getBgcolor = _objectSpread({}, percentBgColor);
-
-        getBgcolor["type"] = "color";
-        setAttributes({
-          percentBgColor: getBgcolor
-        });
+    }), wp.element.createElement(_block_assets_utility_components_backgroundType_backgroundColor__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      value: {
+        backgroundColorType: percentBgColor.type,
+        backgroundColor: percentBgColor.color,
+        backgroundImageGradient: percentBgColor.gradient
       },
-      className: percentBgColor.type == "color" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Solid", "unlimited-blocks")), wp.element.createElement("span", {
-      onClick: function onClick() {
-        var getBgcolor = _objectSpread({}, percentBgColor);
-
-        getBgcolor["type"] = "gradient";
+      changeme: function changeme(_properties) {
+        // console.log("_properties", _properties);
+        var saveObj = {
+          type: _properties.backgroundColorType,
+          color: _properties.backgroundColor,
+          gradient: _properties.backgroundImageGradient
+        };
         setAttributes({
-          percentBgColor: getBgcolor
-        });
-      },
-      className: percentBgColor.type == "gradient" ? "selected" : ""
-    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Gradient", "unlimited-blocks"))), "color" == percentBgColor.type ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ColorPicker"], {
-      color: percentBgColor.color,
-      onChangeComplete: function onChangeComplete(colorBg) {
-        var color = "rgba(".concat(colorBg.rgb.r, ",").concat(colorBg.rgb.g, ",").concat(colorBg.rgb.b, ",").concat(colorBg.rgb.a, ")");
-
-        var getBgcolor = _objectSpread({}, percentBgColor);
-
-        getBgcolor["color"] = color;
-        setAttributes({
-          percentBgColor: getBgcolor
-        });
-      }
-    }) : wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["__experimentalGradientPicker"], {
-      disableCustomGradients: false,
-      value: percentBgColor.gradient,
-      gradients: _block_assets_post_functions__WEBPACK_IMPORTED_MODULE_4__["UBLGraDientColors"],
-      onChange: function onChange(newGradient) {
-        var getBgcolor = _objectSpread({}, percentBgColor);
-
-        getBgcolor["gradient"] = newGradient;
-        setAttributes({
-          percentBgColor: getBgcolor
+          percentBgColor: saveObj
         });
       }
     }))), wp.element.createElement("div", {

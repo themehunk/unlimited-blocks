@@ -12,11 +12,16 @@ import {
   ColorPicker,
   __experimentalGradientPicker as GradientPicker,
 } from "@wordpress/components";
+import BackgroundColor from "../block-assets/utility-components/backgroundType/backgroundColor";
 import { UBLGraDientColors } from "../block-assets/post-functions";
 import { __ } from "@wordpress/i18n";
+
 const attrs_ = {
   blockUniqueId: { type: "number", default: false },
-  percentTitle: { type: "string", default: __("Percent title", "unlimited-blocks") },
+  percentTitle: {
+    type: "string",
+    default: __("Percent title", "unlimited-blocks"),
+  },
   titleFs: { type: "number" },
   titleFf: { type: "string" },
   titleIn: { type: "boolean", default: false },
@@ -150,112 +155,39 @@ registerBlockType("unlimited-blocks/progress-block", {
             max={100}
             onChange={(e) => setAttributes({ animationDelay: e })}
           />
-          <p>
-            <strong>{__("Color", "unlimited-blocks")}</strong>
-          </p>
-          {/* <ColorPalette
-            value={percentColor}
-            onChange={(color) => setAttributes({ percentColor: color })}
-          /> */}
-          {/* bg color  */}
-          <div class="ubl-switcher-button-section">
-            <span
-              onClick={() => {
-                let getBgcolor = { ...percentColor };
-                getBgcolor["type"] = "color";
-                setAttributes({ percentColor: getBgcolor });
-              }}
-              className={percentColor.type == "color" ? "selected" : ""}
-            >
-              {__("Solid", "unlimited-blocks")}
-            </span>
-            <span
-              onClick={() => {
-                let getBgcolor = { ...percentColor };
-                getBgcolor["type"] = "gradient";
-                setAttributes({ percentColor: getBgcolor });
-              }}
-              className={percentColor.type == "gradient" ? "selected" : ""}
-            >
-              {__("Gradient", "unlimited-blocks")}
-            </span>
-          </div>
-          {"color" == percentColor.type ? (
-            <ColorPicker
-              color={percentColor.color}
-              onChangeComplete={(colorBg) => {
-                let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                let getBgcolor = { ...percentColor };
-                getBgcolor["color"] = color;
-                setAttributes({ percentColor: getBgcolor });
-              }}
-            />
-          ) : (
-            <GradientPicker
-              disableCustomGradients={false}
-              value={percentColor.gradient}
-              gradients={UBLGraDientColors}
-              onChange={(newGradient) => {
-                let getBgcolor = { ...percentColor };
-                getBgcolor["gradient"] = newGradient;
-                setAttributes({ percentColor: getBgcolor });
-              }}
-            />
-          )}
-          {/* bg color  */}
-          <p>
-            <strong>{__("Background Color", "unlimited-blocks")}</strong>
-          </p>
-          {/* <ColorPalette
-            value={percentBgColor}
-            onChange={(color) => setAttributes({ percentBgColor: color })}
-          /> */}
-          {/* bg color  */}
-          <div class="ubl-switcher-button-section">
-            <span
-              onClick={() => {
-                let getBgcolor = { ...percentBgColor };
-                getBgcolor["type"] = "color";
-                setAttributes({ percentBgColor: getBgcolor });
-              }}
-              className={percentBgColor.type == "color" ? "selected" : ""}
-            >
-              {__("Solid", "unlimited-blocks")}
-            </span>
-            <span
-              onClick={() => {
-                let getBgcolor = { ...percentBgColor };
-                getBgcolor["type"] = "gradient";
-                setAttributes({ percentBgColor: getBgcolor });
-              }}
-              className={percentBgColor.type == "gradient" ? "selected" : ""}
-            >
-              {__("Gradient", "unlimited-blocks")}
-            </span>
-          </div>
-          {"color" == percentBgColor.type ? (
-            <ColorPicker
-              color={percentBgColor.color}
-              onChangeComplete={(colorBg) => {
-                let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                let getBgcolor = { ...percentBgColor };
-                getBgcolor["color"] = color;
-                setAttributes({ percentBgColor: getBgcolor });
-              }}
-            />
-          ) : (
-            <GradientPicker
-              disableCustomGradients={false}
-              value={percentBgColor.gradient}
-              gradients={UBLGraDientColors}
-              onChange={(newGradient) => {
-                let getBgcolor = { ...percentBgColor };
-                getBgcolor["gradient"] = newGradient;
-                setAttributes({ percentBgColor: getBgcolor });
-              }}
-            />
-          )}
-          {/* bg color  */}
+          <BackgroundColor
+            value={{
+              title: "Color",
+              backgroundColorType: percentColor.type,
+              backgroundColor: percentColor.color,
+              backgroundImageGradient: percentColor.gradient,
+            }}
+            changeme={(_properties) => {
+              // console.log("_properties", _properties);
+              let saveObj = {
+                type: _properties.backgroundColorType,
+                color: _properties.backgroundColor,
+                gradient: _properties.backgroundImageGradient,
+              };
+              setAttributes({ percentColor: saveObj });
+            }}
+          />
+          <BackgroundColor
+            value={{
+              backgroundColorType: percentBgColor.type,
+              backgroundColor: percentBgColor.color,
+              backgroundImageGradient: percentBgColor.gradient,
+            }}
+            changeme={(_properties) => {
+              // console.log("_properties", _properties);
+              let saveObj = {
+                type: _properties.backgroundColorType,
+                color: _properties.backgroundColor,
+                gradient: _properties.backgroundImageGradient,
+              };
+              setAttributes({ percentBgColor: saveObj });
+            }}
+          />
         </PanelBody>
       </InspectorControls>,
       <div className="thk-progress-bar-wrapper">

@@ -14,6 +14,7 @@ class BackgroundColor extends Component {
       backgroundColor: "",
       backgroundImageGradient: "",
       backgroundOpacity: "",
+      title: "Background Color",
     };
   }
   componentDidMount() {
@@ -25,6 +26,7 @@ class BackgroundColor extends Component {
         backgroundColor,
         backgroundImageGradient,
         backgroundOpacity,
+        title,
       } = this.props.value;
 
       let setStateObj = {};
@@ -49,6 +51,9 @@ class BackgroundColor extends Component {
         setStateObj["backgroundOpacity"] = backgroundOpacity;
         checkB = true;
       }
+      if (title && title == "") {
+        setStateObj["title"] = title;
+      }
       if (checkB) {
         this.setState(setStateObj);
       }
@@ -67,7 +72,6 @@ class BackgroundColor extends Component {
       backgroundOpacity: this.state.backgroundOpacity,
       ...obj_,
     };
-
     this.props.changeme(state_);
   }
 
@@ -75,9 +79,8 @@ class BackgroundColor extends Component {
     return (
       <>
         <p>
-          <strong>{__("Background Color", "unlimited-blocks")}</strong>
+          <strong>{__(this.state.title, "unlimited-blocks")}</strong>
         </p>
-
         <div
           class={`ubl-switcher-bg-clr-gradient clor_${this.state.backgroundColorType}`}
         >
