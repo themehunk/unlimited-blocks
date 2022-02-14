@@ -1312,93 +1312,27 @@ registerBlockType("unlimited-blocks/pricing-table-table", {
             </>
           ) : (
             <>
-              <p>
-                <strong>{__("Background Color", "unlimited-blocks")}</strong>
-              </p>
-
-              <div class="ubl-switcher-button-section sub">
-                <span
-                  onClick={() => {
-                    let getBgcolor = {
-                      ...middleSection.textCommonStyle.backgroundColor,
-                    };
-                    getBgcolor["type"] = "color";
-                    updateSlides(
-                      "textCommonStyle",
-                      getBgcolor,
-                      "backgroundColor",
-                      true
-                    );
-                  }}
-                  className={
-                    middleSection.textCommonStyle.backgroundColor.type ==
-                    "color"
-                      ? "selected"
-                      : ""
-                  }
-                >
-                  {__("Solid", "unlimited-blocks")}
-                </span>
-                <span
-                  onClick={() => {
-                    let getBgcolor = {
-                      ...middleSection.textCommonStyle.backgroundColor,
-                    };
-                    getBgcolor["type"] = "gradient";
-                    updateSlides(
-                      "textCommonStyle",
-                      getBgcolor,
-                      "backgroundColor",
-                      true
-                    );
-                  }}
-                  className={
-                    middleSection.textCommonStyle.backgroundColor.type ==
-                    "gradient"
-                      ? "selected"
-                      : ""
-                  }
-                >
-                  {__("Gradient", "unlimited-blocks")}
-                </span>
-              </div>
-              {"color" == middleSection.textCommonStyle.backgroundColor.type ? (
-                <ColorPicker
-                  color={middleSection.textCommonStyle.backgroundColor.color}
-                  onChangeComplete={(colorBg) => {
-                    let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                    let getBgcolor = {
-                      ...middleSection.textCommonStyle.backgroundColor,
-                    };
-                    getBgcolor["color"] = color;
-                    updateSlides(
-                      "textCommonStyle",
-                      getBgcolor,
-                      "backgroundColor",
-                      true
-                    );
-                  }}
-                />
-              ) : (
-                <GradientPicker
-                  disableCustomGradients={false}
-                  value={middleSection.textCommonStyle.backgroundColor.gradient}
-                  gradients={UBLGraDientColors}
-                  onChange={(newGradient) => {
-                    let getBgcolor = {
-                      ...middleSection.textCommonStyle.backgroundColor,
-                    };
-                    getBgcolor["gradient"] = newGradient;
-                    updateSlides(
-                      "textCommonStyle",
-                      getBgcolor,
-                      "backgroundColor",
-                      true
-                    );
-                  }}
-                />
-              )}
-              {/* bg color  */}
+              <BackgroundColor
+                value={{
+                  title: "Background Color",
+                  backgroundColorType:
+                    middleSection.textCommonStyle.backgroundColor.type,
+                  backgroundColor:
+                    middleSection.textCommonStyle.backgroundColor.color,
+                  backgroundImageGradient:
+                    middleSection.textCommonStyle.backgroundColor.gradient,
+                }}
+                changeme={(_properties) => {
+                  let saveObj = {
+                    type: _properties.backgroundColorType,
+                    color: _properties.backgroundColor,
+                    gradient: _properties.backgroundImageGradient,
+                  };
+                  let middleSection_ = { ...middleSection };
+                  middleSection_.textCommonStyle.backgroundColor = saveObj;
+                  setAttributes({ middleSection: middleSection_ });
+                }}
+              />
               {/* text allign  */}
               <p>
                 <strong>{__("Text Align", "unlimited-blocks")}</strong>
@@ -1588,22 +1522,22 @@ registerBlockType("unlimited-blocks/pricing-table-table", {
           title={__("Button Section", "unlimited-blocks")}
           initialOpen={false}
         >
-          {/* button section  */}
-          <div class="ubl-switcher-button-section sub">
-            <span
-              onClick={() => setfooterButtonSec("content")}
-              className={footerButtonSec == "content" ? "selected" : ""}
-            >
-              {__("Content", "unlimited-blocks")}
-            </span>
-            <span
-              onClick={() => setfooterButtonSec("style")}
-              className={footerButtonSec == "style" ? "selected" : ""}
-            >
-              {__("Style", "unlimited-blocks")}
-            </span>
-          </div>
-
+          <Switcher
+            value={footerButtonSec}
+            navItem={[
+              {
+                name: "content",
+                title: "Content",
+              },
+              {
+                name: "style",
+                title: "Style",
+              },
+            ]}
+            clickme={(value_) => {
+              setfooterButtonSec(value_);
+            }}
+          />
           {footerButtonSec == "content" ? (
             <>
               <div className="ubl-panel-custom">
@@ -1656,53 +1590,23 @@ registerBlockType("unlimited-blocks/pricing-table-table", {
             </>
           ) : (
             <>
-              <p>
-                <strong>{__("Background Color", "unlimited-blocks")}</strong>
-              </p>
-              <div class="ubl-switcher-button-section sub">
-                <span
-                  onClick={() => {
-                    let getBgcolor = { ...footerBgColor };
-                    getBgcolor["type"] = "color";
-                    setAttributes({ footerBgColor: getBgcolor });
-                  }}
-                  className={footerBgColor.type == "color" ? "selected" : ""}
-                >
-                  {__("Solid", "unlimited-blocks")}
-                </span>
-                <span
-                  onClick={() => {
-                    let getBgcolor = { ...footerBgColor };
-                    getBgcolor["type"] = "gradient";
-                    setAttributes({ footerBgColor: getBgcolor });
-                  }}
-                  className={footerBgColor.type == "gradient" ? "selected" : ""}
-                >
-                  {__("Gradient", "unlimited-blocks")}
-                </span>
-              </div>
-              {"color" == footerBgColor.type ? (
-                <ColorPicker
-                  color={footerBgColor.color}
-                  onChangeComplete={(colorBg) => {
-                    let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                    let getBgcolor = { ...footerBgColor };
-                    getBgcolor["color"] = color;
-                    setAttributes({ footerBgColor: getBgcolor });
-                  }}
-                />
-              ) : (
-                <GradientPicker
-                  disableCustomGradients={false}
-                  value={footerBgColor.gradient}
-                  gradients={UBLGraDientColors}
-                  onChange={(newGradient) => {
-                    let getBgcolor = { ...footerBgColor };
-                    getBgcolor["gradient"] = newGradient;
-                    setAttributes({ footerBgColor: getBgcolor });
-                  }}
-                />
-              )}
+              <BackgroundColor
+                value={{
+                  title: "Background Color",
+                  backgroundColorType: footerBgColor.type,
+                  backgroundColor: footerBgColor.color,
+                  backgroundImageGradient: footerBgColor.gradient,
+                }}
+                changeme={(_properties) => {
+                  let saveObj = {
+                    type: _properties.backgroundColorType,
+                    color: _properties.backgroundColor,
+                    gradient: _properties.backgroundImageGradient,
+                  };
+                  setAttributes({ footerBgColor: saveObj });
+                }}
+              />
+
               {/* bg color  */}
               <div
                 className={`slide-panel-single ${
@@ -1768,7 +1672,28 @@ registerBlockType("unlimited-blocks/pricing-table-table", {
                     </select>
                   </div>
                   {/* font weight */}
-                  <p>
+
+                  <BackgroundColor
+                    value={{
+                      title: "Background Color",
+                      backgroundColorType: linkContent.backgroundColor.type,
+                      backgroundColor: linkContent.backgroundColor.color,
+                      backgroundImageGradient:
+                        linkContent.backgroundColor.gradient,
+                    }}
+                    changeme={(_properties) => {
+                      let saveObj = {
+                        type: _properties.backgroundColorType,
+                        color: _properties.backgroundColor,
+                        gradient: _properties.backgroundImageGradient,
+                      };
+                      let LinkBg = { ...linkContent };
+                      LinkBg["backgroundColor"] = saveObj;
+                      setAttributes({ linkContent: LinkBg });
+                    }}
+                  />
+
+                  {/* <p>
                     <strong>
                       {__("Background Color", "unlimited-blocks")}
                     </strong>
@@ -1826,8 +1751,7 @@ registerBlockType("unlimited-blocks/pricing-table-table", {
                         setAttributes({ linkContent: link });
                       }}
                     />
-                  )}
-
+                  )} */}
                   {/* bg color  */}
                   <RangeControl
                     label={__("Padding Top & Bottom", "unlimited-blocks")}
