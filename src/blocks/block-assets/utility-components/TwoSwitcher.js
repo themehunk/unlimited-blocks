@@ -18,8 +18,8 @@ const Switcher = (props) => {
 
     let getIndexValue = navItem.findIndex((val) => val.name == value);
 
-    console.log("items->", navItem);
-    console.log("get->" + value, getIndexValue);
+    // console.log("items->", navItem);
+    // console.log("get->" + value, getIndexValue);
     let styleBack = null;
     if (getIndexValue > 0) {
       styleBack = { left: "calc(50% - 2px)" };

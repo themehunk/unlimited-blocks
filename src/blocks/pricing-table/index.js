@@ -19,8 +19,10 @@ import {
   __experimentalInputControl as InputControl,
   __experimentalGradientPicker as GradientPicker,
 } from "@wordpress/components";
+import Switcher from "../block-assets/utility-components/TwoSwitcher";
 import icons_ from "../block-assets/icons";
 import { UBLGraDientColors } from "../block-assets/post-functions";
+import BackgroundColor from "../block-assets/utility-components/backgroundType/backgroundColor";
 const attrS = {
   headingTxt: {
     type: "string",
@@ -495,24 +497,22 @@ registerBlockType("unlimited-blocks/pricing-table-table", {
           initialOpen={false}
         >
           {/* content or styles  */}
-          <div class="ubl-switcher-button-section">
-            <span
-              onClick={() => {
-                setheaderSection("content");
-              }}
-              className={headerSection == "content" ? "selected" : ""}
-            >
-              {__("Content", "unlimited-blocks")}
-            </span>
-            <span
-              onClick={() => {
-                setheaderSection("style");
-              }}
-              className={headerSection == "style" ? "selected" : ""}
-            >
-              {__("Style", "unlimited-blocks")}
-            </span>
-          </div>
+          <Switcher
+            value={headerSection}
+            navItem={[
+              {
+                name: "content",
+                title: "Content",
+              },
+              {
+                name: "style",
+                title: "Style",
+              },
+            ]}
+            clickme={(value_) => {
+              setheaderSection(value_);
+            }}
+          />
           {/* content or styles  */}
           {headerSection == "content" ? (
             <>
@@ -564,56 +564,22 @@ registerBlockType("unlimited-blocks/pricing-table-table", {
             </>
           ) : (
             <>
-              <p>
-                <strong>{__("Background Color", "unlimited-blocks")}</strong>
-              </p>
-              <div class="ubl-switcher-button-section">
-                <span
-                  onClick={() => {
-                    let getBgcolor = { ...headerBackground };
-                    getBgcolor["type"] = "color";
-                    setAttributes({ headerBackground: getBgcolor });
-                  }}
-                  className={headerBackground.type == "color" ? "selected" : ""}
-                >
-                  {__("Solid", "unlimited-blocks")}
-                </span>
-                <span
-                  onClick={() => {
-                    let getBgcolor = { ...headerBackground };
-                    getBgcolor["type"] = "gradient";
-                    setAttributes({ headerBackground: getBgcolor });
-                  }}
-                  className={
-                    headerBackground.type == "gradient" ? "selected" : ""
-                  }
-                >
-                  {__("Gradient", "unlimited-blocks")}
-                </span>
-              </div>
-              {"color" == headerBackground.type ? (
-                <ColorPicker
-                  color={headerBackground.color}
-                  onChangeComplete={(colorBg) => {
-                    let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                    let getBgcolor = { ...headerBackground };
-                    getBgcolor["color"] = color;
-                    setAttributes({ headerBackground: getBgcolor });
-                  }}
-                />
-              ) : (
-                <GradientPicker
-                  disableCustomGradients={false}
-                  value={headerBackground.gradient}
-                  gradients={UBLGraDientColors}
-                  onChange={(newGradient) => {
-                    let getBgcolor = { ...headerBackground };
-                    getBgcolor["gradient"] = newGradient;
-                    setAttributes({ headerBackground: getBgcolor });
-                  }}
-                />
-              )}
-              {/* bg color  */}
+              <BackgroundColor
+                value={{
+                  backgroundColorType: headerBackground.type,
+                  backgroundColor: headerBackground.color,
+                  backgroundImageGradient: headerBackground.gradient,
+                }}
+                changeme={(_properties) => {
+                  // console.log("_properties", _properties);
+                  let saveObj = {
+                    type: _properties.backgroundColorType,
+                    color: _properties.backgroundColor,
+                    gradient: _properties.backgroundImageGradient,
+                  };
+                  setAttributes({ headerBackground: saveObj });
+                }}
+              />
               {/* heading style  */}
               <div
                 className={`slide-panel-single ${
@@ -781,25 +747,22 @@ registerBlockType("unlimited-blocks/pricing-table-table", {
           )}
         </PanelBody>
         <PanelBody title={"Price"} initialOpen={false}>
-          {/* content or styles  */}
-          <div class="ubl-switcher-button-section">
-            <span
-              onClick={() => {
-                setpricingSection("content");
-              }}
-              className={pricingSection == "content" ? "selected" : ""}
-            >
-              {__("Content", "unlimited-blocks")}
-            </span>
-            <span
-              onClick={() => {
-                setpricingSection("style");
-              }}
-              className={pricingSection == "style" ? "selected" : ""}
-            >
-              {__("Style", "unlimited-blocks")}
-            </span>
-          </div>
+          <Switcher
+            value={pricingSection}
+            navItem={[
+              {
+                name: "content",
+                title: "Content",
+              },
+              {
+                name: "style",
+                title: "Style",
+              },
+            ]}
+            clickme={(value_) => {
+              setpricingSection(value_);
+            }}
+          />
           {/* content or styles  */}
           {pricingSection == "content" ? (
             <>
@@ -850,7 +813,6 @@ registerBlockType("unlimited-blocks/pricing-table-table", {
                 <select
                   value={currencyFormate}
                   onChange={(e) => {
-                    let raised = e.target.value == "1" ? true : false;
                     setAttributes({ currencyFormate: e.target.value });
                     if (e.target.value == "1") setAttributes({ currencyFs: 8 });
                   }}
@@ -873,53 +835,23 @@ registerBlockType("unlimited-blocks/pricing-table-table", {
           ) : (
             <>
               {/* common setting  */}
-              <label className="normal-label">
-                {__("Background Color", "unlimited-blocks")}
-              </label>
-              <div class="ubl-switcher-button-section">
-                <span
-                  onClick={() => {
-                    let getBgcolor = { ...priceBgColor };
-                    getBgcolor["type"] = "color";
-                    setAttributes({ priceBgColor: getBgcolor });
-                  }}
-                  className={priceBgColor.type == "color" ? "selected" : ""}
-                >
-                  {__("Solid", "unlimited-blocks")}
-                </span>
-                <span
-                  onClick={() => {
-                    let getBgcolor = { ...priceBgColor };
-                    getBgcolor["type"] = "gradient";
-                    setAttributes({ priceBgColor: getBgcolor });
-                  }}
-                  className={priceBgColor.type == "gradient" ? "selected" : ""}
-                >
-                  {__("Gradient", "unlimited-blocks")}
-                </span>
-              </div>
-              {"color" == priceBgColor.type ? (
-                <ColorPicker
-                  color={priceBgColor.color}
-                  onChangeComplete={(colorBg) => {
-                    let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                    let getBgcolor = { ...priceBgColor };
-                    getBgcolor["color"] = color;
-                    setAttributes({ priceBgColor: getBgcolor });
-                  }}
-                />
-              ) : (
-                <GradientPicker
-                  disableCustomGradients={false}
-                  value={priceBgColor.gradient}
-                  gradients={UBLGraDientColors}
-                  onChange={(newGradient) => {
-                    let getBgcolor = { ...priceBgColor };
-                    getBgcolor["gradient"] = newGradient;
-                    setAttributes({ priceBgColor: getBgcolor });
-                  }}
-                />
-              )}
+              <BackgroundColor
+                value={{
+                  title: "Background Color",
+                  backgroundColorType: priceBgColor.type,
+                  backgroundColor: priceBgColor.color,
+                  backgroundImageGradient: priceBgColor.gradient,
+                }}
+                changeme={(_properties) => {
+                  // console.log("_properties", _properties);
+                  let saveObj = {
+                    type: _properties.backgroundColorType,
+                    color: _properties.backgroundColor,
+                    gradient: _properties.backgroundImageGradient,
+                  };
+                  setAttributes({ priceBgColor: saveObj });
+                }}
+              />
               {/* bg color  */}
               <div className="ubl-panel-custom">
                 <label className="normal-label">
@@ -1197,21 +1129,22 @@ registerBlockType("unlimited-blocks/pricing-table-table", {
           )}
         </PanelBody>
         <PanelBody title={"List Section"} initialOpen={false}>
-          {/* top nav  */}
-          <div class="ubl-switcher-button-section">
-            <span
-              onClick={() => setmiddleSecNav("content")}
-              className={middleSecNav == "content" ? "selected" : ""}
-            >
-              {__("Content", "unlimited-blocks")}
-            </span>
-            <span
-              onClick={() => setmiddleSecNav("style")}
-              className={middleSecNav == "style" ? "selected" : ""}
-            >
-              {__("Style", "unlimited-blocks")}
-            </span>
-          </div>
+          <Switcher
+            value={middleSecNav}
+            navItem={[
+              {
+                name: "content",
+                title: "Content",
+              },
+              {
+                name: "style",
+                title: "Style",
+              },
+            ]}
+            clickme={(value_) => {
+              setmiddleSecNav(value_);
+            }}
+          />
           {/* top nav  */}
 
           {middleSecNav == "content" ? (
