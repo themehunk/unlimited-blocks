@@ -14,9 +14,7 @@ import {
   PanelBody,
   RangeControl,
   ToggleControl,
-  ColorPicker,
   SelectControl,
-  __experimentalGradientPicker as GradientPicker,
   // Toolbar,
   // ToolbarItem,
   // Button,
@@ -24,7 +22,6 @@ import {
   // ResponsiveWrapper
 } from "@wordpress/components";
 import fontFamily from "../block-assets/font-family";
-import { UBLGraDientColors } from "../block-assets/post-functions";
 import BackgroundColor from "../block-assets/utility-components/backgroundType/backgroundColor";
 
 import { blocksDetail } from "../block-assets/blocks-detail";
@@ -113,6 +110,7 @@ registerBlockType("unlimited-blocks/icon-block", {
       type: "string",
       default: "Ubuntu Mono",
     },
+    // icon border
     iconBorder: {
       type: "boolean",
       default: false,
@@ -129,6 +127,7 @@ registerBlockType("unlimited-blocks/icon-block", {
       type: "string",
       default: "#ffa600",
     },
+    // icon border
     iconSpace: {
       type: "number",
       default: 79,
@@ -394,35 +393,37 @@ registerBlockType("unlimited-blocks/icon-block", {
               onChange={(e) => setAttributes({ iconBorder: e })}
             />
             {iconBorder && (
-              <div className="icon-border-setting">
-                <RangeControl
-                  label={__("Border Width", "unlimited-blocks")}
-                  value={iconBorderWidth}
-                  min={0}
-                  max={100}
-                  onChange={(e) => setAttributes({ iconBorderWidth: e })}
-                />
-                <RangeControl
-                  label={__("Border Radius", "unlimited-blocks")}
-                  value={iconBorderRadius}
-                  min={0}
-                  max={50}
-                  onChange={(e) => setAttributes({ iconBorderRadius: e })}
-                />
-                <p>{__("Border Color", "unlimited-blocks")}</p>
-                <ColorPalette
-                  onChange={(color) =>
-                    setAttributes({ iconBorderColor: color })
-                  }
-                />
-                <RangeControl
-                  label={__("Icon Space", "unlimited-blocks")}
-                  value={iconSpace}
-                  min={0}
-                  max={200}
-                  onChange={(e) => setAttributes({ iconSpace: e })}
-                />
-              </div>
+              <>
+                <div className="icon-border-setting">
+                  <RangeControl
+                    label={__("Border Width", "unlimited-blocks")}
+                    value={iconBorderWidth}
+                    min={0}
+                    max={100}
+                    onChange={(e) => setAttributes({ iconBorderWidth: e })}
+                  />
+                  <RangeControl
+                    label={__("Border Radius", "unlimited-blocks")}
+                    value={iconBorderRadius}
+                    min={0}
+                    max={50}
+                    onChange={(e) => setAttributes({ iconBorderRadius: e })}
+                  />
+                  <p>{__("Border Color", "unlimited-blocks")}</p>
+                  <ColorPalette
+                    onChange={(color) =>
+                      setAttributes({ iconBorderColor: color })
+                    }
+                  />
+                  <RangeControl
+                    label={__("Icon Space", "unlimited-blocks")}
+                    value={iconSpace}
+                    min={0}
+                    max={200}
+                    onChange={(e) => setAttributes({ iconSpace: e })}
+                  />
+                </div>
+              </>
             )}
           </PanelBody>
           <PanelBody

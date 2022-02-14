@@ -12,16 +12,10 @@ import {
   __experimentalLinkControl as LinkControl,
 } from "@wordpress/block-editor";
 import { useState, useRef, useEffect } from "@wordpress/element";
-import {
-  PanelBody,
-  RangeControl,
-  ToggleControl,
-  ColorPicker,
-  __experimentalGradientPicker as GradientPicker,
-} from "@wordpress/components";
-import { UBLGraDientColors } from "../block-assets/post-functions";
+import { PanelBody, RangeControl, ToggleControl } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
-
+import BackgroundColor from "../block-assets/utility-components/backgroundType/backgroundColor";
+import Switcher from "../block-assets/utility-components/TwoSwitcher";
 const attrSave = {
   image: {
     type: "string",
@@ -256,25 +250,23 @@ registerBlockType("unlimited-blocks/icon-image-content", {
               <option value="image">{__("Image", "unlimited-blocks")}</option>
             </select>
           </div>
-          {/* content or border  */}
-          <div class="ubl-switcher-button-section">
-            <span
-              onClick={() => {
-                setcontentORborder("content");
-              }}
-              className={contentORborder == "content" ? "selected" : ""}
-            >
-              {__("Content", "unlimited-blocks")}
-            </span>
-            <span
-              onClick={() => {
-                setcontentORborder("border");
-              }}
-              className={contentORborder == "border" ? "selected" : ""}
-            >
-              {__("Border", "unlimited-blocks")}
-            </span>
-          </div>
+          <Switcher
+            value={contentORborder}
+            navItem={[
+              {
+                name: "content",
+                title: "Content",
+              },
+              {
+                name: "border",
+                title: "Border",
+              },
+            ]}
+            clickme={(value_) => {
+              setcontentORborder(value_);
+            }}
+          />
+
           {/* content or border  */}
           {image == "image" && (
             <div className="service-image-setting">
@@ -519,59 +511,25 @@ registerBlockType("unlimited-blocks/icon-image-content", {
                   <label className="normal-label">
                     {__("Background Color", "unlimited-blocks")}
                   </label>
-                  {/* bg color  */}
-                  <div class="ubl-switcher-button-section sub">
-                    <span
-                      onClick={() => {
-                        let getBgcolor = { ...iconStyle };
-                        getBgcolor.backgroundColor.type = "color";
-                        setAttributes({ iconStyle: getBgcolor });
-                      }}
-                      className={
-                        iconStyle.backgroundColor.type == "color"
-                          ? "selected"
-                          : ""
-                      }
-                    >
-                      {__("Solid", "unlimited-blocks")}
-                    </span>
-                    <span
-                      onClick={() => {
-                        let getBgcolor = { ...iconStyle };
-                        getBgcolor.backgroundColor.type = "gradient";
-                        setAttributes({ iconStyle: getBgcolor });
-                      }}
-                      className={
-                        iconStyle.backgroundColor.type == "gradient"
-                          ? "selected"
-                          : ""
-                      }
-                    >
-                      {__("Gradient", "unlimited-blocks")}
-                    </span>
-                  </div>
-                  {"color" == iconStyle.backgroundColor.type ? (
-                    <ColorPicker
-                      color={iconStyle.backgroundColor.color}
-                      onChangeComplete={(colorBg) => {
-                        let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                        let getBgcolor = { ...iconStyle };
-                        getBgcolor.backgroundColor.color = color;
-                        setAttributes({ iconStyle: getBgcolor });
-                      }}
-                    />
-                  ) : (
-                    <GradientPicker
-                      disableCustomGradients={false}
-                      value={iconStyle.backgroundColor.gradient}
-                      gradients={UBLGraDientColors}
-                      onChange={(newGradient) => {
-                        let getBgcolor = { ...iconStyle };
-                        getBgcolor.backgroundColor.gradient = newGradient;
-                        setAttributes({ iconStyle: getBgcolor });
-                      }}
-                    />
-                  )}
+                  <BackgroundColor
+                    value={{
+                      backgroundColorType: iconStyle.backgroundColor.type,
+                      backgroundColor: iconStyle.backgroundColor.color,
+                      backgroundImageGradient:
+                        iconStyle.backgroundColor.gradient,
+                    }}
+                    changeme={(_properties) => {
+                      // console.log("_properties", _properties);
+                      let saveObj = {
+                        type: _properties.backgroundColorType,
+                        color: _properties.backgroundColor,
+                        gradient: _properties.backgroundImageGradient,
+                      };
+                      let iconBg = { ...iconStyle };
+                      iconBg["backgroundColor"] = saveObj;
+                      setAttributes({ iconStyle: iconBg });
+                    }}
+                  />
                 </>
               ) : (
                 <>
@@ -646,25 +604,22 @@ registerBlockType("unlimited-blocks/icon-image-content", {
           title={__("Title / Description Settings", "unlimited-blocks")}
           initialOpen={false}
         >
-          {/* title description  */}
-          <div class="ubl-switcher-button-section">
-            <span
-              onClick={() => {
-                setTitleDescription("title");
-              }}
-              className={titleDescription == "title" ? "selected" : ""}
-            >
-              {__("Title", "unlimited-blocks")}
-            </span>
-            <span
-              onClick={() => {
-                setTitleDescription("description");
-              }}
-              className={titleDescription == "description" ? "selected" : ""}
-            >
-              {__("Description", "unlimited-blocks")}
-            </span>
-          </div>
+          <Switcher
+            value={titleDescription}
+            navItem={[
+              {
+                name: "title",
+                title: "Title",
+              },
+              {
+                name: "description",
+                title: "Description",
+              },
+            ]}
+            clickme={(value_) => {
+              setTitleDescription(value_);
+            }}
+          />
           {/* title description  */}
           {titleDescription == "title" ? (
             <>

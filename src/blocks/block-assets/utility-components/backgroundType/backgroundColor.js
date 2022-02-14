@@ -1,8 +1,8 @@
 import { __ } from "@wordpress/i18n";
 import { Component } from "@wordpress/element";
-import { MediaUpload, ColorPalette } from "@wordpress/block-editor";
-import { GradientPicker, RangeControl } from "@wordpress/components";
-import { UBLGraDientColors, UblColorPlates } from "./../../post-functions";
+import { ColorPalette } from "@wordpress/block-editor";
+import { GradientPicker } from "@wordpress/components";
+import { UBLGraDientColors } from "./../../post-functions";
 class BackgroundColor extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +17,7 @@ class BackgroundColor extends Component {
     };
   }
   componentDidMount() {
-    console.log("props BackgroundColor -> ", this.props);
+    // console.log("props BackgroundColor -> ", this.props);
     if (this.props.value) {
       let {
         // backgroundType,
