@@ -4,7 +4,6 @@ import Edit from "./edit";
 import { __ } from "@wordpress/i18n";
 import { blocksDetail } from "../block-assets/blocks-detail";
 const { post_category_layout } = blocksDetail;
-const attrSave = {};
 registerBlockType("unlimited-blocks/ubl-post-tc", {
   title: post_category_layout.title,
   description: post_category_layout.description,

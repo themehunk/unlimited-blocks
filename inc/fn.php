@@ -61,3 +61,4 @@ include "block-callback/post-image-layout-three-post-c.php";
 include "block-callback/post-image-layout-four-post-c.php";
 include "block-callback/post-image-layout-five-post-c.php";
 include "block-callback/product-one-c.php";
+include "block-callback/owl-slider-c.php";
