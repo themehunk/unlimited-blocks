@@ -1,7 +1,7 @@
 (function ($) {
   const ULB = {
     init: function () {
-      // ULB.bind();
+      ULB.bind();
       ULB.reactREady();
       // console.log("kdoijd", document.readyState);
     },
@@ -9,11 +9,47 @@
       let stateCheck = setInterval(() => {
         if (document.readyState === "complete") {
           clearInterval(stateCheck);
-          ULB.addOwlSlider();
+          ULB.addReactScriptReadyScript();
         }
       }, 100);
     },
-    bind: function () {},
+    addReactScriptReadyScript: () => {
+      ULB.addOwlSlider();
+      ULB.addSlickSlider();
+    },
+    bind: function () {
+      // ULB.addSlickSlider();
+    },
+    addSlickSlider: function () {
+      let getSlider = $(".ubl-slick-slider-init");
+      // console.log("getSlider->", getSlider);
+      // return;
+      if (getSlider.length) {
+        $.each(getSlider, function (key, value) {
+          // console.log("value->", value);
+          // console.log("value->", $(this));
+          const slider = $(this);
+          ULB.ublSlickSlider(slider);
+        });
+      }
+    },
+    ublSlickSlider: (slider) => {
+      // console.log("ff", slider);
+      let getSettings = slider.attr("data-slider");
+      let parseJson = JSON.parse(getSettings);
+      let slickOption = {
+        // dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      };
+      if (typeof parseJson == "object") {
+        slickOption = { ...slickOption, ...parseJson };
+      }
+      // console.log("slickOption", slickOption);
+      slider.slick(slickOption);
+    },
     addOwlSlider: function () {
       let getSlider = $(".elemento-owl-slider-common-secript");
       if (getSlider.length) {

@@ -178,11 +178,17 @@
       div {
         text-align: center;
       }
+      .button-container {
+        justify-content: center;
+      }
     }
     &.right {
       justify-content: flex-end;
       div {
         text-align: right;
+      }
+      .button-container {
+        justify-content: flex-end;
       }
     }
     > div {

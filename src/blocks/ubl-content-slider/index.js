@@ -1,4 +1,5 @@
 import "./editor.scss";
+
 import { registerBlockType } from "@wordpress/blocks";
 import Edit from "./edit";
 import { __ } from "@wordpress/i18n";
@@ -11,6 +12,10 @@ registerBlockType("unlimited-blocks/owl-slider", {
   keywords: ubl_block_slider_owl.keywords,
   category: "unlimited-blocks-category",
   attributes: {
+    wrapper_id: {
+      type: "string",
+      default: false,
+    },
     sliderSetting: {
       type: "object",
       default: {
@@ -21,6 +26,19 @@ registerBlockType("unlimited-blocks/owl-slider", {
           height: false,
           custom_height: 360,
         },
+        sliderEffect: "slide",
+        triggerActive: "both",
+        linearTrigger: {
+          fontSize: 20,
+          color: "rgba(231,192,192,1)",
+          activeColor: "rgba(68,222,68,1)",
+        },
+        leftRightTrigger: {
+          fontSize: 20,
+          color: "rgba(231,192,192,1)",
+        },
+        autoTrigger: false,
+        autoTriggerDelay: 4,
         // slider settings
       },
     },
@@ -80,35 +98,6 @@ registerBlockType("unlimited-blocks/owl-slider", {
         border: {},
       },
     },
-    // sl_iderSetting: {
-    //   type: "array",
-    //   default: [
-    //     {
-    //       dimension: {
-    //         width: false,
-    //         custom_width: 580,
-    //         height: false,
-    //         custom_height: 360,
-    //       },
-    //       sliderEffect: "fadeEffect",
-    //       triggerActive: "both",
-    //       linearTrigger: {
-    //         fontSize: 20,
-    //         color: "rgba(231,192,192,1)",
-    //         activeColor: "rgba(68,222,68,1)",
-    //       },
-    //       leftRightTrigger: {
-    //         fontSize: 20,
-    //         color: "rgba(231,192,192,1)",
-    //       },
-    //       autoTrigger: {
-    //         enable: true,
-    //         delay: 4,
-    //       },
-
-    //     },
-    //   ],
-    // },
     slides: {
       type: "array",
       default: [

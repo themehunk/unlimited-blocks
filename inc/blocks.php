@@ -27,4 +27,4 @@ include_once "block-callback/post-image-layout-five-post.php";
 include_once "block-callback/post-image-layout-six-post.php";
 // woocommerce layout 
 include_once "block-callback/product-one.php";
-include_once "block-callback/owl-slider.php";
+include_once "block-callback/slick-slider.php";

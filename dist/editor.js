@@ -86789,21 +86789,26 @@ var Edit = /*#__PURE__*/function (_Component) {
 
       var slides = _toConsumableArray(attributes.slides);
 
-      var wrapper = attributes.wrapper;
+      var wrapper = attributes.wrapper,
+          sliderTitle = attributes.title,
+          description = attributes.text,
+          buttoneOne = attributes.buttoneOne,
+          buttoneTwo = attributes.buttoneTwo,
+          sliderSetting = attributes.sliderSetting;
       var wrapperAlignment = wrapper.alignment; // let wrapperSpacing = {
       //   marginTop: sliderSetting.wrapper.spacing + "px",
       //   marginBottom: sliderSetting.wrapper.spacing + "px",
       //   textAlign: sliderSetting.wrapper.textAlign,
       // };
-      // let buttonOneStyle = {
-      //   fontSize: sliderSetting.buttoneOne.fontSize,
-      //   color: sliderSetting.buttoneOne.color,
-      //   paddingTop: sliderSetting.buttoneOne.height,
-      //   paddingBottom: sliderSetting.buttoneOne.height,
-      //   paddingLeft: sliderSetting.buttoneOne.width,
-      //   paddingRight: sliderSetting.buttoneOne.width,
-      // };
-      // buttonOneStyle = sliderSetting.buttoneOne.border
+
+      var buttonOneStyle = {
+        fontSize: buttoneOne.fontSize + "px",
+        color: buttoneOne.color,
+        paddingTop: buttoneOne.height + "px",
+        paddingBottom: buttoneOne.height + "px",
+        paddingLeft: buttoneOne.width + "px",
+        paddingRight: buttoneOne.width + "px"
+      }; // buttonOneStyle = sliderSetting.buttoneOne.border
       //   ? {
       //       ...{
       //         borderColor: sliderSetting.buttoneOne.borderColor,
@@ -86822,15 +86827,15 @@ var Edit = /*#__PURE__*/function (_Component) {
       //   buttonOneStyle["backgroundImage"] =
       //     sliderSetting.buttoneOne.backgroundColor.gradient;
       // }
-      // let buttonTwoStyle = {
-      //   fontSize: sliderSetting.buttoneTwo.fontSize,
-      //   color: sliderSetting.buttoneTwo.color,
-      //   paddingTop: sliderSetting.buttoneTwo.height,
-      //   paddingBottom: sliderSetting.buttoneTwo.height,
-      //   paddingLeft: sliderSetting.buttoneTwo.width,
-      //   paddingRight: sliderSetting.buttoneTwo.width,
-      // };
-      // buttonTwoStyle = sliderSetting.buttoneTwo.border
+
+      var buttonTwoStyle = {
+        fontSize: buttoneTwo.fontSize + "px",
+        color: buttoneTwo.color,
+        paddingTop: buttoneTwo.height + "px",
+        paddingBottom: buttoneTwo.height + "px",
+        paddingLeft: buttoneTwo.width + "px",
+        paddingRight: buttoneTwo.width + "px"
+      }; // buttonTwoStyle = sliderSetting.buttoneTwo.border
       //   ? {
       //       ...{
       //         borderColor: sliderSetting.buttoneTwo.borderColor,
@@ -86849,28 +86854,46 @@ var Edit = /*#__PURE__*/function (_Component) {
       //   buttonTwoStyle["backgroundImage"] =
       //     sliderSetting.buttoneTwo.backgroundColor.gradient;
       // }
-      // let TitleStyle = {
-      //   fontSize: val.title.fontSize + "px",
-      //   color: val.title.color,
-      // };
-      // // title style
-      // // description style
-      // let descriptionStyle = {
-      //   fontSize: val.text.fontSize + "px",
-      //   color: val.text.color,
-      // };
-      // const { currentSlideIndex } = this.state;
+      // title style
 
+      var TitleStyle = {
+        fontSize: sliderTitle.fontSize + "px",
+        color: sliderTitle.color
+      }; // description style
+
+      var descriptionStyle = {
+        fontSize: description.fontSize + "px",
+        color: description.color
+      };
       var slider_options_ = {
         // nav: true,
         // items: 1,
         // startPosition: currentSlideIndex,
-        dots: true,
+        // dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1
-      }; // console.log("currentSlideIndex->", currentSlideIndex);
+      };
+
+      if (sliderSetting.sliderEffect != "slide") {
+        slider_options_["fade"] = true;
+      }
+
+      if (sliderSetting.triggerActive == "both" || sliderSetting.triggerActive == "dots") {
+        slider_options_["dots"] = true;
+      }
+
+      if (sliderSetting.triggerActive == "both" || sliderSetting.triggerActive == "arrows") {
+        slider_options_["nav"] = true;
+      }
+
+      if (sliderSetting.autoTrigger) {
+        slider_options_["autoplay"] = true;
+        slider_options_["autoplaySpeed"] = sliderSetting.autoTriggerDelay * 1000;
+      }
+
+      console.log("slider_options_", slider_options_);
 
       if (slides.length) {
         var OwlCarousel_ = wp.element.createElement(react_slick__WEBPACK_IMPORTED_MODULE_6___default.a, _extends({
@@ -86924,8 +86947,8 @@ var Edit = /*#__PURE__*/function (_Component) {
             allowedFormats: [],
             onChange: function onChange(e) {
               _this.updateSlide(slideIndex, e, "title", "text");
-            } // style={TitleStyle}
-
+            },
+            style: TitleStyle
           }), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__["RichText"], {
             key: "editable",
             tagName: "h2",
@@ -86934,8 +86957,8 @@ var Edit = /*#__PURE__*/function (_Component) {
             value: val.text.text,
             onChange: function onChange(e) {
               _this.updateSlide(slideIndex, e, "text", "text");
-            } // style={descriptionStyle}
-
+            },
+            style: descriptionStyle
           }), wp.element.createElement("div", {
             className: "button-container"
           }, val.buttoneOne.enable && wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__["RichText"], {
@@ -86946,8 +86969,8 @@ var Edit = /*#__PURE__*/function (_Component) {
             value: val.buttoneOne.text,
             onChange: function onChange(e) {
               _this.updateSlide(slideIndex, e, "buttoneOne", "text");
-            } // style={buttonOneStyle}
-
+            },
+            style: buttonOneStyle
           })), val.buttoneTwo.enable && wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__["RichText"], {
             key: "editable",
             tagName: "span",
@@ -86956,8 +86979,8 @@ var Edit = /*#__PURE__*/function (_Component) {
             value: val.buttoneTwo.text,
             onChange: function onChange(e) {
               _this.updateSlide(slideIndex, e, "buttoneTwo", "text");
-            } // style={buttonTwoStyle}
-
+            },
+            style: buttonTwoStyle
           }))))))));
         }));
         return OwlCarousel_;
@@ -87235,11 +87258,11 @@ var Edit = /*#__PURE__*/function (_Component) {
 
     _this.state = {
       currentSlideIndex: 0,
-      // twoBtn: "buttoneOne",
+      twoBtn: "buttoneOne",
       // trigger: "linear",
       // slideSetting: "slides",
       sideContentOpen: false,
-      // commonDropDown: "",
+      commonDropDown: "",
       slideBgButton: "",
       openPanel: "slides"
     };
@@ -87248,14 +87271,26 @@ var Edit = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(Edit, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (this.props.attributes.wrapper_id == "") {
+        this.props.setAttributes({
+          wrapper_id: this.props.clientId
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
       console.log("render slider->", this.props);
       var attributes = this.props.attributes; // const slides = [...attributes.slides];
-      // const { currentSlideIndex, sideContentOpen } = this.state;
-      // console.log("selected slide", currentSlideIndex);
+
+      var _this$state4 = this.state,
+          openPanel = _this$state4.openPanel,
+          commonDropDown = _this$state4.commonDropDown,
+          twoBtn = _this$state4.twoBtn; // console.log("selected slide", currentSlideIndex);
 
       return wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__["BlockControls"], {
         key: "controls"
@@ -87267,7 +87302,7 @@ var Edit = /*#__PURE__*/function (_Component) {
       })), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__["InspectorControls"], null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
         initialOpen: true
       }, wp.element.createElement(_block_assets_utility_components_BasicToggleNav__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        value: this.state.openPanel,
+        value: openPanel,
         navItem: [{
           name: "slides",
           title: "Slides",
@@ -87282,9 +87317,11 @@ var Edit = /*#__PURE__*/function (_Component) {
             openPanel: value_
           });
         }
-      })), this.state.openPanel == "slides" ? this.inspectorSlidesPanel() : wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
-        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Slider Settings", "unlimited-blocks"),
+      })), openPanel == "slides" ? this.inspectorSlidesPanel() : wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
+        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Content Settings", "unlimited-blocks"),
         initialOpen: false
+      }, wp.element.createElement("div", {
+        className: "ubl-slider-panel"
       }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Content Spacing", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RangeControl"], {
         value: attributes.wrapper.spacing,
         min: 0,
@@ -87293,54 +87330,11 @@ var Edit = /*#__PURE__*/function (_Component) {
           _this2.updateAttr(e, "wrapper", "spacing");
         }
       }), wp.element.createElement("div", {
-        className: "ubl-slider-panel"
-      }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Content Alignment", "unlimited-blocks"))), wp.element.createElement("div", {
-        className: "ubl-alignment"
-      }, wp.element.createElement("div", null, wp.element.createElement("span", {
-        onClick: function onClick() {
-          _this2.updateGlobalSlide("left", "wrapper", "alignment");
-        },
-        className: "dashicons dashicons-editor-alignleft ".concat(sliderSetting.wrapper.alignment == "left" ? "active" : "")
-      })), wp.element.createElement("div", null, wp.element.createElement("span", {
-        onClick: function onClick() {
-          _this2.updateGlobalSlide("center", "wrapper", "alignment");
-        },
-        className: "dashicons dashicons-editor-aligncenter ".concat(sliderSetting.wrapper.alignment == "center" ? "active" : "")
-      })), wp.element.createElement("div", null, wp.element.createElement("span", {
-        onClick: function onClick() {
-          _this2.updateGlobalSlide("right", "wrapper", "alignment");
-        },
-        className: "dashicons dashicons-editor-alignright ".concat(sliderSetting.wrapper.alignment == "right" ? "active" : "")
-      }))), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Text Alignment", "unlimited-blocks"))), wp.element.createElement("div", {
-        className: "ubl-alignment"
-      }, wp.element.createElement("div", null, wp.element.createElement("span", {
-        onClick: function onClick() {
-          _this2.updateGlobalSlide("left", "wrapper", "textAlign");
-        },
-        className: "dashicons dashicons-editor-alignleft ".concat(sliderSetting.wrapper.textAlign == "left" ? "active" : "")
-      })), wp.element.createElement("div", null, wp.element.createElement("span", {
-        onClick: function onClick() {
-          _this2.updateGlobalSlide("center", "wrapper", "textAlign");
-        },
-        className: "dashicons dashicons-editor-aligncenter ".concat(sliderSetting.wrapper.textAlign == "center" ? "active" : "")
-      })), wp.element.createElement("div", null, wp.element.createElement("span", {
-        onClick: function onClick() {
-          _this2.updateGlobalSlide("right", "wrapper", "textAlign");
-        },
-        className: "dashicons dashicons-editor-alignright ".concat(sliderSetting.wrapper.textAlign == "right" ? "active" : "")
-      }))), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Text Vertical Space", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RangeControl"], {
-        value: sliderSetting.wrapper.spacing,
-        min: 0,
-        max: 30,
-        onChange: function onChange(e) {
-          _this2.updateGlobalSlide(e, "wrapper", "spacing");
-        }
-      }), wp.element.createElement("div", {
-        className: "slide-panel-single ".concat(thisState.commonDropDown == "heading-style" ? "active" : "")
+        className: "slide-panel-single ".concat(commonDropDown == "heading-style" ? "active" : "")
       }, wp.element.createElement("div", {
         class: "slide-nav",
         onClick: function onClick() {
-          if (thisState.commonDropDown == "heading-style") {
+          if (commonDropDown == "heading-style") {
             _this2.setState({
               commonDropDown: ""
             });
@@ -87357,23 +87351,23 @@ var Edit = /*#__PURE__*/function (_Component) {
       }))), wp.element.createElement("div", {
         className: "slides-element"
       }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Font Size", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RangeControl"], {
-        value: sliderSetting.title.fontSize,
+        value: attributes.title.fontSize,
         min: 0,
         max: 100,
         onChange: function onChange(e) {
-          _this2.updateGlobalSlide(e, "title", "fontSize");
+          _this2.updateAttr(e, "title", "fontSize");
         }
-      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Color", "unlimited-blocks"))), wp.element.createElement(ColorPalette, {
-        value: sliderSetting.title.color,
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["ColorPalette"], {
+        value: attributes.title.color,
         onChange: function onChange(color) {
-          return _this2.updateGlobalSlide(color, "title", "color");
+          _this2.updateAttr(color, "title", "color");
         }
       }))), wp.element.createElement("div", {
-        className: "slide-panel-single ".concat(thisState.commonDropDown == "description-style" ? "active" : "")
+        className: "slide-panel-single ".concat(commonDropDown == "description-style" ? "active" : "")
       }, wp.element.createElement("div", {
         class: "slide-nav",
         onClick: function onClick() {
-          if (thisState.commonDropDown == "description-style") {
+          if (commonDropDown == "description-style") {
             _this2.setState({
               commonDropDown: ""
             });
@@ -87390,23 +87384,23 @@ var Edit = /*#__PURE__*/function (_Component) {
       }))), wp.element.createElement("div", {
         className: "slides-element"
       }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Font Size", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RangeControl"], {
-        value: sliderSetting.text.fontSize,
+        value: attributes.text.fontSize,
         min: 0,
         max: 100,
         onChange: function onChange(e) {
-          return _this2.updateGlobalSlide(e, "text", "fontSize");
+          _this2.updateAttr(e, "text", "fontSize");
         }
-      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Color", "unlimited-blocks"))), wp.element.createElement(ColorPalette, {
-        value: sliderSetting.text.color,
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Color", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["ColorPalette"], {
+        value: attributes.text.color,
         onChange: function onChange(color) {
-          return _this2.updateGlobalSlide(color, "text", "color");
+          _this2.updateAttr(color, "text", "color");
         }
       }))), wp.element.createElement("div", {
-        className: "slide-panel-single ".concat(thisState.commonDropDown == "button-style" ? "active" : "")
+        className: "slide-panel-single ".concat(commonDropDown == "button-style" ? "active" : "")
       }, wp.element.createElement("div", {
         class: "slide-nav",
         onClick: function onClick() {
-          if (thisState.commonDropDown == "button-style") {
+          if (commonDropDown == "button-style") {
             _this2.setState({
               commonDropDown: ""
             });
@@ -87422,121 +87416,130 @@ var Edit = /*#__PURE__*/function (_Component) {
         class: "fas fa-caret-down"
       }))), wp.element.createElement("div", {
         className: "slides-element"
-      }, wp.element.createElement("div", {
-        className: "ubl-switcher-button-section"
-      }, wp.element.createElement("span", {
-        className: activeTwoBtnState == "buttoneOne" ? "selected" : "",
-        onClick: function onClick() {
+      }, wp.element.createElement(_block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        value: twoBtn,
+        navItem: [{
+          name: "buttoneOne",
+          title: "Button 1"
+        }, {
+          name: "buttoneTwo",
+          title: "Button 2"
+        }],
+        clickme: function clickme(value_) {
           _this2.setState({
-            twoBtn: "buttoneOne"
+            twoBtn: value_
           });
         }
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Button 1", "unlimited-blocks")), wp.element.createElement("span", {
-        className: activeTwoBtnState == "buttoneTwo" ? "selected" : "",
-        onClick: function onClick() {
-          _this2.setState({
-            twoBtn: "buttoneTwo"
-          });
-        }
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Button 2", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RangeControl"], {
+      }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RangeControl"], {
         label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Font Size", "unlimited-blocks"),
-        value: sliderSetting[activeTwoBtnState].fontSize,
+        value: attributes[twoBtn].fontSize,
         min: 0,
         max: 70,
         onChange: function onChange(e) {
-          return _this2.updateGlobalSlide(e, activeTwoBtnState, "fontSize");
+          _this2.updateAttr(e, twoBtn, "fontSize");
         }
-      }), wp.element.createElement("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Color", "unlimited-blocks")), wp.element.createElement(ColorPalette, {
-        value: sliderSetting[activeTwoBtnState].color,
+      }), wp.element.createElement("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Color", "unlimited-blocks")), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["ColorPalette"], {
+        value: attributes[twoBtn].color,
         onChange: function onChange(color) {
-          return _this2.updateGlobalSlide(color, activeTwoBtnState, "color");
+          _this2.updateAttr(color, twoBtn, "color");
         }
-      }), wp.element.createElement("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Background Color", "unlimited-blocks")), wp.element.createElement("div", {
-        class: "ubl-switcher-button-section sub"
-      }, wp.element.createElement("span", {
-        onClick: function onClick() {
-          var getBgcolor = _objectSpread({}, sliderSetting[activeTwoBtnState].backgroundColor);
-
-          getBgcolor["type"] = "color";
-
-          _this2.updateGlobalSlide(getBgcolor, activeTwoBtnState, "backgroundColor");
-        },
-        className: sliderSetting[activeTwoBtnState].backgroundColor.type == "color" ? "selected" : ""
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Solid", "unlimited-blocks")), wp.element.createElement("span", {
-        onClick: function onClick() {
-          var getBgcolor = _objectSpread({}, sliderSetting[activeTwoBtnState].backgroundColor);
-
-          getBgcolor["type"] = "gradient";
-
-          _this2.updateGlobalSlide(getBgcolor, activeTwoBtnState, "backgroundColor");
-        },
-        className: sliderSetting[activeTwoBtnState].backgroundColor.type == "gradient" ? "selected" : ""
-      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Gradient", "unlimited-blocks"))), "color" == sliderSetting[activeTwoBtnState].backgroundColor.type ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["ColorPicker"], {
-        color: sliderSetting[activeTwoBtnState].backgroundColor.color,
-        onChangeComplete: function onChangeComplete(colorBg) {
-          var color = "rgba(".concat(colorBg.rgb.r, ",").concat(colorBg.rgb.g, ",").concat(colorBg.rgb.b, ",").concat(colorBg.rgb.a, ")");
-
-          var getBgcolor = _objectSpread({}, sliderSetting[activeTwoBtnState].backgroundColor);
-
-          getBgcolor["color"] = color;
-
-          _this2.updateGlobalSlide(getBgcolor, activeTwoBtnState, "backgroundColor");
-        }
-      }) : wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["__experimentalGradientPicker"], {
-        disableCustomGradients: false,
-        value: sliderSetting[activeTwoBtnState].backgroundColor.gradient,
-        gradients: _block_assets_post_functions__WEBPACK_IMPORTED_MODULE_2__["UBLGraDientColors"],
-        onChange: function onChange(newGradient) {
-          var getBgcolor = _objectSpread({}, sliderSetting[activeTwoBtnState].backgroundColor);
-
-          getBgcolor["gradient"] = newGradient;
-
-          _this2.updateGlobalSlide(getBgcolor, activeTwoBtnState, "backgroundColor");
-        }
-      }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RangeControl"], {
+      }), wp.element.createElement("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Background Color", "unlimited-blocks")), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RangeControl"], {
         label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Height", "unlimited-blocks"),
-        value: sliderSetting[activeTwoBtnState].height,
-        min: 0,
-        max: 30,
-        onChange: function onChange(e) {
-          return _this2.updateGlobalSlide(e, activeTwoBtnState, "height");
-        }
-      }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RangeControl"], {
-        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Width", "unlimited-blocks"),
-        value: sliderSetting[activeTwoBtnState].width,
-        min: 0,
-        max: 30,
-        onChange: function onChange(e) {
-          return _this2.updateGlobalSlide(e, activeTwoBtnState, "width");
-        }
-      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Border", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["ToggleControl"], {
-        label: sliderSetting[activeTwoBtnState].border ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Disable", "unlimited-blocks") : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Enable", "unlimited-blocks"),
-        checked: sliderSetting[activeTwoBtnState].border,
-        onChange: function onChange(e) {
-          return _this2.updateGlobalSlide(e, activeTwoBtnState, "border");
-        }
-      }), sliderSetting[activeTwoBtnState].border && wp.element.createElement("div", {
-        className: "icon-border-setting"
-      }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RangeControl"], {
-        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Border Width", "unlimited-blocks"),
-        value: sliderSetting[activeTwoBtnState].borderWidth,
-        min: 0,
-        max: 100,
-        onChange: function onChange(e) {
-          return _this2.updateGlobalSlide(e, activeTwoBtnState, "borderWidth");
-        }
-      }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RangeControl"], {
-        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Border Radius", "unlimited-blocks"),
-        value: sliderSetting[activeTwoBtnState].borderRadius,
+        value: attributes[twoBtn].height,
         min: 0,
         max: 50,
         onChange: function onChange(e) {
-          return _this2.updateGlobalSlide(e, activeTwoBtnState, "borderRadius");
+          _this2.updateAttr(e, twoBtn, "height");
         }
-      }), wp.element.createElement("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Border Color", "unlimited-blocks")), wp.element.createElement(ColorPalette, {
-        value: sliderSetting[activeTwoBtnState].borderColor,
+      }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RangeControl"], {
+        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Width", "unlimited-blocks"),
+        value: attributes[twoBtn].width,
+        min: 0,
+        max: 50,
+        onChange: function onChange(e) {
+          _this2.updateAttr(e, twoBtn, "width");
+        }
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Border", "unlimited-blocks"))))))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
+        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Slider Settings", "unlimited-blocks"),
+        initialOpen: false
+      }, wp.element.createElement("div", {
+        className: "slides-settings"
+      }, wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("div", {
+        className: "flex-section-slider"
+      }, wp.element.createElement("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Navigation", "unlimited-blocks")), wp.element.createElement("select", {
+        value: attributes.sliderSetting.triggerActive,
+        onChange: function onChange(e) {
+          _this2.updateAttr(e.target.value, "sliderSetting", "triggerActive");
+        }
+      }, wp.element.createElement("option", {
+        value: "both"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Arrows and Dots", "unlimited-blocks")), wp.element.createElement("option", {
+        value: "arrows"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Arrows", "unlimited-blocks")), wp.element.createElement("option", {
+        value: "dots"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Dots", "unlimited-blocks")), wp.element.createElement("option", {
+        value: "n"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("None", "unlimited-blocks")))), wp.element.createElement("div", {
+        className: "flex-section-slider"
+      }, wp.element.createElement("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Transition", "unlimited-blocks")), wp.element.createElement("select", {
+        value: attributes.sliderSetting.sliderEffect,
+        onChange: function onChange(e) {
+          _this2.updateAttr(e.target.value, "sliderSetting", "sliderEffect");
+        }
+      }, wp.element.createElement("option", {
+        value: "fadeEffect"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Fade", "unlimited-blocks")), wp.element.createElement("option", {
+        value: "slideEffect"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Slide", "unlimited-blocks")))), wp.element.createElement("div", {
+        className: "flex-section-slider"
+      }, wp.element.createElement("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Autoplay", "unlimited-blocks")), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["ToggleControl"], {
+        checked: attributes.sliderSetting.autoTrigger,
+        onChange: function onChange(e) {
+          _this2.updateAttr(e, "sliderSetting", "autoTrigger");
+        }
+      })), attributes.sliderSetting.autoTrigger && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RangeControl"], {
+        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Autoplay Speed", "unlimited-blocks"),
+        value: attributes.sliderSetting.autoTriggerDelay,
+        min: 0,
+        max: 12,
+        onChange: function onChange(e) {
+          _this2.updateAttr(e, "sliderSetting", "autoTriggerDelay");
+        }
+      }), (attributes.sliderSetting.triggerActive == "both" || attributes.sliderSetting.triggerActive == "arrows") && wp.element.createElement("div", {
+        className: "slide-panel-single ".concat(commonDropDown == "arrow-style" ? "active" : "")
+      }, wp.element.createElement("div", {
+        class: "slide-nav",
+        onClick: function onClick() {
+          if (commonDropDown == "arrow-style") {
+            _this2.setState({
+              commonDropDown: ""
+            });
+          } else {
+            _this2.setState({
+              commonDropDown: "arrow-style"
+            });
+          }
+        }
+      }, wp.element.createElement("span", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Arrows Styles", "unlimited-blocks")), wp.element.createElement("div", {
+        class: "caret"
+      }, wp.element.createElement("i", {
+        class: "fas fa-caret-down"
+      }))), wp.element.createElement("div", {
+        className: "slides-element"
+      }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RangeControl"], {
+        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Font Size", "unlimited-blocks"),
+        value: attributes.sliderSetting.leftRightTrigger.fontSize,
+        min: 0,
+        max: 70,
+        onChange: function onChange(e) {
+          return _this2.updateGlobalSlide(e, "leftRightTrigger", "fontSize");
+        }
+      }), wp.element.createElement("label", {
+        className: "normal-label"
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Color", "unlimited-blocks")), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["ColorPalette"], {
+        value: attributes.sliderSetting.leftRightTrigger.color,
         onChange: function onChange(color) {
-          return _this2.updateGlobalSlide(color, activeTwoBtnState, "borderColor");
+          return _this2.updateGlobalSlide(color, "leftRightTrigger", "color");
         }
       })))))))), wp.element.createElement("div", {
         className: "ubl-owl-slider-block"
@@ -87592,6 +87595,10 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
   keywords: ubl_block_slider_owl.keywords,
   category: "unlimited-blocks-category",
   attributes: {
+    wrapper_id: {
+      type: "string",
+      default: false
+    },
     sliderSetting: {
       type: "object",
       default: {
@@ -87601,7 +87608,20 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
           custom_width: 580,
           height: false,
           custom_height: 360
-        } // slider settings
+        },
+        sliderEffect: "slide",
+        triggerActive: "both",
+        linearTrigger: {
+          fontSize: 20,
+          color: "rgba(231,192,192,1)",
+          activeColor: "rgba(68,222,68,1)"
+        },
+        leftRightTrigger: {
+          fontSize: 20,
+          color: "rgba(231,192,192,1)"
+        },
+        autoTrigger: false,
+        autoTriggerDelay: 4 // slider settings
 
       }
     },
@@ -87669,34 +87689,6 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
         border: {}
       }
     },
-    // sl_iderSetting: {
-    //   type: "array",
-    //   default: [
-    //     {
-    //       dimension: {
-    //         width: false,
-    //         custom_width: 580,
-    //         height: false,
-    //         custom_height: 360,
-    //       },
-    //       sliderEffect: "fadeEffect",
-    //       triggerActive: "both",
-    //       linearTrigger: {
-    //         fontSize: 20,
-    //         color: "rgba(231,192,192,1)",
-    //         activeColor: "rgba(68,222,68,1)",
-    //       },
-    //       leftRightTrigger: {
-    //         fontSize: 20,
-    //         color: "rgba(231,192,192,1)",
-    //       },
-    //       autoTrigger: {
-    //         enable: true,
-    //         delay: 4,
-    //       },
-    //     },
-    //   ],
-    // },
     slides: {
       type: "array",
       default: [// slider slides

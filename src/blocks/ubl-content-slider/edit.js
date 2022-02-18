@@ -12,6 +12,7 @@ import {
   ToggleControl,
   __experimentalGradientPicker as GradientPicker,
   __experimentalInputControl as InputControl,
+  ColorPalette,
 } from "@wordpress/components";
 import { UBLGraDientColors } from "../block-assets/post-functions";
 import { Component } from "@wordpress/element";
@@ -30,17 +31,21 @@ class Edit extends Component {
     super(props);
     this.state = {
       currentSlideIndex: 0,
-      // twoBtn: "buttoneOne",
+      twoBtn: "buttoneOne",
       // trigger: "linear",
       // slideSetting: "slides",
       sideContentOpen: false,
-      // commonDropDown: "",
+      commonDropDown: "",
       slideBgButton: "",
       openPanel: "slides",
     };
     this.SlickSliderRef = React.createRef();
   }
-
+  componentDidMount() {
+    if (this.props.attributes.wrapper_id == "") {
+      this.props.setAttributes({ wrapper_id: this.props.clientId });
+    }
+  }
   updateSlide = (
     index_,
     val,
@@ -91,21 +96,28 @@ class Edit extends Component {
   slides = () => {
     const { attributes } = this.props;
     const slides = [...attributes.slides];
-    const { wrapper } = attributes;
+    const {
+      wrapper,
+      title: sliderTitle,
+      text: description,
+      buttoneOne,
+      buttoneTwo,
+      sliderSetting,
+    } = attributes;
     let wrapperAlignment = wrapper.alignment;
     // let wrapperSpacing = {
     //   marginTop: sliderSetting.wrapper.spacing + "px",
     //   marginBottom: sliderSetting.wrapper.spacing + "px",
     //   textAlign: sliderSetting.wrapper.textAlign,
     // };
-    // let buttonOneStyle = {
-    //   fontSize: sliderSetting.buttoneOne.fontSize,
-    //   color: sliderSetting.buttoneOne.color,
-    //   paddingTop: sliderSetting.buttoneOne.height,
-    //   paddingBottom: sliderSetting.buttoneOne.height,
-    //   paddingLeft: sliderSetting.buttoneOne.width,
-    //   paddingRight: sliderSetting.buttoneOne.width,
-    // };
+    let buttonOneStyle = {
+      fontSize: buttoneOne.fontSize + "px",
+      color: buttoneOne.color,
+      paddingTop: buttoneOne.height + "px",
+      paddingBottom: buttoneOne.height + "px",
+      paddingLeft: buttoneOne.width + "px",
+      paddingRight: buttoneOne.width + "px",
+    };
     // buttonOneStyle = sliderSetting.buttoneOne.border
     //   ? {
     //       ...{
@@ -126,14 +138,14 @@ class Edit extends Component {
     //     sliderSetting.buttoneOne.backgroundColor.gradient;
     // }
 
-    // let buttonTwoStyle = {
-    //   fontSize: sliderSetting.buttoneTwo.fontSize,
-    //   color: sliderSetting.buttoneTwo.color,
-    //   paddingTop: sliderSetting.buttoneTwo.height,
-    //   paddingBottom: sliderSetting.buttoneTwo.height,
-    //   paddingLeft: sliderSetting.buttoneTwo.width,
-    //   paddingRight: sliderSetting.buttoneTwo.width,
-    // };
+    let buttonTwoStyle = {
+      fontSize: buttoneTwo.fontSize + "px",
+      color: buttoneTwo.color,
+      paddingTop: buttoneTwo.height + "px",
+      paddingBottom: buttoneTwo.height + "px",
+      paddingLeft: buttoneTwo.width + "px",
+      paddingRight: buttoneTwo.width + "px",
+    };
     // buttonTwoStyle = sliderSetting.buttoneTwo.border
     //   ? {
     //       ...{
@@ -154,29 +166,49 @@ class Edit extends Component {
     //     sliderSetting.buttoneTwo.backgroundColor.gradient;
     // }
 
-    // let TitleStyle = {
-    //   fontSize: val.title.fontSize + "px",
-    //   color: val.title.color,
-    // };
-    // // title style
-    // // description style
-    // let descriptionStyle = {
-    //   fontSize: val.text.fontSize + "px",
-    //   color: val.text.color,
-    // };
-    // const { currentSlideIndex } = this.state;
+    // title style
+    let TitleStyle = {
+      fontSize: sliderTitle.fontSize + "px",
+      color: sliderTitle.color,
+    };
+    // description style
+    let descriptionStyle = {
+      fontSize: description.fontSize + "px",
+      color: description.color,
+    };
 
     const slider_options_ = {
       // nav: true,
       // items: 1,
       // startPosition: currentSlideIndex,
-      dots: true,
+      // dots: true,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
     };
-    // console.log("currentSlideIndex->", currentSlideIndex);
+
+    if (sliderSetting.sliderEffect != "slide") {
+      slider_options_["fade"] = true;
+    }
+    if (
+      sliderSetting.triggerActive == "both" ||
+      sliderSetting.triggerActive == "dots"
+    ) {
+      slider_options_["dots"] = true;
+    }
+    if (
+      sliderSetting.triggerActive == "both" ||
+      sliderSetting.triggerActive == "arrows"
+    ) {
+      slider_options_["nav"] = true;
+    }
+
+    if (sliderSetting.autoTrigger) {
+      slider_options_["autoplay"] = true;
+      slider_options_["autoplaySpeed"] = sliderSetting.autoTriggerDelay * 1000;
+    }
+    console.log("slider_options_", slider_options_);
     if (slides.length) {
       const OwlCarousel_ = (
         <SlickSlider
@@ -227,7 +259,7 @@ class Edit extends Component {
                           onChange={(e) => {
                             this.updateSlide(slideIndex, e, "title", "text");
                           }}
-                          // style={TitleStyle}
+                          style={TitleStyle}
                         />
                         <RichText
                           key="editable"
@@ -238,7 +270,7 @@ class Edit extends Component {
                           onChange={(e) => {
                             this.updateSlide(slideIndex, e, "text", "text");
                           }}
-                          // style={descriptionStyle}
+                          style={descriptionStyle}
                         />
                         <div className="button-container">
                           {val.buttoneOne.enable && (
@@ -260,7 +292,7 @@ class Edit extends Component {
                                     "text"
                                   );
                                 }}
-                                // style={buttonOneStyle}
+                                style={buttonOneStyle}
                               />
                             </>
                           )}
@@ -283,7 +315,7 @@ class Edit extends Component {
                                     "text"
                                   );
                                 }}
-                                // style={buttonTwoStyle}
+                                style={buttonTwoStyle}
                               />
                             </>
                           )}
@@ -627,7 +659,7 @@ class Edit extends Component {
     console.log("render slider->", this.props);
     const { attributes } = this.props;
     // const slides = [...attributes.slides];
-    // const { currentSlideIndex, sideContentOpen } = this.state;
+    const { openPanel, commonDropDown, twoBtn } = this.state;
     // console.log("selected slide", currentSlideIndex);
     return (
       <>
@@ -642,7 +674,7 @@ class Edit extends Component {
         <InspectorControls>
           <PanelBody initialOpen={true}>
             <BasicToggleNav
-              value={this.state.openPanel}
+              value={openPanel}
               navItem={[
                 {
                   name: "slides",
@@ -660,33 +692,22 @@ class Edit extends Component {
               }}
             />
           </PanelBody>
-          {this.state.openPanel == "slides" ? (
+          {openPanel == "slides" ? (
             this.inspectorSlidesPanel()
           ) : (
             <>
               <PanelBody
-                title={__("Slider Settings", "unlimited-blocks")}
+                title={__("Content Settings", "unlimited-blocks")}
                 initialOpen={false}
               >
-                <p>
-                  <strong>{__("Content Spacing", "unlimited-blocks")}</strong>
-                </p>
-                <RangeControl
-                  value={attributes.wrapper.spacing}
-                  min={0}
-                  max={100}
-                  onChange={(e) => {
-                    this.updateAttr(e, "wrapper", "spacing");
-                  }}
-                />
                 {/* -----------------------------------------============================================================== */}
                 <div className="ubl-slider-panel">
-                  <p>
+                  {/* <p>
                     <strong>
                       {__("Content Alignment", "unlimited-blocks")}
                     </strong>
-                  </p>
-                  <div className="ubl-alignment">
+                  </p> */}
+                  {/* <div className="ubl-alignment">
                     <div>
                       <span
                         onClick={() => {
@@ -735,11 +756,11 @@ class Edit extends Component {
                         }`}
                       ></span>
                     </div>
-                  </div>
-                  <p>
+                  </div> */}
+                  {/* <p>
                     <strong>{__("Text Alignment", "unlimited-blocks")}</strong>
-                  </p>
-                  <div className="ubl-alignment">
+                  </p> */}
+                  {/* <div className="ubl-alignment">
                     <div>
                       <span
                         onClick={() => {
@@ -788,33 +809,28 @@ class Edit extends Component {
                         }`}
                       ></span>
                     </div>
-                  </div>
-
+                  </div> */}
+                  {/* --------------heading style---------------- */}
                   <p>
-                    <strong>
-                      {__("Text Vertical Space", "unlimited-blocks")}
-                    </strong>
+                    <strong>{__("Content Spacing", "unlimited-blocks")}</strong>
                   </p>
                   <RangeControl
-                    value={sliderSetting.wrapper.spacing}
+                    value={attributes.wrapper.spacing}
                     min={0}
-                    max={30}
+                    max={100}
                     onChange={(e) => {
-                      this.updateGlobalSlide(e, "wrapper", "spacing");
+                      this.updateAttr(e, "wrapper", "spacing");
                     }}
                   />
-                  {/* --------------heading style---------------- */}
                   <div
                     className={`slide-panel-single ${
-                      thisState.commonDropDown == "heading-style"
-                        ? "active"
-                        : ""
+                      commonDropDown == "heading-style" ? "active" : ""
                     }`}
                   >
                     <div
                       class="slide-nav"
                       onClick={() => {
-                        if (thisState.commonDropDown == "heading-style") {
+                        if (commonDropDown == "heading-style") {
                           this.setState({ commonDropDown: "" });
                         } else {
                           this.setState({ commonDropDown: "heading-style" });
@@ -831,36 +847,34 @@ class Edit extends Component {
                         <strong>{__("Font Size", "unlimited-blocks")}</strong>
                       </p>
                       <RangeControl
-                        value={sliderSetting.title.fontSize}
+                        value={attributes.title.fontSize}
                         min={0}
                         max={100}
                         onChange={(e) => {
-                          this.updateGlobalSlide(e, "title", "fontSize");
+                          this.updateAttr(e, "title", "fontSize");
                         }}
                       />
                       <p>
                         <strong>{__("Color", "unlimited-blocks")}</strong>
                       </p>
                       <ColorPalette
-                        value={sliderSetting.title.color}
-                        onChange={(color) =>
-                          this.updateGlobalSlide(color, "title", "color")
-                        }
+                        value={attributes.title.color}
+                        onChange={(color) => {
+                          this.updateAttr(color, "title", "color");
+                        }}
                       />
                     </div>
                   </div>
                   {/* --------------description style---------------- */}
                   <div
                     className={`slide-panel-single ${
-                      thisState.commonDropDown == "description-style"
-                        ? "active"
-                        : ""
+                      commonDropDown == "description-style" ? "active" : ""
                     }`}
                   >
                     <div
                       class="slide-nav"
                       onClick={() => {
-                        if (thisState.commonDropDown == "description-style") {
+                        if (commonDropDown == "description-style") {
                           this.setState({ commonDropDown: "" });
                         } else {
                           this.setState({
@@ -881,34 +895,34 @@ class Edit extends Component {
                         <strong>{__("Font Size", "unlimited-blocks")}</strong>
                       </p>
                       <RangeControl
-                        value={sliderSetting.text.fontSize}
+                        value={attributes.text.fontSize}
                         min={0}
                         max={100}
-                        onChange={(e) =>
-                          this.updateGlobalSlide(e, "text", "fontSize")
-                        }
+                        onChange={(e) => {
+                          this.updateAttr(e, "text", "fontSize");
+                        }}
                       />
                       <p>
                         <strong>{__("Color", "unlimited-blocks")}</strong>
                       </p>
                       <ColorPalette
-                        value={sliderSetting.text.color}
-                        onChange={(color) =>
-                          this.updateGlobalSlide(color, "text", "color")
-                        }
+                        value={attributes.text.color}
+                        onChange={(color) => {
+                          this.updateAttr(color, "text", "color");
+                        }}
                       />
                     </div>
                   </div>
                   {/* --------------button style---------------- */}
                   <div
                     className={`slide-panel-single ${
-                      thisState.commonDropDown == "button-style" ? "active" : ""
+                      commonDropDown == "button-style" ? "active" : ""
                     }`}
                   >
                     <div
                       class="slide-nav"
                       onClick={() => {
-                        if (thisState.commonDropDown == "button-style") {
+                        if (commonDropDown == "button-style") {
                           this.setState({ commonDropDown: "" });
                         } else {
                           this.setState({ commonDropDown: "button-style" });
@@ -921,55 +935,42 @@ class Edit extends Component {
                       </div>
                     </div>
                     <div className="slides-element">
-                      <div className="ubl-switcher-button-section">
-                        <span
-                          className={
-                            activeTwoBtnState == "buttoneOne" ? "selected" : ""
-                          }
-                          onClick={() => {
-                            this.setState({ twoBtn: "buttoneOne" });
-                          }}
-                        >
-                          {__("Button 1", "unlimited-blocks")}
-                        </span>
-                        <span
-                          className={
-                            activeTwoBtnState == "buttoneTwo" ? "selected" : ""
-                          }
-                          onClick={() => {
-                            this.setState({ twoBtn: "buttoneTwo" });
-                          }}
-                        >
-                          {__("Button 2", "unlimited-blocks")}
-                        </span>
-                      </div>
+                      <Switcher
+                        value={twoBtn}
+                        navItem={[
+                          {
+                            name: "buttoneOne",
+                            title: "Button 1",
+                          },
+                          {
+                            name: "buttoneTwo",
+                            title: "Button 2",
+                          },
+                        ]}
+                        clickme={(value_) => {
+                          this.setState({ twoBtn: value_ });
+                        }}
+                      />
+
                       <RangeControl
                         label={__("Font Size", "unlimited-blocks")}
-                        value={sliderSetting[activeTwoBtnState].fontSize}
+                        value={attributes[twoBtn].fontSize}
                         min={0}
                         max={70}
-                        onChange={(e) =>
-                          this.updateGlobalSlide(
-                            e,
-                            activeTwoBtnState,
-                            "fontSize"
-                          )
-                        }
+                        onChange={(e) => {
+                          this.updateAttr(e, twoBtn, "fontSize");
+                        }}
                       />
                       <p>{__("Color", "unlimited-blocks")}</p>
                       <ColorPalette
-                        value={sliderSetting[activeTwoBtnState].color}
-                        onChange={(color) =>
-                          this.updateGlobalSlide(
-                            color,
-                            activeTwoBtnState,
-                            "color"
-                          )
-                        }
+                        value={attributes[twoBtn].color}
+                        onChange={(color) => {
+                          this.updateAttr(color, twoBtn, "color");
+                        }}
                       />
                       <p>{__("Background Color", "unlimited-blocks")}</p>
                       {/* bg color  */}
-                      <div class="ubl-switcher-button-section sub">
+                      {/* <div class="ubl-switcher-button-section sub">
                         <span
                           onClick={() => {
                             let getBgcolor = {
@@ -1014,8 +1015,8 @@ class Edit extends Component {
                         >
                           {__("Gradient", "unlimited-blocks")}
                         </span>
-                      </div>
-                      {"color" ==
+                      </div> */}
+                      {/* {"color" ==
                       sliderSetting[activeTwoBtnState].backgroundColor.type ? (
                         <ColorPicker
                           color={
@@ -1057,30 +1058,30 @@ class Edit extends Component {
                             );
                           }}
                         />
-                      )}
+                      )} */}
                       {/* bg color  */}
                       <RangeControl
                         label={__("Height", "unlimited-blocks")}
-                        value={sliderSetting[activeTwoBtnState].height}
+                        value={attributes[twoBtn].height}
                         min={0}
-                        max={30}
-                        onChange={(e) =>
-                          this.updateGlobalSlide(e, activeTwoBtnState, "height")
-                        }
+                        max={50}
+                        onChange={(e) => {
+                          this.updateAttr(e, twoBtn, "height");
+                        }}
                       />
                       <RangeControl
                         label={__("Width", "unlimited-blocks")}
-                        value={sliderSetting[activeTwoBtnState].width}
+                        value={attributes[twoBtn].width}
                         min={0}
-                        max={30}
-                        onChange={(e) =>
-                          this.updateGlobalSlide(e, activeTwoBtnState, "width")
-                        }
+                        max={50}
+                        onChange={(e) => {
+                          this.updateAttr(e, twoBtn, "width");
+                        }}
                       />
                       <p>
                         <strong>{__("Border", "unlimited-blocks")}</strong>
                       </p>
-                      <ToggleControl
+                      {/* <ToggleControl
                         label={
                           sliderSetting[activeTwoBtnState].border
                             ? __("Disable", "unlimited-blocks")
@@ -1090,8 +1091,8 @@ class Edit extends Component {
                         onChange={(e) =>
                           this.updateGlobalSlide(e, activeTwoBtnState, "border")
                         }
-                      />
-                      {sliderSetting[activeTwoBtnState].border && (
+                      /> */}
+                      {/* {sliderSetting[activeTwoBtnState].border && (
                         <div className="icon-border-setting">
                           <RangeControl
                             label={__("Border Width", "unlimited-blocks")}
@@ -1133,12 +1134,218 @@ class Edit extends Component {
                             }
                           />
                         </div>
-                      )}
+                      )} */}
                     </div>
                   </div>
                   {/* --------------button style---------------- */}
                 </div>
                 {/* -----------------------------------------============================================================== */}
+              </PanelBody>
+              <PanelBody
+                title={__("Slider Settings", "unlimited-blocks")}
+                initialOpen={false}
+              >
+                <div className="slides-settings">
+                  <>
+                    <div className="flex-section-slider">
+                      <p>{__("Navigation", "unlimited-blocks")}</p>
+                      <select
+                        value={attributes.sliderSetting.triggerActive}
+                        onChange={(e) => {
+                          this.updateAttr(
+                            e.target.value,
+                            "sliderSetting",
+                            "triggerActive"
+                          );
+                        }}
+                      >
+                        <option value="both">
+                          {__("Arrows and Dots", "unlimited-blocks")}
+                        </option>
+                        <option value="arrows">
+                          {__("Arrows", "unlimited-blocks")}
+                        </option>
+                        <option value="dots">
+                          {__("Dots", "unlimited-blocks")}
+                        </option>
+                        <option value="n">
+                          {__("None", "unlimited-blocks")}
+                        </option>
+                      </select>
+                    </div>
+                    <div className="flex-section-slider">
+                      <p>{__("Transition", "unlimited-blocks")}</p>
+                      <select
+                        value={attributes.sliderSetting.sliderEffect}
+                        onChange={(e) => {
+                          this.updateAttr(
+                            e.target.value,
+                            "sliderSetting",
+                            "sliderEffect"
+                          );
+                        }}
+                      >
+                        <option value="fadeEffect">
+                          {__("Fade", "unlimited-blocks")}
+                        </option>
+                        <option value="slideEffect">
+                          {__("Slide", "unlimited-blocks")}
+                        </option>
+                      </select>
+                    </div>
+                    <div className="flex-section-slider">
+                      <p>{__("Autoplay", "unlimited-blocks")}</p>
+                      <ToggleControl
+                        checked={attributes.sliderSetting.autoTrigger}
+                        onChange={(e) => {
+                          this.updateAttr(e, "sliderSetting", "autoTrigger");
+                        }}
+                      />
+                    </div>
+                    {attributes.sliderSetting.autoTrigger && (
+                      <RangeControl
+                        label={__("Autoplay Speed", "unlimited-blocks")}
+                        value={attributes.sliderSetting.autoTriggerDelay}
+                        min={0}
+                        max={12}
+                        onChange={(e) => {
+                          this.updateAttr(
+                            e,
+                            "sliderSetting",
+                            "autoTriggerDelay"
+                          );
+                        }}
+                      />
+                    )}
+                    {/* {(attributes.sliderSetting.triggerActive == "both" ||
+                      attributes.sliderSetting.triggerActive == "dots") && (
+                      <div
+                        className={`slide-panel-single ${
+                          commonDropDown == "dots-style"
+                            ? "active"
+                            : ""
+                        }`}
+                      >
+                        <div
+                          class="slide-nav"
+                          onClick={() => {
+                            if (commonDropDown == "dots-style") {
+                              this.setState({ commonDropDown: "" });
+                            } else {
+                              this.setState({ commonDropDown: "dots-style" });
+                            }
+                          }}
+                        >
+                          <span>{__("Dotts Styles", "unlimited-blocks")}</span>
+                          <div class="caret">
+                            <i class="fas fa-caret-down"></i>
+                          </div>
+                        </div>
+                        <div className="slides-element">
+                          <RangeControl
+                            label={__("Size", "unlimited-blocks")}
+                            value={attributes.sliderSetting.linearTrigger.fontSize}
+                            min={0}
+                            max={70}
+                            onChange={(e) =>
+                              this.updateGlobalSlide(
+                                e,
+                                "linearTrigger",
+                                "fontSize"
+                              )
+                            }
+                          />
+                          <label className="normal-label">
+                            {__("Color", "unlimited-blocks")}
+                          </label>
+                          <ColorPicker
+                            color={attributes.sliderSetting.linearTrigger.color}
+                            onChangeComplete={(colorBg) => {
+                              let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                              this.updateGlobalSlide(
+                                color,
+                                "linearTrigger",
+                                "color"
+                              );
+                            }}
+                          />
+                          <label className="normal-label">
+                            {__("Active Color", "unlimited-blocks")}
+                          </label>
+                          <ColorPicker
+                            color={attributes.sliderSetting.linearTrigger.activeColor}
+                            onChangeComplete={(colorBg) => {
+                              let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                              this.updateGlobalSlide(
+                                color,
+                                "linearTrigger",
+                                "activeColor"
+                              );
+                            }}
+                          />
+                        </div>
+                      </div>
+                    )} */}
+
+                    {(attributes.sliderSetting.triggerActive == "both" ||
+                      attributes.sliderSetting.triggerActive == "arrows") && (
+                      <div
+                        className={`slide-panel-single ${
+                          commonDropDown == "arrow-style" ? "active" : ""
+                        }`}
+                      >
+                        <div
+                          class="slide-nav"
+                          onClick={() => {
+                            if (commonDropDown == "arrow-style") {
+                              this.setState({ commonDropDown: "" });
+                            } else {
+                              this.setState({ commonDropDown: "arrow-style" });
+                            }
+                          }}
+                        >
+                          <span>{__("Arrows Styles", "unlimited-blocks")}</span>
+                          <div class="caret">
+                            <i class="fas fa-caret-down"></i>
+                          </div>
+                        </div>
+                        <div className="slides-element">
+                          <RangeControl
+                            label={__("Font Size", "unlimited-blocks")}
+                            value={
+                              attributes.sliderSetting.leftRightTrigger.fontSize
+                            }
+                            min={0}
+                            max={70}
+                            onChange={(e) =>
+                              this.updateGlobalSlide(
+                                e,
+                                "leftRightTrigger",
+                                "fontSize"
+                              )
+                            }
+                          />
+                          <label className="normal-label">
+                            {__("Color", "unlimited-blocks")}
+                          </label>
+                          <ColorPalette
+                            value={
+                              attributes.sliderSetting.leftRightTrigger.color
+                            }
+                            onChange={(color) =>
+                              this.updateGlobalSlide(
+                                color,
+                                "leftRightTrigger",
+                                "color"
+                              )
+                            }
+                          />
+                        </div>
+                      </div>
+                    )}
+                    {/* arrows and dots */}
+                  </>
+                </div>
               </PanelBody>
             </>
           )}

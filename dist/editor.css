@@ -2288,11 +2288,17 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
 .ubl-slider-content-wrapper .ubl-slider-text.center div {
   text-align: center;
 }
+.ubl-slider-content-wrapper .ubl-slider-text.center .button-container {
+  justify-content: center;
+}
 .ubl-slider-content-wrapper .ubl-slider-text.right {
   justify-content: flex-end;
 }
 .ubl-slider-content-wrapper .ubl-slider-text.right div {
   text-align: right;
+}
+.ubl-slider-content-wrapper .ubl-slider-text.right .button-container {
+  justify-content: flex-end;
 }
 .ubl-slider-content-wrapper .ubl-slider-text > div {
   padding: 20px;
