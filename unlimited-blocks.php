@@ -23,7 +23,7 @@ if (!function_exists('unlimited_blocks_register_block')) {
 		wp_register_script(
 			'unlimited-blocks-editor-secript',
 			UNLIMITED_BLOCKS . 'dist/editor.js',
-			array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-data', 'wp-html-entities', "wp-i18n"),
+			array('jquery', 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-data', 'wp-html-entities', "wp-i18n"),
 			1
 		);
 		// Register JavasScript File src/script.js
@@ -94,6 +94,12 @@ if (!function_exists('unlimited_blocks_script')) {
 		wp_enqueue_style('owl-slider-css', UNLIMITED_BLOCKS . 'assets/css/owl-slider-min.css', false);
 		wp_enqueue_style('owl-slider-css-default', UNLIMITED_BLOCKS . 'assets/css/ow.slided.default.css', false);
 
+		// slick 
+		wp_enqueue_style('slick-slider', "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css", false);
+		wp_enqueue_style('slick-theme', "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css", false);
+		wp_enqueue_script('custom-query-2', UNLIMITED_BLOCKS . 'assets/js/ubl-custom.js', array('jquery'), 2);
+		// slick 
+
 		wp_enqueue_style('fontawesom-css', UNLIMITED_BLOCKS . 'assets/fontawesome/css/all.min.css', false);
 		wp_enqueue_style('ul-animate-css', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css', false);
 		wp_enqueue_style('google-font', UNLIMITED_BLOCKS_FONT_FAMILY_LINK, false);
@@ -105,6 +111,11 @@ if (!function_exists('unlimited_blocks_script')) {
 	function unlimited_blocks_script_only_front()
 	{
 		wp_enqueue_script('owl-slider-js', UNLIMITED_BLOCKS . 'assets/js/owl-slider.js', array('jquery'), [], true);
+		// slick slider css 
+		wp_enqueue_style('slick-slider-18', "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css", false);
+		// wp_enqueue_style('slick-theme', "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css", false);
+		// slick slider css 
+		wp_enqueue_script('slick-slider-js', "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js", array('jquery'), [], true);
 	}
 	add_action('admin_enqueue_scripts', 'unlimited_blocks_script');
 

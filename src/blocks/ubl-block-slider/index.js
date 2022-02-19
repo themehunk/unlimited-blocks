@@ -1,10 +1,10 @@
-import "./editor.scss";
+// import "./editor.scss";
 import { registerBlockType } from "@wordpress/blocks";
 import Edit from "./edit";
 let bgImageWrapper = plugin_url.url + "assets/img/image2.jpg";
 import { __ } from "@wordpress/i18n";
 import { RichText } from "@wordpress/block-editor";
-const attrSave = {
+let attrSave = {
   sliderSetting: {
     type: "array",
     default: [
@@ -484,9 +484,11 @@ registerBlockType("unlimited-blocks/slide", {
     }
     return attr_;
   },
-  attributes: attrSave,
+  attributes: { ...attrSave },
   example: () => {},
-  edit: Edit,
+  edit: (props) => {
+    return <Edit {...props} />;
+  },
   save: (props) => {
     // console.log("props", props);
     let { slides, sliderSetting } = props.attributes;

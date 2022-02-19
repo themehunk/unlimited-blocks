@@ -1,13 +1,3 @@
-// const switcher = (props) => {
-//   return (
-//     <div class="ubl-switcher-bg-clr-gradient clor_color">
-//       <span class="bg-span"></span>
-//       <span class="selected">Border</span>
-//       <span class="">Box Shadow</span>
-//     </div>
-//   );
-// };
-// export default switcher;
 const Switcher = (props) => {
   const { navItem, clickme, value, wrapperClass } = props;
   if (navItem) {
@@ -15,14 +5,13 @@ const Switcher = (props) => {
     if (wrapperClass) {
       default_class = default_class.concat(" ", wrapperClass);
     }
-
     let getIndexValue = navItem.findIndex((val) => val.name == value);
-
-    // console.log("items->", navItem);
-    // console.log("get->" + value, getIndexValue);
-    let styleBack = null;
+    let divider = navItem.length;
+    let widthBG = 100 / divider;
+    let styleBack = { width: widthBG + "%" };
     if (getIndexValue > 0) {
-      styleBack = { left: "calc(50% - 2px)" };
+      let moveLeft = widthBG * getIndexValue;
+      styleBack = { ...styleBack, left: `calc(${moveLeft}% - 2px)` };
     }
     return (
       <div className={default_class}>
@@ -31,6 +20,7 @@ const Switcher = (props) => {
           return (
             <div
               key={key_}
+              nav-id={nav_val.name}
               onClick={() => {
                 if (nav_val.name != value) {
                   clickme(nav_val.name);

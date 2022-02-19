@@ -13,7 +13,7 @@ unlimited_blocks_register_block_fn('progress-bar-pie');
 unlimited_blocks_register_block_fn('slide');
 unlimited_blocks_register_block_fn('ubl-column-block-column');
 unlimited_blocks_register_block_fn('ubl-column-block-wrapper');
-// unlimited_blocks dynamic blocks
+// unlimited_blocks dynamic blocks -----------------------------------------------------
 include_once "block-callback/post-list-layout.php";
 include_once "block-callback/post-slider-block.php";
 include_once "block-callback/post-category-layout.php";
@@ -27,3 +27,4 @@ include_once "block-callback/post-image-layout-five-post.php";
 include_once "block-callback/post-image-layout-six-post.php";
 // woocommerce layout 
 include_once "block-callback/product-one.php";
+include_once "block-callback/slick-slider.php";

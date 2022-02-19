@@ -24,3 +24,4 @@ import "./blocks/block-layout-pre";
 import "./blocks/column-blocks-column";
 //woocommerce blocks
 import "./blocks/simple-product";
+import "./blocks/ubl-content-slider";

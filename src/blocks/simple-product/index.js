@@ -1,4 +1,4 @@
-import "./editor.scss";
+// import "./editor.scss";
 import { registerBlockType } from "@wordpress/blocks";
 import Edit from "./edit";
 import { __ } from "@wordpress/i18n";
