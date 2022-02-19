@@ -11,10 +11,13 @@ registerBlockType("unlimited-blocks/owl-slider", {
   icon: ubl_block_slider_owl.icon,
   keywords: ubl_block_slider_owl.keywords,
   category: "unlimited-blocks-category",
+  supports: {
+    align: ["none", "wide", "full"],
+  },
   attributes: {
     wrapper_id: {
       type: "string",
-      default: false,
+      default: "",
     },
     sliderSetting: {
       type: "object",
@@ -22,7 +25,7 @@ registerBlockType("unlimited-blocks/owl-slider", {
         // slider settings
         dimension: {
           width: false,
-          custom_width: 580,
+          custom_width: 100,
           height: false,
           custom_height: 360,
         },
@@ -34,7 +37,7 @@ registerBlockType("unlimited-blocks/owl-slider", {
           activeColor: "rgba(68,222,68,1)",
         },
         leftRightTrigger: {
-          fontSize: 20,
+          fontSize: 15,
           color: "rgba(231,192,192,1)",
         },
         autoTrigger: false,
@@ -62,14 +65,14 @@ registerBlockType("unlimited-blocks/owl-slider", {
         height: "",
         width: "",
         bg: {
-          backgroundType: "color",
-          backgroundImage: "",
-          backgroundImageSize: "cover",
+          // backgroundType: "color",
+          // backgroundImage: "",
+          // backgroundImageSize: "cover",
           backgroundColorType: "color",
           backgroundColor: "#ffbf00",
           backgroundImageGradient:
             "radial-gradient(rgb(6, 147, 227) 38%, rgb(155, 81, 224) 80%)",
-          backgroundOpacity: 0.6,
+          // backgroundOpacity: 0.6,
         },
         border: {},
       },
@@ -82,14 +85,11 @@ registerBlockType("unlimited-blocks/owl-slider", {
         height: "",
         width: "",
         bg: {
-          backgroundType: "color",
-          backgroundImage: "",
-          backgroundImageSize: "cover",
           backgroundColorType: "color",
           backgroundColor: "#ffbf00",
           backgroundImageGradient:
             "radial-gradient(rgb(6, 147, 227) 38%, rgb(155, 81, 224) 80%)",
-          backgroundOpacity: 0.6,
+          // backgroundOpacity: 0.6,
         },
         // border: false,
         // borderColor: "",

@@ -91,27 +91,16 @@ class BackgroundType extends Component {
         </span>
         <div className="types_">
           <div
-            data-title={__("None", "unlimited-blocks")}
-            className={`${!this.state.backgroundType ? "selected" : ""}`}
-          >
-            <span
-              className={`buttons_ dashicons dashicons-dismiss`}
-              onClick={() => {
-                this.updateState("backgroundType", "");
-              }}
-            ></span>
-          </div>
-          <div
             data-title={__("Color", "unlimited-blocks")}
             className={`${
               this.state.backgroundType == "color" ? "selected" : ""
             }`}
+            onClick={() => {
+              this.updateState("backgroundType", "color");
+            }}
           >
             <span
               className={`buttons_ dashicons dashicons-admin-customizer`}
-              onClick={() => {
-                this.updateState("backgroundType", "color");
-              }}
             ></span>
           </div>
           <div
@@ -119,13 +108,22 @@ class BackgroundType extends Component {
             className={`${
               this.state.backgroundType == "image" ? "selected" : ""
             }`}
+            onClick={() => {
+              this.updateState("backgroundType", "image");
+            }}
           >
             <span
               className={`buttons_ dashicons dashicons-format-image `}
-              onClick={() => {
-                this.updateState("backgroundType", "image");
-              }}
             ></span>
+          </div>
+          <div
+            data-title={__("None", "unlimited-blocks")}
+            className={`${!this.state.backgroundType ? "selected" : ""}`}
+            onClick={() => {
+              this.updateState("backgroundType", "");
+            }}
+          >
+            <span className={`buttons_ dashicons dashicons-dismiss`}></span>
           </div>
         </div>
       </div>
