@@ -17,7 +17,7 @@ unlimited_blocks_register_block_fn('owl-slider',  [
                     "height" => false,
                     "custom_height" => 360,
                 ],
-                "sliderEffect" => "slide",
+                "sliderEffect" => "sliderEffect",
                 "triggerActive" => "both",
                 "linearTrigger" => [
                     "fontSize" => 20,
@@ -25,7 +25,7 @@ unlimited_blocks_register_block_fn('owl-slider',  [
                     "activeColor" => "rgba(68,222,68,1)",
                 ],
                 "leftRightTrigger" => [
-                    "fontSize" => 20,
+                    "fontSize" => 15,
                     "color" => "rgba(231,192,192,1)",
                 ],
                 "autoTrigger" => false,
@@ -53,14 +53,13 @@ unlimited_blocks_register_block_fn('owl-slider',  [
                 "height" => "",
                 "width" => "",
                 "bg" => [
-                    "backgroundType" => "color",
-                    "backgroundImage" => "",
-                    "backgroundImageSize" => "cover",
+                    // "backgroundType" => "color",
+                    // "backgroundImage" => "",
+                    // "backgroundImageSize" => "cover",
                     "backgroundColorType" => "color",
                     "backgroundColor" => "#ffbf00",
                     "backgroundImageGradient" =>
                     "radial-gradient(rgb(6, 147, 227) 38%, rgb(155, 81, 224) 80%)",
-                    "backgroundOpacity" => 0.6,
                 ],
                 "border" => [],
             ],
@@ -73,14 +72,10 @@ unlimited_blocks_register_block_fn('owl-slider',  [
                 "height" => "",
                 "width" => "",
                 "bg" => [
-                    "backgroundType" => "color",
-                    "backgroundImage" => "",
-                    "backgroundImageSize" => "cover",
                     "backgroundColorType" => "color",
                     "backgroundColor" => "#ffbf00",
                     "backgroundImageGradient" =>
                     "radial-gradient(rgb(6, 147, 227) 38%, rgb(155, 81, 224) 80%)",
-                    "backgroundOpacity" => 0.6,
                 ],
                 // border=> false,
                 // "borderColor"=> "",

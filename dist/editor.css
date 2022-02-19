@@ -2133,120 +2133,6 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
   position: relative;
   height: 100%;
 }
-.ubl-block-slide-wrapper .ubl-slider-container .ubl-slider-bullet-next-prev {
-  position: absolute;
-  z-index: 1000;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
-.ubl-block-slide-wrapper .ubl-slider-container .ubl-slider-bullet-next-prev span {
-  color: white;
-  padding: 3px 12px;
-  display: block;
-}
-.ubl-block-slide-wrapper .ubl-slider-container .ubl-slider-bullet-next-prev.next {
-  right: 0;
-}
-.ubl-block-slide-wrapper .ubl-slider-container .ubl-slider-bullet-next-prev.prev {
-  left: 0;
-}
-.ubl-block-slide-wrapper .ubl-slider-container .ubl-remove-slide {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  color: white;
-  right: 10px;
-  top: 10px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  font-size: 16px;
-  background: red;
-  cursor: pointer;
-  z-index: 10;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-ul-slides, .ubl-block-slide-wrapper ul.ubl-slider-ul-bullet, .ubl-block-slide-wrapper ul.ubl-slider-bullet-trigger {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-bullet-trigger {
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  width: 100%;
-  bottom: 18px;
-  z-index: 100;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-bullet-trigger.trigger_out {
-  position: unset;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-bullet-trigger li {
-  display: block;
-  margin: 10px;
-  cursor: pointer;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-bullet-trigger li span {
-  width: 22px;
-  height: 22px;
-  display: block;
-  background-color: #f39a3e;
-  border-radius: 50%;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-bullet-trigger li.selected_ span {
-  background-color: red;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-ul-bullet {
-  margin: 10px auto;
-  width: fit-content;
-  display: flex;
-  align-items: center;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-ul-bullet > li {
-  width: fit-content;
-  margin: 0px 9px;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-ul-bullet > li.selected_ span {
-  background: #6f6e6e;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-ul-bullet > li.add-item span {
-  color: #757474;
-  font-size: 12px;
-  border: 3px solid;
-  height: 27px;
-  width: 27px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-ul-bullet > li span {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  border: 5px solid #cccccc;
-  display: block;
-  position: relative;
-  cursor: pointer;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-ul-slides {
-  min-height: 360px;
-  position: relative;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-ul-slides li {
-  min-height: 360px;
-  background-color: white;
-  z-index: 1;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-ul-slides li.selected_ {
-  z-index: 2;
-}
 
 .ubl-slider-wrapper {
   position: relative;
@@ -2433,6 +2319,46 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
   max-height: 10000px;
   overflow: unset;
   opacity: 1;
+}
+
+.ubl-slick-slider-block .ubl-slick-slider-arrow {
+  position: absolute;
+  z-index: 1000;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+}
+.ubl-slick-slider-block .ubl-slick-slider-arrow.prev_ {
+  left: 12px;
+}
+.ubl-slick-slider-block .ubl-slick-slider-arrow.next_ {
+  right: 12px;
+}
+.ubl-slick-slider-block ul.slick-dots[data-class=ubl-slick-slider-dots] {
+  position: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  grid-gap: 10px;
+}
+.ubl-slick-slider-block ul.slick-dots[data-class=ubl-slick-slider-dots] li.custonLi_ {
+  display: block;
+  height: unset;
+  width: unset;
+  margin: 0;
+}
+.ubl-slick-slider-block ul.slick-dots[data-class=ubl-slick-slider-dots] li.custonLi_ span {
+  height: 15px;
+  width: 15px;
+  background: #6f6e6e;
+  display: block;
+  border-radius: 50%;
+}
+.ubl-slick-slider-block ul.slick-dots[data-class=ubl-slick-slider-dots] li.custonLi_.slick-active span {
+  background: #fc9a34;
 }
 
 /*# sourceMappingURL=editor.css.map*/

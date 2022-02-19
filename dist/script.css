@@ -1500,80 +1500,6 @@
   height: 100%;
   overflow: hidden;
 }
-.ubl-block-slide-wrapper .ubl-slider-bullet-next-prev {
-  position: absolute;
-  z-index: 1000;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
-.ubl-block-slide-wrapper .ubl-slider-bullet-next-prev span {
-  color: white;
-  padding: 12px;
-  display: flex;
-  align-items: center;
-}
-.ubl-block-slide-wrapper .ubl-slider-bullet-next-prev.next {
-  right: 0;
-}
-.ubl-block-slide-wrapper .ubl-slider-bullet-next-prev.prev {
-  left: 0;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-ul-slides, .ubl-block-slide-wrapper ul.ubl-slider-bullet-trigger {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-bullet-trigger {
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  width: 100%;
-  bottom: 18px;
-  z-index: 100;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-bullet-trigger.trigger_out {
-  position: unset;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-bullet-trigger li {
-  display: block;
-  margin: 10px;
-  cursor: pointer;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-bullet-trigger li span {
-  width: 22px;
-  height: 22px;
-  display: block;
-  background-color: #f39a3e;
-  border-radius: 50%;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-bullet-trigger li.selected_ span {
-  background-color: red;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-ul-slides.fadeEffect {
-  min-height: 360px;
-  position: relative;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-ul-slides.fadeEffect li {
-  min-height: 360px;
-  background-color: white;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: 0.7s opacity linear;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-ul-slides.fadeEffect li.selected_ {
-  opacity: 1;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-ul-slides.slideEffect {
-  display: flex;
-}
-.ubl-block-slide-wrapper ul.ubl-slider-ul-slides.slideEffect li {
-  min-height: 360px;
-  flex: 1;
-  margin: 0 !important;
-}
 
 .ubl-slider-wrapper {
   position: relative;
@@ -1642,6 +1568,22 @@
   text-decoration: none;
   color: white;
   letter-spacing: 1px;
+}
+
+.ubl-slick-slider-block .ubl-slick-slider-arrow {
+  position: absolute;
+  z-index: 1000;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+}
+.ubl-slick-slider-block .ubl-slick-slider-arrow.prev_ {
+  left: 12px;
+}
+.ubl-slick-slider-block .ubl-slick-slider-arrow.next_ {
+  right: 12px;
 }
 
 /*# sourceMappingURL=script.css.map*/

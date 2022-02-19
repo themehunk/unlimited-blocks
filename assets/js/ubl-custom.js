@@ -25,9 +25,7 @@
       // console.log("getSlider->", getSlider);
       // return;
       if (getSlider.length) {
-        $.each(getSlider, function (key, value) {
-          // console.log("value->", value);
-          // console.log("value->", $(this));
+        $.each(getSlider, function () {
           const slider = $(this);
           ULB.ublSlickSlider(slider);
         });
@@ -36,6 +34,12 @@
     ublSlickSlider: (slider) => {
       // console.log("ff", slider);
       let getSettings = slider.attr("data-slider");
+      let getLeft = slider.parent().find(".ubl-slick-slider-arrow.prev_");
+      let getRight = slider.parent().find(".ubl-slick-slider-arrow.next_");
+      // console.log("getLeft", getLeft);
+      // console.log("getRight", getRight);
+      // return;
+
       let parseJson = JSON.parse(getSettings);
       let slickOption = {
         // dots: true,
@@ -47,8 +51,23 @@
       if (typeof parseJson == "object") {
         slickOption = { ...slickOption, ...parseJson };
       }
+
+      // prev and next arrow
+      slickOption.prevArrow = getLeft;
+      slickOption.nextArrow = getRight;
+      // slickOption.customPaging = function (slider, i) {
+      //   console.log("slider->", slider);
+      //   console.log("slider i ->", i);
+      // };
       // console.log("slickOption", slickOption);
       slider.slick(slickOption);
+      // prev and next arrow
+      getLeft.appendTo(slider);
+      getRight.appendTo(slider);
+      // prev and next arrow
+      //   customPaging : function(slider, i) {
+      //     return '<a href="#"><img src="slide-dot.png" /><img src="slide-dot-active.png" /></a>';
+      // },
     },
     addOwlSlider: function () {
       let getSlider = $(".elemento-owl-slider-common-secript");

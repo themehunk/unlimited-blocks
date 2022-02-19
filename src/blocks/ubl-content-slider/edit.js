@@ -4,6 +4,7 @@ import {
   __experimentalLinkControl as LinkControl,
   BlockControls,
   AlignmentToolbar,
+  BlockAlignmentToolbar,
 } from "@wordpress/block-editor";
 import {
   PanelBody,
@@ -26,6 +27,7 @@ let bgImageWrapper = plugin_url.url + "assets/img/image2.jpg";
 import BasicToggleNav from "../block-assets/utility-components/BasicToggleNav";
 import Switcher from "../block-assets/utility-components/TwoSwitcher";
 import BackgroundType from "../block-assets/utility-components/backgroundType/backgroundType";
+import BackgroundColor from "../block-assets/utility-components/backgroundType/backgroundColor";
 class Edit extends Component {
   constructor(props) {
     super(props);
@@ -96,120 +98,179 @@ class Edit extends Component {
   slides = () => {
     const { attributes } = this.props;
     const slides = [...attributes.slides];
-    const {
-      wrapper,
-      title: sliderTitle,
-      text: description,
-      buttoneOne,
-      buttoneTwo,
-      sliderSetting,
-    } = attributes;
-    let wrapperAlignment = wrapper.alignment;
-    // let wrapperSpacing = {
-    //   marginTop: sliderSetting.wrapper.spacing + "px",
-    //   marginBottom: sliderSetting.wrapper.spacing + "px",
-    //   textAlign: sliderSetting.wrapper.textAlign,
-    // };
-    let buttonOneStyle = {
-      fontSize: buttoneOne.fontSize + "px",
-      color: buttoneOne.color,
-      paddingTop: buttoneOne.height + "px",
-      paddingBottom: buttoneOne.height + "px",
-      paddingLeft: buttoneOne.width + "px",
-      paddingRight: buttoneOne.width + "px",
-    };
-    // buttonOneStyle = sliderSetting.buttoneOne.border
-    //   ? {
-    //       ...{
-    //         borderColor: sliderSetting.buttoneOne.borderColor,
-    //         borderWidth: sliderSetting.buttoneOne.borderWidth,
-    //         borderRadius: sliderSetting.buttoneOne.borderRadius,
-    //         borderStyle: "solid",
-    //       },
-    //       ...buttonOneStyle,
-    //     }
-    //   : buttonOneStyle;
-    // // background color btn
-    // if (sliderSetting.buttoneOne.backgroundColor.type == "color") {
-    //   buttonOneStyle["backgroundColor"] =
-    //     sliderSetting.buttoneOne.backgroundColor.color;
-    // } else if (sliderSetting.buttoneOne.backgroundColor.type == "gradient") {
-    //   buttonOneStyle["backgroundImage"] =
-    //     sliderSetting.buttoneOne.backgroundColor.gradient;
-    // }
-
-    let buttonTwoStyle = {
-      fontSize: buttoneTwo.fontSize + "px",
-      color: buttoneTwo.color,
-      paddingTop: buttoneTwo.height + "px",
-      paddingBottom: buttoneTwo.height + "px",
-      paddingLeft: buttoneTwo.width + "px",
-      paddingRight: buttoneTwo.width + "px",
-    };
-    // buttonTwoStyle = sliderSetting.buttoneTwo.border
-    //   ? {
-    //       ...{
-    //         borderColor: sliderSetting.buttoneTwo.borderColor,
-    //         borderWidth: sliderSetting.buttoneTwo.borderWidth,
-    //         borderRadius: sliderSetting.buttoneTwo.borderRadius,
-    //         borderStyle: "solid",
-    //       },
-    //       ...buttonTwoStyle,
-    //     }
-    //   : buttonTwoStyle;
-    // // background color btn
-    // if (sliderSetting.buttoneTwo.backgroundColor.type == "color") {
-    //   buttonTwoStyle["backgroundColor"] =
-    //     sliderSetting.buttoneTwo.backgroundColor.color;
-    // } else if (sliderSetting.buttoneTwo.backgroundColor.type == "gradient") {
-    //   buttonTwoStyle["backgroundImage"] =
-    //     sliderSetting.buttoneTwo.backgroundColor.gradient;
-    // }
-
-    // title style
-    let TitleStyle = {
-      fontSize: sliderTitle.fontSize + "px",
-      color: sliderTitle.color,
-    };
-    // description style
-    let descriptionStyle = {
-      fontSize: description.fontSize + "px",
-      color: description.color,
-    };
-
-    const slider_options_ = {
-      // nav: true,
-      // items: 1,
-      // startPosition: currentSlideIndex,
-      // dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    };
-
-    if (sliderSetting.sliderEffect != "slide") {
-      slider_options_["fade"] = true;
-    }
-    if (
-      sliderSetting.triggerActive == "both" ||
-      sliderSetting.triggerActive == "dots"
-    ) {
-      slider_options_["dots"] = true;
-    }
-    if (
-      sliderSetting.triggerActive == "both" ||
-      sliderSetting.triggerActive == "arrows"
-    ) {
-      slider_options_["nav"] = true;
-    }
-
-    if (sliderSetting.autoTrigger) {
-      slider_options_["autoplay"] = true;
-      slider_options_["autoplaySpeed"] = sliderSetting.autoTriggerDelay * 1000;
-    }
-    console.log("slider_options_", slider_options_);
     if (slides.length) {
+      const {
+        wrapper,
+        title: sliderTitle,
+        text: description,
+        buttoneOne,
+        buttoneTwo,
+        sliderSetting,
+      } = attributes;
+      let wrapperAlignment = wrapper.alignment;
+      // let wrapperSpacing = {
+      //   marginTop: sliderSetting.wrapper.spacing + "px",
+      //   marginBottom: sliderSetting.wrapper.spacing + "px",
+      //   textAlign: sliderSetting.wrapper.textAlign,
+      // };
+      let buttonOneStyle = {
+        fontSize: buttoneOne.fontSize + "px",
+        color: buttoneOne.color,
+        paddingTop: buttoneOne.height + "px",
+        paddingBottom: buttoneOne.height + "px",
+        paddingLeft: buttoneOne.width + "px",
+        paddingRight: buttoneOne.width + "px",
+      };
+      // buttonOneStyle = sliderSetting.buttoneOne.border
+      //   ? {
+      //       ...{
+      //         borderColor: sliderSetting.buttoneOne.borderColor,
+      //         borderWidth: sliderSetting.buttoneOne.borderWidth,
+      //         borderRadius: sliderSetting.buttoneOne.borderRadius,
+      //         borderStyle: "solid",
+      //       },
+      //       ...buttonOneStyle,
+      //     }
+      //   : buttonOneStyle;
+      // background color btn
+      if (buttoneOne.bg.backgroundColorType == "color") {
+        buttonOneStyle["backgroundColor"] = buttoneOne.bg.backgroundColor;
+      } else if (buttoneOne.bg.backgroundColorType == "gradient") {
+        buttonOneStyle["backgroundImage"] =
+          buttoneOne.bg.backgroundImageGradient;
+      }
+
+      let buttonTwoStyle = {
+        fontSize: buttoneTwo.fontSize + "px",
+        color: buttoneTwo.color,
+        paddingTop: buttoneTwo.height + "px",
+        paddingBottom: buttoneTwo.height + "px",
+        paddingLeft: buttoneTwo.width + "px",
+        paddingRight: buttoneTwo.width + "px",
+      };
+      // buttonTwoStyle = sliderSetting.buttoneTwo.border
+      //   ? {
+      //       ...{
+      //         borderColor: sliderSetting.buttoneTwo.borderColor,
+      //         borderWidth: sliderSetting.buttoneTwo.borderWidth,
+      //         borderRadius: sliderSetting.buttoneTwo.borderRadius,
+      //         borderStyle: "solid",
+      //       },
+      //       ...buttonTwoStyle,
+      //     }
+      //   : buttonTwoStyle;
+      // // background color btn
+      if (buttoneTwo.bg.backgroundColorType == "color") {
+        buttonTwoStyle["backgroundColor"] = buttoneTwo.bg.backgroundColor;
+      } else if (buttoneTwo.bg.backgroundColorType == "gradient") {
+        buttonTwoStyle["backgroundImage"] =
+          buttoneTwo.bg.backgroundImageGradient;
+      }
+      // console.log("buttonOneStyle->", buttonOneStyle);
+      // console.log("buttoneTwo->", buttoneTwo);
+      // title style
+      let TitleStyle = {
+        fontSize: sliderTitle.fontSize + "px",
+        color: sliderTitle.color,
+      };
+      // description style
+      let descriptionStyle = {
+        fontSize: description.fontSize + "px",
+        color: description.color,
+      };
+
+      const slider_options_ = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      };
+
+      if (sliderSetting.sliderEffect != "slideEffect") {
+        slider_options_["fade"] = true;
+      }
+
+      if (sliderSetting.autoTrigger) {
+        slider_options_["autoplay"] = true;
+        slider_options_["autoplaySpeed"] =
+          sliderSetting.autoTriggerDelay * 1000;
+      }
+      // next and previous custom
+      if (
+        sliderSetting.triggerActive == "both" ||
+        sliderSetting.triggerActive == "arrows"
+      ) {
+        slider_options_["arrows"] = true;
+        const arrowStyle = {
+          fontSize: sliderSetting.leftRightTrigger.fontSize + "px",
+          color: sliderSetting.leftRightTrigger.color,
+        };
+        const ArrowLeft = (props) => {
+          const { onClick } = props;
+          return (
+            <div
+              className={`ubl-slick-slider-arrow next_`}
+              style={arrowStyle}
+              onClick={onClick}
+            >
+              {/* Next */}
+              <i className="fas fa-chevron-circle-right"></i>
+            </div>
+          );
+        };
+        const ArrowRight = (props) => {
+          const { onClick } = props;
+          return (
+            <div
+              className={`ubl-slick-slider-arrow prev_`}
+              style={arrowStyle}
+              onClick={onClick}
+            >
+              <i className="fas fa-chevron-circle-left"></i>
+            </div>
+          );
+        };
+        slider_options_["nextArrow"] = <ArrowLeft />;
+        slider_options_["prevArrow"] = <ArrowRight />;
+      } else {
+        slider_options_["arrows"] = false;
+      }
+      // dots functionality
+      if (
+        sliderSetting.triggerActive == "both" ||
+        sliderSetting.triggerActive == "dots"
+      ) {
+        slider_options_["dots"] = true;
+      } else {
+        slider_options_["dots"] = false;
+      }
+
+      slider_options_["appendDots"] = (check) => {
+        let dotsStyle = {
+          height: sliderSetting.linearTrigger.fontSize + "px",
+          width: sliderSetting.linearTrigger.fontSize + "px",
+          color: sliderSetting.linearTrigger.color,
+        };
+
+        return (
+          <ul data-class="ubl-slick-slider-dots">
+            {check.map((dotsChildren) => {
+              if (dotsChildren.props.className == "slick-active") {
+                dotsStyle.color = sliderSetting.linearTrigger.activeColor;
+              }
+              return (
+                <li
+                  className={`custonLi_ ${dotsChildren.props.className}`}
+                  onClick={dotsChildren.props.children.props.onClick}
+                >
+                  <span style={dotsStyle}></span>
+                </li>
+              );
+            })}
+          </ul>
+        );
+      };
+      // console.log("slider_options_", slider_options_);
       const OwlCarousel_ = (
         <SlickSlider
           ref={this.SlickSliderRef}
@@ -683,7 +744,7 @@ class Edit extends Component {
                 },
                 {
                   name: "style",
-                  title: "Style",
+                  title: "Style & Settings",
                   icon: "dashicons dashicons-admin-customizer",
                 },
               ]}
@@ -702,114 +763,6 @@ class Edit extends Component {
               >
                 {/* -----------------------------------------============================================================== */}
                 <div className="ubl-slider-panel">
-                  {/* <p>
-                    <strong>
-                      {__("Content Alignment", "unlimited-blocks")}
-                    </strong>
-                  </p> */}
-                  {/* <div className="ubl-alignment">
-                    <div>
-                      <span
-                        onClick={() => {
-                          this.updateGlobalSlide(
-                            "left",
-                            "wrapper",
-                            "alignment"
-                          );
-                        }}
-                        className={`dashicons dashicons-editor-alignleft ${
-                          sliderSetting.wrapper.alignment == "left"
-                            ? "active"
-                            : ""
-                        }`}
-                      ></span>
-                    </div>
-                    <div>
-                      <span
-                        onClick={() => {
-                          this.updateGlobalSlide(
-                            "center",
-                            "wrapper",
-                            "alignment"
-                          );
-                        }}
-                        className={`dashicons dashicons-editor-aligncenter ${
-                          sliderSetting.wrapper.alignment == "center"
-                            ? "active"
-                            : ""
-                        }`}
-                      ></span>
-                    </div>
-                    <div>
-                      <span
-                        onClick={() => {
-                          this.updateGlobalSlide(
-                            "right",
-                            "wrapper",
-                            "alignment"
-                          );
-                        }}
-                        className={`dashicons dashicons-editor-alignright ${
-                          sliderSetting.wrapper.alignment == "right"
-                            ? "active"
-                            : ""
-                        }`}
-                      ></span>
-                    </div>
-                  </div> */}
-                  {/* <p>
-                    <strong>{__("Text Alignment", "unlimited-blocks")}</strong>
-                  </p> */}
-                  {/* <div className="ubl-alignment">
-                    <div>
-                      <span
-                        onClick={() => {
-                          this.updateGlobalSlide(
-                            "left",
-                            "wrapper",
-                            "textAlign"
-                          );
-                        }}
-                        className={`dashicons dashicons-editor-alignleft ${
-                          sliderSetting.wrapper.textAlign == "left"
-                            ? "active"
-                            : ""
-                        }`}
-                      ></span>
-                    </div>
-                    <div>
-                      <span
-                        onClick={() => {
-                          this.updateGlobalSlide(
-                            "center",
-                            "wrapper",
-                            "textAlign"
-                          );
-                        }}
-                        className={`dashicons dashicons-editor-aligncenter ${
-                          sliderSetting.wrapper.textAlign == "center"
-                            ? "active"
-                            : ""
-                        }`}
-                      ></span>
-                    </div>
-                    <div>
-                      <span
-                        onClick={() => {
-                          this.updateGlobalSlide(
-                            "right",
-                            "wrapper",
-                            "textAlign"
-                          );
-                        }}
-                        className={`dashicons dashicons-editor-alignright ${
-                          sliderSetting.wrapper.textAlign == "right"
-                            ? "active"
-                            : ""
-                        }`}
-                      ></span>
-                    </div>
-                  </div> */}
                   {/* --------------heading style---------------- */}
                   <p>
                     <strong>{__("Content Spacing", "unlimited-blocks")}</strong>
@@ -837,7 +790,7 @@ class Edit extends Component {
                         }
                       }}
                     >
-                      <span>{__("Heading Styles", "unlimited-blocks")}</span>
+                      <span>{__("Heading Style", "unlimited-blocks")}</span>
                       <div class="caret">
                         <i class="fas fa-caret-down"></i>
                       </div>
@@ -883,9 +836,7 @@ class Edit extends Component {
                         }
                       }}
                     >
-                      <span>
-                        {__("Description Setting", "unlimited-blocks")}
-                      </span>
+                      <span>{__("Description Style", "unlimited-blocks")}</span>
                       <div class="caret">
                         <i class="fas fa-caret-down"></i>
                       </div>
@@ -929,7 +880,7 @@ class Edit extends Component {
                         }
                       }}
                     >
-                      <span>{__("Button Setting", "unlimited-blocks")}</span>
+                      <span>{__("Button Style", "unlimited-blocks")}</span>
                       <div class="caret">
                         <i class="fas fa-caret-down"></i>
                       </div>
@@ -968,7 +919,31 @@ class Edit extends Component {
                           this.updateAttr(color, twoBtn, "color");
                         }}
                       />
-                      <p>{__("Background Color", "unlimited-blocks")}</p>
+                      <BackgroundColor
+                        value={{
+                          backgroundColorType:
+                            attributes[twoBtn].bg.backgroundColorType,
+                          backgroundColor:
+                            attributes[twoBtn].bg.backgroundColor,
+                          backgroundImageGradient:
+                            attributes[twoBtn].bg.backgroundImageGradient,
+                        }}
+                        changeme={(_properties) => {
+                          // console.log(
+                          //   "getProperty btn->" + twoBtn,
+                          //   _properties
+                          // );
+                          let saveObj = {
+                            backgroundColorType:
+                              _properties.backgroundColorType,
+                            backgroundColor: _properties.backgroundColor,
+                            backgroundImageGradient:
+                              _properties.backgroundImageGradient,
+                          };
+                          this.updateAttr(saveObj, twoBtn, "bg");
+                        }}
+                      />
+
                       {/* bg color  */}
                       {/* <div class="ubl-switcher-button-section sub">
                         <span
@@ -1145,206 +1120,238 @@ class Edit extends Component {
                 title={__("Slider Settings", "unlimited-blocks")}
                 initialOpen={false}
               >
-                <div className="slides-settings">
-                  <>
-                    <div className="flex-section-slider">
-                      <p>{__("Navigation", "unlimited-blocks")}</p>
-                      <select
-                        value={attributes.sliderSetting.triggerActive}
-                        onChange={(e) => {
-                          this.updateAttr(
-                            e.target.value,
-                            "sliderSetting",
-                            "triggerActive"
-                          );
-                        }}
-                      >
-                        <option value="both">
-                          {__("Arrows and Dots", "unlimited-blocks")}
-                        </option>
-                        <option value="arrows">
-                          {__("Arrows", "unlimited-blocks")}
-                        </option>
-                        <option value="dots">
-                          {__("Dots", "unlimited-blocks")}
-                        </option>
-                        <option value="n">
-                          {__("None", "unlimited-blocks")}
-                        </option>
-                      </select>
-                    </div>
-                    <div className="flex-section-slider">
-                      <p>{__("Transition", "unlimited-blocks")}</p>
-                      <select
-                        value={attributes.sliderSetting.sliderEffect}
-                        onChange={(e) => {
-                          this.updateAttr(
-                            e.target.value,
-                            "sliderSetting",
-                            "sliderEffect"
-                          );
-                        }}
-                      >
-                        <option value="fadeEffect">
-                          {__("Fade", "unlimited-blocks")}
-                        </option>
-                        <option value="slideEffect">
-                          {__("Slide", "unlimited-blocks")}
-                        </option>
-                      </select>
-                    </div>
-                    <div className="flex-section-slider">
-                      <p>{__("Autoplay", "unlimited-blocks")}</p>
-                      <ToggleControl
-                        checked={attributes.sliderSetting.autoTrigger}
-                        onChange={(e) => {
-                          this.updateAttr(e, "sliderSetting", "autoTrigger");
-                        }}
-                      />
-                    </div>
-                    {attributes.sliderSetting.autoTrigger && (
-                      <RangeControl
-                        label={__("Autoplay Speed", "unlimited-blocks")}
-                        value={attributes.sliderSetting.autoTriggerDelay}
-                        min={0}
-                        max={12}
-                        onChange={(e) => {
-                          this.updateAttr(
-                            e,
-                            "sliderSetting",
-                            "autoTriggerDelay"
-                          );
-                        }}
-                      />
-                    )}
-                    {/* {(attributes.sliderSetting.triggerActive == "both" ||
-                      attributes.sliderSetting.triggerActive == "dots") && (
-                      <div
-                        className={`slide-panel-single ${
-                          commonDropDown == "dots-style"
-                            ? "active"
-                            : ""
-                        }`}
-                      >
-                        <div
-                          class="slide-nav"
-                          onClick={() => {
-                            if (commonDropDown == "dots-style") {
-                              this.setState({ commonDropDown: "" });
-                            } else {
-                              this.setState({ commonDropDown: "dots-style" });
-                            }
+                <div className="ubl-panel-container ubl-slider-panel">
+                  <div className="slides-settings">
+                    <>
+                      <div className="flex-section-slider">
+                        <p>{__("Navigation", "unlimited-blocks")}</p>
+                        <select
+                          value={attributes.sliderSetting.triggerActive}
+                          onChange={(e) => {
+                            this.updateAttr(
+                              e.target.value,
+                              "sliderSetting",
+                              "triggerActive"
+                            );
                           }}
                         >
-                          <span>{__("Dotts Styles", "unlimited-blocks")}</span>
-                          <div class="caret">
-                            <i class="fas fa-caret-down"></i>
+                          <option value="both">
+                            {__("Arrows and Dots", "unlimited-blocks")}
+                          </option>
+                          <option value="arrows">
+                            {__("Arrows", "unlimited-blocks")}
+                          </option>
+                          <option value="dots">
+                            {__("Dots", "unlimited-blocks")}
+                          </option>
+                          <option value="n">
+                            {__("None", "unlimited-blocks")}
+                          </option>
+                        </select>
+                      </div>
+                      <div className="flex-section-slider">
+                        <p>{__("Transition", "unlimited-blocks")}</p>
+                        <select
+                          value={attributes.sliderSetting.sliderEffect}
+                          onChange={(e) => {
+                            this.updateAttr(
+                              e.target.value,
+                              "sliderSetting",
+                              "sliderEffect"
+                            );
+                          }}
+                        >
+                          <option value="fadeEffect">
+                            {__("Fade", "unlimited-blocks")}
+                          </option>
+                          <option value="slideEffect">
+                            {__("Slide", "unlimited-blocks")}
+                          </option>
+                        </select>
+                      </div>
+                      <div className="flex-section-slider">
+                        <p>{__("Autoplay", "unlimited-blocks")}</p>
+                        <ToggleControl
+                          checked={attributes.sliderSetting.autoTrigger}
+                          onChange={(e) => {
+                            this.updateAttr(e, "sliderSetting", "autoTrigger");
+                          }}
+                        />
+                      </div>
+                      {attributes.sliderSetting.autoTrigger && (
+                        <RangeControl
+                          label={__("Autoplay Speed", "unlimited-blocks")}
+                          value={attributes.sliderSetting.autoTriggerDelay}
+                          min={0}
+                          max={12}
+                          onChange={(e) => {
+                            this.updateAttr(
+                              e,
+                              "sliderSetting",
+                              "autoTriggerDelay"
+                            );
+                          }}
+                        />
+                      )}
+                      {(attributes.sliderSetting.triggerActive == "both" ||
+                        attributes.sliderSetting.triggerActive == "dots") && (
+                        <div
+                          className={`slide-panel-single ${
+                            commonDropDown == "dots-style" ? "active" : ""
+                          }`}
+                        >
+                          <div
+                            class="slide-nav"
+                            onClick={() => {
+                              if (commonDropDown == "dots-style") {
+                                this.setState({ commonDropDown: "" });
+                              } else {
+                                this.setState({ commonDropDown: "dots-style" });
+                              }
+                            }}
+                          >
+                            <span>
+                              {__("Dotts Styles", "unlimited-blocks")}
+                            </span>
+                            <div class="caret">
+                              <i class="fas fa-caret-down"></i>
+                            </div>
+                          </div>
+                          <div className="slides-element">
+                            <RangeControl
+                              label={__("Size", "unlimited-blocks")}
+                              value={
+                                attributes.sliderSetting.linearTrigger.fontSize
+                              }
+                              min={0}
+                              max={70}
+                              onChange={(e) => {
+                                let getLinearTrigger = {
+                                  ...attributes.sliderSetting.linearTrigger,
+                                };
+                                getLinearTrigger.fontSize = e;
+                                this.updateAttr(
+                                  getLinearTrigger,
+                                  "sliderSetting",
+                                  "linearTrigger"
+                                );
+                              }}
+                            />
+                            <label className="normal-label">
+                              {__("Color", "unlimited-blocks")}
+                            </label>
+                            <ColorPalette
+                              value={
+                                attributes.sliderSetting.linearTrigger.color
+                              }
+                              onChange={(color) => {
+                                let getLinearTrigger = {
+                                  ...attributes.sliderSetting.linearTrigger,
+                                };
+                                getLinearTrigger.color = color;
+                                this.updateAttr(
+                                  getLinearTrigger,
+                                  "sliderSetting",
+                                  "linearTrigger"
+                                );
+                              }}
+                            />
+                            <label className="normal-label">
+                              {__("Active Color", "unlimited-blocks")}
+                            </label>
+                            <ColorPalette
+                              value={
+                                attributes.sliderSetting.linearTrigger
+                                  .activeColor
+                              }
+                              onChange={(color) => {
+                                let getLinearTrigger = {
+                                  ...attributes.sliderSetting.linearTrigger,
+                                };
+                                getLinearTrigger.activeColor = color;
+                                this.updateAttr(
+                                  getLinearTrigger,
+                                  "sliderSetting",
+                                  "linearTrigger"
+                                );
+                              }}
+                            />
                           </div>
                         </div>
-                        <div className="slides-element">
-                          <RangeControl
-                            label={__("Size", "unlimited-blocks")}
-                            value={attributes.sliderSetting.linearTrigger.fontSize}
-                            min={0}
-                            max={70}
-                            onChange={(e) =>
-                              this.updateGlobalSlide(
-                                e,
-                                "linearTrigger",
-                                "fontSize"
-                              )
-                            }
-                          />
-                          <label className="normal-label">
-                            {__("Color", "unlimited-blocks")}
-                          </label>
-                          <ColorPicker
-                            color={attributes.sliderSetting.linearTrigger.color}
-                            onChangeComplete={(colorBg) => {
-                              let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                              this.updateGlobalSlide(
-                                color,
-                                "linearTrigger",
-                                "color"
-                              );
-                            }}
-                          />
-                          <label className="normal-label">
-                            {__("Active Color", "unlimited-blocks")}
-                          </label>
-                          <ColorPicker
-                            color={attributes.sliderSetting.linearTrigger.activeColor}
-                            onChangeComplete={(colorBg) => {
-                              let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                              this.updateGlobalSlide(
-                                color,
-                                "linearTrigger",
-                                "activeColor"
-                              );
-                            }}
-                          />
-                        </div>
-                      </div>
-                    )} */}
+                      )}
 
-                    {(attributes.sliderSetting.triggerActive == "both" ||
-                      attributes.sliderSetting.triggerActive == "arrows") && (
-                      <div
-                        className={`slide-panel-single ${
-                          commonDropDown == "arrow-style" ? "active" : ""
-                        }`}
-                      >
+                      {(attributes.sliderSetting.triggerActive == "both" ||
+                        attributes.sliderSetting.triggerActive == "arrows") && (
                         <div
-                          class="slide-nav"
-                          onClick={() => {
-                            if (commonDropDown == "arrow-style") {
-                              this.setState({ commonDropDown: "" });
-                            } else {
-                              this.setState({ commonDropDown: "arrow-style" });
-                            }
-                          }}
+                          className={`slide-panel-single ${
+                            commonDropDown == "arrow-style" ? "active" : ""
+                          }`}
                         >
-                          <span>{__("Arrows Styles", "unlimited-blocks")}</span>
-                          <div class="caret">
-                            <i class="fas fa-caret-down"></i>
+                          <div
+                            class="slide-nav"
+                            onClick={() => {
+                              if (commonDropDown == "arrow-style") {
+                                this.setState({ commonDropDown: "" });
+                              } else {
+                                this.setState({
+                                  commonDropDown: "arrow-style",
+                                });
+                              }
+                            }}
+                          >
+                            <span>
+                              {__("Arrows Styles", "unlimited-blocks")}
+                            </span>
+                            <div class="caret">
+                              <i class="fas fa-caret-down"></i>
+                            </div>
+                          </div>
+                          <div className="slides-element">
+                            <RangeControl
+                              label={__("Font Size", "unlimited-blocks")}
+                              value={
+                                attributes.sliderSetting.leftRightTrigger
+                                  .fontSize
+                              }
+                              min={0}
+                              max={70}
+                              onChange={(e) => {
+                                let getLeftRight = {
+                                  ...attributes.sliderSetting.leftRightTrigger,
+                                };
+                                getLeftRight.fontSize = e;
+                                this.updateAttr(
+                                  getLeftRight,
+                                  "sliderSetting",
+                                  "leftRightTrigger"
+                                );
+                              }}
+                            />
+                            <label className="normal-label">
+                              {__("Color", "unlimited-blocks")}
+                            </label>
+                            <ColorPalette
+                              value={
+                                attributes.sliderSetting.leftRightTrigger.color
+                              }
+                              onChange={(color) => {
+                                let getLeftRight = {
+                                  ...attributes.sliderSetting.leftRightTrigger,
+                                };
+                                getLeftRight.color = color;
+                                this.updateAttr(
+                                  getLeftRight,
+                                  "sliderSetting",
+                                  "leftRightTrigger"
+                                );
+                              }}
+                            />
                           </div>
                         </div>
-                        <div className="slides-element">
-                          <RangeControl
-                            label={__("Font Size", "unlimited-blocks")}
-                            value={
-                              attributes.sliderSetting.leftRightTrigger.fontSize
-                            }
-                            min={0}
-                            max={70}
-                            onChange={(e) =>
-                              this.updateGlobalSlide(
-                                e,
-                                "leftRightTrigger",
-                                "fontSize"
-                              )
-                            }
-                          />
-                          <label className="normal-label">
-                            {__("Color", "unlimited-blocks")}
-                          </label>
-                          <ColorPalette
-                            value={
-                              attributes.sliderSetting.leftRightTrigger.color
-                            }
-                            onChange={(color) =>
-                              this.updateGlobalSlide(
-                                color,
-                                "leftRightTrigger",
-                                "color"
-                              )
-                            }
-                          />
-                        </div>
-                      </div>
-                    )}
-                    {/* arrows and dots */}
-                  </>
+                      )}
+                      {/* arrows and dots */}
+                    </>
+                  </div>
                 </div>
               </PanelBody>
             </>
