@@ -86141,7 +86141,7 @@ var attrSave = {
         height: false,
         custom_height: 360
       },
-      sliderEffect: "fadeEffect",
+      sliderEffect: "slideEffect",
       triggerActive: "both",
       linearTrigger: {
         fontSize: 20,
@@ -86662,10 +86662,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_sortable_hoc__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-sortable-hoc */ "./node_modules/react-sortable-hoc/dist/react-sortable-hoc.esm.js");
 /* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-slick */ "./node_modules/react-slick/lib/index.js");
 /* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_slick__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _block_assets_utility_components_BasicToggleNav__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../block-assets/utility-components/BasicToggleNav */ "./src/blocks/block-assets/utility-components/BasicToggleNav.js");
-/* harmony import */ var _block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../block-assets/utility-components/TwoSwitcher */ "./src/blocks/block-assets/utility-components/TwoSwitcher.js");
-/* harmony import */ var _block_assets_utility_components_backgroundType_backgroundType__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../block-assets/utility-components/backgroundType/backgroundType */ "./src/blocks/block-assets/utility-components/backgroundType/backgroundType.js");
-/* harmony import */ var _block_assets_utility_components_backgroundType_backgroundColor__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../block-assets/utility-components/backgroundType/backgroundColor */ "./src/blocks/block-assets/utility-components/backgroundType/backgroundColor.js");
+/* harmony import */ var _block_assets_Styler__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../block-assets/Styler */ "./src/blocks/block-assets/Styler.js");
+/* harmony import */ var _block_assets_utility_components_BasicToggleNav__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../block-assets/utility-components/BasicToggleNav */ "./src/blocks/block-assets/utility-components/BasicToggleNav.js");
+/* harmony import */ var _block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../block-assets/utility-components/TwoSwitcher */ "./src/blocks/block-assets/utility-components/TwoSwitcher.js");
+/* harmony import */ var _block_assets_utility_components_backgroundType_backgroundType__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../block-assets/utility-components/backgroundType/backgroundType */ "./src/blocks/block-assets/utility-components/backgroundType/backgroundType.js");
+/* harmony import */ var _block_assets_utility_components_backgroundType_backgroundColor__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../block-assets/utility-components/backgroundType/backgroundColor */ "./src/blocks/block-assets/utility-components/backgroundType/backgroundColor.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -86717,8 +86718,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 // import OwlCarousel from "react-owl-carousel";
 // import OwlCarousel from "react-owl-carousel";
 
+ // let bgImageWrapper = plugin_url.url + "assets/img/image2.jpg";
 
-var bgImageWrapper = plugin_url.url + "assets/img/image2.jpg";
+
 
 
 
@@ -86735,6 +86737,16 @@ var Edit = /*#__PURE__*/function (_Component) {
     _classCallCheck(this, Edit);
 
     _this = _super.call(this, _props);
+
+    _defineProperty(_assertThisInitialized(_this), "styleAdd", function () {
+      var attributes = _this.props.attributes;
+      var wrapper_id = attributes.wrapper_id,
+          sliderSetting = attributes.sliderSetting; // --------------------------------box style--------------------------------
+
+      if (wrapper_id) {
+        Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_7__["default"])("".concat(wrapper_id, "-wrapper-height"), ".".concat(wrapper_id, " .ubl-slider-wrapper"), "height:".concat(sliderSetting.dimension.custom_height, "px"));
+      }
+    });
 
     _defineProperty(_assertThisInitialized(_this), "updateSlide", function (index_, val) {
       var key_ = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
@@ -86885,7 +86897,8 @@ var Edit = /*#__PURE__*/function (_Component) {
           infinite: true,
           speed: 500,
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          adaptiveHeight: true
         };
 
         if (sliderSetting.sliderEffect != "slideEffect") {
@@ -86961,10 +86974,19 @@ var Edit = /*#__PURE__*/function (_Component) {
             }));
           }));
         }; // console.log("slider_options_", slider_options_);
+        // slider width
 
+
+        var sliderWidth = {
+          width: sliderSetting.dimension.custom_width + "%"
+        }; // const sliderWidth = { width: 100 + "%" };
+        // if (sliderSetting.dimension.width) {
+        //   sliderWidth["width"] = sliderSetting.dimension.custom_width + "%";
+        // }
 
         var OwlCarousel_ = wp.element.createElement(react_slick__WEBPACK_IMPORTED_MODULE_6___default.a, _extends({
           ref: _this.SlickSliderRef,
+          style: sliderWidth,
           className: "ubl-slick-slider-block"
         }, slider_options_), slides.map(function (val, slideIndex) {
           var overLAyColor = null;
@@ -87184,7 +87206,7 @@ var Edit = /*#__PURE__*/function (_Component) {
       };
 
       var backgroundTab_Content = function backgroundTab_Content() {
-        return wp.element.createElement(_block_assets_utility_components_backgroundType_backgroundType__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        return wp.element.createElement(_block_assets_utility_components_backgroundType_backgroundType__WEBPACK_IMPORTED_MODULE_10__["default"], {
           value: {
             backgroundType: slides.container.bg.backgroundType,
             backgroundImage: slides.container.bg.backgroundImage,
@@ -87202,7 +87224,7 @@ var Edit = /*#__PURE__*/function (_Component) {
 
       return wp.element.createElement("div", {
         className: "slides-element"
-      }, wp.element.createElement(_block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      }, wp.element.createElement(_block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_9__["default"], {
         value: slideBgButton,
         navItem: [{
           name: textTab_,
@@ -87342,9 +87364,11 @@ var Edit = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {
       if (this.props.attributes.wrapper_id == "") {
         this.props.setAttributes({
-          wrapper_id: this.props.clientId
+          wrapper_id: "wrapper-" + this.props.clientId
         });
       }
+
+      this.styleAdd();
     }
   }, {
     key: "render",
@@ -87357,7 +87381,10 @@ var Edit = /*#__PURE__*/function (_Component) {
       var _this$state4 = this.state,
           openPanel = _this$state4.openPanel,
           commonDropDown = _this$state4.commonDropDown,
-          twoBtn = _this$state4.twoBtn; // console.log("selected slide", currentSlideIndex);
+          twoBtn = _this$state4.twoBtn;
+      var wrapper_id = attributes.wrapper_id;
+      var WrapperClass = wrapper_id ? wrapper_id : this.props.clientId;
+      WrapperClass = "ubl-slick-slider-block-wrap ".concat(WrapperClass); // console.log("selected slide", currentSlideIndex);
 
       return wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__["BlockControls"], {
         key: "controls"
@@ -87368,7 +87395,7 @@ var Edit = /*#__PURE__*/function (_Component) {
         }
       })), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__["InspectorControls"], null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
         initialOpen: true
-      }, wp.element.createElement(_block_assets_utility_components_BasicToggleNav__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      }, wp.element.createElement(_block_assets_utility_components_BasicToggleNav__WEBPACK_IMPORTED_MODULE_8__["default"], {
         value: openPanel,
         navItem: [{
           name: "slides",
@@ -87483,7 +87510,7 @@ var Edit = /*#__PURE__*/function (_Component) {
         class: "fas fa-caret-down"
       }))), wp.element.createElement("div", {
         className: "slides-element"
-      }, wp.element.createElement(_block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      }, wp.element.createElement(_block_assets_utility_components_TwoSwitcher__WEBPACK_IMPORTED_MODULE_9__["default"], {
         value: twoBtn,
         navItem: [{
           name: "buttoneOne",
@@ -87510,17 +87537,13 @@ var Edit = /*#__PURE__*/function (_Component) {
         onChange: function onChange(color) {
           _this2.updateAttr(color, twoBtn, "color");
         }
-      }), wp.element.createElement(_block_assets_utility_components_backgroundType_backgroundColor__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      }), wp.element.createElement(_block_assets_utility_components_backgroundType_backgroundColor__WEBPACK_IMPORTED_MODULE_11__["default"], {
         value: {
           backgroundColorType: attributes[twoBtn].bg.backgroundColorType,
           backgroundColor: attributes[twoBtn].bg.backgroundColor,
           backgroundImageGradient: attributes[twoBtn].bg.backgroundImageGradient
         },
         changeme: function changeme(_properties) {
-          // console.log(
-          //   "getProperty btn->" + twoBtn,
-          //   _properties
-          // );
           var saveObj = {
             backgroundColorType: _properties.backgroundColorType,
             backgroundColor: _properties.backgroundColor,
@@ -87552,7 +87575,34 @@ var Edit = /*#__PURE__*/function (_Component) {
         className: "ubl-panel-container ubl-slider-panel"
       }, wp.element.createElement("div", {
         className: "slides-settings"
-      }, wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("div", {
+      }, wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Width", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RangeControl"], {
+        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Width %", "unlimited-blocks"),
+        value: attributes.sliderSetting.dimension.custom_width,
+        min: 10,
+        max: 100,
+        onChange: function onChange(e) {
+          var dimension = _objectSpread({}, attributes.sliderSetting.dimension);
+
+          dimension.custom_width = e;
+
+          _this2.updateAttr(dimension, "sliderSetting", "dimension");
+        }
+      }), wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Height", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RangeControl"], {
+        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Height px", "unlimited-blocks"),
+        value: attributes.sliderSetting.dimension.custom_height,
+        min: 300,
+        max: 1000,
+        onChange: function onChange(e) {
+          /////////////////
+          Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_7__["default"])("".concat(wrapper_id, "-wrapper-height"), ".".concat(wrapper_id, " .ubl-slider-wrapper"), "height:".concat(e, "px"));
+
+          var dimension = _objectSpread({}, attributes.sliderSetting.dimension);
+
+          dimension.custom_height = e;
+
+          _this2.updateAttr(dimension, "sliderSetting", "dimension");
+        }
+      }), wp.element.createElement("div", {
         className: "flex-section-slider"
       }, wp.element.createElement("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Navigation", "unlimited-blocks")), wp.element.createElement("select", {
         value: attributes.sliderSetting.triggerActive,
@@ -87693,7 +87743,7 @@ var Edit = /*#__PURE__*/function (_Component) {
           _this2.updateAttr(getLeftRight, "sliderSetting", "leftRightTrigger");
         }
       }))))))))), wp.element.createElement("div", {
-        className: "ubl-owl-slider-block"
+        className: WrapperClass
       }, this.slides())); // description style
     }
   }]);
@@ -87749,6 +87799,10 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
     align: ["none", "wide", "full"]
   },
   attributes: {
+    align: {
+      type: "string",
+      default: "full"
+    },
     wrapper_id: {
       type: "string",
       default: ""
@@ -87761,9 +87815,9 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
           width: false,
           custom_width: 100,
           height: false,
-          custom_height: 360
+          custom_height: 300
         },
-        sliderEffect: "slide",
+        sliderEffect: "slideEffect",
         triggerActive: "both",
         linearTrigger: {
           fontSize: 20,
@@ -87864,13 +87918,13 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
         buttoneOne: {
           enable: true,
           text: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Button One", "unlimited-blocks"),
-          link: "#",
+          link: "https://example.com/",
           target: false
         },
         buttoneTwo: {
           enable: true,
           text: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Button Two", "unlimited-blocks"),
-          link: "#",
+          link: "https://example.com/",
           target: false
         }
       }, {
@@ -87895,13 +87949,13 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
         buttoneOne: {
           enable: true,
           text: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Button One", "unlimited-blocks"),
-          link: "#",
+          link: "https://example.com/",
           target: false
         },
         buttoneTwo: {
           enable: true,
           text: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Button Two", "unlimited-blocks"),
-          link: "#",
+          link: "https://example.com/",
           target: false
         }
       }, {
@@ -87931,13 +87985,13 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
         buttoneOne: {
           enable: true,
           text: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Button One", "unlimited-blocks"),
-          link: "#",
+          link: "https://example.com/",
           target: false
         },
         buttoneTwo: {
           enable: true,
           text: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Button Two", "unlimited-blocks"),
-          link: "#",
+          link: "https://example.com/",
           target: false
         }
       } // slider slides

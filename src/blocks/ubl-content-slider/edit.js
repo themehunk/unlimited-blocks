@@ -23,7 +23,9 @@ import { SortableContainer, SortableElement } from "react-sortable-hoc";
 // import OwlCarousel from "react-owl-carousel";
 // import OwlCarousel from "react-owl-carousel";
 import SlickSlider from "react-slick";
-let bgImageWrapper = plugin_url.url + "assets/img/image2.jpg";
+// let bgImageWrapper = plugin_url.url + "assets/img/image2.jpg";
+import UblStyler from "../block-assets/Styler";
+
 import BasicToggleNav from "../block-assets/utility-components/BasicToggleNav";
 import Switcher from "../block-assets/utility-components/TwoSwitcher";
 import BackgroundType from "../block-assets/utility-components/backgroundType/backgroundType";
@@ -45,9 +47,26 @@ class Edit extends Component {
   }
   componentDidMount() {
     if (this.props.attributes.wrapper_id == "") {
-      this.props.setAttributes({ wrapper_id: this.props.clientId });
+      this.props.setAttributes({
+        wrapper_id: "wrapper-" + this.props.clientId,
+      });
     }
+    this.styleAdd();
   }
+
+  styleAdd = () => {
+    let { attributes } = this.props;
+    let { wrapper_id, sliderSetting } = attributes;
+    // --------------------------------box style--------------------------------
+    if (wrapper_id) {
+      UblStyler(
+        `${wrapper_id}-wrapper-height`,
+        `.${wrapper_id} .ubl-slider-wrapper`,
+        `height:${sliderSetting.dimension.custom_height}px`
+      );
+    }
+  };
+
   updateSlide = (
     index_,
     val,
@@ -184,6 +203,7 @@ class Edit extends Component {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
+        adaptiveHeight: true,
       };
 
       if (sliderSetting.sliderEffect != "slideEffect") {
@@ -271,9 +291,17 @@ class Edit extends Component {
         );
       };
       // console.log("slider_options_", slider_options_);
+
+      // slider width
+      const sliderWidth = { width: sliderSetting.dimension.custom_width + "%" };
+      // const sliderWidth = { width: 100 + "%" };
+      // if (sliderSetting.dimension.width) {
+      //   sliderWidth["width"] = sliderSetting.dimension.custom_width + "%";
+      // }
       const OwlCarousel_ = (
         <SlickSlider
           ref={this.SlickSliderRef}
+          style={sliderWidth}
           className="ubl-slick-slider-block"
           {...slider_options_}
         >
@@ -721,6 +749,12 @@ class Edit extends Component {
     const { attributes } = this.props;
     // const slides = [...attributes.slides];
     const { openPanel, commonDropDown, twoBtn } = this.state;
+    const { wrapper_id } = attributes;
+
+    let WrapperClass = wrapper_id ? wrapper_id : this.props.clientId;
+
+    WrapperClass = `ubl-slick-slider-block-wrap ${WrapperClass}`;
+
     // console.log("selected slide", currentSlideIndex);
     return (
       <>
@@ -929,10 +963,6 @@ class Edit extends Component {
                             attributes[twoBtn].bg.backgroundImageGradient,
                         }}
                         changeme={(_properties) => {
-                          // console.log(
-                          //   "getProperty btn->" + twoBtn,
-                          //   _properties
-                          // );
                           let saveObj = {
                             backgroundColorType:
                               _properties.backgroundColorType,
@@ -943,98 +973,6 @@ class Edit extends Component {
                           this.updateAttr(saveObj, twoBtn, "bg");
                         }}
                       />
-
-                      {/* bg color  */}
-                      {/* <div class="ubl-switcher-button-section sub">
-                        <span
-                          onClick={() => {
-                            let getBgcolor = {
-                              ...sliderSetting[activeTwoBtnState]
-                                .backgroundColor,
-                            };
-                            getBgcolor["type"] = "color";
-                            this.updateGlobalSlide(
-                              getBgcolor,
-                              activeTwoBtnState,
-                              "backgroundColor"
-                            );
-                          }}
-                          className={
-                            sliderSetting[activeTwoBtnState].backgroundColor
-                              .type == "color"
-                              ? "selected"
-                              : ""
-                          }
-                        >
-                          {__("Solid", "unlimited-blocks")}
-                        </span>
-                        <span
-                          onClick={() => {
-                            let getBgcolor = {
-                              ...sliderSetting[activeTwoBtnState]
-                                .backgroundColor,
-                            };
-                            getBgcolor["type"] = "gradient";
-                            this.updateGlobalSlide(
-                              getBgcolor,
-                              activeTwoBtnState,
-                              "backgroundColor"
-                            );
-                          }}
-                          className={
-                            sliderSetting[activeTwoBtnState].backgroundColor
-                              .type == "gradient"
-                              ? "selected"
-                              : ""
-                          }
-                        >
-                          {__("Gradient", "unlimited-blocks")}
-                        </span>
-                      </div> */}
-                      {/* {"color" ==
-                      sliderSetting[activeTwoBtnState].backgroundColor.type ? (
-                        <ColorPicker
-                          color={
-                            sliderSetting[activeTwoBtnState].backgroundColor
-                              .color
-                          }
-                          onChangeComplete={(colorBg) => {
-                            let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                            let getBgcolor = {
-                              ...sliderSetting[activeTwoBtnState]
-                                .backgroundColor,
-                            };
-                            getBgcolor["color"] = color;
-                            this.updateGlobalSlide(
-                              getBgcolor,
-                              activeTwoBtnState,
-                              "backgroundColor"
-                            );
-                          }}
-                        />
-                      ) : (
-                        <GradientPicker
-                          disableCustomGradients={false}
-                          value={
-                            sliderSetting[activeTwoBtnState].backgroundColor
-                              .gradient
-                          }
-                          gradients={UBLGraDientColors}
-                          onChange={(newGradient) => {
-                            let getBgcolor = {
-                              ...sliderSetting[activeTwoBtnState]
-                                .backgroundColor,
-                            };
-                            getBgcolor["gradient"] = newGradient;
-                            this.updateGlobalSlide(
-                              getBgcolor,
-                              activeTwoBtnState,
-                              "backgroundColor"
-                            );
-                          }}
-                        />
-                      )} */}
-                      {/* bg color  */}
                       <RangeControl
                         label={__("Height", "unlimited-blocks")}
                         value={attributes[twoBtn].height}
@@ -1123,6 +1061,144 @@ class Edit extends Component {
                 <div className="ubl-panel-container ubl-slider-panel">
                   <div className="slides-settings">
                     <>
+                      {/* height and width  */}
+                      <p>
+                        <strong>{__("Width", "unlimited-blocks")}</strong>
+                      </p>
+                      <RangeControl
+                        label={__("Width %", "unlimited-blocks")}
+                        value={attributes.sliderSetting.dimension.custom_width}
+                        min={10}
+                        max={100}
+                        onChange={(e) => {
+                          let dimension = {
+                            ...attributes.sliderSetting.dimension,
+                          };
+                          dimension.custom_width = e;
+                          this.updateAttr(
+                            dimension,
+                            "sliderSetting",
+                            "dimension"
+                          );
+                        }}
+                      />
+                      {/* <ToggleControl
+                        label={
+                          attributes.sliderSetting.dimension.width
+                            ? __("Full Width", "unlimited-blocks")
+                            : __("Custom Width", "unlimited-blocks")
+                        }
+                        checked={attributes.sliderSetting.dimension.width}
+                        onChange={(e) => {
+                          let dimension = {
+                            ...attributes.sliderSetting.dimension,
+                          };
+                          dimension.width = e;
+                          this.updateAttr(
+                            dimension,
+                            "sliderSetting",
+                            "dimension"
+                          );
+                        }}
+                      />
+                      {attributes.sliderSetting.dimension.width && (
+                        <RangeControl
+                          label={__("Width %", "unlimited-blocks")}
+                          value={
+                            attributes.sliderSetting.dimension.custom_width
+                          }
+                          min={10}
+                          max={100}
+                          onChange={(e) => {
+                            let dimension = {
+                              ...attributes.sliderSetting.dimension,
+                            };
+                            dimension.custom_width = e;
+                            this.updateAttr(
+                              dimension,
+                              "sliderSetting",
+                              "dimension"
+                            );
+                          }}
+                        />
+                      )} */}
+                      <p>
+                        <strong>{__("Height", "unlimited-blocks")}</strong>
+                      </p>
+                      {/* <ToggleControl
+                        label={
+                          attributes.sliderSetting.dimension.width
+                            ? __("Auto", "unlimited-blocks")
+                            : __("Custom Height", "unlimited-blocks")
+                        }
+                        checked={attributes.sliderSetting.dimension.height}
+                        onChange={(e) => {
+                          let dimension = {
+                            ...attributes.sliderSetting.dimension,
+                          };
+                          dimension.height = e;
+                          this.updateAttr(
+                            dimension,
+                            "sliderSetting",
+                            "dimension"
+                          );
+                        }}
+                      />
+                      {attributes.sliderSetting.dimension.height && (
+                        <RangeControl
+                          label={__("Height px", "unlimited-blocks")}
+                          value={
+                            attributes.sliderSetting.dimension.custom_height
+                          }
+                          min={300}
+                          max={1000}
+                          onChange={(e) => {
+                            /////////////////
+                            UblStyler(
+                              `${wrapper_id}-wrapper-height`,
+                              `.${wrapper_id} .ubl-slider-wrapper`,
+                              `height:${e}px`
+                            );
+
+                            let dimension = {
+                              ...attributes.sliderSetting.dimension,
+                            };
+                            dimension.custom_height = e;
+                            this.updateAttr(
+                              dimension,
+                              "sliderSetting",
+                              "dimension"
+                            );
+                          }}
+                        />
+                      )} */}
+
+                      <RangeControl
+                        label={__("Height px", "unlimited-blocks")}
+                        value={attributes.sliderSetting.dimension.custom_height}
+                        min={300}
+                        max={1000}
+                        onChange={(e) => {
+                          /////////////////
+                          UblStyler(
+                            `${wrapper_id}-wrapper-height`,
+                            `.${wrapper_id} .ubl-slider-wrapper`,
+                            `height:${e}px`
+                          );
+
+                          let dimension = {
+                            ...attributes.sliderSetting.dimension,
+                          };
+                          dimension.custom_height = e;
+                          this.updateAttr(
+                            dimension,
+                            "sliderSetting",
+                            "dimension"
+                          );
+                        }}
+                      />
+
+                      {/* height and width  */}
                       <div className="flex-section-slider">
                         <p>{__("Navigation", "unlimited-blocks")}</p>
                         <select
@@ -1357,7 +1433,7 @@ class Edit extends Component {
             </>
           )}
         </InspectorControls>
-        <div className="ubl-owl-slider-block">{this.slides()}</div>
+        <div className={WrapperClass}>{this.slides()}</div>
       </>
     );
     // description style
