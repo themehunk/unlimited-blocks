@@ -3,6 +3,10 @@ if (!defined('ABSPATH')) exit;
 unlimited_blocks_register_block_fn('owl-slider',  [
     "render_callback" => "unlimited_blocks_owl_slider",
     'attributes' => [
+        'align' => [
+            'type' => "string",
+            'default' => "full",
+        ],
         "wrapper_id" => [
             "type" => "string",
             "default" => "byphp"
@@ -15,9 +19,9 @@ unlimited_blocks_register_block_fn('owl-slider',  [
                     "width" => false,
                     "custom_width" => 580,
                     "height" => false,
-                    "custom_height" => 360,
+                    "custom_height" => 300,
                 ],
-                "sliderEffect" => "sliderEffect",
+                "sliderEffect" => "slideEffect",
                 "triggerActive" => "both",
                 "linearTrigger" => [
                     "fontSize" => 20,
@@ -110,13 +114,13 @@ unlimited_blocks_register_block_fn('owl-slider',  [
                     "buttoneOne" => [
                         "enable" => true,
                         "text" => __("Button One", "unlimited-blocks"),
-                        "link" => "#",
+                        "link" => "https://example.com/",
                         "target" => false,
                     ],
                     "buttoneTwo" => [
                         "enable" => true,
                         "text" => __("Button Two", "unlimited-blocks"),
-                        "link" => "#",
+                        "link" => "https://example.com/",
                         "target" => false,
                     ],
                 ],
@@ -143,13 +147,13 @@ unlimited_blocks_register_block_fn('owl-slider',  [
                     "buttoneOne" => [
                         "enable" => true,
                         "text" => __("Button One", "unlimited-blocks"),
-                        "link" => "#",
+                        "link" => "https://example.com/",
                         "target" => false,
                     ],
                     "buttoneTwo" => [
                         "enable" => true,
                         "text" => __("Button Two", "unlimited-blocks"),
-                        "link" => "#",
+                        "link" => "https://example.com/",
                         "target" => false,
                     ],
                 ],
@@ -181,13 +185,13 @@ unlimited_blocks_register_block_fn('owl-slider',  [
                     "buttoneOne" => [
                         "enable" => true,
                         "text" => __("Button One", "unlimited-blocks"),
-                        "link" => "#",
+                        "link" => "https://example.com/",
                         "target" => false,
                     ],
                     "buttoneTwo" => [
                         "enable" => true,
                         "text" => __("Button Two", "unlimited-blocks"),
-                        "link" => "#",
+                        "link" => "https://example.com/",
                         "target" => false,
                     ],
                 ],

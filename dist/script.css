@@ -1491,24 +1491,14 @@
   margin: 0;
 }
 
-.ubl-block-slide-wrapper {
-  margin: 0 auto 30px;
-  opacity: 0;
-}
-.ubl-block-slide-wrapper .ubl-slider-container {
-  position: relative;
-  height: 100%;
-  overflow: hidden;
-}
-
-.ubl-slider-wrapper {
-  position: relative;
-  height: 100%;
-}
-
 .ubl-slider-content-wrapper {
-  height: 100%;
   position: relative;
+  height: 100%;
+  height: 300px;
+}
+.ubl-slider-content-wrapper .ubl-slider-container {
+  position: relative;
+  height: 100%;
 }
 .ubl-slider-content-wrapper .ubl-slider-image-container {
   position: absolute;

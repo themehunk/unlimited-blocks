@@ -47,6 +47,7 @@
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
+        // adaptiveHeight: true,
       };
       if (typeof parseJson == "object") {
         slickOption = { ...slickOption, ...parseJson };
@@ -56,12 +57,6 @@
       slickOption.prevArrow = getLeft;
       slickOption.nextArrow = getRight;
       slickOption.customPaging = function (slider, i) {
-        //   console.log("slider->", slider);
-        //   console.log("slider i ->", i);
-        //   console.log("dots i ->", slider.find("ul.slick-dots"));
-
-        //   // slider.$dots.addClass("myclass");
-
         return "<span></span>";
       };
       // console.log("slickOption", slickOption);
@@ -74,25 +69,9 @@
           getDots.attr("data-class", "ubl-slick-slider-dots");
           getDots.children().addClass("custonLi_");
         }
-        console.log("getDots", getDots);
+        // console.log("getDots", getDots);
       });
       slider.slick(slickOption);
-      // dots style
-      // slider.on(
-      //   "beforeChange",
-      //   function (event, slick, current_slide_index, next_slide_index) {
-      //     console.log("event -> ", event);
-      //     console.log("slick -> ", slick);
-      //     console.log("current_slide_index -> ", current_slide_index);
-      //     console.log("next_slide_index -> ", next_slide_index);
-
-      //     // addCustomSlickAttributes();
-      //   }
-      // );
-      // setTimeout(() => {
-      //   let getDots = slider.find("slick-dots");
-      //   console.log("getDots", getDots);
-      // }, 500);
       // prev and next arrow
       getLeft.appendTo(slider);
       getRight.appendTo(slider);

@@ -69,7 +69,36 @@ if (!function_exists('unlimited_blocks_owl_slider')) {
             $buttonStyle2 .= "background-image:{$button2Bg['backgroundImageGradient']};";
         }
 
-        $html .= "<div class='ubl-owl-slider-block align{$attr['align']}'>";
+        // add style -----------------------------------------------------------_+++++++++++++++++++++++++++++++++++
+        $addStyles = [];
+        $WrapperID = '.' . $attr['wrapper_id'];
+        // box style 
+        // height // width 
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID} .ubl-slider-content-wrapper",
+            'css' => "height:{$sliderAttr['dimension']['custom_height']}px;"
+        ];
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID} .ubl-slick-slider-block",
+            'css' => "width:{$sliderAttr['dimension']['custom_width']}%;"
+        ];
+
+        // nav dots size and active color 
+        if ($sliderAttr['triggerActive'] == 'both' || $sliderAttr['triggerActive'] == 'dots') {
+            $addStyles[] = [
+                'selector' =>  "{$WrapperID} .ubl-slick-slider-block ul.slick-dots[data-class=ubl-slick-slider-dots] li.custonLi_ span",
+                'css' => "height:{$sliderAttr['linearTrigger']['fontSize']}px;width:{$sliderAttr['linearTrigger']['fontSize']}px;background-color:{$sliderAttr['linearTrigger']['color']};"
+            ];
+            $addStyles[] = [
+                'selector' =>  "{$WrapperID} .ubl-slick-slider-block ul.slick-dots[data-class=ubl-slick-slider-dots] li.custonLi_.slick-active span",
+                'css' => "background-color:{$sliderAttr['linearTrigger']['activeColor']};"
+            ];
+        }
+        // price style
+        $styleAdd = wp_json_encode($addStyles);
+        // add style -----------------------------------------------------------_+++++++++++++++++++++++++++++++++++
+
+        $html .= "<div class='ubl-slick-slider-block-wrap {$attr['wrapper_id']} align{$attr['align']}' ubl-block-style='{$styleAdd}'>"; //------------------------------------------------------------+++++++wrapper+++++++++
         // slider wrapper 
         $sliderSetting = [];
         if ($sliderAttr['sliderEffect'] !== 'slideEffect') {

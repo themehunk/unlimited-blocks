@@ -15,7 +15,7 @@ let attrSave = {
           height: false,
           custom_height: 360,
         },
-        sliderEffect: "fadeEffect",
+        sliderEffect: "slideEffect",
         triggerActive: "both",
         linearTrigger: {
           fontSize: 20,

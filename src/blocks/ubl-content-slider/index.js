@@ -15,6 +15,10 @@ registerBlockType("unlimited-blocks/owl-slider", {
     align: ["none", "wide", "full"],
   },
   attributes: {
+    align: {
+      type: "string",
+      default: "full",
+    },
     wrapper_id: {
       type: "string",
       default: "",
@@ -27,9 +31,9 @@ registerBlockType("unlimited-blocks/owl-slider", {
           width: false,
           custom_width: 100,
           height: false,
-          custom_height: 360,
+          custom_height: 300,
         },
-        sliderEffect: "slide",
+        sliderEffect: "slideEffect",
         triggerActive: "both",
         linearTrigger: {
           fontSize: 20,
@@ -124,13 +128,13 @@ registerBlockType("unlimited-blocks/owl-slider", {
           buttoneOne: {
             enable: true,
             text: __("Button One", "unlimited-blocks"),
-            link: "#",
+            link: "https://example.com/",
             target: false,
           },
           buttoneTwo: {
             enable: true,
             text: __("Button Two", "unlimited-blocks"),
-            link: "#",
+            link: "https://example.com/",
             target: false,
           },
         },
@@ -157,13 +161,13 @@ registerBlockType("unlimited-blocks/owl-slider", {
           buttoneOne: {
             enable: true,
             text: __("Button One", "unlimited-blocks"),
-            link: "#",
+            link: "https://example.com/",
             target: false,
           },
           buttoneTwo: {
             enable: true,
             text: __("Button Two", "unlimited-blocks"),
-            link: "#",
+            link: "https://example.com/",
             target: false,
           },
         },
@@ -195,13 +199,13 @@ registerBlockType("unlimited-blocks/owl-slider", {
           buttoneOne: {
             enable: true,
             text: __("Button One", "unlimited-blocks"),
-            link: "#",
+            link: "https://example.com/",
             target: false,
           },
           buttoneTwo: {
             enable: true,
             text: __("Button Two", "unlimited-blocks"),
-            link: "#",
+            link: "https://example.com/",
             target: false,
           },
         },
