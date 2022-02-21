@@ -171,4 +171,31 @@
       right: 12px;
     }
   }
+  // dots
+  ul.slick-dots[data-class="ubl-slick-slider-dots"] {
+    position: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    grid-gap: 10px;
+    li.custonLi_ {
+      display: block;
+      height: unset;
+      width: unset;
+      margin: 0;
+      span {
+        height: 15px;
+        width: 15px;
+        background: #6f6e6e;
+        display: block;
+        border-radius: 50%;
+      }
+      &.slick-active {
+        span {
+          background: #fc9a34;
+        }
+      }
+    }
+  }
 }

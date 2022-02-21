@@ -55,19 +55,47 @@
       // prev and next arrow
       slickOption.prevArrow = getLeft;
       slickOption.nextArrow = getRight;
-      // slickOption.customPaging = function (slider, i) {
-      //   console.log("slider->", slider);
-      //   console.log("slider i ->", i);
-      // };
+      slickOption.customPaging = function (slider, i) {
+        //   console.log("slider->", slider);
+        //   console.log("slider i ->", i);
+        //   console.log("dots i ->", slider.find("ul.slick-dots"));
+
+        //   // slider.$dots.addClass("myclass");
+
+        return "<span></span>";
+      };
       // console.log("slickOption", slickOption);
+      slider.on("init", function (e, slick) {
+        // console.log("event -> ", e);
+        // console.log("slick -> ", slick);
+        // console.log("slick d -> ", e.currentTarget);
+        let getDots = $(e.currentTarget).find(".slick-dots");
+        if (getDots.length) {
+          getDots.attr("data-class", "ubl-slick-slider-dots");
+          getDots.children().addClass("custonLi_");
+        }
+        console.log("getDots", getDots);
+      });
       slider.slick(slickOption);
+      // dots style
+      // slider.on(
+      //   "beforeChange",
+      //   function (event, slick, current_slide_index, next_slide_index) {
+      //     console.log("event -> ", event);
+      //     console.log("slick -> ", slick);
+      //     console.log("current_slide_index -> ", current_slide_index);
+      //     console.log("next_slide_index -> ", next_slide_index);
+
+      //     // addCustomSlickAttributes();
+      //   }
+      // );
+      // setTimeout(() => {
+      //   let getDots = slider.find("slick-dots");
+      //   console.log("getDots", getDots);
+      // }, 500);
       // prev and next arrow
       getLeft.appendTo(slider);
       getRight.appendTo(slider);
-      // prev and next arrow
-      //   customPaging : function(slider, i) {
-      //     return '<a href="#"><img src="slide-dot.png" /><img src="slide-dot-active.png" /></a>';
-      // },
     },
     addOwlSlider: function () {
       let getSlider = $(".elemento-owl-slider-common-secript");
