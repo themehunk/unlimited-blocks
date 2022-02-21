@@ -17,14 +17,14 @@ unlimited_blocks_register_block_fn('owl-slider',  [
                 // slider settings
                 "dimension" => [
                     "width" => false,
-                    "custom_width" => 580,
+                    "custom_width" => 100,
                     "height" => false,
                     "custom_height" => 300,
                 ],
                 "sliderEffect" => "slideEffect",
                 "triggerActive" => "both",
                 "linearTrigger" => [
-                    "fontSize" => 20,
+                    "fontSize" => 12,
                     "color" => "rgba(231,192,192,1)",
                     "activeColor" => "rgba(68,222,68,1)",
                 ],
@@ -43,11 +43,11 @@ unlimited_blocks_register_block_fn('owl-slider',  [
         ],
         "title" => [
             "type" => "object",
-            "default" => ["fontSize" => 17, "color" => "#1d2327"],
+            "default" => ["fontSize" => 38, "color" => "#ffffff"],
         ],
         "text" => [
             "type" => "object",
-            "default" => ["fontSize" => 17, "color" => "#1d2327"],
+            "default" => ["fontSize" => 17, "color" => "#d2d2d2"],
         ],
         "buttoneOne" => [
             "type" => "object",
@@ -57,9 +57,6 @@ unlimited_blocks_register_block_fn('owl-slider',  [
                 "height" => "",
                 "width" => "",
                 "bg" => [
-                    // "backgroundType" => "color",
-                    // "backgroundImage" => "",
-                    // "backgroundImageSize" => "cover",
                     "backgroundColorType" => "color",
                     "backgroundColor" => "#ffbf00",
                     "backgroundImageGradient" =>
@@ -91,7 +88,7 @@ unlimited_blocks_register_block_fn('owl-slider',  [
         "slides" => [
             "type" => "array",
             "default" => [
-                // slider slides
+                // slider slide
                 [
                     "container" => [
                         "bg" => [
@@ -99,7 +96,7 @@ unlimited_blocks_register_block_fn('owl-slider',  [
                             "backgroundImage" => "",
                             "backgroundImageSize" => "cover",
                             "backgroundColorType" => "color",
-                            "backgroundColor" => "rgb(68 132 173)",
+                            "backgroundColor" => "#20202e",
                             "backgroundImageGradient" =>
                             "radial-gradient(rgb(6, 147, 227) 38%, rgb(155, 81, 224) 80%)",
                             "backgroundOpacity" => 0.6,
@@ -131,7 +128,7 @@ unlimited_blocks_register_block_fn('owl-slider',  [
                             "backgroundImage" => "",
                             "backgroundImageSize" => "cover",
                             "backgroundColorType" => "color",
-                            "backgroundColor" => "rgb(68 132 173)",
+                            "backgroundColor" => "#20202e",
                             "backgroundImageGradient" =>
                             "radial-gradient(rgb(6, 147, 227) 38%, rgb(155, 81, 224) 80%)",
                             "backgroundOpacity" => 0.6,
@@ -142,7 +139,6 @@ unlimited_blocks_register_block_fn('owl-slider',  [
                     ],
                     "text" => [
                         "text" => __("Add Description", "unlimited-blocks"),
-                        // "color"=> "red",
                     ],
                     "buttoneOne" => [
                         "enable" => true,
@@ -164,17 +160,11 @@ unlimited_blocks_register_block_fn('owl-slider',  [
                             "backgroundImage" => "",
                             "backgroundImageSize" => "cover",
                             "backgroundColorType" => "color",
-                            "backgroundColor" => "rgb(68 132 173)",
+                            "backgroundColor" => "#20202e",
                             "backgroundImageGradient" =>
                             "radial-gradient(rgb(6, 147, 227) 38%, rgb(155, 81, 224) 80%)",
                             "backgroundOpacity" => 0.6,
                         ],
-                    ],
-                    "wrapper" => [
-                        "bgcolor" => "",
-                        "border" => "",
-                        "alignment" => "center",
-                        "spacing" => 2,
                     ],
                     "title" => [
                         "text" => __("This Is Title text", "unlimited-blocks"),
@@ -194,7 +184,8 @@ unlimited_blocks_register_block_fn('owl-slider',  [
                         "link" => "https://example.com/",
                         "target" => false,
                     ],
-                ],
+                ]
+
                 // slider slides
             ],
         ],

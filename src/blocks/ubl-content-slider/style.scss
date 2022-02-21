@@ -1,7 +1,7 @@
 .ubl-slider-content-wrapper {
   position: relative;
   height: 100%;
-  height: 300px;
+  height: auto;
 
   .ubl-slider-container {
     position: relative;
@@ -35,12 +35,14 @@
       justify-content: center;
       div {
         text-align: center;
+        justify-content: center;
       }
     }
     &.right {
       justify-content: flex-end;
       div {
         text-align: right;
+        justify-content: flex-end;
       }
     }
     > div {
@@ -68,6 +70,7 @@
   }
 }
 .ubl-slick-slider-block {
+  margin: auto;
   // arrow
   .ubl-slick-slider-arrow {
     position: absolute;
@@ -110,5 +113,11 @@
         }
       }
     }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .ubl-slider-content-wrapper {
+    height: auto !important;
   }
 }
