@@ -116,29 +116,47 @@ class BackgroundType extends Component {
               className={`buttons_ dashicons dashicons-format-image `}
             ></span>
           </div>
-          <div
-            data-title={__("None", "unlimited-blocks")}
-            className={`${!this.state.backgroundType ? "selected" : ""}`}
-            onClick={() => {
-              this.updateState("backgroundType", "");
-            }}
-          >
-            <span className={`buttons_ dashicons dashicons-dismiss`}></span>
-          </div>
+
+          {this.props.typeNone === "undifined" || this.props.typeNone ? (
+            <div
+              data-title={__("None", "unlimited-blocks")}
+              className={`${!this.state.backgroundType ? "selected" : ""}`}
+              onClick={() => {
+                this.updateState("backgroundType", "");
+              }}
+            >
+              <span className={`buttons_ dashicons dashicons-dismiss`}></span>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     );
   }
   bgImage() {
+    // console.log("this bg props", this.props);
     return (
       <>
         <p>
           <strong>{__("Background image", "unlimited-blocks")}</strong>
         </p>
+        {this.state.backgroundImage ? (
+          <div className="removeImage">
+            <span
+              onClick={() => {
+                this.updateState("backgroundImage", "");
+              }}
+            >
+              <i class="far fa-trash-alt"></i>
+            </span>
+          </div>
+        ) : (
+          ""
+        )}
         <MediaUpload
           allowedType="image"
           onSelect={(newImage) => {
-            console.log("newImage", newImage);
             this.updateState("backgroundImage", newImage.sizes.full.url);
           }}
           value={this.state.backgroundImage}
@@ -146,13 +164,17 @@ class BackgroundType extends Component {
             <div
               onClick={open}
               className={`ubl-block-image-uploader ${
-                "" == this.state.backgroundImage && "blank"
+                "" == this.state.backgroundImage ? "blank" : ""
               }`}
             >
               <div>
                 <i className="fas fa-plus"></i>
               </div>
-              <img src={this.state.backgroundImage} />
+              {this.state.backgroundImage ? (
+                <img src={this.state.backgroundImage} />
+              ) : (
+                ""
+              )}
             </div>
           )}
         />

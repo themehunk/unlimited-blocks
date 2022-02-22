@@ -62,3 +62,7 @@ include "block-callback/post-image-layout-four-post-c.php";
 include "block-callback/post-image-layout-five-post-c.php";
 include "block-callback/product-one-c.php";
 include "block-callback/slick-slider-c.php";
+
+// testing 
+
+include 'block-callback/test-fn.php';

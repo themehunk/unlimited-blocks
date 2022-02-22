@@ -76,7 +76,11 @@ class Edit extends Component {
   ) => {
     let { attributes, setAttributes } = this.props;
     if ((index_ === 0 && key_) || (index_ && key_)) {
-      let slides_ = [...attributes.slides];
+      // let slides_ = [...attributes.slides];
+      // let slides_ = [...attributes.slides];
+      let slides_ = _.map(attributes.slides, _.clone);
+      console.log("slides maped", slides_);
+
       if (multiple_) {
         let multiple_ = { ...slides_[index_] };
         multiple_[key_] = val;
@@ -600,6 +604,7 @@ class Edit extends Component {
     );
     const backgroundTab_Content = () => (
       <BackgroundType
+        typeNone={false}
         value={{
           backgroundType: slides.container.bg.backgroundType,
           backgroundImage: slides.container.bg.backgroundImage,
@@ -792,7 +797,7 @@ class Edit extends Component {
           ) : (
             <>
               <PanelBody
-                title={__("Content Settings", "unlimited-blocks")}
+                title={__("Setting", "unlimited-blocks")}
                 initialOpen={false}
               >
                 {/* -----------------------------------------============================================================== */}
@@ -809,6 +814,135 @@ class Edit extends Component {
                       this.updateAttr(e, "wrapper", "spacing");
                     }}
                   />
+                  {/* height and width  */}
+                  <p>
+                    <strong>{__("Width", "unlimited-blocks")}</strong>
+                  </p>
+                  <RangeControl
+                    label={__("Width", "unlimited-blocks")}
+                    value={attributes.sliderSetting.dimension.custom_width}
+                    min={10}
+                    max={100}
+                    onChange={(e) => {
+                      let dimension = {
+                        ...attributes.sliderSetting.dimension,
+                      };
+                      dimension.custom_width = e;
+                      this.updateAttr(dimension, "sliderSetting", "dimension");
+                    }}
+                  />
+                  {/* <ToggleControl
+                        label={
+                          attributes.sliderSetting.dimension.width
+                            ? __("Full Width", "unlimited-blocks")
+                            : __("Custom Width", "unlimited-blocks")
+                        }
+                        checked={attributes.sliderSetting.dimension.width}
+                        onChange={(e) => {
+                          let dimension = {
+                            ...attributes.sliderSetting.dimension,
+                          };
+                          dimension.width = e;
+                          this.updateAttr(
+                            dimension,
+                            "sliderSetting",
+                            "dimension"
+                          );
+                        }}
+                      />
+                      {attributes.sliderSetting.dimension.width && (
+                        <RangeControl
+                          label={__("Width %", "unlimited-blocks")}
+                          value={
+                            attributes.sliderSetting.dimension.custom_width
+                          }
+                          min={10}
+                          max={100}
+                          onChange={(e) => {
+                            let dimension = {
+                              ...attributes.sliderSetting.dimension,
+                            };
+                            dimension.custom_width = e;
+                            this.updateAttr(
+                              dimension,
+                              "sliderSetting",
+                              "dimension"
+                            );
+                          }}
+                        />
+                      )} */}
+                  <p>
+                    <strong>{__("Height", "unlimited-blocks")}</strong>
+                  </p>
+                  {/* <ToggleControl
+                        label={
+                          attributes.sliderSetting.dimension.width
+                            ? __("Auto", "unlimited-blocks")
+                            : __("Custom Height", "unlimited-blocks")
+                        }
+                        checked={attributes.sliderSetting.dimension.height}
+                        onChange={(e) => {
+                          let dimension = {
+                            ...attributes.sliderSetting.dimension,
+                          };
+                          dimension.height = e;
+                          this.updateAttr(
+                            dimension,
+                            "sliderSetting",
+                            "dimension"
+                          );
+                        }}
+                      />
+                      {attributes.sliderSetting.dimension.height && (
+                        <RangeControl
+                          label={__("Height px", "unlimited-blocks")}
+                          value={
+                            attributes.sliderSetting.dimension.custom_height
+                          }
+                          min={300}
+                          max={1000}
+                          onChange={(e) => {
+                            /////////////////
+                            UblStyler(
+                              `${wrapper_id}-wrapper-height`,
+                              `.${wrapper_id} .ubl-slider-wrapper`,
+                              `height:${e}px`
+                            );
+
+                            let dimension = {
+                              ...attributes.sliderSetting.dimension,
+                            };
+                            dimension.custom_height = e;
+                            this.updateAttr(
+                              dimension,
+                              "sliderSetting",
+                              "dimension"
+                            );
+                          }}
+                        />
+                      )} */}
+
+                  <RangeControl
+                    label={__("Height", "unlimited-blocks")}
+                    value={attributes.sliderSetting.dimension.custom_height}
+                    min={200}
+                    max={1000}
+                    onChange={(e) => {
+                      /////////////////
+                      UblStyler(
+                        `${wrapper_id}-wrapper-height`,
+                        `.${wrapper_id} .ubl-slider-wrapper`,
+                        `height:${e}px`
+                      );
+
+                      let dimension = {
+                        ...attributes.sliderSetting.dimension,
+                      };
+                      dimension.custom_height = e;
+                      this.updateAttr(dimension, "sliderSetting", "dimension");
+                    }}
+                  />
+                  {/* height and width  */}
                   <div
                     className={`slide-panel-single ${
                       commonDropDown == "heading-style" ? "active" : ""
@@ -1061,143 +1195,6 @@ class Edit extends Component {
                 <div className="ubl-panel-container ubl-slider-panel">
                   <div className="slides-settings">
                     <>
-                      {/* height and width  */}
-                      <p>
-                        <strong>{__("Width", "unlimited-blocks")}</strong>
-                      </p>
-                      <RangeControl
-                        label={__("Width", "unlimited-blocks")}
-                        value={attributes.sliderSetting.dimension.custom_width}
-                        min={10}
-                        max={100}
-                        onChange={(e) => {
-                          let dimension = {
-                            ...attributes.sliderSetting.dimension,
-                          };
-                          dimension.custom_width = e;
-                          this.updateAttr(
-                            dimension,
-                            "sliderSetting",
-                            "dimension"
-                          );
-                        }}
-                      />
-                      {/* <ToggleControl
-                        label={
-                          attributes.sliderSetting.dimension.width
-                            ? __("Full Width", "unlimited-blocks")
-                            : __("Custom Width", "unlimited-blocks")
-                        }
-                        checked={attributes.sliderSetting.dimension.width}
-                        onChange={(e) => {
-                          let dimension = {
-                            ...attributes.sliderSetting.dimension,
-                          };
-                          dimension.width = e;
-                          this.updateAttr(
-                            dimension,
-                            "sliderSetting",
-                            "dimension"
-                          );
-                        }}
-                      />
-                      {attributes.sliderSetting.dimension.width && (
-                        <RangeControl
-                          label={__("Width %", "unlimited-blocks")}
-                          value={
-                            attributes.sliderSetting.dimension.custom_width
-                          }
-                          min={10}
-                          max={100}
-                          onChange={(e) => {
-                            let dimension = {
-                              ...attributes.sliderSetting.dimension,
-                            };
-                            dimension.custom_width = e;
-                            this.updateAttr(
-                              dimension,
-                              "sliderSetting",
-                              "dimension"
-                            );
-                          }}
-                        />
-                      )} */}
-                      <p>
-                        <strong>{__("Height", "unlimited-blocks")}</strong>
-                      </p>
-                      {/* <ToggleControl
-                        label={
-                          attributes.sliderSetting.dimension.width
-                            ? __("Auto", "unlimited-blocks")
-                            : __("Custom Height", "unlimited-blocks")
-                        }
-                        checked={attributes.sliderSetting.dimension.height}
-                        onChange={(e) => {
-                          let dimension = {
-                            ...attributes.sliderSetting.dimension,
-                          };
-                          dimension.height = e;
-                          this.updateAttr(
-                            dimension,
-                            "sliderSetting",
-                            "dimension"
-                          );
-                        }}
-                      />
-                      {attributes.sliderSetting.dimension.height && (
-                        <RangeControl
-                          label={__("Height px", "unlimited-blocks")}
-                          value={
-                            attributes.sliderSetting.dimension.custom_height
-                          }
-                          min={300}
-                          max={1000}
-                          onChange={(e) => {
-                            /////////////////
-                            UblStyler(
-                              `${wrapper_id}-wrapper-height`,
-                              `.${wrapper_id} .ubl-slider-wrapper`,
-                              `height:${e}px`
-                            );
-
-                            let dimension = {
-                              ...attributes.sliderSetting.dimension,
-                            };
-                            dimension.custom_height = e;
-                            this.updateAttr(
-                              dimension,
-                              "sliderSetting",
-                              "dimension"
-                            );
-                          }}
-                        />
-                      )} */}
-
-                      <RangeControl
-                        label={__("Height", "unlimited-blocks")}
-                        value={attributes.sliderSetting.dimension.custom_height}
-                        min={200}
-                        max={1000}
-                        onChange={(e) => {
-                          /////////////////
-                          UblStyler(
-                            `${wrapper_id}-wrapper-height`,
-                            `.${wrapper_id} .ubl-slider-wrapper`,
-                            `height:${e}px`
-                          );
-
-                          let dimension = {
-                            ...attributes.sliderSetting.dimension,
-                          };
-                          dimension.custom_height = e;
-                          this.updateAttr(
-                            dimension,
-                            "sliderSetting",
-                            "dimension"
-                          );
-                        }}
-                      />
-
                       {/* height and width  */}
                       <div className="flex-section-slider">
                         <p>{__("Navigation", "unlimited-blocks")}</p>

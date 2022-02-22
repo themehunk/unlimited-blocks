@@ -71,6 +71,10 @@ export const firstTimeInitProduct = async (this_, data_ = {}) => {
   // console.log("postData first time->", postData);
   if (postData) {
     // // all posts
+    if ("plugin_no" in postData) {
+      this_.setState({ no_plugin_active: true });
+      return;
+    }
     if ("posts" in postData && postData.posts != "") {
       let posts_ = postData.posts;
       this_.setState({ posts: posts_ });

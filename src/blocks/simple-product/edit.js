@@ -2,7 +2,6 @@ import { Component } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
 import OwlCarousel from "react-owl-carousel";
 import ReactHtmlParser from "react-html-parser";
-import _l from "lodash";
 
 import {
   InspectorControls,
@@ -45,6 +44,7 @@ class Edit extends Component {
       aTcart: "normal",
       pTitle: "normal",
       buttonsStyleType: "normal",
+      no_plugin_active: false,
     };
   }
   saveClientId = () => {
@@ -295,6 +295,8 @@ class Edit extends Component {
     // ++++++++++++++===============
     // console.log("product props", this.props);
     // console.log("product state", this.state);
+    // console.log("chunks _", _.chunk([1, 2, 3, 4, 5, 6, 7], 2));
+
     const {
       wrapper_id,
       preview,
@@ -303,6 +305,7 @@ class Edit extends Component {
       productBoxBoxShadow,
       aTcart,
       buttonsStyleType,
+      no_plugin_active,
     } = this.state;
     const { attributes, setAttributes } = this.props;
     let {
@@ -367,8 +370,7 @@ class Edit extends Component {
       numberOfrow = numberOfrow ? parseInt(numberOfrow) : 1;
       let Posts_ = [...posts];
       if (numberOfrow == 2) {
-        Posts_ = _l.chunk(Posts_, 2);
-        // console.log("chunksProducts->", chunksProducts);
+        Posts_ = _.chunk(Posts_, 2);
       }
       let productRow = (val_) => {
         let return_;
@@ -1108,7 +1110,9 @@ class Edit extends Component {
             preview ? "elemento-simple-product-previewon" : ""
           }`}
         >
-          {!posts ? (
+          {no_plugin_active ? (
+            <PostNotfound msg="Activate Woocommerce Plugin." />
+          ) : !posts ? (
             <PostNotfound msg="Product Not Found." />
           ) : posts.length ? (
             <OwlSlider />
