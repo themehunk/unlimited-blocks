@@ -8,7 +8,8 @@ import "./blocks/service-section";
 import "./blocks/pricing-table";
 import "./blocks/progress-bar";
 import "./blocks/progress-bar-pie";
-import "./blocks/ubl-block-slider";
+import "./blocks/ubl-content-slider";
+// import "./blocks/ubl-block-slider";
 import "./blocks/post-grid-layout";
 import "./blocks/post-list-layout";
 import "./blocks/ubl-post-slider";
@@ -20,8 +21,7 @@ import "./blocks/post-image-layout-four-post";
 import "./blocks/post-image-layout-five-post";
 import "./blocks/post-image-layout-six-post";
 // layout block
-import "./blocks/block-layout-pre";
+// import "./blocks/block-layout-pre";
 import "./blocks/column-blocks-column";
 //woocommerce blocks
 import "./blocks/simple-product";
-import "./blocks/ubl-content-slider";

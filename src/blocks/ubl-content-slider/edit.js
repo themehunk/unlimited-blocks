@@ -441,7 +441,7 @@ class Edit extends Component {
         }}
       >
         <span>{__("Slide", "unlimited-blocks") + " " + serial}</span>
-        {serial !== slides.length && slides.length > 1 ? (
+        {slides.length > 1 ? (
           <div className="controlls">
             <span
               onClick={() => {
@@ -681,7 +681,7 @@ class Edit extends Component {
           backgroundImage: "",
           backgroundImageSize: "cover",
           backgroundColorType: "color",
-          backgroundColor: "rgb(68 132 173)",
+          backgroundColor: "#20202e",
           backgroundImageGradient:
             "radial-gradient(rgb(6, 147, 227) 38%, rgb(155, 81, 224) 80%)",
           backgroundOpacity: 0.6,
@@ -696,13 +696,13 @@ class Edit extends Component {
       buttoneOne: {
         enable: true,
         text: __("Button One", "unlimited-blocks"),
-        link: "#",
+        link: "https://example.com/",
         target: false,
       },
       buttoneTwo: {
         enable: true,
         text: __("Button Two", "unlimited-blocks"),
-        link: "#",
+        link: "https://example.com/",
         target: false,
       },
     };
@@ -1066,7 +1066,7 @@ class Edit extends Component {
                         <strong>{__("Width", "unlimited-blocks")}</strong>
                       </p>
                       <RangeControl
-                        label={__("Width %", "unlimited-blocks")}
+                        label={__("Width", "unlimited-blocks")}
                         value={attributes.sliderSetting.dimension.custom_width}
                         min={10}
                         max={100}
@@ -1174,9 +1174,9 @@ class Edit extends Component {
                       )} */}
 
                       <RangeControl
-                        label={__("Height px", "unlimited-blocks")}
+                        label={__("Height", "unlimited-blocks")}
                         value={attributes.sliderSetting.dimension.custom_height}
-                        min={300}
+                        min={200}
                         max={1000}
                         onChange={(e) => {
                           /////////////////

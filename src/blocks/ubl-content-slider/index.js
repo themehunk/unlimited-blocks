@@ -1,5 +1,6 @@
 import "./editor.scss";
-
+// -----------------------------------------++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// -----------------------------------------++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 import { registerBlockType } from "@wordpress/blocks";
 import Edit from "./edit";
 import { __ } from "@wordpress/i18n";
@@ -36,7 +37,7 @@ registerBlockType("unlimited-blocks/owl-slider", {
         sliderEffect: "slideEffect",
         triggerActive: "both",
         linearTrigger: {
-          fontSize: 20,
+          fontSize: 12,
           color: "rgba(231,192,192,1)",
           activeColor: "rgba(68,222,68,1)",
         },
@@ -55,11 +56,11 @@ registerBlockType("unlimited-blocks/owl-slider", {
     },
     title: {
       type: "object",
-      default: { fontSize: 17, color: "#1d2327" },
+      default: { fontSize: 38, color: "#ffffff" },
     },
     text: {
       type: "object",
-      default: { fontSize: 17, color: "#1d2327" },
+      default: { fontSize: 17, color: "#d2d2d2" },
     },
     buttoneOne: {
       type: "object",
@@ -104,6 +105,7 @@ registerBlockType("unlimited-blocks/owl-slider", {
     },
     slides: {
       type: "array",
+      // default :defaultSlide
       default: [
         // slider slides
         {
@@ -113,7 +115,7 @@ registerBlockType("unlimited-blocks/owl-slider", {
               backgroundImage: "",
               backgroundImageSize: "cover",
               backgroundColorType: "color",
-              backgroundColor: "rgb(68 132 173)",
+              backgroundColor: "#20202e",
               backgroundImageGradient:
                 "radial-gradient(rgb(6, 147, 227) 38%, rgb(155, 81, 224) 80%)",
               backgroundOpacity: 0.6,
@@ -145,7 +147,7 @@ registerBlockType("unlimited-blocks/owl-slider", {
               backgroundImage: "",
               backgroundImageSize: "cover",
               backgroundColorType: "color",
-              backgroundColor: "rgb(68 132 173)",
+              backgroundColor: "#20202e",
               backgroundImageGradient:
                 "radial-gradient(rgb(6, 147, 227) 38%, rgb(155, 81, 224) 80%)",
               backgroundOpacity: 0.6,
@@ -178,7 +180,7 @@ registerBlockType("unlimited-blocks/owl-slider", {
               backgroundImage: "",
               backgroundImageSize: "cover",
               backgroundColorType: "color",
-              backgroundColor: "rgb(68 132 173)",
+              backgroundColor: "#20202e",
               backgroundImageGradient:
                 "radial-gradient(rgb(6, 147, 227) 38%, rgb(155, 81, 224) 80%)",
               backgroundOpacity: 0.6,
