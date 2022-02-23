@@ -30,6 +30,8 @@ import BasicToggleNav from "../block-assets/utility-components/BasicToggleNav";
 import Switcher from "../block-assets/utility-components/TwoSwitcher";
 import BackgroundType from "../block-assets/utility-components/backgroundType/backgroundType";
 import BackgroundColor from "../block-assets/utility-components/backgroundType/backgroundColor";
+import cloneDeep from "clone-deep";
+
 class Edit extends Component {
   constructor(props) {
     super(props);
@@ -77,9 +79,9 @@ class Edit extends Component {
     let { attributes, setAttributes } = this.props;
     if ((index_ === 0 && key_) || (index_ && key_)) {
       // let slides_ = [...attributes.slides];
-      // let slides_ = [...attributes.slides];
-      let slides_ = _.map(attributes.slides, _.clone);
-      console.log("slides maped", slides_);
+      // let slides_ = _.map(attributes.slides, _.clone);
+      let slides_ = cloneDeep(attributes.slides);
+      // console.log("slides maped", slides_);
 
       if (multiple_) {
         let multiple_ = { ...slides_[index_] };
@@ -95,7 +97,8 @@ class Edit extends Component {
   updateAttr = (val, key_ = false, key2_ = false, multiple_ = false) => {
     const { attributes, setAttributes } = this.props;
     if (key_) {
-      let copyAttr = { ...attributes[key_] };
+      let copyAttr = cloneDeep(...attributes[key_]);
+
       // console.log("copyAttr", attr_);
       // let copyAttr = attr_[key_];
       if (multiple_) {

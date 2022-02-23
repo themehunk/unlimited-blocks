@@ -10,8 +10,6 @@ import {
   RangeControl,
   ToggleControl,
   SelectControl,
-  ColorPicker,
-  __experimentalGradientPicker as GradientPicker,
 } from "@wordpress/components";
 import {
   showCateFn,
@@ -22,9 +20,8 @@ import {
   categoryList,
   PostNotfound,
   PostLoader,
-  UBLGraDientColors,
 } from "../block-assets/post-functions";
-
+import BackgroundColor from "../block-assets/utility-components/backgroundType/backgroundColor";
 class Edit extends Component {
   constructor(props) {
     super(props);
@@ -156,10 +153,10 @@ class Edit extends Component {
                 <p>
                   <strong>{__("Background Color", "unlimited-blocks")}</strong>
                 </p>
-                <ColorPicker
-                  color={title_.backgroundColor}
-                  onChangeComplete={(colorBg) => {
-                    let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+
+                <ColorPalette
+                  value={title_.backgroundColor}
+                  onChange={(color) => {
                     this.updateObj("title", "backgroundColor", title, color);
                   }}
                 />
@@ -261,58 +258,22 @@ class Edit extends Component {
                 {__("Center", "unlimited-blocks")}
               </span>
             </div>
-            <p>
-              <strong>{__("Image Overlay Color", "unlimited-blocks")}</strong>
-            </p>
             {/* bg color  */}
-            <div class="ubl-switcher-button-section">
-              <span
-                onClick={() => {
-                  let getBgcolor = { ...layout_.overlayColor };
-                  getBgcolor["type"] = "color";
-                  this.updateObj("layout", "overlayColor", layout, getBgcolor);
-                }}
-                className={
-                  layout_.overlayColor.type == "color" ? "selected" : ""
-                }
-              >
-                {__("Solid", "unlimited-blocks")}
-              </span>
-              <span
-                onClick={() => {
-                  let getBgcolor = { ...layout_.overlayColor };
-                  getBgcolor["type"] = "gradient";
-                  this.updateObj("layout", "overlayColor", layout, getBgcolor);
-                }}
-                className={
-                  layout_.overlayColor.type == "gradient" ? "selected" : ""
-                }
-              >
-                {__("Gradient", "unlimited-blocks")}
-              </span>
-            </div>
-            {"color" == layout_.overlayColor.type ? (
-              <ColorPicker
-                color={layout_.overlayColor.color}
-                onChangeComplete={(colorBg) => {
-                  let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                  let getBgcolor = { ...layout_.overlayColor };
-                  getBgcolor["color"] = color;
-                  this.updateObj("layout", "overlayColor", layout, getBgcolor);
-                }}
-              />
-            ) : (
-              <GradientPicker
-                disableCustomGradients={false}
-                value={layout_.overlayColor.gradient}
-                gradients={UBLGraDientColors}
-                onChange={(newGradient) => {
-                  let getBgcolor = { ...layout_.overlayColor };
-                  getBgcolor["gradient"] = newGradient;
-                  this.updateObj("layout", "overlayColor", layout, getBgcolor);
-                }}
-              />
-            )}
+            <BackgroundColor
+              title="Image Overlay Color"
+              value={{
+                backgroundColorType: layout_.overlayColor.type,
+                backgroundColor: layout_.overlayColor.color,
+                backgroundImageGradient: layout_.overlayColor.gradient,
+              }}
+              changeme={(_properties) => {
+                let getBgcolor = { ...layout_.overlayColor };
+                getBgcolor["type"] = _properties.backgroundColorType;
+                getBgcolor["color"] = _properties.backgroundColor;
+                getBgcolor["gradient"] = _properties.backgroundImageGradient;
+                this.updateObj("layout", "overlayColor", layout, getBgcolor);
+              }}
+            />
             <RangeControl
               label={__("Opacity", "unlimited-blocks")}
               value={layout_.overlayColor.opacity}
@@ -428,7 +389,10 @@ class Edit extends Component {
               </>
             )}
           </PanelBody>
-          <PanelBody title={__("Post Meta", "unlimited-blocks")} initialOpen={false}>
+          <PanelBody
+            title={__("Post Meta", "unlimited-blocks")}
+            initialOpen={false}
+          >
             {/* category */}
             <p>
               <strong>{__("Choose Category", "unlimited-blocks")}</strong>
@@ -487,9 +451,13 @@ class Edit extends Component {
               checked={showTag_.enable}
               onChange={(e) => this.updateObj("showTag", "enable", showTag, e)}
             />
-            <p class="block-inside">{__("Meta Custom Style", "unlimited-blocks")}</p>
+            <p class="block-inside">
+              {__("Meta Custom Style", "unlimited-blocks")}
+            </p>
             <p>
-              <strong>{__("Author/Dates Font Size", "unlimited-blocks")}</strong>
+              <strong>
+                {__("Author/Dates Font Size", "unlimited-blocks")}
+              </strong>
             </p>
             <RangeControl
               value={meta_style_.fontSize}
@@ -560,12 +528,13 @@ class Edit extends Component {
                       }
                     />
                     <p>
-                      <strong>{__("Background Color", "unlimited-blocks")}</strong>
+                      <strong>
+                        {__("Background Color", "unlimited-blocks")}
+                      </strong>
                     </p>
-                    <ColorPicker
-                      color={showCate_.backgroundColor}
-                      onChangeComplete={(colorBg) => {
-                        let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                    <ColorPalette
+                      value={showCate_.backgroundColor}
+                      onChange={(color) => {
                         this.updateObj(
                           "showCate",
                           "backgroundColor",
@@ -584,7 +553,9 @@ class Edit extends Component {
                   {__("Tags Custom Style", "unlimited-blocks")}
                 </p>
                 <p>
-                  <strong>{__("Number Tags Per Post", "unlimited-blocks")}</strong>
+                  <strong>
+                    {__("Number Tags Per Post", "unlimited-blocks")}
+                  </strong>
                 </p>
                 <RangeControl
                   value={showTag_.count}
@@ -617,10 +588,10 @@ class Edit extends Component {
                 <p>
                   <strong>{__("Background Color", "unlimited-blocks")}</strong>
                 </p>
-                <ColorPicker
-                  color={showTag_.backgroundColor}
-                  onChangeComplete={(colorBg) => {
-                    let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+
+                <ColorPalette
+                  value={showTag_.backgroundColor}
+                  onChange={(color) => {
                     this.updateObj(
                       "showTag",
                       "backgroundColor",
@@ -699,7 +670,6 @@ class Edit extends Component {
     author_,
     date_,
     meta_style_,
-    thumbnail_,
     showCate_,
     excerpt_,
     showTag_,

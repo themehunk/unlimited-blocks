@@ -30,4 +30,4 @@ include_once "block-callback/product-one.php";
 include_once "block-callback/slick-slider.php";
 
 // test 
-include_once "block-callback/test.php";
+// include_once "block-callback/test.php";

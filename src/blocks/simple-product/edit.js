@@ -15,8 +15,6 @@ import {
   RangeControl,
   ToggleControl,
   SelectControl,
-  ColorPicker,
-  __experimentalGradientPicker as GradientPicker,
 } from "@wordpress/components";
 import {
   filterProductInit,

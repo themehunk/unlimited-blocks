@@ -10,7 +10,6 @@ import {
   RangeControl,
   ToggleControl,
   SelectControl,
-  ColorPicker,
 } from "@wordpress/components";
 import {
   showCateFn,
@@ -22,6 +21,7 @@ import {
   PostLoader,
   PostNotfound,
 } from "../block-assets/post-functions";
+import Switcher from "../block-assets/utility-components/TwoSwitcher";
 
 class Edit extends Component {
   constructor(props) {
@@ -50,13 +50,12 @@ class Edit extends Component {
   render() {
     // ++++++++++++++===============
     const { attributes, setAttributes } = this.props;
-    const { posts, category, totalPost } = this.state;
+    const { posts, category, totalPost, heading: stateHeading } = this.state;
 
     let {
       heading,
       author,
       numberOfPosts,
-      thumbnail,
       date,
       showTag,
       showCate,
@@ -74,7 +73,6 @@ class Edit extends Component {
       author2,
     } = attributes;
     let heading_ = heading[0];
-    let thumbnail_ = thumbnail[0];
     let excerpt_ = excerpt[0];
     let date_ = date[0];
     let author_ = author[0];
@@ -91,18 +89,20 @@ class Edit extends Component {
     let date2_ = date2[0];
     let author2_ = author2[0];
     // if number of post sum
-    if (
-      (numberOfPosts == 3 || numberOfPosts == 5) &&
-      (this.state.metaChoose == "secondary" ||
-        this.state.excerpt == "secondary" ||
-        this.state.heading == "secondary")
-    ) {
-      this.setState({
-        metaChoose: "primary",
-        excerpt: "primary",
-        heading: "primary",
-      });
-    }
+    // console.log("state", this.state);
+
+    // if (
+    //   (numberOfPosts == 3 || numberOfPosts == 5) &&
+    //   (this.state.metaChoose == "secondary" ||
+    //     this.state.excerpt == "secondary" ||
+    //     stateHeading == "secondary")
+    // ) {
+    //   this.setState({
+    //     metaChoose: "primary",
+    //     excerpt: "primary",
+    //     heading: "primary",
+    //   });
+    // }
     // category init
     let cateGory = [];
     if (!category) {
@@ -185,13 +185,13 @@ class Edit extends Component {
                 <p>
                   <strong>{__("Background Color", "unlimited-blocks")}</strong>
                 </p>
-                <ColorPicker
-                  color={title_.backgroundColor}
-                  onChangeComplete={(colorBg) => {
-                    let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                <ColorPalette
+                  value={title_.backgroundColor}
+                  onChange={(color) => {
                     this.updateObj("title", "backgroundColor", title, color);
                   }}
                 />
+
                 {/* font weight */}
                 <div className="flex-section">
                   <p>{__("Font Weight", "unlimited-blocks")}</p>
@@ -231,7 +231,9 @@ class Edit extends Component {
             initialOpen={false}
           >
             <p>
-              <strong>{__("Number of Post Display", "unlimited-blocks")}</strong>
+              <strong>
+                {__("Number of Post Display", "unlimited-blocks")}
+              </strong>
             </p>
             <RangeControl
               value={numberOfPosts}
@@ -248,22 +250,22 @@ class Edit extends Component {
             initialOpen={false}
           >
             {(numberOfPosts == 3 || numberOfPosts == 5) && (
-              <div class="ubl-switcher-button-section">
-                <span
-                  onClick={() => this.setState({ heading: "primary" })}
-                  className={this.state.heading == "primary" ? "selected" : ""}
-                >
-                  {__("Primary", "unlimited-blocks")}
-                </span>
-                <span
-                  onClick={() => this.setState({ heading: "secondary" })}
-                  className={
-                    this.state.heading == "secondary" ? "selected" : ""
-                  }
-                >
-                  {__("Secondary", "unlimited-blocks")}
-                </span>
-              </div>
+              <Switcher
+                value={this.state.heading}
+                navItem={[
+                  {
+                    name: "primary",
+                    title: "Primary",
+                  },
+                  {
+                    name: "secondary",
+                    title: "Secondary",
+                  },
+                ]}
+                clickme={(value_) => {
+                  this.setState({ heading: value_ });
+                }}
+              />
             )}
             {this.state.heading == "primary" ? (
               <>
@@ -372,22 +374,22 @@ class Edit extends Component {
             initialOpen={false}
           >
             {(numberOfPosts == 3 || numberOfPosts == 5) && (
-              <div className="ubl-switcher-button-section">
-                <span
-                  onClick={() => this.setState({ excerpt: "primary" })}
-                  className={this.state.excerpt == "primary" ? "selected" : ""}
-                >
-                  {__("Primary", "unlimited-blocks")}
-                </span>
-                <span
-                  onClick={() => this.setState({ excerpt: "secondary" })}
-                  className={
-                    this.state.excerpt == "secondary" ? "selected" : ""
-                  }
-                >
-                  {__("Secondary", "unlimited-blocks")}
-                </span>
-              </div>
+              <Switcher
+                value={this.state.excerpt}
+                navItem={[
+                  {
+                    name: "primary",
+                    title: "Primary",
+                  },
+                  {
+                    name: "secondary",
+                    title: "Secondary",
+                  },
+                ]}
+                clickme={(value_) => {
+                  this.setState({ excerpt: value_ });
+                }}
+              />
             )}
             {this.state.excerpt == "primary" ? (
               <>
@@ -416,7 +418,9 @@ class Edit extends Component {
                       }
                     />
                     <p>
-                      <strong>{__("Number of words", "unlimited-blocks")}</strong>
+                      <strong>
+                        {__("Number of words", "unlimited-blocks")}
+                      </strong>
                     </p>
                     <RangeControl
                       value={excerpt_.words}
@@ -454,7 +458,9 @@ class Edit extends Component {
                 {excerpt2_.enable && (
                   <>
                     <p>
-                      <strong>{__("Number of words", "unlimited-blocks")}</strong>
+                      <strong>
+                        {__("Number of words", "unlimited-blocks")}
+                      </strong>
                     </p>
                     <RangeControl
                       value={excerpt2_.words}
@@ -489,7 +495,10 @@ class Edit extends Component {
               </>
             )}
           </PanelBody>
-          <PanelBody title={__("Post Meta", "unlimited-blocks")} initialOpen={false}>
+          <PanelBody
+            title={__("Post Meta", "unlimited-blocks")}
+            initialOpen={false}
+          >
             {/* category */}
             <p>
               <strong>{__("Choose Category", "unlimited-blocks")}</strong>
@@ -521,24 +530,22 @@ class Edit extends Component {
             {/* category */}
             {/* primery and secondary */}
             {(numberOfPosts == 3 || numberOfPosts == 5) && (
-              <div class="ubl-switcher-button-section">
-                <span
-                  onClick={() => this.setState({ metaChoose: "primary" })}
-                  className={
-                    this.state.metaChoose == "primary" ? "selected" : ""
-                  }
-                >
-                  {__("Primary", "unlimited-blocks")}
-                </span>
-                <span
-                  onClick={() => this.setState({ metaChoose: "secondary" })}
-                  className={
-                    this.state.metaChoose == "secondary" ? "selected" : ""
-                  }
-                >
-                  {__("Secondary", "unlimited-blocks")}
-                </span>
-              </div>
+              <Switcher
+                value={this.state.metaChoose}
+                navItem={[
+                  {
+                    name: "primary",
+                    title: "Primary",
+                  },
+                  {
+                    name: "secondary",
+                    title: "Secondary",
+                  },
+                ]}
+                clickme={(value_) => {
+                  this.setState({ metaChoose: value_ });
+                }}
+              />
             )}
             {/* show author */}
             {this.state.metaChoose == "primary" ? (
@@ -582,7 +589,9 @@ class Edit extends Component {
                   {__("Meta Custom Style", "unlimited-blocks")}
                 </p>
                 <p>
-                  <strong>{__("Author/Dates Font Size", "unlimited-blocks")}</strong>
+                  <strong>
+                    {__("Author/Dates Font Size", "unlimited-blocks")}
+                  </strong>
                 </p>
                 <RangeControl
                   value={meta_style_.fontSize}
@@ -593,7 +602,9 @@ class Edit extends Component {
                   }}
                 />
                 <p>
-                  <strong>{__("Author/Dates Color", "unlimited-blocks")}</strong>
+                  <strong>
+                    {__("Author/Dates Color", "unlimited-blocks")}
+                  </strong>
                 </p>
                 <ColorPalette
                   value={"color" in meta_style_ ? meta_style_.color : ""}
@@ -657,10 +668,9 @@ class Edit extends Component {
                             {__("Background Color", "unlimited-blocks")}
                           </strong>
                         </p>
-                        <ColorPicker
-                          color={showCate_.backgroundColor}
-                          onChangeComplete={(colorBg) => {
-                            let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                        <ColorPalette
+                          value={showCate_.backgroundColor}
+                          onChange={(color) => {
                             this.updateObj(
                               "showCate",
                               "backgroundColor",
@@ -712,9 +722,22 @@ class Edit extends Component {
                       }
                     />
                     <p>
-                      <strong>{__("Background Color", "unlimited-blocks")}</strong>
+                      <strong>
+                        {__("Background Color", "unlimited-blocks")}
+                      </strong>
                     </p>
-                    <ColorPicker
+                    <ColorPalette
+                      value={showTag_.backgroundColor}
+                      onChange={(color) => {
+                        this.updateObj(
+                          "showTag",
+                          "backgroundColor",
+                          showTag,
+                          color
+                        );
+                      }}
+                    />
+                    {/* <ColorPicker
                       color={showTag_.backgroundColor}
                       onChangeComplete={(colorBg) => {
                         let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
@@ -725,7 +748,7 @@ class Edit extends Component {
                           color
                         );
                       }}
-                    />
+                    /> */}
                   </>
                 )}
               </>
@@ -772,7 +795,9 @@ class Edit extends Component {
                   {__("Meta Custom Style", "unlimited-blocks")}
                 </p>
                 <p>
-                  <strong>{__("Author/Dates Font Size", "unlimited-blocks")}</strong>
+                  <strong>
+                    {__("Author/Dates Font Size", "unlimited-blocks")}
+                  </strong>
                 </p>
                 <RangeControl
                   value={meta_style2_.fontSize}
@@ -783,7 +808,9 @@ class Edit extends Component {
                   }}
                 />
                 <p>
-                  <strong>{__("Author/Dates Color", "unlimited-blocks")}</strong>
+                  <strong>
+                    {__("Author/Dates Color", "unlimited-blocks")}
+                  </strong>
                 </p>
                 <ColorPalette
                   value={"color" in meta_style2_ ? meta_style2_.color : ""}
@@ -852,10 +879,21 @@ class Edit extends Component {
                             {__("Background Color", "unlimited-blocks")}
                           </strong>
                         </p>
-                        <ColorPicker
+                        {/* <ColorPicker
                           color={showCate2_.backgroundColor}
                           onChangeComplete={(colorBg) => {
                             let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                            this.updateObj(
+                              "showCate2",
+                              "backgroundColor",
+                              showCate2,
+                              color
+                            );
+                          }}
+                        /> */}
+                        <ColorPalette
+                          value={showCate2_.backgroundColor}
+                          onChange={(color) => {
                             this.updateObj(
                               "showCate2",
                               "backgroundColor",
@@ -907,12 +945,25 @@ class Edit extends Component {
                       }
                     />
                     <p>
-                      <strong>{__("Background Color", "unlimited-blocks")}</strong>
+                      <strong>
+                        {__("Background Color", "unlimited-blocks")}
+                      </strong>
                     </p>
-                    <ColorPicker
+                    {/* <ColorPicker
                       color={showTag2_.backgroundColor}
                       onChangeComplete={(colorBg) => {
                         let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                        this.updateObj(
+                          "showTag",
+                          "backgroundColor",
+                          showTag2,
+                          color
+                        );
+                      }}
+                    /> */}
+                    <ColorPalette
+                      value={showTag2_.backgroundColor}
+                      onChange={(color) => {
                         this.updateObj(
                           "showTag",
                           "backgroundColor",

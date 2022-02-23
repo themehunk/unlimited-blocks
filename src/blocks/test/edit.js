@@ -12,6 +12,8 @@ import {
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import { Component } from "@wordpress/element";
+import cloneDeep from "clone-deep";
+
 class Test extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +24,7 @@ class Test extends Component {
 
     const { attributes, setAttributes } = this.props;
     let { title } = attributes;
-    let title_ = title[0].value;
+    let title_ = title.slide1.value;
     // bg containe
     return (
       <>
@@ -49,15 +51,17 @@ class Test extends Component {
                   fontSize: "30px",
                 }}
                 onChange={(e) => {
-                  // let title__ = [...title];
-                  // let title__ = _.clone(title);
-                  let title__ = _.map(title, _.clone);
-                  // var b = _.clone(a);
-
-                  console.log("title->", title);
-                  title__[0]["value"] = e;
+                  // let title__ = { ...title };
+                  // let title__ = JSON.parse(JSON.stringify(title));
+                  let title__ = cloneDeep(title);
+                  console.log(
+                    "titles jsons ss ->",
+                    JSON.parse(JSON.stringify(title))
+                  );
+                  console.log("titles->", title);
+                  title__["slide1"]["value"] = e;
                   // let title_ = [{ value: e }, { value: e }];
-                  setAttributes({ title: title__ });
+                  this.props.setAttributes({ title: title__ });
                 }}
               />
             </div>

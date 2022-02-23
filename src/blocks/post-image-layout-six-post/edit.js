@@ -1,5 +1,4 @@
 import { Component } from "@wordpress/element";
-import { withSelect } from "@wordpress/data";
 import { __ } from "@wordpress/i18n";
 import {
   InspectorControls,
@@ -11,7 +10,6 @@ import {
   RangeControl,
   ToggleControl,
   SelectControl,
-  ColorPicker,
 } from "@wordpress/components";
 import {
   showCateFn,
@@ -166,10 +164,10 @@ class Edit extends Component {
                 <p>
                   <strong>{__("Background Color", "unlimited-blocks")}</strong>
                 </p>
-                <ColorPicker
-                  color={title_.backgroundColor}
-                  onChangeComplete={(colorBg) => {
-                    let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+
+                <ColorPalette
+                  value={title_.backgroundColor}
+                  onChange={(color) => {
                     this.updateObj("title", "backgroundColor", title, color);
                   }}
                 />
@@ -324,7 +322,10 @@ class Edit extends Component {
               </>
             )}
           </PanelBody>
-          <PanelBody title={__("Post Meta", "unlimited-blocks")} initialOpen={false}>
+          <PanelBody
+            title={__("Post Meta", "unlimited-blocks")}
+            initialOpen={false}
+          >
             {/* category */}
             <p>
               <strong>{__("Choose Category", "unlimited-blocks")}</strong>
@@ -340,7 +341,7 @@ class Edit extends Component {
                     });
                     if (chooseAll.length) choosen = [];
                     setAttributes({ postCategories: choosen });
-                    filterPostInit(this,{
+                    filterPostInit(this, {
                       postCategories: choosen,
                       featured_image: 1,
                     });
@@ -385,9 +386,13 @@ class Edit extends Component {
               checked={showTag_.enable}
               onChange={(e) => this.updateObj("showTag", "enable", showTag, e)}
             />
-            <p class="block-inside">{__("Meta Custom Style", "unlimited-blocks")}</p>
+            <p class="block-inside">
+              {__("Meta Custom Style", "unlimited-blocks")}
+            </p>
             <p>
-              <strong>{__("Author/Dates Font Size", "unlimited-blocks")}</strong>
+              <strong>
+                {__("Author/Dates Font Size", "unlimited-blocks")}
+              </strong>
             </p>
             <RangeControl
               value={meta_style_.fontSize}
@@ -458,12 +463,13 @@ class Edit extends Component {
                       }
                     />
                     <p>
-                      <strong>{__("Background Color", "unlimited-blocks")}</strong>
+                      <strong>
+                        {__("Background Color", "unlimited-blocks")}
+                      </strong>
                     </p>
-                    <ColorPicker
-                      color={showCate_.backgroundColor}
-                      onChangeComplete={(colorBg) => {
-                        let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                    <ColorPalette
+                      value={showCate_.backgroundColor}
+                      onChange={(color) => {
                         this.updateObj(
                           "showCate",
                           "backgroundColor",
@@ -482,7 +488,9 @@ class Edit extends Component {
                   {__("Tags Custom Style", "unlimited-blocks")}
                 </p>
                 <p>
-                  <strong>{__("Number Tags Per Post", "unlimited-blocks")}</strong>
+                  <strong>
+                    {__("Number Tags Per Post", "unlimited-blocks")}
+                  </strong>
                 </p>
                 <RangeControl
                   value={showTag_.count}
@@ -515,10 +523,9 @@ class Edit extends Component {
                 <p>
                   <strong>{__("Background Color", "unlimited-blocks")}</strong>
                 </p>
-                <ColorPicker
-                  color={showTag_.backgroundColor}
-                  onChangeComplete={(colorBg) => {
-                    let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                <ColorPalette
+                  value={showTag_.backgroundColor}
+                  onChange={(color) => {
                     this.updateObj(
                       "showTag",
                       "backgroundColor",

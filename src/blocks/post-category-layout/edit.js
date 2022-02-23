@@ -10,8 +10,6 @@ import {
   RangeControl,
   ToggleControl,
   SelectControl,
-  ColorPicker,
-  __experimentalGradientPicker as GradientPicker,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import {
@@ -23,9 +21,9 @@ import {
   categoryList,
   PostLoader,
   PostNotfound,
-  UBLGraDientColors,
 } from "../block-assets/post-functions";
-
+import BackgroundColor from "../block-assets/utility-components/backgroundType/backgroundColor";
+import Switcher from "../block-assets/utility-components/TwoSwitcher";
 class Edit extends Component {
   constructor(props) {
     super(props);
@@ -328,13 +326,11 @@ class Edit extends Component {
       postCategories,
       meta_style,
       meta_style2,
-      thumbnail2,
       title,
       categorynav,
     } = attributes;
     let heading_ = heading[0];
     let thumbnail_ = thumbnail[0];
-    let thumbnail2_ = thumbnail2[0];
     let excerpt_ = excerpt[0];
     let date_ = date[0];
     let author_ = author[0];
@@ -371,20 +367,22 @@ class Edit extends Component {
       <>
         <InspectorControls>
           <PanelBody title="Block Title / Navigation" initialOpen={false}>
-            <div class="ubl-switcher-button-section">
-              <span
-                onClick={() => this.setState({ blockTitle: "title" })}
-                className={this.state.blockTitle == "title" ? "selected" : ""}
-              >
-                {__("Title", "unlimited-blocks")}
-              </span>
-              <span
-                onClick={() => this.setState({ blockTitle: "nav" })}
-                className={this.state.blockTitle == "nav" ? "selected" : ""}
-              >
-                {__("Navigation", "unlimited-blocks")}
-              </span>
-            </div>
+            <Switcher
+              value={this.state.blockTitle}
+              navItem={[
+                {
+                  name: "title",
+                  title: "Title",
+                },
+                {
+                  name: "nav",
+                  title: "Navigation",
+                },
+              ]}
+              clickme={(value_) => {
+                this.setState({ blockTitle: value_ });
+              }}
+            />
             {this.state.blockTitle == "title" ? (
               <>
                 <ToggleControl
@@ -421,10 +419,9 @@ class Edit extends Component {
                         {__("Background Color", "unlimited-blocks")}
                       </strong>
                     </p>
-                    <ColorPicker
-                      color={title_.bgColor}
-                      onChangeComplete={(colorBg) => {
-                        let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                    <ColorPalette
+                      value={title_.bgColor}
+                      onChange={(color) => {
                         this.updateObj("title", "bgColor", title, color);
                       }}
                     />
@@ -479,10 +476,9 @@ class Edit extends Component {
                         {__("Background Color", "unlimited-blocks")}
                       </strong>
                     </p>
-                    <ColorPicker
-                      color={categorynav[0].bgColor}
-                      onChangeComplete={(colorBg) => {
-                        let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                    <ColorPalette
+                      value={categorynav[0].bgColor}
+                      onChange={(color) => {
                         this.updateObj(
                           "categorynav",
                           "backgroundColor",
@@ -513,10 +509,9 @@ class Edit extends Component {
                     <p>
                       <strong>{__("Color", "unlimited-blocks")}</strong>
                     </p>
-                    <ColorPicker
-                      color={meta_style_.underLineColor}
-                      onChangeComplete={(colorBg) => {
-                        let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                    <ColorPalette
+                      value={meta_style_.underLineColor}
+                      onChange={(color) => {
                         this.updateObj(
                           "meta_style",
                           "underLineColor",
@@ -551,132 +546,70 @@ class Edit extends Component {
             <p>
               <strong>{__("Layout Position", "unlimited-blocks")}</strong>
             </p>
-            <div class="ubl-switcher-button-section">
-              <span
-                onClick={() =>
-                  this.updateObj(
-                    "meta_style",
-                    "layoutPosition",
-                    meta_style,
-                    "left"
-                  )
-                }
-                className={
-                  meta_style_.layoutPosition == "left" ? "selected" : ""
-                }
-              >
-                {__("Left", "unlimited-blocks")}
-              </span>
-              <span
-                onClick={() =>
-                  this.updateObj(
-                    "meta_style",
-                    "layoutPosition",
-                    meta_style,
-                    "right"
-                  )
-                }
-                className={
-                  meta_style_.layoutPosition == "right" ? "selected" : ""
-                }
-              >
-                {__("Right", "unlimited-blocks")}
-              </span>
-            </div>
-            <p>
-              <strong>
-                {__("Block Background Color", "unlimited-blocks")}
-              </strong>
-            </p>
-            {/* bg color  */}
-            <div class="ubl-switcher-button-section">
-              <span
-                onClick={() => {
-                  let getBgcolor = { ...meta_style_.blockBgColor };
-                  getBgcolor["type"] = "color";
-                  this.updateObj(
-                    "meta_style",
-                    "blockBgColor",
-                    meta_style,
-                    getBgcolor
-                  );
-                }}
-                className={
-                  meta_style_.blockBgColor.type == "color" ? "selected" : ""
-                }
-              >
-                {__("Solid", "unlimited-blocks")}
-              </span>
-              <span
-                onClick={() => {
-                  let getBgcolor = { ...meta_style_.blockBgColor };
-                  getBgcolor["type"] = "gradient";
-                  this.updateObj(
-                    "meta_style",
-                    "blockBgColor",
-                    meta_style,
-                    getBgcolor
-                  );
-                }}
-                className={
-                  meta_style_.blockBgColor.type == "gradient" ? "selected" : ""
-                }
-              >
-                {__("Gradient", "unlimited-blocks")}
-              </span>
-            </div>
-            {"color" == meta_style_.blockBgColor.type ? (
-              <ColorPicker
-                color={meta_style_.blockBgColor.color}
-                onChangeComplete={(colorBg) => {
-                  let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                  let getBgcolor = { ...meta_style_.blockBgColor };
-                  getBgcolor["color"] = color;
-                  this.updateObj(
-                    "meta_style",
-                    "blockBgColor",
-                    meta_style,
-                    getBgcolor
-                  );
-                }}
-              />
-            ) : (
-              <GradientPicker
-                disableCustomGradients={false}
-                value={meta_style_.blockBgColor.gradient}
-                gradients={UBLGraDientColors}
-                onChange={(newGradient) => {
-                  let getBgcolor = { ...meta_style_.blockBgColor };
-                  getBgcolor["gradient"] = newGradient;
-                  this.updateObj(
-                    "meta_style",
-                    "blockBgColor",
-                    meta_style,
-                    getBgcolor
-                  );
-                }}
-              />
-            )}
+            <Switcher
+              value={meta_style_.layoutPosition}
+              navItem={[
+                {
+                  name: "left",
+                  title: "Left",
+                },
+                {
+                  name: "right",
+                  title: "Right",
+                },
+              ]}
+              clickme={(value_) => {
+                this.updateObj(
+                  "meta_style",
+                  "layoutPosition",
+                  meta_style,
+                  value_
+                );
+              }}
+            />
+            <BackgroundColor
+              title={__("Block Background Color", "unlimited-blocks")}
+              value={{
+                backgroundColorType: meta_style_.blockBgColor.type,
+                backgroundColor: meta_style_.blockBgColor.color,
+                backgroundImageGradient: meta_style_.blockBgColor.gradient,
+              }}
+              changeme={(_properties) => {
+                // console.log("_properties", _properties);
+                let getBgcolor = { ...meta_style_.blockBgColor };
+                getBgcolor["type"] = _properties.backgroundColorType;
+                getBgcolor["color"] = _properties.backgroundColor;
+                getBgcolor["gradient"] = _properties.backgroundImageGradient;
+                this.updateObj(
+                  "meta_style",
+                  "blockBgColor",
+                  meta_style,
+                  getBgcolor
+                );
+              }}
+            />
             {/* bg color  */}
           </PanelBody>
           <PanelBody
             title={__("Post Title", "unlimited-blocks")}
             initialOpen={false}
           >
-            <div class="ubl-switcher-button-section">
-              <span
-                onClick={() => this.setState({ heading: "primary" })}
-                className={this.state.heading == "primary" ? "selected" : ""}
-              >
-                {__("Primary", "unlimited-blocks")}
-              </span>
-              <span
-                onClick={() => this.setState({ heading: "secondary" })}
-                className={this.state.heading == "secondary" ? "selected" : ""}
-              >
-                {__("Secondary", "unlimited-blocks")}
-              </span>
-            </div>
+            <Switcher
+              value={this.state.heading}
+              navItem={[
+                {
+                  name: "primary",
+                  title: "Primary",
+                },
+                {
+                  name: "secondary",
+                  title: "Secondary",
+                },
+              ]}
+              clickme={(value_) => {
+                this.setState({ heading: value_ });
+              }}
+            />
             {this.state.heading == "primary" ? (
               <>
                 <p>
@@ -783,20 +716,22 @@ class Edit extends Component {
             title={__("Excerpt / Content", "unlimited-blocks")}
             initialOpen={false}
           >
-            <div class="ubl-switcher-button-section">
-              <span
-                onClick={() => this.setState({ excerpt: "primary" })}
-                className={this.state.excerpt == "primary" ? "selected" : ""}
-              >
-                {__("Primary", "unlimited-blocks")}
-              </span>
-              <span
-                onClick={() => this.setState({ excerpt: "secondary" })}
-                className={this.state.excerpt == "secondary" ? "selected" : ""}
-              >
-                {__("Secondary", "unlimited-blocks")}
-              </span>
-            </div>
+            <Switcher
+              value={this.state.excerpt}
+              navItem={[
+                {
+                  name: "primary",
+                  title: "Primary",
+                },
+                {
+                  name: "secondary",
+                  title: "Secondary",
+                },
+              ]}
+              clickme={(value_) => {
+                this.setState({ excerpt: value_ });
+              }}
+            />
             {this.state.excerpt == "primary" ? (
               <>
                 <ToggleControl
@@ -960,26 +895,22 @@ class Edit extends Component {
                 {__("No Categories Found", "unlimited-blocks")}
               </p>
             )}
-
-            {/* category */}
-            {/* primery and secondary */}
-            <div class="ubl-switcher-button-section">
-              <span
-                onClick={() => this.setState({ metaChoose: "primary" })}
-                className={this.state.metaChoose == "primary" ? "selected" : ""}
-              >
-                {__("Primary", "unlimited-blocks")}
-              </span>
-              <span
-                onClick={() => this.setState({ metaChoose: "secondary" })}
-                className={
-                  this.state.metaChoose == "secondary" ? "selected" : ""
-                }
-              >
-                {__("Secondary", "unlimited-blocks")}
-              </span>
-            </div>
-
+            <Switcher
+              value={this.state.metaChoose}
+              navItem={[
+                {
+                  name: "primary",
+                  title: "Primary",
+                },
+                {
+                  name: "secondary",
+                  title: "Secondary",
+                },
+              ]}
+              clickme={(value_) => {
+                this.setState({ metaChoose: value_ });
+              }}
+            />
             {/* show author */}
             {this.state.metaChoose == "primary" ? (
               <>
@@ -1101,10 +1032,9 @@ class Edit extends Component {
                             {__("Background Color", "unlimited-blocks")}
                           </strong>
                         </p>
-                        <ColorPicker
-                          color={showCate_.backgroundColor}
-                          onChangeComplete={(colorBg) => {
-                            let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                        <ColorPalette
+                          value={showCate_.backgroundColor}
+                          onChange={(color) => {
                             this.updateObj(
                               "showCate",
                               "backgroundColor",
@@ -1160,10 +1090,9 @@ class Edit extends Component {
                         {__("Background Color", "unlimited-blocks")}
                       </strong>
                     </p>
-                    <ColorPicker
-                      color={showTag_.backgroundColor}
-                      onChangeComplete={(colorBg) => {
-                        let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                    <ColorPalette
+                      value={showTag_.backgroundColor}
+                      onChange={(color) => {
                         this.updateObj(
                           "showTag",
                           "backgroundColor",
@@ -1295,10 +1224,9 @@ class Edit extends Component {
                             {__("Background Color", "unlimited-blocks")}
                           </strong>
                         </p>
-                        <ColorPicker
-                          color={showCate2_.backgroundColor}
-                          onChangeComplete={(colorBg) => {
-                            let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                        <ColorPalette
+                          value={showCate2_.backgroundColor}
+                          onChange={(color) => {
                             this.updateObj(
                               "showCate2",
                               "backgroundColor",
@@ -1339,10 +1267,9 @@ class Edit extends Component {
               <p>
                 <strong>{__("Background Color", "unlimited-blocks")}</strong>
               </p>
-              <ColorPicker
-                color={meta_style_.npBgColor}
-                onChangeComplete={(colorBg) => {
-                  let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+              <ColorPalette
+                value={meta_style_.npBgColor}
+                onChange={(color) => {
                   this.updateObj("meta_style", "npBgColor", meta_style, color);
                 }}
               />

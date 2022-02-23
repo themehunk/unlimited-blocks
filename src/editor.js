@@ -26,4 +26,4 @@ import "./blocks/column-blocks-column";
 //woocommerce blocks
 // testing \
 
-import "./blocks/test";
+// import "./blocks/test";
