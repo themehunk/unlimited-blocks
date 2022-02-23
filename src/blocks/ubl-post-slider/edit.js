@@ -71,7 +71,7 @@ class Edit extends Component {
       excerpt,
       postCategories,
       meta_style,
-      title,
+      // title,
       sliderSetting,
     } = attributes;
     let heading_ = heading[0];
@@ -79,7 +79,7 @@ class Edit extends Component {
     let date_ = date[0];
     let author_ = author[0];
     let meta_style_ = meta_style[0];
-    let title_ = title[0];
+    // let title_ = title[0];
     let showTag_ = showTag[0];
     let showCate_ = showCate[0];
     // category init
@@ -117,7 +117,7 @@ class Edit extends Component {
     return (
       <>
         <InspectorControls>
-          <PanelBody
+          {/* <PanelBody
             title={__("Block Title", "unlimited-blocks")}
             initialOpen={false}
           >
@@ -196,8 +196,7 @@ class Edit extends Component {
                     this.updateObj("title", "backgroundColor", title, color);
                   }}
                 />
-                {/* font weight */}
-                <div className="flex-section">
+          {/* <div className="flex-section">
                   <p>{__("Font Weight", "unlimited-blocks")}</p>
                   <select
                     value={title_.fontWeight}
@@ -215,7 +214,6 @@ class Edit extends Component {
                     <option value="700">700</option>
                   </select>
                 </div>
-                {/* font weight */}
                 <p>
                   <strong>{__("Max Width %", "unlimited-blocks")}</strong>
                 </p>
@@ -229,7 +227,7 @@ class Edit extends Component {
                 />
               </>
             )}
-          </PanelBody>
+          </PanelBody> */}
           <PanelBody
             title={__("Post Slider Setting", "unlimited-blocks")}
             initialOpen={false}
@@ -999,7 +997,7 @@ class Edit extends Component {
         {posts && posts.length > 0 ? (
           <>
             <div className="ubl-block-slide-wrapper">
-              {title_.enable && (
+              {/* {title_.enable && (
                 <div
                   className="ubl-block-post-title"
                   style={{
@@ -1023,7 +1021,7 @@ class Edit extends Component {
                     onChange={(e) => this.updateObj("title", "value", title, e)}
                   />
                 </div>
-              )}
+              )} */}
               <div className="ubl-slider-bullet">
                 <ul className="ubl-slider-ul-bullet">
                   {posts.map((val, index_) => {

@@ -23,7 +23,7 @@ if (!function_exists('unlimited_blocks_register_block')) {
 		wp_register_script(
 			'unlimited-blocks-editor-secript',
 			UNLIMITED_BLOCKS . 'dist/editor.js',
-			array('jquery', 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-data', 'wp-html-entities', "wp-i18n"),
+			array('jquery', 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-data', 'wp-html-entities', "wp-i18n", 'underscore'),
 			1
 		);
 		// Register JavasScript File src/script.js

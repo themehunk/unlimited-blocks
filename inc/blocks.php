@@ -28,3 +28,6 @@ include_once "block-callback/post-image-layout-six-post.php";
 // woocommerce layout 
 include_once "block-callback/product-one.php";
 include_once "block-callback/slick-slider.php";
+
+// test 
+include_once "block-callback/test.php";

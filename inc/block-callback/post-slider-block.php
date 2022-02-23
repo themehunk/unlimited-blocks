@@ -48,20 +48,20 @@ unlimited_blocks_register_block_fn('ubl-post-slider',  [
             'type' => "number",
             "default" => 2
         ],
-        "title" => [
-            "type" => "array",
-            "default" => [[
-                'enable' => false,
-                "value" => __("Add Block Title", "unlimited-blocks"),
-                "fontSize" => 16,
-                "color" => "white",
-                "backgroundColor" => "#652efd",
-                "align" => "left",
-                // "customWidth" => false,
-                "width" => 10,
-                "fontWeight" => 400
-            ]]
-        ],
+        // "title" => [
+        //     "type" => "array",
+        //     "default" => [[
+        //         'enable' => false,
+        //         "value" => __("Add Block Title", "unlimited-blocks"),
+        //         "fontSize" => 16,
+        //         "color" => "white",
+        //         "backgroundColor" => "#652efd",
+        //         "align" => "left",
+        //         // "customWidth" => false,
+        //         "width" => 10,
+        //         "fontWeight" => 400
+        //     ]]
+        // ],
         'heading' => [
             'type' => "array",
             "default" => [[

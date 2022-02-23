@@ -7,6 +7,11 @@
 if (!function_exists('unlimited_blocks_product_api_result')) {
     function unlimited_blocks_product_api_result(\WP_REST_Request $request)
     {
+
+        if (!class_exists('WooCommerce')) {
+            return ['plugin_no' => true, 'exist' => 1];
+        }
+
         // $request_params  = $request->get_params();
         $request_params  = $request->get_params();
         // first time initillize
@@ -140,6 +145,10 @@ class Th_Simple_Product
 {
     public function simple_product_slider($cate = [], $options = [])
     {
+        if (!class_exists('WooCommerce')) {
+            return '<p>' . __('Active Woocommerce Plugin.', 'unlimited-blocks') . ' </p>';
+        }
+
         if (isset($options['number_of_product'])) {
             $numOfproduct = $options['number_of_product'];
             $args = array(

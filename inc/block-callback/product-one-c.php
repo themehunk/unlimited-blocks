@@ -7,6 +7,9 @@ if (!function_exists('unlimited_blocks_product_one')) {
         // echo "<pre>";
         // print_r($attr);
         // echo "</pre>";
+        if (!class_exists('WooCommerce')) {
+            return '<p>' . __('Active Woocommerce Plugin.', 'unlimited-blocks') . ' </p>';
+        }
         $postClass = new Th_Simple_Product();
         $cate = [];
         $options = [];

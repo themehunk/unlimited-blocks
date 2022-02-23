@@ -2,8 +2,8 @@ import "./blocks/column-wrapper";
 // for core styling need add
 import "./blocks/block-assets";
 // for core styling need add
+import "./blocks/simple-product";
 import "./blocks/icon-block";
-// import './blocks/test-block';
 import "./blocks/service-section";
 import "./blocks/pricing-table";
 import "./blocks/progress-bar";
@@ -24,4 +24,6 @@ import "./blocks/post-image-layout-six-post";
 // import "./blocks/block-layout-pre";
 import "./blocks/column-blocks-column";
 //woocommerce blocks
-import "./blocks/simple-product";
+// testing \
+
+import "./blocks/test";
