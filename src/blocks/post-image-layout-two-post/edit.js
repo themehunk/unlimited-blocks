@@ -5,23 +5,18 @@ import {
   RichText,
   ColorPalette,
 } from "@wordpress/block-editor";
-import {
-  PanelBody,
-  RangeControl,
-  ToggleControl,
-  SelectControl,
-} from "@wordpress/components";
+import { PanelBody, RangeControl, ToggleControl } from "@wordpress/components";
 import {
   showCateFn,
   showTagsFn,
   excerptWords,
   filterPostInit,
   firstTimeInit,
-  categoryList,
   PostNotfound,
   PostLoader,
 } from "../block-assets/post-functions";
 import BackgroundColor from "../block-assets/utility-components/backgroundType/backgroundColor";
+import ProductCategory from "../block-assets/woocommerce/productCategory";
 class Edit extends Component {
   constructor(props) {
     super(props);
@@ -45,13 +40,12 @@ class Edit extends Component {
   };
   render() {
     // ++++++++++++++===============
+    // console.log("thi", this.props);
     const { attributes, setAttributes } = this.props;
     const { posts, category, totalPost } = this.state;
     let {
       heading,
       author,
-      numberOfPosts,
-      thumbnail,
       date,
       showTag,
       showCate,
@@ -62,7 +56,6 @@ class Edit extends Component {
       layout,
     } = attributes;
     let heading_ = heading[0];
-    let thumbnail_ = thumbnail[0];
     let excerpt_ = excerpt[0];
     let date_ = date[0];
     let author_ = author[0];
@@ -71,13 +64,7 @@ class Edit extends Component {
     let showTag_ = showTag[0];
     let showCate_ = showCate[0];
     let layout_ = layout[0];
-    // category init
-    let cateGory = [];
-    if (!category) {
-      cateGory = false;
-    } else {
-      cateGory = categoryList(category);
-    }
+
     return (
       <>
         <InspectorControls>
@@ -397,25 +384,18 @@ class Edit extends Component {
             <p>
               <strong>{__("Choose Category", "unlimited-blocks")}</strong>
             </p>
-            {cateGory && cateGory.length > 0 ? (
-              <div className="ubl-multiple-select">
-                <SelectControl
-                  multiple
-                  value={postCategories.length ? postCategories : ["all"]}
-                  onChange={(choosen) => {
-                    let chooseAll = choosen.filter((choose) => {
-                      if (choose == "all") return true;
-                    });
-                    if (chooseAll.length) choosen = [];
-                    setAttributes({ postCategories: choosen });
-                    filterPostInit(this, {
-                      postCategories: choosen,
-                      featured_image: 1,
-                    });
-                  }}
-                  options={cateGory}
-                />
-              </div>
+            {category && category.length > 0 ? (
+              <ProductCategory
+                value={postCategories.length ? postCategories : []}
+                category={category}
+                onMovement={(category) => {
+                  setAttributes({ postCategories: category });
+                  filterPostInit(this, {
+                    postCategories: category,
+                    featured_image: 1,
+                  });
+                }}
+              />
             ) : (
               <p className="category-blank">
                 {__("No Categories Found", "unlimited-blocks")}
@@ -648,7 +628,6 @@ class Edit extends Component {
                   author_,
                   date_,
                   meta_style_,
-                  thumbnail_,
                   showCate_,
                   excerpt_,
                   showTag_,

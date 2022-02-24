@@ -23,7 +23,7 @@ registerBlockType("unlimited-blocks/ubl-product", {
     // layout
     product_cate: {
       type: "array",
-      default: {},
+      default: [],
     },
     numberOfPosts: {
       type: "number",

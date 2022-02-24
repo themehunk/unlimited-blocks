@@ -5,23 +5,18 @@ import {
   RichText,
   ColorPalette,
 } from "@wordpress/block-editor";
-import {
-  PanelBody,
-  RangeControl,
-  ToggleControl,
-  SelectControl,
-} from "@wordpress/components";
+import { PanelBody, RangeControl, ToggleControl } from "@wordpress/components";
 import {
   showCateFn,
   showTagsFn,
   excerptWords,
   filterPostInit,
   firstTimeInit,
-  categoryList,
   PostLoader,
   PostNotfound,
 } from "../block-assets/post-functions";
 import Switcher from "../block-assets/utility-components/TwoSwitcher";
+import ProductCategory from "../block-assets/woocommerce/productCategory";
 
 class Edit extends Component {
   constructor(props) {
@@ -104,12 +99,12 @@ class Edit extends Component {
     //   });
     // }
     // category init
-    let cateGory = [];
-    if (!category) {
-      cateGory = false;
-    } else {
-      cateGory = categoryList(category);
-    }
+    // let cateGory = [];
+    // if (!category) {
+    //   cateGory = false;
+    // } else {
+    //   cateGory = categoryList(category);
+    // }
     return (
       <>
         <InspectorControls>
@@ -503,25 +498,19 @@ class Edit extends Component {
             <p>
               <strong>{__("Choose Category", "unlimited-blocks")}</strong>
             </p>
-            {cateGory && cateGory.length > 0 ? (
-              <div className="ubl-multiple-select">
-                <SelectControl
-                  multiple
-                  value={postCategories.length ? postCategories : ["all"]}
-                  onChange={(choosen) => {
-                    let chooseAll = choosen.filter((choose) => {
-                      if (choose == "all") return true;
-                    });
-                    if (chooseAll.length) choosen = [];
-                    setAttributes({ postCategories: choosen });
-                    filterPostInit(this, {
-                      postCategories: choosen,
-                      featured_image: 1,
-                    });
-                  }}
-                  options={cateGory}
-                />
-              </div>
+
+            {category && category.length > 0 ? (
+              <ProductCategory
+                value={postCategories.length ? postCategories : []}
+                category={category}
+                onMovement={(category) => {
+                  setAttributes({ postCategories: category });
+                  filterPostInit(this, {
+                    postCategories: category,
+                    featured_image: this.props.attributes.thumbnail[0].typeShow,
+                  });
+                }}
+              />
             ) : (
               <p className="category-blank">
                 {__("No Categories Found", "unlimited-blocks")}

@@ -1,16 +1,10 @@
 import { Component } from "@wordpress/element";
-import { withSelect } from "@wordpress/data";
 import {
   InspectorControls,
   RichText,
   ColorPalette,
 } from "@wordpress/block-editor";
-import {
-  PanelBody,
-  RangeControl,
-  ToggleControl,
-  SelectControl,
-} from "@wordpress/components";
+import { PanelBody, RangeControl, ToggleControl } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import {
   showCateFn,
@@ -18,12 +12,12 @@ import {
   excerptWords,
   filterPostInit,
   firstTimeInit,
-  categoryList,
   PostLoader,
   PostNotfound,
 } from "../block-assets/post-functions";
 import BackgroundColor from "../block-assets/utility-components/backgroundType/backgroundColor";
 import Switcher from "../block-assets/utility-components/TwoSwitcher";
+import ProductCategory from "../block-assets/woocommerce/productCategory";
 class Edit extends Component {
   constructor(props) {
     super(props);
@@ -347,12 +341,12 @@ class Edit extends Component {
     let date2_ = date2[0];
     let author2_ = author2[0];
     // category init
-    let cateGory = [];
-    if (!category) {
-      cateGory = false;
-    } else {
-      cateGory = categoryList(category);
-    }
+    // let cateGory = [];
+    // if (!category) {
+    //   cateGory = false;
+    // } else {
+    //   cateGory = categoryList(category);
+    // }
     // meta_style_.blockBgColor;
     let bgColorOrGRadient = {};
     if (meta_style_.blockBgColor.type == "color") {
@@ -871,30 +865,24 @@ class Edit extends Component {
             <p>
               <strong>{__("Choose Category", "unlimited-blocks")}</strong>
             </p>
-            {cateGory && cateGory.length > 0 ? (
-              <div className="ubl-multiple-select">
-                <SelectControl
-                  multiple
-                  value={postCategories.length ? postCategories : ["all"]}
-                  onChange={(choosen) => {
-                    let chooseAll = choosen.filter((choose) => {
-                      if (choose == "all") return true;
-                    });
-                    if (chooseAll.length) choosen = [];
-                    setAttributes({ postCategories: choosen });
-                    filterPostInit(this, {
-                      postCategories: choosen,
-                      featured_image: 1,
-                    });
-                  }}
-                  options={cateGory}
-                />
-              </div>
+            {category && category.length > 0 ? (
+              <ProductCategory
+                value={postCategories.length ? postCategories : []}
+                category={category}
+                onMovement={(category) => {
+                  setAttributes({ postCategories: category });
+                  filterPostInit(this, {
+                    postCategories: category,
+                    featured_image: 1,
+                  });
+                }}
+              />
             ) : (
               <p className="category-blank">
                 {__("No Categories Found", "unlimited-blocks")}
               </p>
             )}
+
             <Switcher
               value={this.state.metaChoose}
               navItem={[

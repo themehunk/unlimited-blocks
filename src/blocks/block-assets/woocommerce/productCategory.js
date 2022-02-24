@@ -115,7 +115,7 @@ class productCategory extends Component {
       const getName = (slug_) => {
         const filterName = (val_) => val_.slug == slug_;
         let filtered = renderCategory.filter(filterName);
-        return filtered[0].name;
+        return filtered.length ? filtered[0].name : false;
       };
       return (
         <div className="categoriesSelected">
@@ -145,7 +145,7 @@ class productCategory extends Component {
             <div className="list_">
               {selectedCate.map((cateVal_) => (
                 <span>
-                  {getName(cateVal_)}{" "}
+                  {getName(cateVal_)}
                   <i
                     onClick={() => {
                       this.updatePropsCategory(cateVal_, "remove");
@@ -164,7 +164,7 @@ class productCategory extends Component {
   }
 
   render() {
-    // console.log("category->", this.props);
+    // console.log("category props->", this.props);
     return (
       <div className="categories_component">
         {this.categorySelected()}
