@@ -1,5 +1,4 @@
 import { Component } from "@wordpress/element";
-import { withSelect } from "@wordpress/data";
 import {
   InspectorControls,
   RichText,
@@ -10,8 +9,6 @@ import {
   RangeControl,
   ToggleControl,
   SelectControl,
-  ColorPicker,
-  __experimentalGradientPicker as GradientPicker,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import {
@@ -23,8 +20,10 @@ import {
   categoryList,
   PostLoader,
   PostNotfound,
-  UBLGraDientColors,
 } from "../block-assets/post-functions";
+import BackgroundColor from "../block-assets/utility-components/backgroundType/backgroundColor";
+import cloneDeep from "clone-deep";
+
 class Edit extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +42,7 @@ class Edit extends Component {
     firstTimeInit(this, sendData);
   }
   updateObj = (parent_key, child_key, initialValue, value_) => {
-    let newNewValue = [...initialValue];
+    let newNewValue = cloneDeep(initialValue);
     newNewValue[0][child_key] = value_;
     let setAttr_ = {};
     setAttr_[parent_key] = newNewValue;
@@ -166,13 +165,13 @@ class Edit extends Component {
                 <p>
                   <strong>{__("Background Color", "unlimited-blocks")}</strong>
                 </p>
-                <ColorPicker
-                  color={title_.backgroundColor}
-                  onChangeComplete={(colorBg) => {
-                    let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                    this.updateObj("title", "backgroundColor", title, color);
-                  }}
+                <ColorPalette
+                  value={title_.backgroundColor}
+                  onChange={(color) =>
+                    this.updateObj("title", "backgroundColor", title, color)
+                  }
                 />
+
                 {/* font weight */}
                 <div className="flex-section">
                   <p>{__("Font Weight", "unlimited-blocks")}</p>
@@ -194,7 +193,7 @@ class Edit extends Component {
                 </div>
                 {/* font weight */}
                 <p>
-                  <strong>{__("Max Width %", "unlimited-blocks")}</strong>
+                  <strong>{__("Min Width %", "unlimited-blocks")}</strong>
                 </p>
                 <RangeControl
                   value={title_.width}
@@ -246,80 +245,28 @@ class Edit extends Component {
                 this.updateObj("meta_style", "left_border", meta_style, e)
               }
             />
-            <p>
-              <strong>
-                {__("Block Background Color", "unlimited-blocks")}
-              </strong>
-            </p>
-            {/* bg color  */}
-            <div class="ubl-switcher-button-section">
-              <span
-                onClick={() => {
-                  let getBgcolor = { ...meta_style_.blockBgColor };
-                  getBgcolor["type"] = "color";
-                  this.updateObj(
-                    "meta_style",
-                    "blockBgColor",
-                    meta_style,
-                    getBgcolor
-                  );
-                }}
-                className={
-                  meta_style_.blockBgColor.type == "color" ? "selected" : ""
-                }
-              >
-                {__("Solid", "unlimited-blocks")}
-              </span>
-              <span
-                onClick={() => {
-                  let getBgcolor = { ...meta_style_.blockBgColor };
-                  getBgcolor["type"] = "gradient";
-                  this.updateObj(
-                    "meta_style",
-                    "blockBgColor",
-                    meta_style,
-                    getBgcolor
-                  );
-                }}
-                className={
-                  meta_style_.blockBgColor.type == "gradient" ? "selected" : ""
-                }
-              >
-                {__("Gradient", "unlimited-blocks")}
-              </span>
-            </div>
-            {"color" == meta_style_.blockBgColor.type ? (
-              <ColorPicker
-                color={meta_style_.blockBgColor.color}
-                onChangeComplete={(colorBg) => {
-                  let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                  let getBgcolor = { ...meta_style_.blockBgColor };
-                  getBgcolor["color"] = color;
-                  this.updateObj(
-                    "meta_style",
-                    "blockBgColor",
-                    meta_style,
-                    getBgcolor
-                  );
-                }}
-              />
-            ) : (
-              <GradientPicker
-                disableCustomGradients={false}
-                value={meta_style_.blockBgColor.gradient}
-                gradients={UBLGraDientColors}
-                onChange={(newGradient) => {
-                  let getBgcolor = { ...meta_style_.blockBgColor };
-                  getBgcolor["gradient"] = newGradient;
-                  this.updateObj(
-                    "meta_style",
-                    "blockBgColor",
-                    meta_style,
-                    getBgcolor
-                  );
-                }}
-              />
-            )}
+
+            <BackgroundColor
+              title={__("Block Background Color", "unlimited-blocks")}
+              value={{
+                backgroundColorType: meta_style_.blockBgColor.type,
+                backgroundColor: meta_style_.blockBgColor.color,
+                backgroundImageGradient: meta_style_.blockBgColor.gradient,
+              }}
+              changeme={(_properties) => {
+                // console.log("_properties", _properties);
+                let getBgcolor = { ...meta_style_.blockBgColor };
+                getBgcolor["type"] = _properties.backgroundColorType;
+                getBgcolor["color"] = _properties.backgroundColor;
+                getBgcolor["gradient"] = _properties.backgroundImageGradient;
+                this.updateObj(
+                  "meta_style",
+                  "blockBgColor",
+                  meta_style,
+                  getBgcolor
+                );
+              }}
+            />
             {/* bg color  */}
           </PanelBody>
           <PanelBody
@@ -607,10 +554,9 @@ class Edit extends Component {
                         {__("Background Color", "unlimited-blocks")}
                       </strong>
                     </p>
-                    <ColorPicker
-                      color={showCate_.backgroundColor}
-                      onChangeComplete={(colorBg) => {
-                        let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                    <ColorPalette
+                      value={showCate_.backgroundColor}
+                      onChange={(color) => {
                         this.updateObj(
                           "showCate",
                           "backgroundColor",
@@ -664,10 +610,9 @@ class Edit extends Component {
                 <p>
                   <strong>{__("Background Color", "unlimited-blocks")}</strong>
                 </p>
-                <ColorPicker
-                  color={showTag_.backgroundColor}
-                  onChangeComplete={(colorBg) => {
-                    let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                <ColorPalette
+                  value={showTag_.backgroundColor}
+                  onChange={(color) => {
                     this.updateObj(
                       "showTag",
                       "backgroundColor",
@@ -744,10 +689,9 @@ class Edit extends Component {
                       {__("Background Color", "unlimited-blocks")}
                     </strong>
                   </p>
-                  <ColorPicker
-                    color={meta_style_.npBgColor}
-                    onChangeComplete={(colorBg) => {
-                      let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                  <ColorPalette
+                    value={meta_style_.npBgColor}
+                    onChange={(color) => {
                       this.updateObj(
                         "meta_style",
                         "npBgColor",
@@ -782,7 +726,7 @@ class Edit extends Component {
                     color: title_.color,
                     backgroundColor: title_.backgroundColor,
                     fontWeight: title_.fontWeight,
-                    width: title_.width + "%",
+                    minWidth: title_.width + "%",
                   }}
                   onChange={(e) => this.updateObj("title", "value", title, e)}
                 />

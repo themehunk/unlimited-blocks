@@ -105,9 +105,7 @@ registerBlockType("unlimited-blocks/owl-slider", {
     },
     slides: {
       type: "array",
-      // default :defaultSlide
       default: [
-        // slider slides
         {
           container: {
             bg: {

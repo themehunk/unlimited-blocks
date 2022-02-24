@@ -6,10 +6,8 @@ import {
 import {
   PanelBody,
   RangeControl,
-  ColorPicker,
   ToggleControl,
   SelectControl,
-  __experimentalGradientPicker as GradientPicker,
 } from "@wordpress/components";
 import { Component } from "@wordpress/element";
 import {
@@ -21,9 +19,11 @@ import {
   categoryList,
   PostNotfound,
   PostLoader,
-  UBLGraDientColors,
 } from "../block-assets/post-functions";
 import { __ } from "@wordpress/i18n";
+import cloneDeep from "clone-deep";
+import BackgroundColor from "../block-assets/utility-components/backgroundType/backgroundColor";
+import Switcher from "../block-assets/utility-components/TwoSwitcher";
 // let bgImageWrapper = plugin_url.url + "assets/img/image2.jpg";
 class Edit extends Component {
   constructor(props) {
@@ -42,7 +42,7 @@ class Edit extends Component {
     firstTimeInit(this, sendData);
   }
   updateObj = (parent_key, child_key, initialValue, value_) => {
-    let newNewValue = [...initialValue];
+    let newNewValue = cloneDeep(initialValue);
     newNewValue[0][child_key] = value_;
     let setAttr_ = {};
     setAttr_[parent_key] = newNewValue;
@@ -50,7 +50,7 @@ class Edit extends Component {
   };
   updateGlobalSlide = (value, for_, type) => {
     let sliderSetting = this.props.attributes.sliderSetting;
-    let newSetting = [...sliderSetting];
+    let newSetting = cloneDeep(sliderSetting);
     if (type) {
       newSetting[0][for_][type] = value;
     } else {
@@ -117,117 +117,6 @@ class Edit extends Component {
     return (
       <>
         <InspectorControls>
-          {/* <PanelBody
-            title={__("Block Title", "unlimited-blocks")}
-            initialOpen={false}
-          >
-            <ToggleControl
-              label={
-                title_.enable
-                  ? __("Hide", "unlimited-blocks")
-                  : __("Show", "unlimited-blocks")
-              }
-              checked={title_.enable}
-              onChange={(e) => this.updateObj("title", "enable", title, e)}
-            />
-            {title_.enable && (
-              <>
-                <p>
-                  <strong>{__("Title Alignment", "unlimited-blocks")}</strong>
-                </p>
-                <div className="ubl-alignment">
-                  <div>
-                    <span
-                      onClick={() => {
-                        this.updateObj("title", "align", title, "left");
-                      }}
-                      className={`dashicons dashicons-editor-alignleft ${
-                        title_.align == "left" && "active"
-                      }`}
-                    ></span>
-                  </div>
-                  <div>
-                    <span
-                      onClick={() => {
-                        this.updateObj("title", "align", title, "center");
-                      }}
-                      className={`dashicons dashicons-editor-aligncenter ${
-                        title_.align == "center" && "active"
-                      }`}
-                    ></span>
-                  </div>
-                  <div>
-                    <span
-                      onClick={() => {
-                        this.updateObj("title", "align", title, "flex-end");
-                      }}
-                      className={`dashicons dashicons-editor-alignright ${
-                        title_.align == "flex-end" && "active"
-                      }`}
-                    ></span>
-                  </div>
-                </div>
-
-                <RangeControl
-                  label={__("Font Size", "unlimited-blocks")}
-                  value={title_.fontSize}
-                  min={5}
-                  max={50}
-                  onChange={(e) => {
-                    this.updateObj("title", "fontSize", title, e);
-                  }}
-                />
-                <p>
-                  <strong>{__("Color", "unlimited-blocks")}</strong>
-                </p>
-                <ColorPalette
-                  value={title_.color}
-                  onChange={(color) =>
-                    this.updateObj("title", "color", title, color)
-                  }
-                />
-                <p>
-                  <strong>{__("Background Color", "unlimited-blocks")}</strong>
-                </p>
-                <ColorPicker
-                  color={title_.backgroundColor}
-                  onChangeComplete={(colorBg) => {
-                    let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                    this.updateObj("title", "backgroundColor", title, color);
-                  }}
-                />
-          {/* <div className="flex-section">
-                  <p>{__("Font Weight", "unlimited-blocks")}</p>
-                  <select
-                    value={title_.fontWeight}
-                    onChange={(e) => {
-                      this.updateObj(
-                        "title",
-                        "fontWeight",
-                        title,
-                        e.target.value
-                      );
-                    }}
-                  >
-                    <option value="400">400</option>
-                    <option value="600">600</option>
-                    <option value="700">700</option>
-                  </select>
-                </div>
-                <p>
-                  <strong>{__("Max Width %", "unlimited-blocks")}</strong>
-                </p>
-                <RangeControl
-                  value={title_.width}
-                  min={1}
-                  max={100}
-                  onChange={(e) => {
-                    this.updateObj("title", "width", title, e);
-                  }}
-                />
-              </>
-            )}
-          </PanelBody> */}
           <PanelBody
             title={__("Post Slider Setting", "unlimited-blocks")}
             initialOpen={false}
@@ -247,67 +136,23 @@ class Edit extends Component {
                 filterPostInit(this, { numberOfPosts: e, featured_image: 1 });
               }}
             />
-            <p>
-              <strong>{__("Image Overlay Color", "unlimited-blocks")}</strong>
-            </p>
-            {/* <ColorPicker
-              color={sliderSetting.overlayColor}
-              onChangeComplete={(colorBg) => {
-                let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                this.updateGlobalSlide(color, "overlayColor");
+
+            <BackgroundColor
+              title="Image Overlay Color"
+              value={{
+                backgroundColorType: sliderSetting.overlayColor.type,
+                backgroundColor: sliderSetting.overlayColor.color,
+                backgroundImageGradient: sliderSetting.overlayColor.gradient,
               }}
-            /> */}
-            {/* bg color  */}
-            <div class="ubl-switcher-button-section">
-              <span
-                onClick={() => {
-                  let getBgcolor = { ...sliderSetting.overlayColor };
-                  getBgcolor["type"] = "color";
-                  this.updateGlobalSlide(getBgcolor, "overlayColor");
-                }}
-                className={
-                  sliderSetting.overlayColor.type == "color" ? "selected" : ""
-                }
-              >
-                {__("Solid", "unlimited-blocks")}
-              </span>
-              <span
-                onClick={() => {
-                  let getBgcolor = { ...sliderSetting.overlayColor };
-                  getBgcolor["type"] = "gradient";
-                  this.updateGlobalSlide(getBgcolor, "overlayColor");
-                }}
-                className={
-                  sliderSetting.overlayColor.type == "gradient"
-                    ? "selected"
-                    : ""
-                }
-              >
-                {__("Gradient", "unlimited-blocks")}
-              </span>
-            </div>
-            {"color" == sliderSetting.overlayColor.type ? (
-              <ColorPicker
-                color={sliderSetting.overlayColor.color}
-                onChangeComplete={(colorBg) => {
-                  let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                  let getBgcolor = { ...sliderSetting.overlayColor };
-                  getBgcolor["color"] = color;
-                  this.updateGlobalSlide(getBgcolor, "overlayColor");
-                }}
-              />
-            ) : (
-              <GradientPicker
-                disableCustomGradients={false}
-                value={sliderSetting.overlayColor.gradient}
-                gradients={UBLGraDientColors}
-                onChange={(newGradient) => {
-                  let getBgcolor = { ...sliderSetting.overlayColor };
-                  getBgcolor["gradient"] = newGradient;
-                  this.updateGlobalSlide(getBgcolor, "overlayColor");
-                }}
-              />
-            )}
+              changeme={(_properties) => {
+                let getBgcolor = { ...sliderSetting.overlayColor };
+                getBgcolor["type"] = _properties.backgroundColorType;
+                getBgcolor["color"] = _properties.backgroundColor;
+                getBgcolor["gradient"] = _properties.backgroundImageGradient;
+                this.updateGlobalSlide(getBgcolor, "overlayColor");
+              }}
+            />
+
             <RangeControl
               label={__("Opacity", "unlimited-blocks")}
               value={sliderSetting.overlayColor.opacity}
@@ -410,28 +255,23 @@ class Edit extends Component {
             <p className="block-inside">
               {__("Slider Effect", "unlimited-blocks")}
             </p>
-            <div class="ubl-switcher-button-section">
-              <span
-                onClick={() =>
-                  this.updateGlobalSlide("slideEffect", "sliderEffect")
-                }
-                className={
-                  sliderSetting.sliderEffect == "slideEffect" ? "selected" : ""
-                }
-              >
-                {__("Slide", "unlimited-blocks")}
-              </span>
-              <span
-                onClick={() =>
-                  this.updateGlobalSlide("fadeEffect", "sliderEffect")
-                }
-                className={
-                  sliderSetting.sliderEffect == "fadeEffect" ? "selected" : ""
-                }
-              >
-                {__("Fade", "unlimited-blocks")}
-              </span>
-            </div>
+
+            <Switcher
+              value={sliderSetting.sliderEffect}
+              navItem={[
+                {
+                  name: "slideEffect",
+                  title: "Slide",
+                },
+                {
+                  name: "fadeEffect",
+                  title: "Fade",
+                },
+              ]}
+              clickme={(value_) => {
+                this.updateGlobalSlide(value_, "sliderEffect");
+              }}
+            />
             <p className="block-inside">{__("Trigger", "unlimited-blocks")}</p>
             <div class="ubl-switcher-button-section">
               <span
@@ -469,72 +309,48 @@ class Edit extends Component {
                 <p>
                   <strong>{__("Position", "unlimited-blocks")}</strong>
                 </p>
-                <div class="ubl-switcher-button-section">
-                  <span
-                    onClick={() => {
-                      this.updateGlobalSlide("in", "linearTrigger", "place");
-                    }}
-                    className={
-                      sliderSetting.linearTrigger.place == "in"
-                        ? "selected"
-                        : ""
-                    }
-                  >
-                    {__("In", "unlimited-blocks")}
-                  </span>
-                  <span
-                    onClick={() => {
-                      this.updateGlobalSlide("out", "linearTrigger", "place");
-                    }}
-                    className={
-                      sliderSetting.linearTrigger.place == "out"
-                        ? "selected"
-                        : ""
-                    }
-                  >
-                    {__("Out", "unlimited-blocks")}
-                  </span>
-                </div>
+                <Switcher
+                  value={sliderSetting.sliderEffect}
+                  navItem={[
+                    {
+                      name: "in",
+                      title: "In",
+                    },
+                    {
+                      name: "out",
+                      title: "Out",
+                    },
+                  ]}
+                  clickme={(value_) => {
+                    this.updateGlobalSlide(value_, "linearTrigger", "place");
+                  }}
+                />
                 <p>
                   <strong>{__("Trigger Type", "unlimited-blocks")}</strong>
                 </p>
                 {sliderSetting.linearTrigger.enable && (
                   <>
                     {/* dk */}
-                    <div class="ubl-switcher-button-section">
-                      <span
-                        onClick={() => {
-                          this.updateGlobalSlide(
-                            "bullet",
-                            "linearTrigger",
-                            "trigger"
-                          );
-                        }}
-                        className={
-                          sliderSetting.linearTrigger.trigger == "bullet"
-                            ? "selected"
-                            : ""
-                        }
-                      >
-                        {__("Bullets", "unlimited-blocks")}
-                      </span>
-                      <span
-                        onClick={() => {
-                          this.updateGlobalSlide(
-                            "thumbnail",
-                            "linearTrigger",
-                            "trigger"
-                          );
-                        }}
-                        className={
-                          sliderSetting.linearTrigger.trigger == "thumbnail"
-                            ? "selected"
-                            : ""
-                        }
-                      >
-                        {__("Thumbnail", "unlimited-blocks")}
-                      </span>
-                    </div>
+                    <Switcher
+                      value={sliderSetting.sliderEffect}
+                      navItem={[
+                        {
+                          name: "bullet",
+                          title: "Bullets",
+                        },
+                        {
+                          name: "thumbnail",
+                          title: "Thumbnail",
+                        },
+                      ]}
+                      clickme={(value_) => {
+                        this.updateGlobalSlide(
+                          value_,
+                          "linearTrigger",
+                          "trigger"
+                        );
+                      }}
+                    />
                     {/* dk */}
                     {sliderSetting.linearTrigger.trigger == "bullet" ? (
                       <>
@@ -554,10 +370,10 @@ class Edit extends Component {
                         <p>
                           <strong>{__("Color", "unlimited-blocks")}</strong>
                         </p>
-                        <ColorPicker
-                          color={sliderSetting.linearTrigger.color}
-                          onChangeComplete={(colorBg) => {
-                            let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+
+                        <ColorPalette
+                          value={sliderSetting.linearTrigger.color}
+                          onChange={(color) => {
                             this.updateGlobalSlide(
                               color,
                               "linearTrigger",
@@ -565,15 +381,15 @@ class Edit extends Component {
                             );
                           }}
                         />
+
                         <p>
                           <strong>
                             {__("Active Color", "unlimited-blocks")}
                           </strong>
                         </p>
-                        <ColorPicker
-                          color={sliderSetting.linearTrigger.activeColor}
-                          onChangeComplete={(colorBg) => {
-                            let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                        <ColorPalette
+                          value={sliderSetting.linearTrigger.activeColor}
+                          onChange={(color) => {
                             this.updateGlobalSlide(
                               color,
                               "linearTrigger",
@@ -635,10 +451,9 @@ class Edit extends Component {
                         {__("Background Color", "unlimited-blocks")}
                       </strong>
                     </p>
-                    <ColorPicker
-                      color={sliderSetting.leftRightTrigger.backgroundColor}
-                      onChangeComplete={(colorBg) => {
-                        let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                    <ColorPalette
+                      value={sliderSetting.leftRightTrigger.backgroundColor}
+                      onChange={(color) => {
                         this.updateGlobalSlide(
                           color,
                           "leftRightTrigger",
@@ -921,10 +736,9 @@ class Edit extends Component {
                         {__("Background Color", "unlimited-blocks")}
                       </strong>
                     </p>
-                    <ColorPicker
-                      color={showCate_.backgroundColor}
-                      onChangeComplete={(colorBg) => {
-                        let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+                    <ColorPalette
+                      value={showCate_.backgroundColor}
+                      onChange={(color) => {
                         this.updateObj(
                           "showCate",
                           "backgroundColor",
@@ -978,10 +792,10 @@ class Edit extends Component {
                 <p>
                   <strong>{__("Background Color", "unlimited-blocks")}</strong>
                 </p>
-                <ColorPicker
-                  color={showTag_.backgroundColor}
-                  onChangeComplete={(colorBg) => {
-                    let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
+
+                <ColorPalette
+                  value={showTag_.backgroundColor}
+                  onChange={(color) => {
                     this.updateObj(
                       "showTag",
                       "backgroundColor",
@@ -997,31 +811,6 @@ class Edit extends Component {
         {posts && posts.length > 0 ? (
           <>
             <div className="ubl-block-slide-wrapper">
-              {/* {title_.enable && (
-                <div
-                  className="ubl-block-post-title"
-                  style={{
-                    justifyContent: title_.align,
-                    borderColor: title_.backgroundColor,
-                  }}
-                >
-                  <RichText
-                    allowedFormats={[]}
-                    key="editable"
-                    tagName="h4"
-                    placeholder={__("My block title", "unlimited-blocks")}
-                    value={title_.value}
-                    style={{
-                      fontSize: title_.fontSize + "px",
-                      color: title_.color,
-                      backgroundColor: title_.backgroundColor,
-                      fontWeight: title_.fontWeight,
-                      width: title_.width + "%",
-                    }}
-                    onChange={(e) => this.updateObj("title", "value", title, e)}
-                  />
-                </div>
-              )} */}
               <div className="ubl-slider-bullet">
                 <ul className="ubl-slider-ul-bullet">
                   {posts.map((val, index_) => {

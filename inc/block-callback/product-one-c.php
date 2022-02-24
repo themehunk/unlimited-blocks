@@ -30,7 +30,7 @@ if (!function_exists('unlimited_blocks_product_one')) {
         $options['add_to_cart_text'] = __("Add To Cart", 'unlimited-blocks');
         $options['add_to_cart_icon_on'] = 'on';
         $options['autoPlaySpeed'] = 3;
-        $options['slider_controll'] = $attr['sliderSettings']['slider_controll'];
+        $options['slider_controll'] = isset($attr['sliderSettings']['slider_controll']) ? $attr['sliderSettings']['slider_controll'] : '';
         $options['slide_spacing'] = $attr['sliderSettings']['margin'];
         $options['number_of_row'] = $attr['sliderSettings']['numberOfrow'];
 
