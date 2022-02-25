@@ -73,6 +73,7 @@ export const firstTimeInit = async (this_, data_ = {}) => {
     sendData["postCategories"] = postCategories.join(",");
   }
   let postData = await postDataInit(sendData);
+
   if (postData) {
     // all posts
     if ("posts" in postData && postData.posts != "") {

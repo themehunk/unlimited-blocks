@@ -4,12 +4,7 @@ import {
   RichText,
   ColorPalette,
 } from "@wordpress/block-editor";
-import {
-  PanelBody,
-  RangeControl,
-  ToggleControl,
-  SelectControl,
-} from "@wordpress/components";
+import { PanelBody, RangeControl, ToggleControl } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import {
   showCateFn,
@@ -17,11 +12,11 @@ import {
   excerptWords,
   filterPostInit,
   firstTimeInit,
-  categoryList,
   PostNotfound,
   PostLoader,
 } from "../block-assets/post-functions";
 import BackgroundColor from "../block-assets/utility-components/backgroundType/backgroundColor";
+import ProductCategory from "../block-assets/woocommerce/productCategory";
 class Edit extends Component {
   constructor(props) {
     super(props);
@@ -74,12 +69,12 @@ class Edit extends Component {
     let showTag_ = showTag[0];
     let showCate_ = showCate[0];
     // category init
-    let cateGory = [];
-    if (!category) {
-      cateGory = false;
-    } else {
-      cateGory = categoryList(category);
-    }
+    // let cateGory = [];
+    // if (!category) {
+    //   cateGory = false;
+    // } else {
+    //   cateGory = categoryList(category);
+    // }
     // block width
     let blockStyle = {};
     if (dimension[0].width) {
@@ -318,80 +313,6 @@ class Edit extends Component {
                 });
               }}
             />
-            {/* <p>
-              <strong>
-                {__("Block Background Color", "unlimited-blocks")}
-              </strong>
-            </p>
-
-            <div class="ubl-switcher-button-section">
-              <span
-                onClick={() => {
-                  let getBgcolor = { ...meta_style_.blockBgColor };
-                  getBgcolor["type"] = "color";
-                  this.updateObj(
-                    "meta_style",
-                    "blockBgColor",
-                    meta_style,
-                    getBgcolor
-                  );
-                }}
-                className={
-                  meta_style_.blockBgColor.type == "color" ? "selected" : ""
-                }
-              >
-                {__("Solid", "unlimited-blocks")}
-              </span>
-              <span
-                onClick={() => {
-                  let getBgcolor = { ...meta_style_.blockBgColor };
-                  getBgcolor["type"] = "gradient";
-                  this.updateObj(
-                    "meta_style",
-                    "blockBgColor",
-                    meta_style,
-                    getBgcolor
-                  );
-                }}
-                className={
-                  meta_style_.blockBgColor.type == "gradient" ? "selected" : ""
-                }
-              >
-                {__("Gradient", "unlimited-blocks")}
-              </span>
-            </div>
-            {"color" == meta_style_.blockBgColor.type ? (
-              <ColorPicker
-                color={meta_style_.blockBgColor.color}
-                onChangeComplete={(colorBg) => {
-                  let color = `rgba(${colorBg.rgb.r},${colorBg.rgb.g},${colorBg.rgb.b},${colorBg.rgb.a})`;
-                  let getBgcolor = { ...meta_style_.blockBgColor };
-                  getBgcolor["color"] = color;
-                  this.updateObj(
-                    "meta_style",
-                    "blockBgColor",
-                    meta_style,
-                    getBgcolor
-                  );
-                }}
-              />
-            ) : (
-              <GradientPicker
-                disableCustomGradients={false}
-                value={meta_style_.blockBgColor.gradient}
-                gradients={UBLGraDientColors}
-                onChange={(newGradient) => {
-                  let getBgcolor = { ...meta_style_.blockBgColor };
-                  getBgcolor["gradient"] = newGradient;
-                  this.updateObj(
-                    "meta_style",
-                    "blockBgColor",
-                    meta_style,
-                    getBgcolor
-                  );
-                }}
-              />
-            )} */}
             <BackgroundColor
               title={__("Block Background Color", "unlimited-blocks")}
               value={{
@@ -562,32 +483,24 @@ class Edit extends Component {
             <p>
               <strong>{__("Choose Category", "unlimited-blocks")}</strong>
             </p>
-            {cateGory && cateGory.length > 0 ? (
-              <div className="ubl-multiple-select">
-                <SelectControl
-                  multiple
-                  value={postCategories.length ? postCategories : ["all"]}
-                  onChange={(choosen) => {
-                    let chooseAll = choosen.filter((choose) => {
-                      if (choose == "all") return true;
-                    });
-                    if (chooseAll.length) choosen = [];
-                    setAttributes({ postCategories: choosen });
-                    filterPostInit(this, {
-                      postCategories: choosen,
-                      featured_image:
-                        this.props.attributes.thumbnail[0].typeShow,
-                    });
-                  }}
-                  options={cateGory}
-                />
-              </div>
+
+            {category && category.length > 0 ? (
+              <ProductCategory
+                value={postCategories.length ? postCategories : []}
+                category={category}
+                onMovement={(category) => {
+                  setAttributes({ postCategories: category });
+                  filterPostInit(this, {
+                    postCategories: category,
+                    featured_image: this.props.attributes.thumbnail[0].typeShow,
+                  });
+                }}
+              />
             ) : (
               <p className="category-blank">
                 {__("No Categories Found", "unlimited-blocks")}
               </p>
             )}
-
             {/* category */}
             {/* show author */}
             <ToggleControl

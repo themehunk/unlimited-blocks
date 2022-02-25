@@ -685,10 +685,11 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
   display: flex;
   flex-direction: column;
   grid-gap: 22px;
+  margin: 15px 0;
 }
 .categories_component .categories_ {
   border: 1px solid #f0f0f0;
-  height: 248px;
+  max-height: 248px;
   overflow-x: hidden;
   overflow-y: auto;
 }

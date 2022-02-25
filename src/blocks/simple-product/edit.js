@@ -5,7 +5,6 @@ import ReactHtmlParser from "react-html-parser";
 
 import {
   InspectorControls,
-  RichText,
   ColorPalette,
   BlockControls,
   BlockAlignmentToolbar,
