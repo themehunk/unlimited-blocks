@@ -59,6 +59,7 @@ class Edit extends Component {
       postCategories,
       meta_style,
       title,
+      preview,
     } = attributes;
     let heading_ = heading[0];
     let thumbnail_ = thumbnail[0];
@@ -69,14 +70,9 @@ class Edit extends Component {
     let title_ = title[0];
     let showTag_ = showTag[0];
     let showCate_ = showCate[0];
-    // category init
-    // let cateGory = [];
-    // if (!category) {
-    //   cateGory = false;
-    // } else {
-    //   cateGory = categoryList(category);
-    // }
-    // meta_style_.blockBgColor;
+    if (preview) {
+      return <img src={`${plugin_url.url}assets/img/post-grid-layout.png`} />;
+    }
     let bgColorOrGRadient = {};
     if (meta_style_.blockBgColor.type == "color") {
       bgColorOrGRadient = { backgroundColor: meta_style_.blockBgColor.color };

@@ -322,6 +322,7 @@ class Edit extends Component {
       meta_style2,
       title,
       categorynav,
+      preview,
     } = attributes;
     let heading_ = heading[0];
     let thumbnail_ = thumbnail[0];
@@ -348,6 +349,13 @@ class Edit extends Component {
     //   cateGory = categoryList(category);
     // }
     // meta_style_.blockBgColor;
+
+    if (preview) {
+      return (
+        <img src={`${plugin_url.url}assets/img/post-category-layout.png`} />
+      );
+    }
+
     let bgColorOrGRadient = {};
     if (meta_style_.blockBgColor.type == "color") {
       bgColorOrGRadient = { backgroundColor: meta_style_.blockBgColor.color };

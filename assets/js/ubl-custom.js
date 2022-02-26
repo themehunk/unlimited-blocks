@@ -59,6 +59,16 @@
       slickOption.customPaging = function (slider, i) {
         return "<span></span>";
       };
+      slickOption.responsive = [
+        {
+          breakpoint: 500,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ];
+
       // console.log("slickOption", slickOption);
       slider.on("init", function (e, slick) {
         // console.log("event -> ", e);

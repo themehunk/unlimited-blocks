@@ -7,10 +7,10 @@ unlimited_blocks_register_block_fn('ubl-post-list',  [
             'type' => "number",
             "default" => 6
         ],
-        // "columnLayout" => [
-        //     "type" => "string",
-        //     "default" => "grid"
-        // ],
+        "preview" => [
+            "type" => "boolean",
+            "default" => false,
+        ],
         "dimension" => [
             'type' => "array",
             'default' => [

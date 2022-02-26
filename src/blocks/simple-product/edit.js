@@ -25,6 +25,7 @@ import { PostNotfound, PostLoader } from "../block-assets/post-functions";
 import BasicToggleNav from "../block-assets/utility-components/BasicToggleNav";
 import Border from "../block-assets/utility-components/border";
 import Switcher from "../block-assets/utility-components/TwoSwitcher";
+
 class Edit extends Component {
   constructor(props) {
     super(props);
@@ -296,7 +297,6 @@ class Edit extends Component {
 
     const {
       wrapper_id,
-      preview,
       posts,
       pTitle,
       productBoxBoxShadow,
@@ -305,6 +305,7 @@ class Edit extends Component {
       no_plugin_active,
     } = this.state;
     const { attributes, setAttributes } = this.props;
+
     let {
       product_cate,
       numberOfPosts,
@@ -316,8 +317,15 @@ class Edit extends Component {
       priceStyle,
       saleStyle,
       buttonsStyle,
+      preview,
     } = attributes;
+    // th-layout-1
 
+    // console.log("preview", plugin_url, preview);
+
+    if (preview) {
+      return <img src={`${plugin_url.url}assets/img/simple-product.png`} />;
+    }
     let BoxSelector1 = `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap`;
     let BoxSelector2 = `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom`;
     let addToCartSelector = `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn`;

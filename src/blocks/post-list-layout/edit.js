@@ -58,6 +58,7 @@ class Edit extends Component {
       postCategories,
       meta_style,
       title,
+      preview,
     } = attributes;
     let heading_ = heading[0];
     let thumbnail_ = thumbnail[0];
@@ -76,6 +77,11 @@ class Edit extends Component {
     //   cateGory = categoryList(category);
     // }
     // block width
+
+    if (preview) {
+      return <img src={`${plugin_url.url}assets/img/post-list-layout.png`} />;
+    }
+
     let blockStyle = {};
     if (dimension[0].width) {
       blockStyle = {

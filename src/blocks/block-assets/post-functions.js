@@ -107,33 +107,6 @@ export const firstTimeInit = async (this_, data_ = {}) => {
   }
 };
 //<<<<<<<<<<<-------->>>>>>>>>>>>>>
-export const categoryList = (category) => {
-  if (
-    (category && category.length) ||
-    (category instanceof Object && Object.keys(category).length)
-  ) {
-    let cateGory = [{ value: "all", label: __("All", "unlimited-blocks") }];
-    if (category && category.length) {
-      category.map((catt) => {
-        let cate_Items = {
-          value: catt.slug,
-          label: catt.name,
-        };
-        cateGory.push(cate_Items);
-      });
-    } else if (category instanceof Object && Object.keys(category).length) {
-      for (let keys_ in category) {
-        let cate_Items = {
-          value: category[keys_].slug,
-          label: category[keys_].name,
-        };
-        cateGory.push(cate_Items);
-      }
-    }
-    return cateGory;
-  }
-};
-//<<<<<<<<<<<-------->>>>>>>>>>>>>>
 export const excerptWords = (words, words_) => {
   words_ = decodeEntities(words_);
   words_ = words_.replace(/<\/?[^>]+(>|$)/g, "");

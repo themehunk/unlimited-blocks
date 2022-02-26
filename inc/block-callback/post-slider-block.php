@@ -4,125 +4,123 @@ if (!defined('ABSPATH')) exit;
 unlimited_blocks_register_block_fn('ubl-post-slider',  [
     "render_callback" => "unlimited_blocks_render_post_slider",
     'attributes' => array(
-        'sliderSetting' => [
-            'type' => "array",
-            'default' => [
-                [
-                    "dimension" => [
-                        "width" => false,
-                        "custom_width" => 900,
-                        "height" => false,
-                        "custom_height" => 360,
-                    ],
-                    "sliderEffect" => "slideEffect",
-                    "linearTrigger" => [
-                        "enable" => true,
-                        "fontSize" => 10,
-                        "color" => "white",
-                        "activeColor" => "#652efd",
-                        "trigger" => "bullet",
-                        "place" => "in"
-                    ],
-                    "leftRightTrigger" => [
-                        "enable" => true,
-                        "fontSize" => 14,
-                        "color" => "#652efd",
-                        "backgroundColor" => "transparent",
-                    ],
-                    "autoTrigger" => [
-                        "enable" => true,
-                        "delay" => 3,
-                    ],
-                    // "overlayColor" => "rgba(112,112,112,0.35)",
-                    "overlayColor" => [
-                        "type" => "color",
-                        "color" => "rgba(112,112,112,0.35)",
-                        'gradient' => "radial-gradient(rgb(6, 147, 227) 38%, rgb(155, 81, 224) 80%)",
-                        "opacity" => 6
-                    ],
-                    "contentAlign" => "center"
+        "align" => [
+            "type" => "string",
+            'default' => 'full'
+        ],
+        "wrapper_id" => [
+            "type" => "string",
+            "default" => ""
+        ],
+        "sliderSetting" => [
+            "type" => "object",
+            "default" => [
+                // slider settings
+                // "dimension" => [
+                //     "width" => false,
+                //     "custom_width" => 100,
+                //     "height" => false,
+                //     "custom_height" => 300,
+                // ],
+                "sliderEffect" => "slideEffect",
+                "triggerActive" => "both",
+                "linearTrigger" => [
+                    "fontSize" => 12,
+                    "color" => "rgba(231,192,192,1)",
+                    "activeColor" => "rgba(68,222,68,1)",
                 ],
+                "leftRightTrigger" => [
+                    "fontSize" => 15,
+                    "color" => "rgba(231,192,192,1)",
+                ],
+                "autoTrigger" => false,
+                "autoTriggerDelay" => 4,
+                'numberOfcolumn' => 1,
+                'numberOfRow' => 1,
+                'columnGap' => 15,
+                'rowGap' => 15,
+                // slider settings
+                "contentAlign" => "center",
+                "overlayColor" => [
+                    "type" => "color",
+                    "color" => "rgba(112,112,112,0.35)",
+                    'gradient' => "radial-gradient(rgb(6, 147, 227) 38%, rgb(155, 81, 224) 80%)",
+                    "opacity" => 6
+                ],
+
             ],
         ],
+
         'numberOfPosts' => [
             'type' => "number",
             "default" => 2
         ],
-        // "title" => [
-        //     "type" => "array",
-        //     "default" => [[
-        //         'enable' => false,
-        //         "value" => __("Add Block Title", "unlimited-blocks"),
-        //         "fontSize" => 16,
-        //         "color" => "white",
-        //         "backgroundColor" => "#652efd",
-        //         "align" => "left",
-        //         // "customWidth" => false,
-        //         "width" => 10,
-        //         "fontWeight" => 400
-        //     ]]
-        // ],
+
         'heading' => [
-            'type' => "array",
-            "default" => [[
+            'type' => "object",
+            "default" => [
                 "tag" => 'h2',
                 "fontSize" => 32,
                 "color" => '#fffff',
-            ]]
+            ]
         ],
         "meta_style" => [
-            "type" => "array",
-            "default" => [[
+            "type" => "object",
+            "default" => [
                 "color" => "#ffffff",
                 "left_border" => true,
                 "fontSize" => 12
-            ]]
+            ]
         ],
         "author" => [
-            "type" => "array",
-            "default" => [["enable" => false]]
+            "type" => "object",
+            "default" => ["enable" => false]
         ],
         'date' => [
-            "type" => "array",
-            "default" => [[
+            "type" => "object",
+            "default" => [
                 "enable" => true,
                 "last_modified" => false
-            ]]
+            ]
         ],
         'showCate' => [
-            "type" => "array",
-            "default" => [[
+            "type" => "object",
+            "default" => [
                 "enable" => true,
                 "customColor" => true,
                 "color" => "#ffffff",
                 "backgroundColor" => "rgba(54,26,234,0.45)",
                 "fontSize" => 12,
                 "count" => 2,
-            ]]
+            ]
         ],
         'showTag' => [
-            "type" => "array",
-            "default" => [[
+            "type" => "object",
+            "default" => [
                 "enable" => false,
                 // "customColor" => false,
                 "color" => "#dfdfdf",
                 "backgroundColor" => "transparent",
                 "fontSize" => 12,
                 "count" => 2,
-            ]]
+            ]
         ],
         'excerpt' => [
-            'type' => "array",
-            "default" => [[
+            'type' => "object",
+            "default" => [
                 "enable" => false,
                 "words" => 25,
                 "color" => '#E2E2E2',
                 "fontSize" => 12
-            ]]
+            ]
         ],
         "postCategories" => [
             "type" => "array",
             "default" => []
-        ]
+        ],
+        "preview" => [
+            "type" => "boolean",
+            "default" => false,
+        ],
     )
 ]);

@@ -117,8 +117,16 @@ registerBlockType("unlimited-blocks/ubl-product", {
         fontSize: 14,
       },
     },
+    preview: {
+      type: "boolean",
+      default: false,
+    },
   },
-  example: () => {},
+  example: {
+    attributes: {
+      preview: true,
+    },
+  },
   edit: Edit,
   save: () => {
     return null;

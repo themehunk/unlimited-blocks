@@ -102,6 +102,10 @@ unlimited_blocks_register_block_fn('ubl-post-grid',  [
         "postCategories" => [
             "type" => "array",
             "default" => []
-        ]
+        ],
+        "preview" => [
+            "type" => "boolean",
+            "default" => false,
+        ],
     ]
 ]);
