@@ -142,9 +142,19 @@ registerBlockType("unlimited-blocks/icon-block", {
         radius: 0,
       },
     },
+    preview: {
+      type: "boolean",
+      default: false,
+    },
   },
-  example: () => {},
-  edit: ({ attributes, setAttributes }) => {
+  example: {
+    attributes: {
+      preview: true,
+    },
+  },
+  edit: (props) => {
+    const { attributes, setAttributes } = props;
+    // console.log("props icon block ->", props);
     const {
       iconClass,
       iconColor,
@@ -170,7 +180,12 @@ registerBlockType("unlimited-blocks/icon-block", {
       iconBorderColor,
       iconSpace,
       containerBorder,
+      // preview
+      preview,
     } = attributes;
+    if (preview) {
+      // return <h1>i m previewing</h1>;
+    }
 
     let borderStyle = iconBorder
       ? {

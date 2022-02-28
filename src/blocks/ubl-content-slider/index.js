@@ -16,6 +16,10 @@ registerBlockType("unlimited-blocks/owl-slider", {
     align: ["none", "wide", "full"],
   },
   attributes: {
+    preview: {
+      type: "boolean",
+      default: true,
+    },
     align: {
       type: "string",
       default: "full",
@@ -70,14 +74,10 @@ registerBlockType("unlimited-blocks/owl-slider", {
         height: "",
         width: "",
         bg: {
-          // backgroundType: "color",
-          // backgroundImage: "",
-          // backgroundImageSize: "cover",
           backgroundColorType: "color",
           backgroundColor: "#ffbf00",
           backgroundImageGradient:
             "radial-gradient(rgb(6, 147, 227) 38%, rgb(155, 81, 224) 80%)",
-          // backgroundOpacity: 0.6,
         },
         border: {},
       },
@@ -227,7 +227,11 @@ registerBlockType("unlimited-blocks/owl-slider", {
     // }
     // return attr_;
   },
-  example: () => {},
+  example: {
+    attributes: {
+      preview: true,
+    },
+  },
   edit: Edit,
   save: () => {
     return null;

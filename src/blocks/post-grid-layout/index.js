@@ -16,7 +16,11 @@ registerBlockType("unlimited-blocks/ubl-post-grid", {
     return attr_;
   },
   // attributes: attrSave,
-  example: () => {},
+  example: {
+    attributes: {
+      preview: true,
+    },
+  },
   edit: Edit,
   save: () => {
     return null;

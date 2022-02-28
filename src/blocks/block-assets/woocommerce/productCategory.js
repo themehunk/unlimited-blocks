@@ -94,7 +94,7 @@ class productCategory extends Component {
   categorySearch = () => {
     return (
       <div className="categoriesSearch_">
-        <span>{__("Search for product categories", "unlimited-blocks")}</span>
+        <span>{__("Search category", "unlimited-blocks")}</span>
         <input
           type="text"
           onKeyUp={(e) => {

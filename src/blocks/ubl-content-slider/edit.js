@@ -9,19 +9,12 @@ import {
 import {
   PanelBody,
   RangeControl,
-  ColorPicker,
   ToggleControl,
-  __experimentalGradientPicker as GradientPicker,
-  __experimentalInputControl as InputControl,
   ColorPalette,
 } from "@wordpress/components";
-import { UBLGraDientColors } from "../block-assets/post-functions";
 import { Component } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
-// import OwlCarousel_custom from "./owl/slider";
-// import OwlCarousel from "react-owl-carousel";
-// import OwlCarousel from "react-owl-carousel";
 import SlickSlider from "react-slick";
 // let bgImageWrapper = plugin_url.url + "assets/img/image2.jpg";
 import UblStyler from "../block-assets/Styler";
@@ -97,9 +90,8 @@ class Edit extends Component {
   updateAttr = (val, key_ = false, key2_ = false, multiple_ = false) => {
     const { attributes, setAttributes } = this.props;
     if (key_) {
-      let copyAttr = cloneDeep(...attributes[key_]);
-
-      // console.log("copyAttr", attr_);
+      let copyAttr = cloneDeep(attributes[key_]);
+      // console.log("copyAttr", copyAttr);
       // let copyAttr = attr_[key_];
       if (multiple_) {
         copyAttr = { ...copyAttr, ...multiple_ };
@@ -276,21 +268,31 @@ class Edit extends Component {
         let dotsStyle = {
           height: sliderSetting.linearTrigger.fontSize + "px",
           width: sliderSetting.linearTrigger.fontSize + "px",
-          color: sliderSetting.linearTrigger.color,
+        };
+        let normalStyleColor = {
+          ...dotsStyle,
+          backgroundColor: sliderSetting.linearTrigger.color,
+        };
+        let activeStyleColor = {
+          ...dotsStyle,
+          backgroundColor: sliderSetting.linearTrigger.activeColor,
         };
 
         return (
           <ul data-class="ubl-slick-slider-dots">
             {check.map((dotsChildren) => {
-              if (dotsChildren.props.className == "slick-active") {
-                dotsStyle.color = sliderSetting.linearTrigger.activeColor;
-              }
               return (
                 <li
                   className={`custonLi_ ${dotsChildren.props.className}`}
                   onClick={dotsChildren.props.children.props.onClick}
                 >
-                  <span style={dotsStyle}></span>
+                  <span
+                    style={
+                      dotsChildren.props.className
+                        ? activeStyleColor
+                        : normalStyleColor
+                    }
+                  ></span>
                 </li>
               );
             })}
@@ -757,12 +759,14 @@ class Edit extends Component {
     const { attributes } = this.props;
     // const slides = [...attributes.slides];
     const { openPanel, commonDropDown, twoBtn } = this.state;
-    const { wrapper_id } = attributes;
+    const { wrapper_id, preview } = attributes;
 
     let WrapperClass = wrapper_id ? wrapper_id : this.props.clientId;
 
     WrapperClass = `ubl-slick-slider-block-wrap ${WrapperClass}`;
-
+    if (preview) {
+      return <img src={`${plugin_url.url}assets/img/advance-slider.png`} />;
+    }
     // console.log("selected slide", currentSlideIndex);
     return (
       <>
@@ -1306,6 +1310,8 @@ class Edit extends Component {
                                   ...attributes.sliderSetting.linearTrigger,
                                 };
                                 getLinearTrigger.fontSize = e;
+                                console.log("fs->", getLinearTrigger);
+
                                 this.updateAttr(
                                   getLinearTrigger,
                                   "sliderSetting",

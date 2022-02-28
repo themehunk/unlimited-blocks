@@ -275,31 +275,7 @@ export const blocksDetail = {
       </svg>
     ),
   },
-  // ubl_block_slider: {
-  //   title: __("Slider", "unlimited-blocks"),
-  //   description: __(
-  //     "This block allows you to insert content and image slides. (E.g- Image slider, content slider)",
-  //     "unlimited-blocks"
-  //   ),
-  //   keywords: [],
-  //   icon: (
-  //     <svg
-  //       id="_x31__x2C_5"
-  //       enable-background="new 0 0 24 24"
-  //       height="24"
-  //       viewBox="0 0 24 24"
-  //       width="24"
-  //       xmlns="http://www.w3.org/2000/svg"
-  //     >
-  //       <path d="m6.251 13c-.242 0-.48-.117-.625-.334l-1.5-2.25c-.168-.252-.168-.58 0-.832l1.5-2.25c.229-.345.695-.438 1.04-.208s.438.695.208 1.04l-1.223 1.834 1.223 1.834c.229.345.137.81-.208 1.04-.128.085-.272.126-.415.126z" />
-  //       <path d="m17.749 13c-.143 0-.287-.041-.415-.126-.345-.23-.438-.695-.208-1.04l1.223-1.834-1.223-1.834c-.229-.345-.137-.81.208-1.04.346-.23.811-.137 1.04.208l1.5 2.25c.168.252.168.58 0 .832l-1.5 2.25c-.145.217-.383.334-.625.334z" />
-  //       <path d="m7 20.25c-.689 0-1.25-.561-1.25-1.25s.561-1.25 1.25-1.25 1.25.561 1.25 1.25-.561 1.25-1.25 1.25zm0-1.5c-.138 0-.25.112-.25.25 0 .275.5.275.5 0 0-.138-.112-.25-.25-.25z" />
-  //       <path d="m12 20.25c-.689 0-1.25-.561-1.25-1.25s.561-1.25 1.25-1.25 1.25.561 1.25 1.25-.561 1.25-1.25 1.25zm0-1.5c-.138 0-.25.112-.25.25 0 .275.5.275.5 0 0-.138-.112-.25-.25-.25z" />
-  //       <path d="m17 20.25c-.689 0-1.25-.561-1.25-1.25s.561-1.25 1.25-1.25 1.25.561 1.25 1.25-.561 1.25-1.25 1.25zm0-1.5c-.138 0-.25.112-.25.25 0 .275.5.275.5 0 0-.138-.112-.25-.25-.25z" />
-  //       <path d="m21.25 24h-18.5c-1.517 0-2.75-1.233-2.75-2.75v-18.5c0-1.517 1.233-2.75 2.75-2.75h18.5c1.517 0 2.75 1.233 2.75 2.75v18.5c0 1.517-1.233 2.75-2.75 2.75zm-18.5-22.5c-.689 0-1.25.561-1.25 1.25v18.5c0 .689.561 1.25 1.25 1.25h18.5c.689 0 1.25-.561 1.25-1.25v-18.5c0-.689-.561-1.25-1.25-1.25z" />
-  //     </svg>
-  //   ),
-  // },
+
   ubl_block_slider_owl: {
     title: __("Advance Slider", "unlimited-blocks"),
     description: __(
@@ -331,12 +307,134 @@ export const blocksDetail = {
     keywords: ["product"],
     icon: (
       <svg
-        focusable="false"
-        aria-hidden="true"
-        viewBox="0 0 24 24"
-        data-testid="LocalGroceryStoreIcon"
+        xmlns="http://www.w3.org/2000/svg"
+        version="1.1"
+        id="Layer_1"
+        x="0px"
+        y="0px"
+        width="64px"
+        height="64px"
+        viewBox="0 0 64 64"
+        enable-background="new 0 0 64 64"
       >
-        <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"></path>
+        <g>
+          <path
+            fill="none"
+            stroke="#2d78ff"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-miterlimit="10"
+            d="   M54.1,29.3H9.9c-0.6,0-1-0.4-1-1v-3.3c0-0.6,0.4-1,1-1h44.3c0.6,0,1,0.4,1,1v3.3C55.1,28.9,54.7,29.3,54.1,29.3z"
+          />
+          <path
+            fill="none"
+            stroke="#2d78ff"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-miterlimit="10"
+            d="   M51.1,29.3H12.9c-0.6,0-1.1,0.5-1,1.2l3.2,20.2c0.1,0.5,0.5,0.8,1,0.8h31.8c0.5,0,0.9-0.4,1-0.8l3.2-20.2   C52.2,29.9,51.7,29.3,51.1,29.3z"
+          />
+          <g>
+            <line
+              fill="none"
+              stroke="#2d78ff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-miterlimit="10"
+              x1="17.4"
+              y1="24.1"
+              x2="27.1"
+              y2="12.5"
+            />
+
+            <line
+              fill="none"
+              stroke="#2d78ff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-miterlimit="10"
+              x1="46.6"
+              y1="24.1"
+              x2="36.9"
+              y2="12.5"
+            />
+          </g>
+          <g>
+            <line
+              fill="none"
+              stroke="#2d78ff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-miterlimit="10"
+              x1="35"
+              y1="35"
+              x2="35"
+              y2="45"
+            />
+
+            <line
+              fill="none"
+              stroke="#2d78ff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-miterlimit="10"
+              x1="29"
+              y1="35"
+              x2="29"
+              y2="45"
+            />
+
+            <line
+              fill="none"
+              stroke="#2d78ff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-miterlimit="10"
+              x1="23"
+              y1="35"
+              x2="23"
+              y2="45"
+            />
+
+            <line
+              fill="none"
+              stroke="#2d78ff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-miterlimit="10"
+              x1="41"
+              y1="35"
+              x2="41"
+              y2="45"
+            />
+          </g>
+          <path
+            fill="none"
+            stroke="#2d78ff"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-miterlimit="10"
+            d="   M32,44.8"
+          />
+          <path
+            fill="none"
+            stroke="#2d78ff"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-miterlimit="10"
+            d="   M32,34.8"
+          />
+        </g>
       </svg>
     ),
   },

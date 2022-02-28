@@ -15,7 +15,11 @@ registerBlockType("unlimited-blocks/ubl-post-list", {
     return attr_;
   },
   // attributes: attrSave,
-  example: () => {},
+  example: {
+    attributes: {
+      preview: true,
+    },
+  },
   edit: Edit,
   save: () => {
     return null;
