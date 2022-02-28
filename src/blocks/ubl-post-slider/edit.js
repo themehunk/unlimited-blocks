@@ -127,7 +127,7 @@ class Edit extends Component {
                 </p>
                 <RangeControl
                   value={numberOfPosts}
-                  min={2}
+                  min={1}
                   max={20}
                   onChange={(e) => {
                     setAttributes({ numberOfPosts: e });

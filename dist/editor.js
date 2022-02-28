@@ -69160,7 +69160,7 @@ var Edit = /*#__PURE__*/function (_Component) {
         initialOpen: false
       }, wp.element.createElement("p", null, wp.element.createElement("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Number Of Post Display", "unlimited-blocks"))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RangeControl"], {
         value: numberOfPosts,
-        min: 2,
+        min: 1,
         max: 20,
         onChange: function onChange(e) {
           setAttributes({
