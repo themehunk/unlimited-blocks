@@ -16,7 +16,11 @@ registerBlockType("unlimited-blocks/ubl-post-section-two-post", {
     return attr_;
   },
   // attributes: attrSave,
-  example: () => {},
+  example: {
+    attributes: {
+      preview: true,
+    },
+  },
   edit: Edit,
   save: () => {
     return null;

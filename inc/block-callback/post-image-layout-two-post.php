@@ -7,6 +7,10 @@ unlimited_blocks_register_block_fn('ubl-post-section-two-post',  [
             'type' => "number",
             "default" => 2
         ],
+        "preview" => [
+            "type" => "boolean",
+            "default" => false,
+        ],
         "title" => [
             "type" => "array",
             "default" => [[

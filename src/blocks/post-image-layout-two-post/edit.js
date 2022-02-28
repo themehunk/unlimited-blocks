@@ -54,6 +54,7 @@ class Edit extends Component {
       meta_style,
       title,
       layout,
+      preview,
     } = attributes;
     let heading_ = heading[0];
     let excerpt_ = excerpt[0];
@@ -64,7 +65,9 @@ class Edit extends Component {
     let showTag_ = showTag[0];
     let showCate_ = showCate[0];
     let layout_ = layout[0];
-
+    if (preview) {
+      return <img src={`${plugin_url.url}assets/img/post-layout-2.png`} />;
+    }
     return (
       <>
         <InspectorControls>

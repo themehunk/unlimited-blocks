@@ -60245,7 +60245,8 @@ var Edit = /*#__PURE__*/function (_Component) {
           postCategories = attributes.postCategories,
           meta_style = attributes.meta_style,
           title = attributes.title,
-          layout = attributes.layout;
+          layout = attributes.layout,
+          preview = attributes.preview;
       var heading_ = heading[0];
       var excerpt_ = excerpt[0];
       var date_ = date[0];
@@ -60255,6 +60256,13 @@ var Edit = /*#__PURE__*/function (_Component) {
       var showTag_ = showTag[0];
       var showCate_ = showCate[0];
       var layout_ = layout[0];
+
+      if (preview) {
+        return wp.element.createElement("img", {
+          src: "".concat(plugin_url.url, "assets/img/post-layout-2.png")
+        });
+      }
+
       return wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["InspectorControls"], null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
         title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Block Title", "unlimited-blocks"),
         initialOpen: false
@@ -60652,7 +60660,11 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
     return attr_;
   },
   // attributes: attrSave,
-  example: function example() {},
+  example: {
+    attributes: {
+      preview: true
+    }
+  },
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   save: function save() {
     return null;
