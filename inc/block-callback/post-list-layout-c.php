@@ -113,6 +113,160 @@ if (!function_exists('unlimited_blocks_render_latest_post_block')) {
         }
     }
 }
+
+
+// new ---------------------------------------------------------------
+if (!function_exists('unlimited_blocks_returnHtmlListPostNew')) {
+    function unlimited_blocks_returnHtmlListPostNew($cate_, $heading__, $postAuthor, $meta_, $postDate, $postExcerpt__, $tags_, $category__in, $thumbnail = false, $layout = [])
+    {
+
+        // print_r($thumbnail);
+
+        $postHtmlCl1 = "<article class='block-post-article'>";
+        $postHtmlCl1 .= "<div class='post-wrapper' id='post-wrapper'>";
+        if (((isset($thumbnail['typeShow']) && ($thumbnail['typeShow'] == 1 || $thumbnail['typeShow'] == 'all')) && $thumbnail['enable'] && get_the_post_thumbnail_url()) || (!isset($thumbnail['typeShow']) && $thumbnail['enable'] && get_the_post_thumbnail_url())) {
+            $thumbnailStyle = isset($thumbnail['borderRadius']) ? "border-radius:" . $thumbnail['borderRadius'] . "px;" : '';
+            $postHtmlCl1 .= '<div class="featured-image">';
+            $postHtmlCl1 .= "<a href='" . esc_url(get_the_permalink()) . "'>";
+            $postHtmlCl1 .= '<img style="' . $thumbnailStyle . '" src="' . esc_url(get_the_post_thumbnail_url()) . '"/>';
+            $postHtmlCl1 .= '</a>';
+            $postHtmlCl1 .= '</div>';
+        }
+        $layoutStyleBgClr = '';
+        $layoutStyleBgClrType = isset($layout['overlayColor']['type']) && $layout['overlayColor']['type'] ? $layout['overlayColor']['type'] : '';
+        if ($layoutStyleBgClrType == "color") {
+            $layoutStyleBgClr .= "background-color:" . $layout['overlayColor']['color'] . ";";
+        } else if ($layoutStyleBgClrType == "gradient") {
+            $layoutStyleBgClr .= "background-image:" . $layout['overlayColor']['gradient'] . ";";
+        }
+        $layoutStyleBgClr .= isset($layout['overlayColor']['opacity']) ? "opacity:" . $layout['overlayColor']['opacity'] / 10 . ";" : '';
+        // content style 
+        $postContentStyle = '';
+        if (isset($layout['contentAlign'])) {
+            if ($layout['contentAlign'] == "bottom-left") {
+                $postContentStyle .= "align-items:normal;";
+            } else if ($layout['contentAlign'] == "bottom-center") {
+                $postContentStyle .= "align-items:center;";
+            } else if ($layout['contentAlign'] == "bottom-right") {
+                $postContentStyle .= "align-items:flex-end;";
+            } else if ($layout['contentAlign'] == "center") {
+                $postContentStyle .= "align-items:center;justify-content:center;";
+            }
+        }
+        $postContentStyle = $postContentStyle ? "style='" . $postContentStyle . "'" : '';
+
+        $postHtmlCl1 .= "<div class='post-content-overlay' style='" . $layoutStyleBgClr . "'></div>";
+        $postHtmlCl1 .= "<div class='post-content' " . $postContentStyle . ">";
+        // category
+        if (isset($cate_['enable']) && ($cate_['enable'] == 'true' || $cate_['enable'] == 1)) {
+            $postHtmlCl1 .= '<p class="post-category">';
+            $category_ = get_the_category();
+            $category_ = json_encode($category_);
+            $category_ = json_decode($category_, true);
+            if (!empty($category_)) {
+                $catestyle = isset($cate_['fontSize']) && intval($cate_['fontSize']) ? 'font-size:' . $cate_['fontSize'] . 'px;' : '';
+                if ($cate_['customColor'] == "true" && isset($cate_['backgroundColor']) && isset($cate_['color'])) {
+                    $catestyle .= 'background-color:' . $cate_['backgroundColor'] . ';color:' . $cate_['color'] . ';';
+                }
+                if (isset($category__in['category__in']) && is_array($category__in) && empty($category__in)) {
+                    $category__in = $category__in['category__in'];
+                    foreach ($category__in as $newArraycate) {
+                        foreach ($category_ as $cateKKey => $cateValue_) {
+                            if ($newArraycate == $cateValue_['term_id']) {
+                                unset($category_[$cateKKey]);
+                                array_unshift($category_, ['name' => $cateValue_['name'], 'term_id' => $cateValue_['term_id']]);
+                            }
+                        }
+                    }
+                }
+                $countCate = 0;
+                foreach ($category_ as $cateValue) {
+                    if (isset($cate_['count']) && intval($cate_['count']) && $cate_['count'] == $countCate) break;
+                    $postHtmlCl1 .= '<span style="' . $catestyle . '">';
+                    $postHtmlCl1 .= "<a href='" . esc_url(get_category_link($cateValue['term_id'])) . "'>" . $cateValue['name'] . "</a>";
+                    $postHtmlCl1 .= '</span>';
+                    $countCate++;
+                }
+            }
+            $postHtmlCl1 .= '</p>';
+        }
+        // category
+        if (isset($heading__['tag']) && isset($heading__['color']) && isset($heading__['fontSize'])) {
+            $postHtmlCl1 .= "<" . $heading__['tag'] . " style='color:" . $heading__['color'] . ";font-size:" . $heading__['fontSize'] . "px;' class='post-heading'>";
+            $postHtmlCl1 .= "<a href='" . esc_url(get_the_permalink()) . "'>" . get_the_title() . "</a>";
+            $postHtmlCl1 .= "</" . $heading__['tag'] . ">";
+        }
+        $postHtmlCl1 .= '<div class="post-meta-all">';
+        $metaStyle = isset($meta_['color']) && isset($meta_['fontSize']) ? "color:" . $meta_['color'] . ";font-size:" . $meta_['fontSize'] . ";" : '';
+        if ($postAuthor) {
+            $postHtmlCl1 .= "<p style='" . $metaStyle . "' class='post-author'>";
+            $postHtmlCl1 .= "<a target='_blank' href='" . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . "'>";
+            $postHtmlCl1 .=  get_the_author();
+            $postHtmlCl1 .= "</a></p>";
+        }
+        if (isset($postDate['enable']) && ($postDate['enable'] == 'true' || $postDate['enable'] == 1)) {
+            $postHtmlCl1 .= $postAuthor ? '<span style="' . $metaStyle . '" class="slash">/</span>' : '';
+            $dateYear =   get_the_date('Y');
+            $dateMonth =   get_the_date('m');
+            $dateDay =   get_the_date('j');
+            $postHtmlCl1 .= "<p style='" . $metaStyle . "' class='post-date'>";
+            $postHtmlCl1 .= "<a target='_blank' href='" . esc_url(get_day_link($dateYear, $dateMonth, $dateDay)) . "'>";
+            $postHtmlCl1 .=  get_the_date();
+            $postHtmlCl1 .= "</a></p>";
+        }
+        if (isset($postDate['last_modified']) && ($postDate['last_modified'] == 'true' || $postDate['last_modified'] == 1)) {
+            $postHtmlCl1 .= ($postDate || $postAuthor) ? '<span style="' . $metaStyle . '" class="slash">/</span>' : '';
+            $dateYear =   get_the_modified_date('Y');
+            $dateMonth =   get_the_modified_date('m');
+            $dateDay =   get_the_modified_date('j');
+            $postHtmlCl1 .= "<p style='" . $metaStyle . "' class='post-date-last-modified'>";
+            $postHtmlCl1 .= __("Modified", "unlimited-blocks") . ":<a target='_blank' href='" . esc_url(get_day_link($dateYear, $dateMonth, $dateDay)) . "'>";
+            $postHtmlCl1 .=  get_the_modified_date();
+            $postHtmlCl1 .= "</a></p>";
+        }
+        $postHtmlCl1 .= '</div>';
+        if (isset($postExcerpt__["enable"]) && ($postExcerpt__["enable"] == "true" || $postExcerpt__["enable"] == 1)) {
+            $postExcerpt = get_the_excerpt();
+            $exLength = isset($postExcerpt__['words']) && $postExcerpt__['words']  ? $postExcerpt__['words'] : false;
+            if ($exLength) {
+                $postExcerpt = explode(" ", $postExcerpt);
+                $postExcerpt = array_slice($postExcerpt, 0, $exLength);
+                $postExcerpt = implode(" ", $postExcerpt);
+            }
+            $postExcerptStyle = isset($postExcerpt__["color"]) ? 'color:' . $postExcerpt__["color"] . ';' : '';
+            $postExcerptStyle .= isset($postExcerpt__["fontSize"]) && intval($postExcerpt__["fontSize"]) ? 'font-size:' . $postExcerpt__["fontSize"] . ';' : '';
+            $postHtmlCl1 .= "<p style='" . $postExcerptStyle . "' class='post-excerpt'>";
+            $postHtmlCl1 .= $postExcerpt;
+            $postHtmlCl1 .= "<a class='read-more' href='" . esc_url(get_the_permalink()) . "'>" . __('Read More', "unlimited-blocks") . "</a>";
+            $postHtmlCl1 .= "</p>";
+        }
+        ///////////////////// tags
+        if (isset($tags_['enable']) && ($tags_['enable'] == "true" || $tags_['enable'] == 1)) {
+            $tags = get_the_tags(get_the_ID());
+            $postHtmlCl1 .= '<p class="post-tags">';
+            if (!empty($tags)) {
+                $Tagstyle = isset($tags_['fontSize']) && intval($tags_['fontSize']) ? 'font-size:' . intval($tags_['fontSize']) . 'px;' : '';
+                $Tagstyle .= isset($tags_['backgroundColor']) && $tags_['backgroundColor'] ? 'background-color:' . $tags_['backgroundColor'] . ';' : '';
+                $Tagstyle .= isset($tags_['color']) && $tags_['color'] ? 'color:' . $tags_['color'] . ';' : '';
+                $tagCount = 0;
+                foreach ($tags as $tagValue) {
+                    if ($tags_['count'] == $tagCount) break;
+                    $postHtmlCl1 .= '<span style="' . $Tagstyle . '">';
+                    $postHtmlCl1 .= "<a href='" . esc_url(get_category_link($tagValue->term_id)) . "'>" . $tagValue->name . "</a>";
+                    $postHtmlCl1 .= '</span>';
+                    $tagCount++;
+                }
+            }
+            $postHtmlCl1 .= '</p>';
+        }
+        // tags
+        $postHtmlCl1 .= "</div>";
+        $postHtmlCl1 .= "</div>";
+        $postHtmlCl1 .= "</article>";
+        return $postHtmlCl1;
+    }
+}
+// deprecated ---------------------------------------------------------------
 if (!function_exists('unlimited_blocks_returnHtmlListPost')) {
     function unlimited_blocks_returnHtmlListPost($cate_, $heading__, $postAuthor, $meta_, $postDate, $postExcerpt__, $tags_, $category__in, $thumbnail = false, $layout = [])
     {

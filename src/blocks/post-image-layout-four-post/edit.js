@@ -65,7 +65,11 @@ class Edit extends Component {
       showTag2,
       date2,
       author2,
+      preview,
     } = attributes;
+    if (preview) {
+      return <img src={`${plugin_url.url}assets/img/image-layout-4.png`} />;
+    }
     let heading_ = heading[0];
     let excerpt_ = excerpt[0];
     let date_ = date[0];
@@ -201,7 +205,7 @@ class Edit extends Component {
                 </div>
                 {/* font weight */}
                 <p>
-                  <strong>{__("Max Width %", "unlimited-blocks")}</strong>
+                  <strong>{__("Min Width %", "unlimited-blocks")}</strong>
                 </p>
                 <RangeControl
                   value={title_.width}
@@ -1107,7 +1111,7 @@ class Edit extends Component {
                     color: title_.color,
                     backgroundColor: title_.backgroundColor,
                     fontWeight: title_.fontWeight,
-                    width: title_.width + "%",
+                    minWidth: title_.width + "%",
                   }}
                   onChange={(e) => this.updateObj("title", "value", title, e)}
                 />

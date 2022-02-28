@@ -12,8 +12,12 @@ registerBlockType("unlimited-blocks/ubl-post-section-two-post", {
   keywords: post_image_layout_two_post.keywords,
   category: "unlimited-blocks-category",
   getEditWrapperProps(attributes) {
-    let attr_ = { "data-align": "full" };
+    let attr_ = { "data-align": attributes.align };
     return attr_;
+  },
+  // attributes: attrSave,
+  supports: {
+    align: ["none", "wide", "full"],
   },
   // attributes: attrSave,
   example: {

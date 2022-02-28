@@ -1,3 +1,13 @@
+.ubl-slick-slider-init,
+.ubl-slick-slider-arrow {
+  opacity: 0 !important;
+  transition: 0.2s opacity linear;
+}
+.ubl-slick-slider-init.slick-initialized,
+.ubl-slick-slider-init.slick-initialized .ubl-slick-slider-arrow {
+  opacity: 1 !important;
+}
+
 .ubl-post-slider-wrapper {
   * {
     font-family: "Catamaran-Regular", sans-serif;

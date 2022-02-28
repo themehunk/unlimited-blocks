@@ -11,13 +11,21 @@ registerBlockType("unlimited-blocks/ubl-post-section-six-post", {
   icon: post_image_layout_six_post.icon,
   keywords: post_image_layout_six_post.keywords,
   category: "unlimited-blocks-category",
-  getEditWrapperProps(attributes) {
-    let attr_ = { "data-align": "full" };
-    return attr_;
-  },
   keywords: ["post"],
   // attributes: attrSave,
-  example: () => {},
+  getEditWrapperProps(attributes) {
+    let attr_ = { "data-align": attributes.align };
+    return attr_;
+  },
+  example: {
+    attributes: {
+      preview: true,
+    },
+  },
+  // attributes: attrSave,
+  supports: {
+    align: ["none", "wide", "full"],
+  },
   edit: Edit,
   save: () => {
     return null;

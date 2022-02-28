@@ -7,6 +7,14 @@ unlimited_blocks_register_block_fn('ubl-post-section-four-post',  [
             'type' => "number",
             "default" => 4
         ],
+        "preview" => [
+            "type" => "boolean",
+            "default" => false,
+        ],
+        'align' => [
+            'type' => "string",
+            "default" => "full"
+        ],
         "title" => [
             "type" => "array",
             "default" => [[

@@ -6,8 +6,8 @@ import ReactHtmlParser from "react-html-parser";
 import {
   InspectorControls,
   ColorPalette,
-  BlockControls,
-  BlockAlignmentToolbar,
+  // BlockControls,
+  // BlockAlignmentToolbar,
 } from "@wordpress/block-editor";
 import {
   PanelBody,
@@ -401,13 +401,13 @@ class Edit extends Component {
     };
     return (
       <>
-        <BlockControls key="controls">
+        {/* <BlockControls key="controls">
           <BlockAlignmentToolbar
             value={attributes.align}
             onChange={(align) => setAttributes({ align })}
             controls={["wide", "full"]}
           />
-        </BlockControls>
+        </BlockControls> */}
         <InspectorControls>
           <PanelBody initialOpen={true}>
             <BasicToggleNav

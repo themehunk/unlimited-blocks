@@ -7,6 +7,10 @@ unlimited_blocks_register_block_fn('ubl-post-grid',  [
             'type' => "number",
             "default" => 6
         ],
+        'align' => [
+            'type' => "string",
+            "default" => 6
+        ],
         "numberOfColumn" => [
             "type" => "number",
             "default" => 3

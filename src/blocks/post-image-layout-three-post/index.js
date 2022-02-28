@@ -11,11 +11,18 @@ registerBlockType("unlimited-blocks/ubl-post-section-three-post", {
   keywords: post_image_layout_three_post.keywords,
   category: "unlimited-blocks-category",
   getEditWrapperProps(attributes) {
-    let attr_ = { "data-align": "full" };
+    let attr_ = { "data-align": attributes.align };
     return attr_;
   },
   // attributes: attrSave,
-  example: () => {},
+  supports: {
+    align: ["none", "wide", "full"],
+  },
+  example: {
+    attributes: {
+      preview: true,
+    },
+  },
   edit: Edit,
   save: () => {
     return null;

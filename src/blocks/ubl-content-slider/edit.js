@@ -755,7 +755,7 @@ class Edit extends Component {
     this.props.setAttributes({ slides: slides_ });
   };
   render() {
-    console.log("render slider->", this.props);
+    // console.log("render slider->", this.props);
     const { attributes } = this.props;
     // const slides = [...attributes.slides];
     const { openPanel, commonDropDown, twoBtn } = this.state;

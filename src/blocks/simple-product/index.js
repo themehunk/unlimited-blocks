@@ -16,6 +16,9 @@ registerBlockType("unlimited-blocks/ubl-product", {
       return { "data-align": align };
     }
   },
+  supports: {
+    align: ["none", "wide", "full"],
+  },
   attributes: {
     // save client id
     wrapper_id: { type: "string", default: false },
