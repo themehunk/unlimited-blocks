@@ -7,6 +7,14 @@ unlimited_blocks_register_block_fn('ubl-post-section-three-post',  [
             'type' => "number",
             "default" => 3
         ],
+        "preview" => [
+            "type" => "boolean",
+            "default" => false,
+        ],
+        'align' => [
+            'type' => "string",
+            "default" => "full"
+        ],
         "layout" => [
             "type" => "array",
             "default" => [[

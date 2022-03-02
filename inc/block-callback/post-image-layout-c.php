@@ -5,6 +5,11 @@ if (!function_exists('unlimited_blocks_section_block')) {
     function unlimited_blocks_section_block($attr)
     {
         $attr = unlimited_blocks_array_sanitize($attr);
+
+        // echo "<pre>";
+        // print_r($attr);
+        // echo "</pre>";
+
         $args = [
             'post_type' => 'post',
             "meta_key" => '_thumbnail_id'
@@ -17,25 +22,25 @@ if (!function_exists('unlimited_blocks_section_block')) {
             }
             $query = new WP_Query($args);
             if ($query->have_posts()) {
-                $postAuthor = isset($attr['author'][0]['enable']) && $attr['author'][0]['enable']  ? true : false;
-                $postAuthor2 = isset($attr['author2'][0]['enable']) && $attr['author2'][0]['enable']  ? true : false;
+                $postAuthor = isset($attr['author']['enable']) && $attr['author']['enable']  ? true : false;
+                $postAuthor2 = isset($attr['author2']['enable']) && $attr['author2']['enable']  ? true : false;
                 $postHtml = "<div class='ubl-section-post' id='ubl-section-post'>";
                 // post title
-                if (isset($attr['title'][0]['enable']) && $attr['title'][0]['enable'] && isset($attr['title'][0]['value']) && $attr['title'][0]['value'] != '') {
-                    $titleHeadingStyle = isset($attr['title'][0]['backgroundColor']) && $attr['title'][0]['backgroundColor'] ? "background-color:" . $attr['title'][0]['backgroundColor'] . ";" : '';
-                    $titleHeadingStyle .= isset($attr['title'][0]['color']) && $attr['title'][0]['color'] ? "color:" . $attr['title'][0]['color'] . ";" : '';
-                    $titleHeadingStyle .= isset($attr['title'][0]['fontSize']) && intval($attr['title'][0]['fontSize']) ? "font-size:" . $attr['title'][0]['fontSize'] . "px;" : '';
-                    $titleHeadingStyle .= isset($attr['title'][0]['fontWeight']) && intval($attr['title'][0]['fontWeight']) ? "font-weight:" . $attr['title'][0]['fontWeight'] . ";" : '';
+                if (isset($attr['title']['enable']) && $attr['title']['enable'] && isset($attr['title']['value']) && $attr['title']['value'] != '') {
+                    $titleHeadingStyle = isset($attr['title']['backgroundColor']) && $attr['title']['backgroundColor'] ? "background-color:" . $attr['title']['backgroundColor'] . ";" : '';
+                    $titleHeadingStyle .= isset($attr['title']['color']) && $attr['title']['color'] ? "color:" . $attr['title']['color'] . ";" : '';
+                    $titleHeadingStyle .= isset($attr['title']['fontSize']) && intval($attr['title']['fontSize']) ? "font-size:" . $attr['title']['fontSize'] . "px;" : '';
+                    $titleHeadingStyle .= isset($attr['title']['fontWeight']) && intval($attr['title']['fontWeight']) ? "font-weight:" . $attr['title']['fontWeight'] . ";" : '';
                     // title block
-                    $headingBlockStyle = isset($attr['title'][0]['align']) && $attr['title'][0]['align'] ? "justify-content:" . $attr['title'][0]['align'] . ";" : '';
-                    $headingBlockStyle .= isset($attr['title'][0]['backgroundColor']) && $attr['title'][0]['backgroundColor'] ? "border-color:" . $attr['title'][0]['backgroundColor'] . ";" : '';
+                    $headingBlockStyle = isset($attr['title']['align']) && $attr['title']['align'] ? "justify-content:" . $attr['title']['align'] . ";" : '';
+                    $headingBlockStyle .= isset($attr['title']['backgroundColor']) && $attr['title']['backgroundColor'] ? "border-color:" . $attr['title']['backgroundColor'] . ";" : '';
                     $postHtml .= '<div style="' . $headingBlockStyle . '" class="ubl-block-post-title" id="ubl-block-post-title">';
                     $postHtml .= '<h4 style="' . $titleHeadingStyle . '">';
-                    $postHtml .= __($attr['title'][0]['value'], "unlimited-blocks");
+                    $postHtml .= __($attr['title']['value'], "unlimited-blocks");
                     $postHtml .= '</h4>';
                     $postHtml .= "</div>";
                 }
-                $layout_ = isset($attr['layout'][0]) ? $attr['layout'][0] : false;
+                $layout_ = isset($attr['layout']) ? $attr['layout'] : false;
                 $showCate_ = isset($attr['showCate']) ? $attr["showCate"] : false;
                 $heading_ = isset($attr['heading']) ? $attr["heading"] : false;
                 $metaStyle_ = isset($attr['meta_style']) ? $attr["meta_style"] : false;
@@ -58,7 +63,7 @@ if (!function_exists('unlimited_blocks_section_block')) {
                     while ($query->have_posts()) {
                         $query->the_post();
                         if (get_the_post_thumbnail_url()) {
-                            $postHtml .= unlimited_blocks_returnHtmlListPost($showCate_, $heading_, $postAuthor, $metaStyle_, $date_, $Excerpt_, $ShowTag, $args, [["enable" => true]], $layout_);
+                            $postHtml .= unlimited_blocks_returnHtmlListPostNew($showCate_, $heading_, $postAuthor, $metaStyle_, $date_, $Excerpt_, $ShowTag, $args, ["enable" => true], $layout_);
                         }
                     }
                     $postHtml .= "</div>";
@@ -73,13 +78,13 @@ if (!function_exists('unlimited_blocks_section_block')) {
                         if (get_the_post_thumbnail_url()) {
                             if ($checkFirst) {
                                 $checkFirst = false;
-                                $columnOne .= unlimited_blocks_returnHtmlListPost($showCate_, $heading_, $postAuthor, $metaStyle_, $date_, $Excerpt_, $ShowTag, $args, [["enable" => true]], $layout_);
+                                $columnOne .= unlimited_blocks_returnHtmlListPostNew($showCate_, $heading_, $postAuthor, $metaStyle_, $date_, $Excerpt_, $ShowTag, $args, ["enable" => true], $layout_);
                             } else {
                                 if ($checkFirst) {
                                     $checkFirst = false;
-                                    $columnOne .= unlimited_blocks_returnHtmlListPost($showCate_, $heading_, $postAuthor, $metaStyle_, $date_, $Excerpt_, $ShowTag, $args, [["enable" => true]], $layout_);
+                                    $columnOne .= unlimited_blocks_returnHtmlListPostNew($showCate_, $heading_, $postAuthor, $metaStyle_, $date_, $Excerpt_, $ShowTag, $args, ["enable" => true], $layout_);
                                 } else {
-                                    $columnTwo .= unlimited_blocks_returnHtmlListPost($showCate2_, $heading2_, $postAuthor2, $metaStyle2_, $date2_, $Excerpt2_, $ShowTa2g, $args, [["enable" => true]], $layout_);
+                                    $columnTwo .= unlimited_blocks_returnHtmlListPostNew($showCate2_, $heading2_, $postAuthor2, $metaStyle2_, $date2_, $Excerpt2_, $ShowTa2g, $args, ["enable" => true], $layout_);
                                 }
                             }
                         }

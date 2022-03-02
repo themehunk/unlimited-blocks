@@ -32,8 +32,8 @@ class Edit extends Component {
     firstTimeInit(this, sendData);
   }
   updateObj = (parent_key, child_key, initialValue, value_) => {
-    let newNewValue = [...initialValue];
-    newNewValue[0][child_key] = value_;
+    let newNewValue = { ...initialValue };
+    newNewValue[child_key] = value_;
     let setAttr_ = {};
     setAttr_[parent_key] = newNewValue;
     this.props.setAttributes(setAttr_);
@@ -44,27 +44,19 @@ class Edit extends Component {
     const { attributes, setAttributes } = this.props;
     const { posts, category, totalPost } = this.state;
     let {
-      heading,
-      author,
-      date,
-      showTag,
-      showCate,
-      excerpt,
+      heading: heading_,
+      author: author_,
+      date: date_,
+      showTag: showTag_,
+      showCate: showCate_,
+      excerpt: excerpt_,
       postCategories,
-      meta_style,
-      title,
-      layout,
+      meta_style: meta_style_,
+      title: title_,
+      layout: layout_,
       preview,
     } = attributes;
-    let heading_ = heading[0];
-    let excerpt_ = excerpt[0];
-    let date_ = date[0];
-    let author_ = author[0];
-    let meta_style_ = meta_style[0];
-    let title_ = title[0];
-    let showTag_ = showTag[0];
-    let showCate_ = showCate[0];
-    let layout_ = layout[0];
+
     if (preview) {
       return <img src={`${plugin_url.url}assets/img/post-layout-2.png`} />;
     }
@@ -82,7 +74,7 @@ class Edit extends Component {
                   : __("Hide", "unlimited-blocks")
               }
               checked={title_.enable}
-              onChange={(e) => this.updateObj("title", "enable", title, e)}
+              onChange={(e) => this.updateObj("title", "enable", title_, e)}
             />
             {title_.enable && (
               <>
@@ -93,7 +85,7 @@ class Edit extends Component {
                   <div>
                     <span
                       onClick={() => {
-                        this.updateObj("title", "align", title, "left");
+                        this.updateObj("title", "align", title_, "left");
                       }}
                       className={`dashicons dashicons-editor-alignleft ${
                         title_.align == "left" && "active"
@@ -103,7 +95,7 @@ class Edit extends Component {
                   <div>
                     <span
                       onClick={() => {
-                        this.updateObj("title", "align", title, "center");
+                        this.updateObj("title", "align", title_, "center");
                       }}
                       className={`dashicons dashicons-editor-aligncenter ${
                         title_.align == "center" && "active"
@@ -113,7 +105,7 @@ class Edit extends Component {
                   <div>
                     <span
                       onClick={() => {
-                        this.updateObj("title", "align", title, "flex-end");
+                        this.updateObj("title", "align", title_, "flex-end");
                       }}
                       className={`dashicons dashicons-editor-alignright ${
                         title_.align == "flex-end" && "active"
@@ -128,7 +120,7 @@ class Edit extends Component {
                   min={5}
                   max={50}
                   onChange={(e) => {
-                    this.updateObj("title", "fontSize", title, e);
+                    this.updateObj("title", "fontSize", title_, e);
                   }}
                 />
                 <p>
@@ -137,7 +129,7 @@ class Edit extends Component {
                 <ColorPalette
                   value={title_.color}
                   onChange={(color) =>
-                    this.updateObj("title", "color", title, color)
+                    this.updateObj("title", "color", title_, color)
                   }
                 />
                 <p>
@@ -147,7 +139,7 @@ class Edit extends Component {
                 <ColorPalette
                   value={title_.backgroundColor}
                   onChange={(color) => {
-                    this.updateObj("title", "backgroundColor", title, color);
+                    this.updateObj("title", "backgroundColor", title_, color);
                   }}
                 />
                 {/* font weight */}
@@ -159,7 +151,7 @@ class Edit extends Component {
                       this.updateObj(
                         "title",
                         "fontWeight",
-                        title,
+                        title_,
                         e.target.value
                       );
                     }}
@@ -171,14 +163,14 @@ class Edit extends Component {
                 </div>
                 {/* font weight */}
                 <p>
-                  <strong>{__("Max Width %", "unlimited-blocks")}</strong>
+                  <strong>{__("Min Width %", "unlimited-blocks")}</strong>
                 </p>
                 <RangeControl
                   value={title_.width}
                   min={1}
                   max={100}
                   onChange={(e) => {
-                    this.updateObj("title", "width", title, e);
+                    this.updateObj("title", "width", title_, e);
                   }}
                 />
               </>
@@ -197,7 +189,7 @@ class Edit extends Component {
                   this.updateObj(
                     "layout",
                     "contentAlign",
-                    layout,
+                    layout_,
                     "bottom-left"
                   )
                 }
@@ -212,7 +204,7 @@ class Edit extends Component {
                   this.updateObj(
                     "layout",
                     "contentAlign",
-                    layout,
+                    layout_,
                     "bottom-center"
                   )
                 }
@@ -229,7 +221,7 @@ class Edit extends Component {
                   this.updateObj(
                     "layout",
                     "contentAlign",
-                    layout,
+                    layout_,
                     "bottom-right"
                   )
                 }
@@ -241,7 +233,7 @@ class Edit extends Component {
               </span>
               <span
                 onClick={() =>
-                  this.updateObj("layout", "contentAlign", layout, "center")
+                  this.updateObj("layout", "contentAlign", layout_, "center")
                 }
                 className={layout_.contentAlign == "center" ? "selected" : ""}
               >
@@ -261,7 +253,7 @@ class Edit extends Component {
                 getBgcolor["type"] = _properties.backgroundColorType;
                 getBgcolor["color"] = _properties.backgroundColor;
                 getBgcolor["gradient"] = _properties.backgroundImageGradient;
-                this.updateObj("layout", "overlayColor", layout, getBgcolor);
+                this.updateObj("layout", "overlayColor", layout_, getBgcolor);
               }}
             />
             <RangeControl
@@ -273,7 +265,7 @@ class Edit extends Component {
               onChange={(e) => {
                 let getBgcolor = { ...layout_.overlayColor };
                 getBgcolor["opacity"] = e;
-                this.updateObj("layout", "overlayColor", layout, getBgcolor);
+                this.updateObj("layout", "overlayColor", layout_, getBgcolor);
               }}
             />
             {/* bg color  */}
@@ -298,9 +290,9 @@ class Edit extends Component {
                     : value_ == "h3"
                     ? 20
                     : 17;
-                let newHeading = [...heading];
-                newHeading[0]["tag"] = value_;
-                newHeading[0]["fontSize"] = font_;
+                let newHeading = { ...heading_ };
+                newHeading["tag"] = value_;
+                newHeading["fontSize"] = font_;
                 setAttributes({ heading: newHeading });
               }}
             >
@@ -317,7 +309,7 @@ class Edit extends Component {
               min={1}
               max={50}
               onChange={(e) =>
-                this.updateObj("heading", "fontSize", heading, e)
+                this.updateObj("heading", "fontSize", heading_, e)
               }
             />
             <p>
@@ -326,7 +318,7 @@ class Edit extends Component {
             <ColorPalette
               value={heading_.color}
               onChange={(color) =>
-                this.updateObj("heading", "color", heading, color)
+                this.updateObj("heading", "color", heading_, color)
               }
             />
           </PanelBody>
@@ -341,7 +333,7 @@ class Edit extends Component {
                   : __("Show", "unlimited-blocks")
               }
               checked={excerpt_.enable}
-              onChange={(e) => this.updateObj("excerpt", "enable", excerpt, e)}
+              onChange={(e) => this.updateObj("excerpt", "enable", excerpt_, e)}
             />
             {excerpt_.enable && (
               <>
@@ -353,7 +345,7 @@ class Edit extends Component {
                   min={1}
                   max={25}
                   onChange={(e) =>
-                    this.updateObj("excerpt", "fontSize", excerpt, e)
+                    this.updateObj("excerpt", "fontSize", excerpt_, e)
                   }
                 />
                 <p>
@@ -364,7 +356,7 @@ class Edit extends Component {
                   min={1}
                   max={200}
                   onChange={(e) =>
-                    this.updateObj("excerpt", "words", excerpt, e)
+                    this.updateObj("excerpt", "words", excerpt_, e)
                   }
                 />
                 <p>
@@ -373,7 +365,7 @@ class Edit extends Component {
                 <ColorPalette
                   value={excerpt_.color}
                   onChange={(color) =>
-                    this.updateObj("excerpt", "color", excerpt, color)
+                    this.updateObj("excerpt", "color", excerpt_, color)
                   }
                 />
               </>
@@ -408,31 +400,33 @@ class Edit extends Component {
             <ToggleControl
               label={__("Author", "unlimited-blocks")}
               checked={author_.enable}
-              onChange={(e) => this.updateObj("author", "enable", author, e)}
+              onChange={(e) => this.updateObj("author", "enable", author_, e)}
             />
             {/* show date */}
             <ToggleControl
               label={__("Date", "unlimited-blocks")}
               checked={date_.enable}
-              onChange={(e) => this.updateObj("date", "enable", date, e)}
+              onChange={(e) => this.updateObj("date", "enable", date_, e)}
             />
             <ToggleControl
               label={__("Categories", "unlimited-blocks")}
               checked={showCate_.enable}
               onChange={(e) =>
-                this.updateObj("showCate", "enable", showCate, e)
+                this.updateObj("showCate", "enable", showCate_, e)
               }
             />
             {/* show last date */}
             <ToggleControl
               label={__("Last Modified Date", "unlimited-blocks")}
               checked={date_.last_modified}
-              onChange={(e) => this.updateObj("date", "last_modified", date, e)}
+              onChange={(e) =>
+                this.updateObj("date", "last_modified", date_, e)
+              }
             />
             <ToggleControl
               label={__("Tag", "unlimited-blocks")}
               checked={showTag_.enable}
-              onChange={(e) => this.updateObj("showTag", "enable", showTag, e)}
+              onChange={(e) => this.updateObj("showTag", "enable", showTag_, e)}
             />
             <p class="block-inside">
               {__("Meta Custom Style", "unlimited-blocks")}
@@ -447,7 +441,7 @@ class Edit extends Component {
               min={1}
               max={25}
               onChange={(e) => {
-                this.updateObj("meta_style", "fontSize", meta_style, e);
+                this.updateObj("meta_style", "fontSize", meta_style_, e);
               }}
             />
             <p>
@@ -456,7 +450,7 @@ class Edit extends Component {
             <ColorPalette
               value={"color" in meta_style_ ? meta_style_.color : ""}
               onChange={(color) =>
-                this.updateObj("meta_style", "color", meta_style, color)
+                this.updateObj("meta_style", "color", meta_style_, color)
               }
             />
             {showCate_.enable && (
@@ -474,7 +468,7 @@ class Edit extends Component {
                   min={1}
                   max={10}
                   onChange={(e) => {
-                    this.updateObj("showCate", "count", showCate, e);
+                    this.updateObj("showCate", "count", showCate_, e);
                   }}
                 />
                 <p>
@@ -485,7 +479,7 @@ class Edit extends Component {
                   min={1}
                   max={30}
                   onChange={(e) => {
-                    this.updateObj("showCate", "fontSize", showCate, e);
+                    this.updateObj("showCate", "fontSize", showCate_, e);
                   }}
                 />
                 <ToggleControl
@@ -496,7 +490,7 @@ class Edit extends Component {
                   }
                   checked={showCate_.customColor}
                   onChange={(e) =>
-                    this.updateObj("showCate", "customColor", showCate, e)
+                    this.updateObj("showCate", "customColor", showCate_, e)
                   }
                 />
                 {showCate_.customColor && (
@@ -507,7 +501,7 @@ class Edit extends Component {
                     <ColorPalette
                       value={showCate_.color}
                       onChange={(color) =>
-                        this.updateObj("showCate", "color", showCate, color)
+                        this.updateObj("showCate", "color", showCate_, color)
                       }
                     />
                     <p>
@@ -521,7 +515,7 @@ class Edit extends Component {
                         this.updateObj(
                           "showCate",
                           "backgroundColor",
-                          showCate,
+                          showCate_,
                           color
                         );
                       }}
@@ -545,7 +539,7 @@ class Edit extends Component {
                   min={1}
                   max={10}
                   onChange={(e) => {
-                    this.updateObj("showTag", "count", showTag, e);
+                    this.updateObj("showTag", "count", showTag_, e);
                   }}
                 />
                 <p>
@@ -556,7 +550,7 @@ class Edit extends Component {
                   min={1}
                   max={30}
                   onChange={(e) => {
-                    this.updateObj("showTag", "fontSize", showTag, e);
+                    this.updateObj("showTag", "fontSize", showTag_, e);
                   }}
                 />
                 <p>
@@ -565,7 +559,7 @@ class Edit extends Component {
                 <ColorPalette
                   value={showTag_.color}
                   onChange={(color) =>
-                    this.updateObj("showTag", "color", showTag, color)
+                    this.updateObj("showTag", "color", showTag_, color)
                   }
                 />
                 <p>
@@ -578,7 +572,7 @@ class Edit extends Component {
                     this.updateObj(
                       "showTag",
                       "backgroundColor",
-                      showTag,
+                      showTag_,
                       color
                     );
                   }}
@@ -591,7 +585,7 @@ class Edit extends Component {
             <ColorPalette
               value={"color" in meta_style_ ? meta_style_.color : ""}
               onChange={(color) =>
-                this.updateObj("meta_style", "color", meta_style, color)
+                this.updateObj("meta_style", "color", meta_style_, color)
               }
             />
           </PanelBody>
@@ -617,9 +611,9 @@ class Edit extends Component {
                     color: title_.color,
                     backgroundColor: title_.backgroundColor,
                     fontWeight: title_.fontWeight,
-                    width: title_.width + "%",
+                    minWidth: title_.width + "%",
                   }}
-                  onChange={(e) => this.updateObj("title", "value", title, e)}
+                  onChange={(e) => this.updateObj("title", "value", title_, e)}
                 />
               </div>
             )}

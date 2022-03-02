@@ -66,6 +66,7 @@ class Edit extends Component {
       showTag2,
       date2,
       author2,
+      preview,
     } = attributes;
     let heading_ = heading[0];
     let layout_ = layout[0];
@@ -85,6 +86,9 @@ class Edit extends Component {
     let date2_ = date2[0];
     let author2_ = author2[0];
     // if number of post sum
+    if (preview) {
+      return <img src={`${plugin_url.url}assets/img/image-layout-5.png`} />;
+    }
     if (
       (numberOfPosts == 3 || numberOfPosts == 5 || layout_.type == 3) &&
       (this.state.metaChoose == "secondary" ||
@@ -208,7 +212,7 @@ class Edit extends Component {
                 </div>
                 {/* font weight */}
                 <p>
-                  <strong>{__("Max Width %", "unlimited-blocks")}</strong>
+                  <strong>{__("Min Width %", "unlimited-blocks")}</strong>
                 </p>
                 <RangeControl
                   value={title_.width}
@@ -1110,7 +1114,7 @@ class Edit extends Component {
                     color: title_.color,
                     backgroundColor: title_.backgroundColor,
                     fontWeight: title_.fontWeight,
-                    width: title_.width + "%",
+                    minWidth: title_.width + "%",
                   }}
                   onChange={(e) => this.updateObj("title", "value", title, e)}
                 />

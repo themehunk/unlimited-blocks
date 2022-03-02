@@ -7,6 +7,10 @@ unlimited_blocks_register_block_fn('ubl-post-tc',  [
             'type' => "number",
             "default" => 4
         ],
+        'align' => [
+            'type' => "string",
+            "default" => ''
+        ],
         "preview" => [
             "type" => "boolean",
             "default" => false,

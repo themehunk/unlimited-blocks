@@ -39,7 +39,7 @@ export const blocksDetail = {
     ),
   },
   post_category_layout: {
-    title: __("Post Category Layout", "unlimited-blocks"),
+    title: __("Post Category", "unlimited-blocks"),
     description: __(
       "This block allows you to display image based posts layout of posts from your selected categories (E.g- post category)",
       "unlimited-blocks"
@@ -60,20 +60,32 @@ export const blocksDetail = {
     ),
   },
   post_grid_layouts: {
-    title: __("Post Grid Layout", "unlimited-blocks"),
+    title: __("Post Grid", "unlimited-blocks"),
     description: __(
       "This block allows you to display grid type post layout from your blog posts. (E.g- display post, grid post)",
       "unlimited-blocks"
     ),
     keywords: [],
     icon: (
-      <svg fill="#f8c045" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M4 11h5V5H4v6zm0 7h5v-6H4v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5V5h-5v6zm6-6v6h5V5h-5z"></path>
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          d="M6 5.5h3a.5.5 0 01.5.5v3a.5.5 0 01-.5.5H6a.5.5 0 01-.5-.5V6a.5.5 0 01.5-.5zM4 6a2 2 0 012-2h3a2 2 0 012 2v3a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm11-.5h3a.5.5 0 01.5.5v3a.5.5 0 01-.5.5h-3a.5.5 0 01-.5-.5V6a.5.5 0 01.5-.5zM13 6a2 2 0 012-2h3a2 2 0 012 2v3a2 2 0 01-2 2h-3a2 2 0 01-2-2V6zm5 8.5h-3a.5.5 0 00-.5.5v3a.5.5 0 00.5.5h3a.5.5 0 00.5-.5v-3a.5.5 0 00-.5-.5zM15 13a2 2 0 00-2 2v3a2 2 0 002 2h3a2 2 0 002-2v-3a2 2 0 00-2-2h-3zm-9 1.5h3a.5.5 0 01.5.5v3a.5.5 0 01-.5.5H6a.5.5 0 01-.5-.5v-3a.5.5 0 01.5-.5zM4 15a2 2 0 012-2h3a2 2 0 012 2v3a2 2 0 01-2 2H6a2 2 0 01-2-2v-3z"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+        ></path>
       </svg>
     ),
   },
   post_list_layout: {
-    title: __("Post List Layout", "unlimited-blocks"),
+    title: __("Post List", "unlimited-blocks"),
     description: __(
       "This block allows you to display list based post layout. (E.g- Post list)",
       "unlimited-blocks"
@@ -81,30 +93,20 @@ export const blocksDetail = {
     keywords: [],
     icon: (
       <svg
-        class="MuiSvgIcon-root jss174"
-        focusable="false"
+        width="24"
+        height="24"
         viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
         aria-hidden="true"
+        focusable="false"
       >
-        <path
-          fill-rule="evenodd"
-          d="M13 9.5h5v-2h-5v2zm0 7h5v-2h-5v2zm6 4.5H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v14c0 1.1-.9 2-2 2zM6 11h5V6H6v5zm1-4h3v3H7V7zM6 18h5v-5H6v5zm1-4h3v3H7v-3z"
-        ></path>
-      </svg>
-    ),
-  },
-  post_image_layout: {
-    title: __("Post Layout 1", "unlimited-blocks"),
-    description: __("", "unlimited-blocks"),
-    keywords: [],
-    icon: (
-      <svg fill="#f8c045" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M2 6H0v5h.01L0 20c0 1.1.9 2 2 2h18v-2H2V6zm20-2h-8l-2-2H6c-1.1 0-1.99.9-1.99 2L4 16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM7 15l4.5-6 3.5 4.51 2.5-3.01L21 15H7z"></path>
+        <path d="M18 4H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm.5 14c0 .3-.2.5-.5.5H6c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h12c.3 0 .5.2.5.5v12zM7 11h2V9H7v2zm0 4h2v-2H7v2zm3-4h7V9h-7v2zm0 4h7v-2h-7v2z"></path>
       </svg>
     ),
   },
   post_image_layout_two_post: {
-    title: __("Post Layout 2", "unlimited-blocks"),
+    title: __("Post Image Layout 1", "unlimited-blocks"),
     description: __(
       "This block allows you to display column based two post layouts. (E.g- two column post)",
       "unlimited-blocks"
@@ -122,7 +124,7 @@ export const blocksDetail = {
     ),
   },
   post_image_layout_three_post: {
-    title: __("Post Layout 3", "unlimited-blocks"),
+    title: __("Post Image Layout 2", "unlimited-blocks"),
     description: __(
       "This block allows you to display column based Three post layouts. (E.g- three column post)",
       "unlimited-blocks"
@@ -140,7 +142,7 @@ export const blocksDetail = {
     ),
   },
   post_image_layout_four_post: {
-    title: __("post Layout 4", "unlimited-blocks"),
+    title: __("Post Image Layout 3", "unlimited-blocks"),
     description: __(
       "This block allows you to display column based four post layouts. (E.g- four column post)",
       "unlimited-blocks"
@@ -158,7 +160,7 @@ export const blocksDetail = {
     ),
   },
   post_image_layout_five_post: {
-    title: "Post Layout 5",
+    title: "Post Image Layout 4",
     description: __(
       "This block allows you to display column based five post layouts. (E.g- five column post)",
       "unlimited-blocks"
@@ -176,7 +178,7 @@ export const blocksDetail = {
     ),
   },
   post_image_layout_six_post: {
-    title: __("Post Layout 6", "unlimited-blocks"),
+    title: __("Post Image Layout 5", "unlimited-blocks"),
     description: __(
       "This block allows you to display column based six post layouts. (E.g- six column post)",
       "unlimited-blocks"

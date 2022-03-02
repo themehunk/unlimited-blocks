@@ -66,6 +66,7 @@ class Edit extends Component {
       showTag2,
       date2,
       author2,
+      preview,
     } = attributes;
     let heading_ = heading[0];
     let excerpt_ = excerpt[0];
@@ -97,6 +98,9 @@ class Edit extends Component {
           heading: "primary",
         });
       }
+    }
+    if (preview) {
+      return <img src={`${plugin_url.url}assets/img/image-layout-3.png`} />;
     }
     // if number of post sum
     return (
@@ -202,7 +206,7 @@ class Edit extends Component {
                 </div>
                 {/* font weight */}
                 <p>
-                  <strong>{__("Max Width %", "unlimited-blocks")}</strong>
+                  <strong>{__("Min Width %", "unlimited-blocks")}</strong>
                 </p>
                 <RangeControl
                   value={title_.width}
@@ -1099,7 +1103,7 @@ class Edit extends Component {
                     color: title_.color,
                     backgroundColor: title_.backgroundColor,
                     fontWeight: title_.fontWeight,
-                    width: title_.width + "%",
+                    minWidth: title_.width + "%",
                   }}
                   onChange={(e) => this.updateObj("title", "value", title, e)}
                 />

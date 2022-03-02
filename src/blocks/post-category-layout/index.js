@@ -11,8 +11,11 @@ registerBlockType("unlimited-blocks/ubl-post-tc", {
   keywords: post_category_layout.keywords,
   category: "unlimited-blocks-category",
   getEditWrapperProps(attributes) {
-    let attr_ = { "data-align": "full" };
+    let attr_ = { "data-align": attributes.align };
     return attr_;
+  },
+  supports: {
+    align: ["none", "wide", "full"],
   },
   // attributes: attrSave,
   example: {
