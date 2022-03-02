@@ -100,7 +100,7 @@ class Edit extends Component {
       }
     }
     if (preview) {
-      return <img src={`${plugin_url.url}assets/img/image-layout-3.png`} />;
+      return <img src={`${plugin_url.url}assets/img/post-layout-2.png`} />;
     }
     // if number of post sum
     return (

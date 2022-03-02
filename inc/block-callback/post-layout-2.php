@@ -18,7 +18,7 @@ unlimited_blocks_register_block_fn('ubl-post-section-three-post',  [
         "layout" => [
             "type" => "array",
             "default" => [[
-                "type" => 1,
+                "type" => 2,
                 "contentPlace" => "inner",
                 "contentAlign" => "bottom",
                 // "overlayColor" => "rgba(9, 122, 251, 0.33)",

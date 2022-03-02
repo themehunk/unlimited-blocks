@@ -12,10 +12,9 @@ import "./blocks/post-list-layout/script";
 import "./blocks/ubl-post-slider/script";
 import "./blocks/post-category-layout/script";
 import "./blocks/post-grid-layout/script";
-// import "./blocks/post-image-layout/script";
-import "./blocks/post-image-layout-three-post/script";
-import "./blocks/post-image-layout-four-post/script";
-import "./blocks/post-image-layout-five-post/script";
+import "./blocks/post-layout-2/script";
+import "./blocks/post-layout-3/script";
+import "./blocks/post-layout-4/script";
 // wrapper and column
 import "./blocks/column-wrapper/script";
 import "./blocks/column-blocks-column/script";

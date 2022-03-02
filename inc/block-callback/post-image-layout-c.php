@@ -24,7 +24,7 @@ if (!function_exists('unlimited_blocks_section_block')) {
             if ($query->have_posts()) {
                 $postAuthor = isset($attr['author']['enable']) && $attr['author']['enable']  ? true : false;
                 $postAuthor2 = isset($attr['author2']['enable']) && $attr['author2']['enable']  ? true : false;
-                $postHtml = "<div class='ubl-section-post' id='ubl-section-post'>";
+                $postHtml = "<div class='ubl-section-post post-layout-1-5' id='ubl-section-post'>";
                 // post title
                 if (isset($attr['title']['enable']) && $attr['title']['enable'] && isset($attr['title']['value']) && $attr['title']['value'] != '') {
                     $titleHeadingStyle = isset($attr['title']['backgroundColor']) && $attr['title']['backgroundColor'] ? "background-color:" . $attr['title']['backgroundColor'] . ";" : '';

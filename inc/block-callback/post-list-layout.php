@@ -24,6 +24,10 @@ unlimited_blocks_register_block_fn('ubl-post-list',  [
                 ]
             ]
         ],
+        "postgap" => [
+            'type' => "number",
+            'default' => 5
+        ],
         "numberOfColumn" => [
             "type" => "number",
             "default" => 3

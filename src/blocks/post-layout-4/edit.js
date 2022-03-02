@@ -87,7 +87,7 @@ class Edit extends Component {
     let author2_ = author2[0];
     // if number of post sum
     if (preview) {
-      return <img src={`${plugin_url.url}assets/img/image-layout-5.png`} />;
+      return <img src={`${plugin_url.url}assets/img/post-layout-4.png`} />;
     }
     if (
       (numberOfPosts == 3 || numberOfPosts == 5 || layout_.type == 3) &&
@@ -1094,7 +1094,7 @@ class Edit extends Component {
           )}
         </InspectorControls>
         {posts && posts.length > 0 ? (
-          <div className="ubl-section-post ubl-post-five-post">
+          <div className="ubl-section-post post-layout-4">
             {title_.enable && (
               <div
                 className="ubl-block-post-title"

@@ -56,7 +56,7 @@ if (!function_exists('unlimited_blocks_render_latest_post_block')) {
                     $postHtml .= "</div>";
                 }
                 $imageAlign_ = isset($attr['meta_style'][0]['imageAlign']) && $attr['meta_style'][0]['imageAlign'] ? $attr['meta_style'][0]['imageAlign'] : '';
-                $postHtml .= "<div class='list-layout-section column-count column-count-1 image-align-" . $imageAlign_  . "' data-setting='" . $postSetting . "' data-currentpage='" . $currentPage . "'>";
+                $postHtml .= "<div class='list-layout-section column-count column-count-1 image-align-" . $imageAlign_  . "' data-setting='" . $postSetting . "' data-currentpage='" . $currentPage . "' style='grid-gap:{$attr['postgap']}px;'>";
                 $postChecker = false;
                 $showCate_ = isset($attr['showCate']) ? $attr["showCate"] : false;
                 $heading_ = isset($attr['heading']) ? $attr["heading"] : false;

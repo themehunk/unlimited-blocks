@@ -68,7 +68,7 @@ class Edit extends Component {
       preview,
     } = attributes;
     if (preview) {
-      return <img src={`${plugin_url.url}assets/img/image-layout-4.png`} />;
+      return <img src={`${plugin_url.url}assets/img/image-layout-3.png`} />;
     }
     let heading_ = heading[0];
     let excerpt_ = excerpt[0];

@@ -33,6 +33,14 @@
         }
       }
     }
+    .column-count {
+      display: flex;
+      flex-direction: column;
+      grid-gap: 5px;
+      > article {
+        line-height: 1;
+      }
+    }
   }
   .column-count:not(.column-count-1) {
     &.left-border {

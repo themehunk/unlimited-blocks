@@ -59,6 +59,7 @@ class Edit extends Component {
       meta_style,
       title,
       preview,
+      postgap,
     } = attributes;
     let heading_ = heading[0];
     let thumbnail_ = thumbnail[0];
@@ -317,6 +318,17 @@ class Edit extends Component {
                   numberOfPosts: e,
                   featured_image: this.props.attributes.thumbnail[0].typeShow,
                 });
+              }}
+            />
+            <p>
+              <strong>{__("Post Gap", "unlimited-blocks")}</strong>
+            </p>
+            <RangeControl
+              value={postgap}
+              min={1}
+              max={100}
+              onChange={(e) => {
+                setAttributes({ postgap: e });
               }}
             />
             <BackgroundColor
@@ -836,6 +848,7 @@ class Edit extends Component {
             )}
             <div
               className={`column-count column-count-1 image-align-${meta_style_.imageAlign}`}
+              style={{ gridGap: postgap + "px" }}
             >
               {posts.map((post) => {
                 let postAuthor =

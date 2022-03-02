@@ -27,7 +27,7 @@ if (!function_exists('unlimited_blocks_section_five_post')) {
             if ($query->have_posts()) {
                 $postAuthor = isset($attr['author'][0]['enable']) && $attr['author'][0]['enable']  ? true : false;
                 $postAuthor2 = isset($attr['author2'][0]['enable']) && $attr['author2'][0]['enable']  ? true : false;
-                $postHtml = "<div class='ubl-section-post ubl-image-section' id='ubl-section-post'>";
+                $postHtml = "<div class='ubl-section-post ubl-image-section post-layout-4' id='ubl-section-post'>";
                 // loader
                 $postHtml .= "<div class='ubl-block-loader linear-bubble'>";
                 $postHtml .= "<div><span></span></div>";
@@ -52,7 +52,7 @@ if (!function_exists('unlimited_blocks_section_five_post')) {
                 $contentPlaced = isset($attr['layout'][0]['contentPlace']) && $attr['layout'][0]['contentPlace'] ? $attr['layout'][0]['contentPlace'] : '';
                 $contentLayoutType = isset($attr['layout'][0]['type']) && intval($attr['layout'][0]['type']) ? intval($attr['layout'][0]['type']) : '';
 
-                $postHtml .= "<div class='ubl-post-five-post column-count parent-column-two count-3 post-five-layout-" . $contentLayoutType . " content-align-" . $contentAlign . " content-placed-" . $contentPlaced . "'  data-setting='" . $postSetting . "' data-currentpage='" . $currentPage . "'>";
+                $postHtml .= "<div class='column-count parent-column-two count-3 post-five-layout-" . $contentLayoutType . " content-align-" . $contentAlign . " content-placed-" . $contentPlaced . "'  data-setting='" . $postSetting . "' data-currentpage='" . $currentPage . "'>";
                 $checkFirst = true;
 
                 $layout_ = isset($attr['layout'][0]) ? $attr['layout'][0] : false;
