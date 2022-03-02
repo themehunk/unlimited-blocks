@@ -58,7 +58,7 @@ class Edit extends Component {
     } = attributes;
 
     if (preview) {
-      return <img src={`${plugin_url.url}assets/img/post-layout-2.png`} />;
+      return <img src={`${plugin_url.url}assets/img/post-layout-1.png`} />;
     }
     return (
       <>
@@ -591,7 +591,7 @@ class Edit extends Component {
           </PanelBody>
         </InspectorControls>
         {posts && posts.length > 0 ? (
-          <div className="ubl-section-post">
+          <div className="ubl-section-post post-layout-1-5">
             {title_.enable && (
               <div
                 className="ubl-block-post-title"

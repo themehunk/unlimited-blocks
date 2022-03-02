@@ -57,7 +57,7 @@ class Edit extends Component {
       preview,
     } = attributes;
     if (preview) {
-      return <img src={`${plugin_url.url}assets/img/image-layout-5.png`} />;
+      return <img src={`${plugin_url.url}assets/img/post-layout-5.png`} />;
     }
     return (
       <>
@@ -66,33 +66,6 @@ class Edit extends Component {
             title={__("Block Title", "unlimited-blocks")}
             initialOpen={false}
           >
-            <BackgroundColor
-              title="Image Overlay Color"
-              value={{
-                backgroundColorType: layout.overlayColor.type,
-                backgroundColor: layout.overlayColor.color,
-                backgroundImageGradient: layout.overlayColor.gradient,
-              }}
-              changeme={(_properties) => {
-                let getBgcolor = { ...layout.overlayColor };
-                getBgcolor["type"] = _properties.backgroundColorType;
-                getBgcolor["color"] = _properties.backgroundColor;
-                getBgcolor["gradient"] = _properties.backgroundImageGradient;
-                this.updateObj("layout", "overlayColor", layout, getBgcolor);
-              }}
-            />
-            <RangeControl
-              label={__("Opacity", "unlimited-blocks")}
-              value={layout.overlayColor.opacity}
-              min={0}
-              max={10}
-              step={1}
-              onChange={(e) => {
-                let getBgcolor = { ...layout.overlayColor };
-                getBgcolor["opacity"] = e;
-                this.updateObj("layout", "overlayColor", layout, getBgcolor);
-              }}
-            />
             <ToggleControl
               label={
                 title_.enable
@@ -201,6 +174,38 @@ class Edit extends Component {
                 />
               </>
             )}
+          </PanelBody>
+          <PanelBody
+            title={__("Post Layout", "unlimited-blocks")}
+            initialOpen={false}
+          >
+            <BackgroundColor
+              title="Image Overlay Color"
+              value={{
+                backgroundColorType: layout.overlayColor.type,
+                backgroundColor: layout.overlayColor.color,
+                backgroundImageGradient: layout.overlayColor.gradient,
+              }}
+              changeme={(_properties) => {
+                let getBgcolor = { ...layout.overlayColor };
+                getBgcolor["type"] = _properties.backgroundColorType;
+                getBgcolor["color"] = _properties.backgroundColor;
+                getBgcolor["gradient"] = _properties.backgroundImageGradient;
+                this.updateObj("layout", "overlayColor", layout, getBgcolor);
+              }}
+            />
+            <RangeControl
+              label={__("Opacity", "unlimited-blocks")}
+              value={layout.overlayColor.opacity}
+              min={0}
+              max={10}
+              step={1}
+              onChange={(e) => {
+                let getBgcolor = { ...layout.overlayColor };
+                getBgcolor["opacity"] = e;
+                this.updateObj("layout", "overlayColor", layout, getBgcolor);
+              }}
+            />
           </PanelBody>
           {/* <PanelBody
             title={__("Post Layout", "unlimited-blocks")}
@@ -541,7 +546,7 @@ class Edit extends Component {
           </PanelBody>
         </InspectorControls>
         {posts && posts.length > 0 ? (
-          <div className="ubl-section-post">
+          <div className="ubl-section-post post-layout-1-5">
             {title_.enable && (
               <div
                 className="ubl-block-post-title"

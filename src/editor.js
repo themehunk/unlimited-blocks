@@ -13,11 +13,11 @@ import "./blocks/post-grid-layout";
 import "./blocks/post-list-layout";
 import "./blocks/ubl-post-slider";
 import "./blocks/post-category-layout";
-import "./blocks/post-image-layout-two-post";
-import "./blocks/post-image-layout-three-post";
-import "./blocks/post-image-layout-four-post";
-import "./blocks/post-image-layout-five-post";
-import "./blocks/post-image-layout-six-post";
+import "./blocks/post-layout-1";
+import "./blocks/post-layout-2";
+import "./blocks/post-layout-3";
+import "./blocks/post-layout-4";
+import "./blocks/post-layout-5";
 // layout block
 import "./blocks/column-blocks-column";
 //woocommerce blocks

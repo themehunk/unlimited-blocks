@@ -57,9 +57,9 @@ include "block-callback/post-list-layout-c.php";
 include "block-callback/post-category-layout-c.php";
 include "block-callback/post-grid-layout-c.php";
 include "block-callback/post-image-layout-c.php";
-include "block-callback/post-image-layout-three-post-c.php";
-include "block-callback/post-image-layout-four-post-c.php";
-include "block-callback/post-image-layout-five-post-c.php";
+include "block-callback/post-layout-2-c.php";
+include "block-callback/post-layout-3-c.php";
+include "block-callback/post-layout-4-c.php";
 include "block-callback/product-one-c.php";
 include "block-callback/slick-slider-c.php";
 

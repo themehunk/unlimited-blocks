@@ -196,7 +196,7 @@ export const blocksDetail = {
     ),
   },
   ubl_post_slider: {
-    title: "Post Slider Layout",
+    title: "Post Slider",
     description: __(
       "This block allows you to display post based sliders. (E.g- post slider, blog slider)",
       "unlimited-blocks"

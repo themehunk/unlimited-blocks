@@ -20,11 +20,11 @@ include_once "block-callback/post-category-layout.php";
 include_once "block-callback/post-grid-layout.php";
 // post image layout
 // include_once "block-callback/post-image-layout.php";
-include_once "block-callback/post-image-layout-two-post.php";
-include_once "block-callback/post-image-layout-three-post.php";
-include_once "block-callback/post-image-layout-four-post.php";
-include_once "block-callback/post-image-layout-five-post.php";
-include_once "block-callback/post-image-layout-six-post.php";
+include_once "block-callback/post-layout-1.php";
+include_once "block-callback/post-layout-2.php";
+include_once "block-callback/post-layout-3.php";
+include_once "block-callback/post-layout-4.php";
+include_once "block-callback/post-layout-5.php";
 // woocommerce layout 
 include_once "block-callback/product-one.php";
 include_once "block-callback/slick-slider.php";
