@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Plugin Name: Unlimited Blocks
+ * Plugin Name: Unlimited Blocks For Gutenberg 
  * Plugin URI: https://themehunk.com/unlimited-blocks/
  * Description: Extra Unlimited blocks Library for building aesthetic websites in the WordPress block editor.
- * Version: 1.0.2
- * Author: Themehunk
+ * Version: 1.1
+ * Author: ThemeHunk
  * Author URI: https://themehunk.com/
  * License: GPLv2 or later
  * Text Domain: unlimited-blocks

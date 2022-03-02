@@ -2,3 +2,4 @@
 node_modules/
 # ignore all .map files
 *.map
+*._

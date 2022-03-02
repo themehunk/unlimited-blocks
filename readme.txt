@@ -1,10 +1,10 @@
-====== Unlimited Blocks ========
+====== Gutenberg Blocks - Unlimited Addons For Gutenberg ========
 Contributors: themehunk
 Author URI: : http://www.themehunk.com/
 Tags: gutenberg, blocks, gutenberg blocks, editor, block
-Requires at least: 5.6
-Tested up to: 5.7
-Stable tag: 1.0.2
+Requires PHP: 5.6
+Tested up to: 5.9
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,10 +13,31 @@ Unlimited Blocks is the editor blocks that are used to create content layouts th
 == Description ==
 
 The Unlimited Blocks is an Addon Plugin For Gutenberg Block Editor. Quickstart the Gutenberg editor with Powerful and elegant blocks to design stunning websites.
-Free Unlimited Blocks plugin that amplifies the default WordPress Gutenberg Editor with 18+ powerful blocks.
+Free Unlimited Blocks plugin that amplifies the default WordPress Gutenberg Editor with 17+ powerful blocks.
 
 Unlimited Blocks is the editor blocks that are used to create content layouts that you can insert onto anywhere on your WordPress post or pages.
 
+
+<strong>An Unlimited Gutenberg Blocks Library</strong>
+<ul>
+    <li>Advance Column</li>
+    <li>Woocommerce Product Slider</li>
+    <li>Advance Content & Image Slider</li>
+    <li>Icon Block</li>
+    <li>Service / Team Section</li>
+    <li>Pricing Box</li>
+    <li>Linear Progress Bar</li>
+    <li>Circular Progress Bar</li>
+    <li>Post Grid Layout</li>
+    <li>Post List Layout</li>
+    <li>Post Slider Layout</li>
+    <li>Post Category Layout</li>
+    <li>Post 2 Image Layout</li>
+    <li>Post 3 Image Layout</li>
+    <li>Post 4 Image Layout</li>
+    <li>Post 5 Image Layout</li>
+    <li>Post 6 Image Layout</li>
+</ul>
 
 == Installation ==
 
@@ -33,9 +54,11 @@ Just upload the `unlimited-blocks.zip` to the `/wp-content/plugins/` directory, 
 
 == Changelog ==
 
-= Version 1.0.0 =
+= Version 1.1.0 =
 
-
+    * Fix: All previous bug fix. 
+    * New: WooCommerce product slider added.
+    * Fix: WordPress 5.9 comfartable.
 
 = 1.0.2 =
 advance column color, gradient color, modified
