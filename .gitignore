@@ -1,4 +1,4 @@
 # ignore all files in any directory named build
 node_modules/
 # ignore all .map files
-*.map
+*.
