@@ -19,4 +19,4 @@ import "./blocks/post-layout-4/script";
 import "./blocks/column-wrapper/script";
 import "./blocks/column-blocks-column/script";
 // woocommerce block
-import "./blocks/simple-product/script";
+import "./blocks/product-slider/script";

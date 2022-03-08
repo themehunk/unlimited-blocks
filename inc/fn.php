@@ -60,7 +60,7 @@ include "block-callback/post-image-layout-c.php";
 include "block-callback/post-layout-2-c.php";
 include "block-callback/post-layout-3-c.php";
 include "block-callback/post-layout-4-c.php";
-include "block-callback/product-one-c.php";
+include "block-callback/product-slider-c.php";
 include "block-callback/slick-slider-c.php";
 
 // testing 

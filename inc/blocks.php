@@ -26,7 +26,7 @@ include_once "block-callback/post-layout-3.php";
 include_once "block-callback/post-layout-4.php";
 include_once "block-callback/post-layout-5.php";
 // woocommerce layout 
-include_once "block-callback/product-one.php";
+include_once "block-callback/product-slider.php";
 include_once "block-callback/slick-slider.php";
 
 // test 

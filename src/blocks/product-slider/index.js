@@ -66,6 +66,7 @@ registerBlockType("unlimited-blocks/ubl-product", {
     addToCart: {
       type: "object",
       default: {
+        enable: true,
         Color: "#20c9ae",
         bgColor: "#89767603",
         ColorHover: "#20c9ae",
@@ -76,8 +77,8 @@ registerBlockType("unlimited-blocks/ubl-product", {
         borderColor: "#20c9ae",
         borderRadius: "5px",
         borderRadiusLink: true,
-        paddingV: "6",
-        paddingH: "18",
+        paddingV: 26,
+        paddingH: 120,
       },
     },
     productTitle: {

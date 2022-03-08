@@ -49,6 +49,7 @@ unlimited_blocks_register_block_fn('ubl-product',  [
         "addToCart" => [
             "type" => "object",
             "default" => [
+                "enable" => true,
                 "Color" => "#20c9ae",
                 "bgColor" => "#89767603",
                 "ColorHover" => "#20c9ae",
@@ -60,7 +61,7 @@ unlimited_blocks_register_block_fn('ubl-product',  [
                 "borderRadius" => "5px",
                 "borderRadiusLink" => true,
                 "paddingV" => '6',
-                "paddingH" => '18',
+                "paddingH" => '120',
             ]
         ],
         "productTitle" => [

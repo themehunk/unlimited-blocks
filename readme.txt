@@ -4,7 +4,7 @@ Author URI: : http://www.themehunk.com/
 Tags: gutenberg, blocks, gutenberg blocks, editor, block
 Requires PHP: 5.6
 Tested up to: 5.9
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,14 +54,16 @@ Just upload the `unlimited-blocks.zip` to the `/wp-content/plugins/` directory, 
 
 == Changelog ==
 
+= Version 1.2.0 =
+
+    * Fix: product slider add to cart width and height issue. 
+    * Add new : product slider add to cart hide and show. 
+
 = Version 1.1.0 =
 
     * Fix: All previous bug fix. 
     * New: WooCommerce product slider added.
     * Fix: WordPress 5.9 comfartable.
-
-= 1.0.2 =
-advance column color, gradient color, modified
 
 == Upgrade Notice ==
 

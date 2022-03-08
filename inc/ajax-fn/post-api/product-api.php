@@ -303,9 +303,13 @@ class Th_Simple_Product
         }
         // add to cart --------------
         $addToCart = '';
+        // if (false) {
+        // if ($options['add_to_cart_hide_show']) {
         $textAddTocart = $options['add_to_cart_text'] !== '' && $options['add_to_cart_text'] ? $options['add_to_cart_text'] : false;
         $iconAddTocart = $options['add_to_cart_icon_on'] == 'on' && $options['add_to_cart_icon_on'] ? true : false;
         $addToCart = $this->elemento_add_tocart($product, $textAddTocart, $iconAddTocart);
+        // }
+
         // quick view --------------
         // price --------------
         $price = '<span class="elemento-addons-price">' . $currentPricehtml . '</span>';

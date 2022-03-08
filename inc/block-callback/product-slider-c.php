@@ -38,6 +38,8 @@ if (!function_exists('unlimited_blocks_product_one')) {
             $cate = $attr['product_cate'];
         }
         // options 
+
+        // $options['add_to_cart_hide_show'] =  $attr['addToCart']['enable'];
         // options 
         $products_ = $postClass->simple_product_slider($cate, $options);
 
@@ -62,15 +64,22 @@ if (!function_exists('unlimited_blocks_product_one')) {
         // box style 
         // add to cart style
         $addtoCartSelector = "{$WrapperID}.ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn";
-        $addStyles[] = [
-            'selector' =>  "{$addtoCartSelector}",
-            'css' => "border-width:{$attr['addToCart']['borderWidth']};border-style:{$attr['addToCart']['borderStyle']};border-color:{$attr['addToCart']['borderColor']};border-radius:{$attr['addToCart']['borderRadius']};color:{$attr['addToCart']['Color']};background-color:{$attr['addToCart']['bgColor']};padding:{$attr['addToCart']['paddingV']}px {$attr['addToCart']['paddingH']}px {$attr['addToCart']['paddingV']}px {$attr['addToCart']['paddingH']}px;"
-        ];
 
-        $addStyles[] = [
-            'selector' =>  "{$addtoCartSelector}:hover",
-            'css' => "color:{$attr['addToCart']['ColorHover']};background-color:{$attr['addToCart']['bgColorHover']};"
-        ];
+        if ($attr['addToCart']['enable']) {
+            $addStyles[] = [
+                'selector' =>  "{$addtoCartSelector}",
+                'css' => "border-width:{$attr['addToCart']['borderWidth']};border-style:{$attr['addToCart']['borderStyle']};border-color:{$attr['addToCart']['borderColor']};border-radius:{$attr['addToCart']['borderRadius']};color:{$attr['addToCart']['Color']};background-color:{$attr['addToCart']['bgColor']};width:{$attr['addToCart']['paddingH']}px;height:{$attr['addToCart']['paddingV']}px;"
+            ];
+            $addStyles[] = [
+                'selector' =>  "{$addtoCartSelector}:hover",
+                'css' => "color:{$attr['addToCart']['ColorHover']};background-color:{$attr['addToCart']['bgColorHover']};"
+            ];
+        } else {
+            $addStyles[] = [
+                'selector' =>  "{$addtoCartSelector}",
+                'css' => "display:none!important;"
+            ];
+        }
 
         // add to cart style
         // title style
