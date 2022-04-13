@@ -135,6 +135,11 @@ class Edit extends Component {
       `border-width:${addToCart.borderWidth}`
     );
     UblStyler(
+      `${wrapper_id}-atc-hide-show`,
+      `${addToCartSelector}`,
+      `display:${addToCart.enable ? "flex" : "none"}`
+    );
+    UblStyler(
       `${wrapper_id}-atc-border-style`,
       `${addToCartSelector}`,
       `border-style:${addToCart.borderStyle}`
@@ -173,12 +178,12 @@ class Edit extends Component {
     UblStyler(
       `${wrapper_id}-atc-v`,
       `${addToCartSelector}`,
-      `padding-top:${addToCart.paddingV}px;padding-bottom:${addToCart.paddingV}px;`
+      `height:${addToCart.paddingV}px;`
     );
     UblStyler(
       `${wrapper_id}-atc-h`,
       `${addToCartSelector}`,
-      `padding-left:${addToCart.paddingH}px;padding-right:${addToCart.paddingH}px;`
+      `width:${addToCart.paddingH}px;`
     );
 
     // --------------------------------title style--------------------------------
@@ -291,7 +296,7 @@ class Edit extends Component {
 
   render() {
     // ++++++++++++++===============
-    // console.log("product props", this.props);
+    console.log("product props", this.props);
     // console.log("product state", this.state);
     // console.log("chunks _", _.chunk([1, 2, 3, 4, 5, 6, 7], 2));
 
@@ -438,7 +443,7 @@ class Edit extends Component {
               >
                 <ToggleControl
                   label={__("Preview", "unlimited-blocks")}
-                  checked={preview}
+                  checked={this.state.preview}
                   onChange={(e) => this.setState({ preview: e })}
                 />
                 <p>
@@ -657,6 +662,24 @@ class Edit extends Component {
                 title={__("Add To Cart Button", "unlimited-blocks")}
                 initialOpen={false}
               >
+                <ToggleControl
+                  label={
+                    addToCart.enable
+                      ? __("Enable", "unlimited-blocks")
+                      : __("Disable", "unlimited-blocks")
+                  }
+                  checked={addToCart.enable}
+                  onChange={(e) => {
+                    this.updateStyle("addToCart", e, "enable");
+
+                    UblStyler(
+                      `${wrapper_id}-atc-hide-show`,
+                      `${addToCartSelector}`,
+                      `display:${e ? "flex" : "none"}`
+                    );
+                  }}
+                />
+
                 <Switcher
                   value={aTcart}
                   navItem={[
@@ -746,13 +769,13 @@ class Edit extends Component {
                 <RangeControl
                   value={addToCart.paddingV}
                   min={1}
-                  max={100}
+                  max={140}
                   onChange={(e) => {
                     this.updateStyle("addToCart", e, "paddingV");
                     UblStyler(
                       `${wrapper_id}-atc-v`,
                       `${addToCartSelector}`,
-                      `padding-top:${e}px;padding-bottom:${e}px;`
+                      `height:${e}px;`
                     );
                   }}
                 />
@@ -762,13 +785,13 @@ class Edit extends Component {
                 <RangeControl
                   value={addToCart.paddingH}
                   min={1}
-                  max={100}
+                  max={450}
                   onChange={(e) => {
                     this.updateStyle("addToCart", e, "paddingH");
                     UblStyler(
                       `${wrapper_id}-atc-h`,
                       `${addToCartSelector}`,
-                      `padding-left:${e}px;padding-right:${e}px;`
+                      `width:${e}px;`
                     );
                   }}
                 />
@@ -1112,7 +1135,7 @@ class Edit extends Component {
         </InspectorControls>
         <div
           className={`${wrapper_id} ul-blocks-simple-product ${
-            preview ? "elemento-simple-product-previewon" : ""
+            this.state.preview ? "elemento-simple-product-previewon" : ""
           }`}
         >
           {no_plugin_active ? (

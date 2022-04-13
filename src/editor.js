@@ -2,7 +2,7 @@ import "./blocks/column-wrapper";
 // for core styling need add
 import "./blocks/block-assets";
 // for core styling need add
-import "./blocks/simple-product";
+import "./blocks/product-slider";
 import "./blocks/ubl-content-slider";
 import "./blocks/icon-block";
 import "./blocks/service-section";
