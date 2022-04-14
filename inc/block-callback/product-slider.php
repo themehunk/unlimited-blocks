@@ -60,7 +60,7 @@ unlimited_blocks_register_block_fn('ubl-product',  [
                 "borderColor" => "#20c9ae",
                 "borderRadius" => "5px",
                 "borderRadiusLink" => true,
-                "paddingV" => '6',
+                "paddingV" => '26',
                 "paddingH" => '120',
             ]
         ],

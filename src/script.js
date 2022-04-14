@@ -6,7 +6,7 @@ import "./blocks/pricing-table/script";
 import "./blocks/service-section/script";
 import "./blocks/progress-bar/script";
 import "./blocks/progress-bar-pie/script";
-import "./blocks/ubl-content-slider/script";
+import "./blocks/advance-slider/script";
 // import "./blocks/ubl-block-slider/script";
 import "./blocks/post-list-layout/script";
 import "./blocks/ubl-post-slider/script";

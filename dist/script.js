@@ -10979,6 +10979,32 @@ return jQuery;
 
 /***/ }),
 
+/***/ "./src/blocks/advance-slider/script.js":
+/*!*********************************************!*\
+  !*** ./src/blocks/advance-slider/script.js ***!
+  \*********************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/advance-slider/style.scss");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_0__);
+
+
+/***/ }),
+
+/***/ "./src/blocks/advance-slider/style.scss":
+/*!**********************************************!*\
+  !*** ./src/blocks/advance-slider/style.scss ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "./src/blocks/block-assets/script.js":
 /*!*******************************************!*\
   !*** ./src/blocks/block-assets/script.js ***!
@@ -11740,32 +11766,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/blocks/ubl-content-slider/script.js":
-/*!*************************************************!*\
-  !*** ./src/blocks/ubl-content-slider/script.js ***!
-  \*************************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/ubl-content-slider/style.scss");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_0__);
-
-
-/***/ }),
-
-/***/ "./src/blocks/ubl-content-slider/style.scss":
-/*!**************************************************!*\
-  !*** ./src/blocks/ubl-content-slider/style.scss ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "./src/blocks/ubl-post-slider/script.js":
 /*!**********************************************!*\
   !*** ./src/blocks/ubl-post-slider/script.js ***!
@@ -11807,7 +11807,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _blocks_service_section_script__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./blocks/service-section/script */ "./src/blocks/service-section/script.js");
 /* harmony import */ var _blocks_progress_bar_script__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./blocks/progress-bar/script */ "./src/blocks/progress-bar/script.js");
 /* harmony import */ var _blocks_progress_bar_pie_script__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./blocks/progress-bar-pie/script */ "./src/blocks/progress-bar-pie/script.js");
-/* harmony import */ var _blocks_ubl_content_slider_script__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./blocks/ubl-content-slider/script */ "./src/blocks/ubl-content-slider/script.js");
+/* harmony import */ var _blocks_advance_slider_script__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./blocks/advance-slider/script */ "./src/blocks/advance-slider/script.js");
 /* harmony import */ var _blocks_post_list_layout_script__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./blocks/post-list-layout/script */ "./src/blocks/post-list-layout/script.js");
 /* harmony import */ var _blocks_ubl_post_slider_script__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./blocks/ubl-post-slider/script */ "./src/blocks/ubl-post-slider/script.js");
 /* harmony import */ var _blocks_post_category_layout_script__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./blocks/post-category-layout/script */ "./src/blocks/post-category-layout/script.js");
