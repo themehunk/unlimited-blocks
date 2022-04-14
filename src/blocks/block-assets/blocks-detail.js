@@ -278,7 +278,7 @@ export const blocksDetail = {
     ),
   },
 
-  ubl_block_slider_owl: {
+  ubl_block_advance_slider: {
     title: __("Advance Slider", "unlimited-blocks"),
     description: __(
       "This block allows you to insert content and image slides. (E.g- Image slider, content slider)",

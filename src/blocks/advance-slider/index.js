@@ -5,12 +5,12 @@ import { registerBlockType } from "@wordpress/blocks";
 import Edit from "./edit";
 import { __ } from "@wordpress/i18n";
 import { blocksDetail } from "../block-assets/blocks-detail";
-const { ubl_block_slider_owl } = blocksDetail;
+const { ubl_block_advance_slider } = blocksDetail;
 registerBlockType("unlimited-blocks/owl-slider", {
-  title: ubl_block_slider_owl.title,
-  description: ubl_block_slider_owl.description,
-  icon: ubl_block_slider_owl.icon,
-  keywords: ubl_block_slider_owl.keywords,
+  title: ubl_block_advance_slider.title,
+  description: ubl_block_advance_slider.description,
+  icon: ubl_block_advance_slider.icon,
+  keywords: ubl_block_advance_slider.keywords,
   category: "unlimited-blocks-category",
   supports: {
     align: ["none", "wide", "full"],
@@ -18,7 +18,7 @@ registerBlockType("unlimited-blocks/owl-slider", {
   attributes: {
     preview: {
       type: "boolean",
-      default: true,
+      default: false,
     },
     align: {
       type: "string",

@@ -1,4 +1,4 @@
-====== Gutenberg Blocks - Unlimited Addons For Gutenberg ========
+====== Gutenberg Blocks - Unlimited blocks For Gutenberg ========
 Contributors: themehunk
 Author URI: : http://www.themehunk.com/
 Tags: gutenberg, blocks, gutenberg blocks, editor, block
@@ -17,6 +17,7 @@ Free Unlimited Blocks plugin that amplifies the default WordPress Gutenberg Edit
 
 Unlimited Blocks is the editor blocks that are used to create content layouts that you can insert onto anywhere on your WordPress post or pages.
 
+1. [Docs](https://themehunk.com/docs/unlimited-blocks-for-gutenberg/)
 
 <strong>An Unlimited Gutenberg Blocks Library</strong>
 <ul>

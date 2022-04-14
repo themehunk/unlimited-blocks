@@ -3,7 +3,7 @@ import "./blocks/column-wrapper";
 import "./blocks/block-assets";
 // for core styling need add
 import "./blocks/product-slider";
-import "./blocks/ubl-content-slider";
+import "./blocks/advance-slider";
 import "./blocks/icon-block";
 import "./blocks/service-section";
 import "./blocks/pricing-table";
