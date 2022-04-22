@@ -106,7 +106,7 @@
         if (dataSetting) {
           dataSetting = JSON.parse(dataSetting);
 
-          // console.log("dataSetting", dataSetting);
+          console.log("dataSetting", dataSetting);
 
           if (dataSetting) {
             let owlCarouselArg = {
@@ -139,7 +139,10 @@
                 parseInt(dataSetting.autoPlaySpeed) * 1000;
             }
             //dots and navigation speed
-            if ("slider_controll" in dataSetting) {
+            if (
+              "slider_controll" in dataSetting &&
+              dataSetting.slider_controll
+            ) {
               // for dots
               owlCarouselArg["dots"] =
                 dataSetting.slider_controll == "ar_do" ||
@@ -152,6 +155,8 @@
                 dataSetting.slider_controll == "arr"
                   ? true
                   : false;
+            } else {
+              owlCarouselArg["dots"] = true;
             }
             // slider loop
             owlCarouselArg["loop"] =

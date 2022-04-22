@@ -296,7 +296,7 @@ class Edit extends Component {
 
   render() {
     // ++++++++++++++===============
-    console.log("product props", this.props);
+    // console.log("product props", this.props);
     // console.log("product state", this.state);
     // console.log("chunks _", _.chunk([1, 2, 3, 4, 5, 6, 7], 2));
 

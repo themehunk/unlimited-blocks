@@ -1553,7 +1553,7 @@
 .ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-wrap {
   display: flex;
   flex-direction: column;
-  grid-gap: 5px;
+  grid-gap: 12px;
   background: #ffffff;
   padding: 10px;
   border-radius: 4px;
@@ -1677,6 +1677,7 @@
   align-items: center;
   position: relative;
   max-width: 100%;
+  margin-top: 4px;
 }
 .ul-blocks-simple-product .elemento-product-outer-wrap .elemento-add-to-cart-btn:hover {
   color: #20c9ae;

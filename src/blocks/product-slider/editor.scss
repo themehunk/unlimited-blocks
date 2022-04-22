@@ -81,7 +81,7 @@
     .elemento-product-simple-inner-wrap {
       display: flex;
       flex-direction: column;
-      grid-gap: 5px;
+      grid-gap: 12px;
       background: #ffffff;
       padding: 10px;
       border-radius: 4px;
@@ -207,6 +207,7 @@
       align-items: center;
       position: relative;
       max-width: 100%;
+      margin-top: 4px;
       &:hover {
         color: #20c9ae;
         background-color: #f5f5f5;
