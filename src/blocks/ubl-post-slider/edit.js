@@ -82,7 +82,7 @@ class Edit extends Component {
       wrapper_id,
       preview,
     } = attributes;
-    // console.log("preview", preview);
+    // console.log("props ->", preview);
     if (preview) {
       return <img src={`${plugin_url.url}assets/img/th-post-slider.png`} />;
     }
@@ -633,11 +633,9 @@ class Edit extends Component {
                           min={0}
                           max={12}
                           onChange={(e) => {
-                            this.updateGlobalSlide(
-                              e,
-                              "sliderSetting",
-                              "autoTriggerDelay"
-                            );
+                            // console.log("elf", e);
+                            // -----------------------------
+                            this.updateGlobalSlide(e, "autoTriggerDelay");
                           }}
                         />
                       )}

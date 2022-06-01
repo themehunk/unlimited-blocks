@@ -65492,9 +65492,9 @@ var Edit = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       // ++++++++++++++===============
-      console.log("product props", this.props); // console.log("product state", this.state);
+      // console.log("product props", this.props);
+      // console.log("product state", this.state);
       // console.log("chunks _", _.chunk([1, 2, 3, 4, 5, 6, 7], 2));
-
       var _this$state = this.state,
           wrapper_id = _this$state.wrapper_id,
           posts = _this$state.posts,
@@ -68384,7 +68384,7 @@ var Edit = /*#__PURE__*/function (_Component) {
           meta_style = attributes.meta_style,
           sliderSetting = attributes.sliderSetting,
           wrapper_id = attributes.wrapper_id,
-          preview = attributes.preview; // console.log("preview", preview);
+          preview = attributes.preview; // console.log("props ->", preview);
 
       if (preview) {
         return wp.element.createElement("img", {
@@ -68730,7 +68730,9 @@ var Edit = /*#__PURE__*/function (_Component) {
         min: 0,
         max: 12,
         onChange: function onChange(e) {
-          _this2.updateGlobalSlide(e, "sliderSetting", "autoTriggerDelay");
+          // console.log("elf", e);
+          // -----------------------------
+          _this2.updateGlobalSlide(e, "autoTriggerDelay");
         }
       }), (sliderSetting.triggerActive == "both" || sliderSetting.triggerActive == "dots") && wp.element.createElement("div", {
         className: "slide-panel-single ".concat(commonDropDown == "dots-style" ? "active" : "")

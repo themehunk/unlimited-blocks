@@ -57,6 +57,7 @@ Just upload the `unlimited-blocks.zip` to the `/wp-content/plugins/` directory, 
 
 = Version 1.2.0 =
 
+    * Fix: advance slider issue fix  
     * Fix: product slider add to cart width and height issue. 
     * Add new : product slider add to cart hide and show. 
 
