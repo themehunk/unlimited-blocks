@@ -54808,7 +54808,7 @@ var Edit = /*#__PURE__*/function (_Component) {
 
 
       var deviceClass = "ubl-wrapper-device-" + deviceType;
-      var WrapperClass = "ubl-blocks-column-wrapper-2";
+      var WrapperClass = "ubl-blocks-column-wrapper-2 ubl-col-" + attributes.columns;
       WrapperClass = Object(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_8__["setAnimationClass"])(attributes.additionalClassNames, [WrapperClass, deviceClass]);
       /* Show the layout placeholder. */
 
@@ -55091,7 +55091,7 @@ var Edit = /*#__PURE__*/function (_Component) {
           });
         }
       }))), wp.element.createElement("div", {
-        className: "ubl-blocks-column-wrapper",
+        className: "ubl-blocks-column-wrapper ",
         id: blockId // dataListStyle={dataListStyle_}
 
       }, wp.element.createElement("div", {
@@ -55407,7 +55407,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("unl
       }
     }
 
-    var WrapperClass = "ubl-blocks-column-wrapper-2 ".concat(blockId + "wrap2-");
+    var WrapperClass = "ubl-blocks-column-wrapper-2 ".concat(blockId + "wrap2-", "  ").concat("ubl-col-" + attributes.columns);
     WrapperClass = Object(_block_assets_utility_components_animations_index__WEBPACK_IMPORTED_MODULE_3__["setAnimationClass"])(attributes.additionalClassNames, [WrapperClass]);
     var mainWrapperClass = ["align" + align, "ubl-blocks-column-wrapper", blockId];
     mainWrapperClass = mainWrapperClass.join(" ");

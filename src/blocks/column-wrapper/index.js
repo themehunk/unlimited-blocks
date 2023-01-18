@@ -203,7 +203,7 @@ registerBlockType("unlimited-blocks/ubl-column-block-wrapper", {
         };
       }
     }
-    let WrapperClass = `ubl-blocks-column-wrapper-2 ${blockId + "wrap2-"}`;
+    let WrapperClass = `ubl-blocks-column-wrapper-2 ${blockId + "wrap2-"}  ${"ubl-col-" + attributes.columns}`;
     WrapperClass = setAnimationClass(attributes.additionalClassNames, [
       WrapperClass,
     ]);
