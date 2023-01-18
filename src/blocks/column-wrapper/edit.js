@@ -271,7 +271,7 @@ class Edit extends Component {
      *
      **/
     let deviceClass = "ubl-wrapper-device-" + deviceType;
-    let WrapperClass = "ubl-blocks-column-wrapper-2";
+    let WrapperClass = "ubl-blocks-column-wrapper-2 ubl-col-" + attributes.columns;
     WrapperClass = setAnimationClass(attributes.additionalClassNames, [
       WrapperClass,
       deviceClass,
@@ -632,7 +632,7 @@ class Edit extends Component {
         </InspectorControls>
 
         <div
-          className="ubl-blocks-column-wrapper"
+          className="ubl-blocks-column-wrapper "
           id={blockId}
           // dataListStyle={dataListStyle_}
         >
