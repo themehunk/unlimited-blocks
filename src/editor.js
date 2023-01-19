@@ -5,6 +5,7 @@ import "./blocks/block-assets";
 import "./blocks/product-slider";
 import "./blocks/advance-slider";
 import "./blocks/icon-block";
+import "./blocks/google-map";
 import "./blocks/service-section";
 import "./blocks/pricing-table";
 import "./blocks/progress-bar";

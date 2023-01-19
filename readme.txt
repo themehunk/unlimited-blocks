@@ -3,8 +3,8 @@ Contributors: themehunk
 Author URI: : http://www.themehunk.com/
 Tags: gutenberg, blocks, gutenberg blocks, editor, block
 Requires PHP: 5.6
-Tested up to: 5.9
-Stable tag: 1.2.1
+Tested up to: 6.1
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,7 @@ Unlimited Blocks is the editor blocks that are used to create content layouts th
     <li>Woocommerce Product Slider</li>
     <li>Advance Content & Image Slider</li>
     <li>Icon Block</li>
+    <li>Google Map</li>
     <li>Service / Team Section</li>
     <li>Pricing Box</li>
     <li>Linear Progress Bar</li>
@@ -55,9 +56,16 @@ Just upload the `unlimited-blocks.zip` to the `/wp-content/plugins/` directory, 
 
 == Changelog ==
 
-= Version 1.2.1 =
+= Version 1.2.3 =
 
    * column Responsive  
+
+   
+= Version 1.2.2 =
+* Fix: 3 Post Layout issue fixed. 
+
+= Version 1.2.1 =
+* Add new :google map block added. 
 
 = Version 1.2.0 =
 

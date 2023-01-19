@@ -1,0 +1,44 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "unlimited-blocks/th-google-map",
+	"version": "0.1.0",
+	"title": "MAP",
+	"category": "unlimited-blocks-category",
+	"icon": "location",
+	"description": "Google map blocks.",
+	"supports": {
+		"html": false
+	},
+	"example": {
+		"attributes": {
+			"preview" : true
+		}
+	},
+	"attributes": {
+		"thmap": {
+			"type": "string",
+			"default": "50 W San Fernando St, San Jose, CA 95113"
+		},
+		"height": { 
+			"type": "number",
+			"default": 350
+		},
+		"width": { 
+			"type": "number",
+			"default": 800
+		},
+		"zoom": { 
+			"type": "number",
+			"default": 10
+		},
+		"alignment": {
+            "type": "string",
+            "default": "none"
+        }
+	},
+	"textdomain": "guten-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

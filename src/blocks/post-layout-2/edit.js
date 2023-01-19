@@ -1129,7 +1129,7 @@ class Edit extends Component {
                 })
               ) : (
                 <>
-                  {layout_.type == "2" ? (
+                  {posts === 'undefined' && layout_.type == "2" ? (
                     <>
                       <div>
                         <div className="column-count column-count-1">
