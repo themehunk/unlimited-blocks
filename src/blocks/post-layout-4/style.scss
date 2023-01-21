@@ -50,3 +50,12 @@
     }
   }
 }
+
+@media only screen and (max-width: 767px) {
+#ubl-section-post .parent-column-two > div {
+    width: 100%;
+}
+#ubl-section-post .post-five-layout-3.parent-column-two > article{
+width:50%;
+}
+}
