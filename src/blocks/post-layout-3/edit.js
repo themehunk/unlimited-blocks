@@ -1200,7 +1200,7 @@ class Edit extends Component {
                     )}
                   </div>
                   <div className="column-two">
-                    {posts === 'undefined' && posts.length >= 1 &&
+                    {posts.length >= 1 &&
                       this.returnHtml(
                         posts[1],
                         heading2_,

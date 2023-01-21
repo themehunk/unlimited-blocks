@@ -60922,7 +60922,7 @@ var Edit = /*#__PURE__*/function (_Component) {
         className: "column-one"
       }, this.returnHtml(posts[0], heading_, author_, date_, meta_style_, showCate_, excerpt_, showTag_, layout_)), wp.element.createElement("div", {
         className: "column-two"
-      }, posts === 'undefined' && posts.length >= 1 && this.returnHtml(posts[1], heading2_, author2_, date2_, meta_style2_, showCate2_, excerpt2_, showTag2_, layout_), wp.element.createElement("div", null, posts.length >= 2 && posts.map(function (post, in_) {
+      }, posts.length >= 1 && this.returnHtml(posts[1], heading2_, author2_, date2_, meta_style2_, showCate2_, excerpt2_, showTag2_, layout_), wp.element.createElement("div", null, posts.length >= 2 && posts.map(function (post, in_) {
         return in_ >= 2 && _this2.returnHtml(post, heading2_, author2_, date2_, meta_style2_, showCate2_, excerpt2_, showTag2_, layout_);
       }))))), meta_style_.npEnable && posts.length < totalPost && wp.element.createElement("div", {
         className: "ubl-two-post-wrapper-next-prev"
