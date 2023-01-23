@@ -77,3 +77,13 @@
     }
   }
 }
+
+@media only screen and (max-width: 767px) {
+#ubl-section-post.ubl-post-four-post .column-count.post-four-layout-1 > div,
+#ubl-section-post .column-count.post-four-layout-2 > div {
+  flex: auto;
+}
+#ubl-section-post .column-count.post-four-layout-4 article.block-post-article{
+  width:50%;
+}
+}
