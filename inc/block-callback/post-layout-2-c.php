@@ -24,8 +24,8 @@ if (!function_exists('unlimited_blocks_section_three_post')) {
             if ($query->have_posts()) {
                 $postAuthor = isset($attr['author'][0]['enable']) && $attr['author'][0]['enable']  ? true : false;
                 $postAuthor2 = isset($attr['author2'][0]['enable']) && $attr['author2'][0]['enable']  ? true : false;
-                $postalign   = isset($attr['align']) ? $attr["align"] : 'full';
-                $postHtml = "<div class='ubl-section-post ubl-three-post-section ubl-image-section align".$postalign."' id='ubl-section-post'>";
+                $postalign   = isset($attr['align']) ? $attr["align"] : '';
+                $postHtml = "<div class='ubl-section-post ubl-three-post-section ubl-image-section wp-block-group align".$postalign."' id='ubl-section-post'>";
                 // loader
                 $postHtml .= "<div class='ubl-block-loader linear-bubble'>";
                 $postHtml .= "<div><span></span></div>";

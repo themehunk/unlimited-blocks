@@ -13,7 +13,7 @@ unlimited_blocks_register_block_fn('ubl-post-section-four-post',  [
         ],
         'align' => [
             'type' => "string",
-            "default" => "full"
+            "default" => ""
         ],
         "title" => [
             "type" => "array",
