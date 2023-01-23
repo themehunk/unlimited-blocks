@@ -16,6 +16,7 @@ if (!function_exists('unlimited_blocks_section_five_post')) {
             if (isset($attr["postCategories"]) && is_array($attr["postCategories"]) && !empty($attr["postCategories"])) {
                 $args['category_name'] = join(',', $attr["postCategories"]);
             }
+            $postalign   = isset($attr['align']) ? $attr["align"] : 'full';
             $query = new WP_Query($args);
 
             $currentPage = $postSetting = "";
@@ -27,7 +28,7 @@ if (!function_exists('unlimited_blocks_section_five_post')) {
             if ($query->have_posts()) {
                 $postAuthor = isset($attr['author'][0]['enable']) && $attr['author'][0]['enable']  ? true : false;
                 $postAuthor2 = isset($attr['author2'][0]['enable']) && $attr['author2'][0]['enable']  ? true : false;
-                $postHtml = "<div class='ubl-section-post ubl-image-section post-layout-4' id='ubl-section-post'>";
+                $postHtml = "<div class='ubl-section-post ubl-image-section post-layout-4 align".$postalign."' id='ubl-section-post'>";
                 // loader
                 $postHtml .= "<div class='ubl-block-loader linear-bubble'>";
                 $postHtml .= "<div><span></span></div>";
