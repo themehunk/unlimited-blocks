@@ -60,7 +60,7 @@ if (!function_exists('unlimited_blocks_render_post_slider')) {
                 $styleAdd = wp_json_encode($addStyles);
                 // add style -----------------------------------------------------------_+++++++++++++++++++++++++++++++++++
 
-                $postHtml .= "<div class='ubl-post-slider-wrapper {$attr['wrapper_id']} align{$attr['align']}' ubl-block-style='{$styleAdd}'>"; //------------------------------------------------------------+++++++wrapper+++++++++
+                $postHtml .= "<div class='ubl-post-slider-wrapper wp-block-group {$attr['wrapper_id']} align{$attr['align']}' ubl-block-style='{$styleAdd}'>"; //------------------------------------------------------------+++++++wrapper+++++++++
                 // slider wrapper 
                 $sliderSetting = [];
                 if ($sliderAttr['sliderEffect'] !== 'slideEffect') {

@@ -6,7 +6,7 @@ unlimited_blocks_register_block_fn('ubl-post-slider',  [
     'attributes' => array(
         "align" => [
             "type" => "string",
-            'default' => 'full'
+            'default' => ''
         ],
         "wrapper_id" => [
             "type" => "string",
