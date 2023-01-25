@@ -37,8 +37,8 @@ if (!function_exists('unlimited_blocks_post_grid_block')) {
                     $blockBgColor = "background-image:" . $attr['meta_style'][0]['blockBgColor']['gradient'] . ";";
                 }
 
-
-                $postHtml .= '<div class="ubl-block-post ubl-image-section" id="ubl-block-post" style="' . $blockBgColor . '">';
+                $postalign   = isset($attr['align']) ? $attr["align"] : '';
+                $postHtml .= '<div class="ubl-block-post ubl-image-section wp-block-group align'.$postalign.'" id="ubl-block-post" style="' . $blockBgColor . '">';
                 // post title
                 // loader
                 $postHtml .= "<div class='ubl-block-loader linear-bubble'>";

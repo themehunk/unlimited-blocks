@@ -9,7 +9,7 @@ unlimited_blocks_register_block_fn('ubl-post-tc',  [
         ],
         'align' => [
             'type' => "string",
-            "default" => 'full'
+            "default" => ""
         ],
         "preview" => [
             "type" => "boolean",

@@ -46,7 +46,8 @@ if (!function_exists('unlimited_blocks_two_column_block')) {
             } else if ($blockBgType == "gradient") {
                 $blockBgColor = "background-image:" . $attr['meta_style'][0]['blockBgColor']['gradient'] . ";";
             }
-            $postHtml = "<div class='ubl-two-col-container' style='" . $blockBgColor . "'>";
+            $postalign   = isset($attr['align']) ? $attr["align"] : '';
+            $postHtml = "<div class='ubl-two-col-container wp-block-group align".$postalign."' style='" . $blockBgColor . "'>";
             // loader
             $postHtml .= "<div class='ubl-block-loader linear-bubble'>";
             $postHtml .= "<div><span></span></div>";
