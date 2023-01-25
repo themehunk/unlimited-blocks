@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) exit;
 if (!function_exists('unlimited_blocks_product_one')) {
     function unlimited_blocks_product_one($attr)
     {
-        // echo "<pre>";
+        // echo "<pre>"; 
         // print_r($attr);
         // echo "</pre>";
         if (!class_exists('WooCommerce')) {
@@ -37,6 +37,7 @@ if (!function_exists('unlimited_blocks_product_one')) {
         if (isset($attr['product_cate']) && !empty($attr['product_cate'])) {
             $cate = $attr['product_cate'];
         }
+        $postalign   = isset($attr['align']) ? $attr["align"] : '';
         // options 
 
         // $options['add_to_cart_hide_show'] =  $attr['addToCart']['enable'];
@@ -155,7 +156,7 @@ if (!function_exists('unlimited_blocks_product_one')) {
         // price style
         $styleAdd = wp_json_encode($addStyles);
         if ($products_) {
-            return sprintf("<div ubl-block-style='%s' class='ul-blocks-simple-product %s'>%s</div>", $styleAdd, $attr['wrapper_id'], $products_);
+            return sprintf("<div ubl-block-style='%s' class='ul-blocks-simple-product %s wp-block-group align".$postalign."'>%s</div>", $styleAdd, $attr['wrapper_id'], $products_);
         }
         // return $products_;
         // return "<h1>product ff aadded. </h1>";

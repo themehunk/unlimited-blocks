@@ -9,7 +9,7 @@ unlimited_blocks_register_block_fn('owl-slider',  [
         ],
         'align' => [
             'type' => "string",
-            'default' => "full",
+            'default' => "",
         ],
         "wrapper_id" => [
             "type" => "string",
