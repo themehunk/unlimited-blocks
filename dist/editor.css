@@ -215,7 +215,6 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
 }
 .ubl-section-post .column-count article {
   padding: 2px;
-  max-width: 700px;
   width: 100%;
 }
 .ubl-section-post .column-count.column-count-1 {

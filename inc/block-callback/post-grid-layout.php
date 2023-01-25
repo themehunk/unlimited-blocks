@@ -9,7 +9,7 @@ unlimited_blocks_register_block_fn('ubl-post-grid',  [
         ],
         'align' => [
             'type' => "string",
-            "default" => 6
+            "default" => ""
         ],
         "numberOfColumn" => [
             "type" => "number",

@@ -15,6 +15,7 @@ import "./blocks/post-grid-layout/script";
 import "./blocks/post-layout-2/script";
 import "./blocks/post-layout-3/script";
 import "./blocks/post-layout-4/script";
+import "./blocks/post-layout-5/script";
 // wrapper and column
 import "./blocks/column-wrapper/script";
 import "./blocks/column-blocks-column/script";

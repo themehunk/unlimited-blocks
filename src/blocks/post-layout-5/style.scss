@@ -1,3 +1,12 @@
 #ubl-section-post.post-layout-1-5 .column-count{
     flex-wrap: nowrap;
 }
+
+@media only screen and (max-width: 767px) {
+#ubl-section-post.post-layout-1-5 .column-count {
+    flex-wrap:wrap;
+}
+#ubl-section-post.post-layout-1-5 .column-count.column-count-3 > .block-post-article {
+    width: 50%;
+}
+}
