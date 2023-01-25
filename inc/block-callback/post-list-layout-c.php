@@ -16,6 +16,7 @@ if (!function_exists('unlimited_blocks_render_latest_post_block')) {
             if (isset($attr['thumbnail'][0]['typeShow']) && $attr['thumbnail'][0]['typeShow'] == "1") {
                 $args['meta_key'] = '_thumbnail_id';
             }
+            $postalign   = isset($attr['align']) ? $attr["align"] : '';
             $query = new WP_Query($args);
             $postHtml = '';
             $currentPage = $postSetting = "";
@@ -33,8 +34,11 @@ if (!function_exists('unlimited_blocks_render_latest_post_block')) {
                         $blockStyle .= "background-image:" . $attr['meta_style'][0]['blockBgColor']['gradient'] . ";";
                     }
                 }
+            
+                if($attr['dimension'][0]['width']=='1'){
                 $blockStyle .= isset($attr['dimension'][0]['width']) && isset($attr['dimension'][0]['custom_width']) && intval($attr['dimension'][0]['custom_width']) ? "max-width:" . $attr['dimension'][0]['custom_width'] . "px;" : '';
-                $postHtml .= '<div class="ubl-block-post list-layout ubl-image-section" id="ubl-block-post" style="' . $blockStyle . '">';
+                }
+                $postHtml .= '<div class="ubl-block-post list-layout ubl-image-section wp-block-group align'.$postalign.'" id="ubl-block-post" style="' . $blockStyle . '">';
                 // post title
                 // loader
                 $postHtml .= "<div class='ubl-block-loader linear-bubble'>";

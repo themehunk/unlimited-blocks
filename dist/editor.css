@@ -2655,5 +2655,7 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
   height: unset;
   font-size: 16px;
 }
-
+.components-popover.block-editor-block-popover {
+  z-index: 9999;
+}
 /*# sourceMappingURL=editor.css.map*/
