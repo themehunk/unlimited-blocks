@@ -66617,8 +66617,8 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("unl
     saleStyle: {
       type: "object",
       default: {
-        color: "white",
-        bgColor: "black",
+        color: "#fff",
+        bgColor: "#000",
         fontSize: 12
       }
     },

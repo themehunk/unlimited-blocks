@@ -91,8 +91,8 @@ unlimited_blocks_register_block_fn('ubl-product',  [
         "saleStyle" => [
             "type" => "object",
             "default" => [
-                'color' => "white",
-                'bgColor' => "black",
+                'color' => "#fff",
+                'bgColor' => "#000",
                 'fontSize' => 12
             ]
         ],
