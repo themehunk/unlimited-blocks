@@ -107,6 +107,7 @@
       box-shadow: 0 0 15px;
       color: #4b58ff40;
       z-index: 100;
+      box-sizing: border-box;
       &:before {
         position: absolute;
         content: "";
