@@ -268,8 +268,16 @@ class Edit extends Component {
     UblStyler(
       `${wrapper_id}-buttonsStyle-Color`,
       `.${wrapper_id}.ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button`,
+      `.${wrapper_id} .owl-dots button.owl-dot:hover span`, 
+      `.${wrapper_id} .owl-dots button.owl-dot.active span`,
       `color:${buttonsStyle.color}`
     );
+    UblStyler( 
+      `.${wrapper_id} .ea-simple-product-slider .owl-carousel .owl-nav button`,
+      `backround:${buttonsStyle.color}`
+    );
+
+    
     // --------------------------------Buttons style--------------------------------
   };
   // 'attributes' => [ "boxStyle" => ["bgColor" => "#b1b1b1",]]
@@ -349,9 +357,10 @@ class Edit extends Component {
       // rewind: true,
       // autoplay: true,
       // slideBy: 1,
-      // dots: true,
+      // dots:false,
       // dotsEach: true,
       // dotData: true,
+     
       mouseDrag: true,
       touchDrag: true,
     };

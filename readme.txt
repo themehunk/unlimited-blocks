@@ -4,7 +4,7 @@ Author URI: : http://www.themehunk.com/
 Tags: gutenberg, blocks, gutenberg blocks, editor, block
 Requires PHP: 5.6
 Tested up to: 6.1
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,11 +56,12 @@ Just upload the `unlimited-blocks.zip` to the `/wp-content/plugins/` directory, 
 
 == Changelog ==
 
+= Version 1.2.4 =
+*  product slider block improve.
+
 = Version 1.2.3 =
+* column Responsive  
 
-   * column Responsive  
-
-   
 = Version 1.2.2 =
 * Fix: 3 Post Layout issue fixed. 
 

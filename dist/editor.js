@@ -65865,7 +65865,8 @@ var Edit = /*#__PURE__*/function (_Component) {
 
       Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-buttonsStyle-fontSize"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button.woosw-btn:before,.").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ button.woosw-btn:after,.").concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button"), "font-size:".concat(buttonsStyle.fontSize, "px"));
       Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-buttonsStyle-ColorHover"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button:hover"), "color:".concat(buttonsStyle.colorHover));
-      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-buttonsStyle-Color"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button"), "color:".concat(buttonsStyle.color)); // --------------------------------Buttons style--------------------------------
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])("".concat(wrapper_id, "-buttonsStyle-Color"), ".".concat(wrapper_id, ".ul-blocks-simple-product .elemento-product-outer-wrap .buttons_ > button"), ".".concat(wrapper_id, " .owl-dots button.owl-dot:hover span"), ".".concat(wrapper_id, " .owl-dots button.owl-dot.active span"), "color:".concat(buttonsStyle.color));
+      Object(_block_assets_Styler__WEBPACK_IMPORTED_MODULE_8__["default"])(".".concat(wrapper_id, " .ea-simple-product-slider .owl-carousel .owl-nav button"), "backround:".concat(buttonsStyle.color)); // --------------------------------Buttons style--------------------------------
     });
 
     _defineProperty(_assertThisInitialized(_this), "updateStyle", function (key_, value, key2) {
@@ -65981,7 +65982,7 @@ var Edit = /*#__PURE__*/function (_Component) {
         // rewind: true,
         // autoplay: true,
         // slideBy: 1,
-        // dots: true,
+        // dots:false,
         // dotsEach: true,
         // dotData: true,
         mouseDrag: true,

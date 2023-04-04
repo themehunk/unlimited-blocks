@@ -187,6 +187,16 @@ if (!function_exists('unlimited_blocks_product_one')) {
             'css' => "background:none;"
         ];
 
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID} .ea-simple-product-slider .owl-carousel .owl-nav button,{$WrapperID} .ea-simple-product-slider .owl-carousel .owl-nav button:hover",
+            'css' => "background:{$buttonsStyleColor};"
+        ];
+
+        $addStyles[] = [
+            'selector' =>  "{$WrapperID} .ea-simple-product-slider .owl-carousel .owl-dots",
+            'css' => "visibility: hidden;"
+        ];
+
 
         // price style
         $filteredAddStyles = array_filter($addStyles, function($value) {
