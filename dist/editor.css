@@ -945,6 +945,7 @@ div[data-type="unlimited-blocks/ubl-column-block-column"]:hover:after, div[data-
   box-shadow: 0 0 15px;
   color: #4b58ff40;
   z-index: 100;
+  box-sizing: border-box;
 }
 .ul-blocks-simple-product .elemento-product-outer-wrap .elemento-product-simple-inner-bottom:before {
   position: absolute;
