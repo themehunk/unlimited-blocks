@@ -123,13 +123,6 @@ if (!function_exists('unlimited_blocks_script')) {
 	add_action('wp_enqueue_scripts', 'unlimited_blocks_script_only_front', 15);
 	add_action('wp_enqueue_scripts', 'unlimited_blocks_script', 15);
 }
-if (!function_exists('unlimited_blocks_mytheme_setup')) {
-	function unlimited_blocks_mytheme_setup()
-	{
-		add_theme_support('align-wide');
-	}
-	add_action('after_setup_theme', 'unlimited_blocks_mytheme_setup');
-}
 /*
  * 
  * 

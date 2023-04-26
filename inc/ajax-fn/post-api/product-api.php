@@ -332,7 +332,7 @@ class Th_Simple_Product
         }
         $productHtml .= $ps_sale;
         $productHtml .= '<a class="img_" href="' . get_permalink($productId) . '" target="_blank">
-                                    ' . $product->get_image() . '
+                                    ' . $product->get_image(array(195)) . '
                                     </a>';
 
         $productHtml .= '<a class="elemento-addons-product-title" href="' . get_permalink($productId) . '" target="_blank">' . $product->get_name() . '</a>';

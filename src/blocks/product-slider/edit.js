@@ -14,7 +14,10 @@ import {
   RangeControl,
   ToggleControl,
   SelectControl,
+  Disabled,
 } from "@wordpress/components";
+
+
 import {
   filterProductInit,
   firstTimeInitProduct,
@@ -1142,6 +1145,7 @@ class Edit extends Component {
             </>
           )}
         </InspectorControls>
+        <Disabled>
         <div
           className={`${wrapper_id} ul-blocks-simple-product ${
             this.state.preview ? "elemento-simple-product-previewon" : ""
@@ -1157,6 +1161,7 @@ class Edit extends Component {
             <PostLoader msg="Product Loading..." />
           )}
         </div>
+       </Disabled>
       </>
     );
     // ++++++++++++++===============

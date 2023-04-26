@@ -4,7 +4,7 @@ Author URI: : http://www.themehunk.com/
 Tags: gutenberg, blocks, gutenberg blocks, editor, block
 Requires PHP: 5.6
 Tested up to: 6.2
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,11 @@ Just upload the `unlimited-blocks.zip` to the `/wp-content/plugins/` directory, 
 
 
 == Changelog ==
+
+= Version 1.2.5=
+* Fixed: Service Color issue fixed.
+* Fixed: Service image issue fixed.
+
 
 = Version 1.2.4 =
 * Fixed: Product slider block improve.

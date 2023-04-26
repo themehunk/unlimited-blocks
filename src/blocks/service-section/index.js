@@ -31,7 +31,7 @@ const attrSave = {
       borderType: "solid",
       borderColor: "yellow",
       borderWidth: 1,
-      imgUrl: plugin_url.url + "assets/img/image2.jpg",
+      imgUrl: plugin_url.url + "assets/img/services.gif",
       imageLink: {
         keepUrl: false,
         link: "#",
@@ -134,7 +134,6 @@ registerBlockType("unlimited-blocks/icon-image-content", {
   attributes: attrSave,
   example: () => {},
   edit: (props) => {
-    // console.log("props", props);
     const { attributes, setAttributes } = props;
     const {
       image,
@@ -502,6 +501,7 @@ registerBlockType("unlimited-blocks/icon-image-content", {
                     {__("Color", "unlimited-blocks")}
                   </label>
                   <ColorPalette
+                  value={iconStyle.color}
                     onChange={(color) => {
                       let iconStyle_ = { ...iconStyle };
                       iconStyle_["color"] = color;
