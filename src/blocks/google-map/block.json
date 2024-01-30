@@ -26,7 +26,7 @@
 		},
 		"width": { 
 			"type": "number",
-			"default": 800
+			"default": 100
 		},
 		"zoom": { 
 			"type": "number",
@@ -34,7 +34,11 @@
 		},
 		"alignment": {
             "type": "string",
-            "default": "none"
+            "default": "center"
+        },
+		"disabled": {
+            "type": "boolean",
+            "default": true
         }
 	},
 	"textdomain": "guten-blocks",

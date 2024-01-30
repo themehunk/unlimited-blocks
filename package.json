@@ -1,7 +1,7 @@
 {
   "name": "unlimited-blocks",
   "version": "1.0.0",
-  "description": "",
+  "description": "====== Gutenberg Blocks - Unlimited blocks For Gutenberg ========\r Contributors: themehunk\r Author URI: : http://www.themehunk.com/\r Tags: gutenberg, blocks, gutenberg blocks, editor, block\r Requires PHP: 5.6\r Tested up to: 6.2\r Stable tag: 1.2.5\r License: GPLv2 or later\r License URI: http://www.gnu.org/licenses/gpl-2.0.html",
   "main": "index.js",
   "scripts": {
     "start": "webpack --mode=development --watch",

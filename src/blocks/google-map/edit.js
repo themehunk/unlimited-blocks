@@ -4,7 +4,7 @@
  * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
  import { __ } from '@wordpress/i18n';
- import { Panel, PanelBody, PanelRow,TextControl,Button,FocusableIframe,ResizableBox,RangeControl,ToolbarGroup  } from '@wordpress/components';
+ import { Panel, PanelBody, PanelRow,TextControl,Button,FocusableIframe,ToggleControl,RangeControl,ToolbarGroup } from '@wordpress/components';
  /**
   * React hook that is used to mark the block wrapper element.
   * It provides all the necessary props like the class name.
@@ -37,7 +37,8 @@
         height,
         width,
         zoom,
-        alignment
+        alignment,
+        disabled
       } = attributes;
 
       const enable = {
@@ -56,10 +57,9 @@
         width,
     };
 
-
      return (<>
+   
          <div  { ...blockProps }>
-         
         <InspectorControls key="setting">
              <Panel header="Map">
 
@@ -71,6 +71,22 @@
                 />
 
                 <RangeControl
+                    label="Width"
+                    value={ width }
+                    onChange={ ( value ) => setAttributes( { width: value }  ) }
+                    min={ 20 }
+                    max={ 100 }
+                    />
+
+                <RangeControl
+                    label="Height"
+                    value={ height }
+                    onChange={ ( value ) => setAttributes( { height: value }  ) }
+                    min={ 50 }
+                    max={ 800 }
+                    />
+
+                <RangeControl
                     label="Zoom"
                     value={ zoom }
                     onChange={ ( value ) => setAttributes( { zoom: value }  ) }
@@ -78,44 +94,39 @@
                     max={ 20 }
                     />
 
+                <ToggleControl
+                    label="Address Text Show/Hide"
+                    checked={ disabled }
+                    onChange={ (value) => setAttributes( { disabled: value }) }
+                    />
+
              </PanelBody>
              </Panel>
         </InspectorControls>
-        <ResizableBox
-            size={fsize}
-            minHeight="200"
-            minWidth="200"
-            enable={enable}
-            onResizeStop={ ( event, direction, elt, delta ) => {
-                setAttributes( {
-                    height: parseInt( height + delta.height, 10 ),
-                    width: parseInt( width + delta.width, 10 ),
-                } );
-                toggleSelection( true );
-            } }
-            onResizeStart={ () => {
-                toggleSelection( false );
-            } }
-        >
-        <FocusableIframe
-        { ...attributes }
+        <div  style={{textAlign:alignment, height: `${height}px`,  width: '100%'}}>
+        <FocusableIframe 
+            zoom={zoom}
+         style={{textAlign:alignment, height: `${height}px`,  width: `${width}%`}}
         src={`https://maps.google.com/maps?q=${thmap}&t=m&z=${ zoom }&output=embed&iwloc=near`}
-        onFocus={ () => console.log( 'Map' ) }
+        onFocus={ () => '' }
     />
-
-      
-        <RichText 
+    
+    {disabled &&<RichText 
                 tagName="div"
                 value={ attributes.thmap }
-                allowedFormats={ [ 'core/bold', 'core/italic' ] }
+                
                 onChange={ ( val ) =>
                             setAttributes( { thmap: val } )
                         }
-                    style={{textAlign:alignment}}
-                    />
-  </ResizableBox>
+                    style={{textAlign:alignment, padding:'10px'}}
+                    />}
+
+</div>
+
         </div>
-                <BlockControls>
+
+
+        <BlockControls key="controls">
                         <ToolbarGroup>
                             <AlignmentToolbar
                                 value={ alignment }
@@ -125,6 +136,7 @@
                             />
                         </ToolbarGroup>
                      </BlockControls>  
+              
          </>
      );
  }

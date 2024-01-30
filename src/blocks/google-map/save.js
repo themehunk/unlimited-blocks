@@ -111,15 +111,19 @@
         height,
         width,
         zoom,
-        alignment
+        alignment,
+        disabled
       } = attributes;
+      let marginWidth = 100-width;
+      let mapNewMargin = marginWidth && alignment==='center' ? marginWidth/2 :0;
+
      return (
-         <div { ...blockProps } style={{textAlign:alignment,width:`${width}px`,height:`${height}px` }}>
-         <iframe className="iframe"  height={height} width={width} style={{border:'none'}} src={`https://maps.google.com/maps?q=${thmap}&t=m&z=${ zoom }&output=embed&iwloc=near`} ></iframe>
-         <RichText.Content
+         <div { ...blockProps } style={{marginLeft : `${mapNewMargin}%`, textAlign:alignment,width:`${width}%`,height:`${height}px` }}>
+         <iframe className="iframe"  height={height} width={`${width}%`} style={{border:'none'}} src={`https://maps.google.com/maps?q=${thmap}&t=m&z=${ zoom }&output=embed&iwloc=near`} ></iframe>
+         {disabled && <RichText.Content
                tagName="span" 
                value={ thmap}
-               />
+               />}
          </div>
      );
  }

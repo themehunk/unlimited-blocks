@@ -139,6 +139,8 @@ class Edit extends Component {
       Object.keys(getListStyle).length == wrapper_childrens.length
     ) {
       for (let getOrderChildren in getListStyle) {
+        if(wrapper_childrens[getOrderChildren] === undefined){ return;} 
+
         let getIdOfColumn = wrapper_childrens[getOrderChildren].clientId;
         let getIdOfColumnWidth = getListStyle[getOrderChildren];
 

@@ -22,6 +22,5 @@ import "./blocks/post-layout-5";
 // layout block
 import "./blocks/column-blocks-column";
 //woocommerce blocks
-// testing \
-
+// testing 
 // import "./blocks/test";
