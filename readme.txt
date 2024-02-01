@@ -4,7 +4,7 @@ Author URI: : http://www.themehunk.com/
 Tags: gutenberg, blocks, gutenberg blocks, editor, block
 Requires PHP: 5.6
 Tested up to: 6.4
-Stable tag: 1.2.6
+Stable tag: 1.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,8 @@ Just upload the `unlimited-blocks.zip` to the `/wp-content/plugins/` directory, 
 
 == Changelog ==
 
+= Version 1.2.7=
+* Add: Rating Block added.
 
 = Version 1.2.6=
 * Fixed: Google map responsive issue fixed.
@@ -84,11 +86,9 @@ Just upload the `unlimited-blocks.zip` to the `/wp-content/plugins/` directory, 
     * Fix: product slider add to cart width and height issue. 
     * Add new : product slider add to cart hide and show. 
 
-= Version 1.1.0 =
+= Version 1.2.7 =
 
-    * Fix: All previous bug fix. 
-    * New: WooCommerce product slider added.
-    * Fix: WordPress 5.9 comfartable.
+    * Add: Star Rating Block added.
 
 == Upgrade Notice ==
 

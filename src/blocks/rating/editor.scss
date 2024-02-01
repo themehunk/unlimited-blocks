@@ -1,0 +1,71 @@
+.wp-block-themehunk-rating .th-star-rating{
+	display: -webkit-box;
+	display: flex;
+	-webkit-box-align: center;
+    align-items: center;
+}
+
+
+.rating-tab-panel .components-tab-panel__tab-content{
+	display:none;
+}
+
+
+  
+/* Style the tab */
+.components-tab-panel__tabs {
+	overflow: hidden;
+	background-color: #f1f1f1;
+  }
+  
+  /* Style the buttons inside the tab */
+  .rating-tab-panel button {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+    padding: 14px 35px;
+	transition: 0.3s;
+	font-size: 17px;
+	width: 50%;
+  }
+  
+  /* Change background color of buttons on hover */
+  .rating-tab-panel button:hover {
+	background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .rating-tab-panel button.active-tab {
+	background-color: #ccc;
+	 color: #3171ff;
+  }
+  
+
+  .rating-tab-panel button.tab-one:before {
+    content: "\f107";
+	margin: 0px 2px;
+    padding: 2px 0;
+    font-size: 18px;
+}
+
+.rating-tab-panel button.tab-two:before {
+    content: "\f540";
+	margin: 0px 2px;
+    padding: 2px 0;
+    font-size: 18px;
+}
+
+
+
+.wp-block-themehunk-rating  .thb-rating{
+	margin-top: 10px;
+	}
+
+
+
+	.th-star-rating .components-flex.components-h-stack {
+		width: auto;
+		justify-content: normal !important;
+	}

@@ -4,6 +4,7 @@ import "./blocks/block-assets";
 // for core styling need add
 import "./blocks/product-slider";
 import "./blocks/advance-slider";
+import "./blocks/rating";
 import "./blocks/icon-block";
 import "./blocks/google-map";
 import "./blocks/service-section";
