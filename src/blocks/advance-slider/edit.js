@@ -764,7 +764,6 @@ class Edit extends Component {
     let WrapperClass = wrapper_id ? wrapper_id : this.props.clientId;
 
     WrapperClass = `ubl-slick-slider-block-wrap ${WrapperClass}`;
-    console.log("selected slide preview->", preview);
     if (preview) {
       return <img src={`${plugin_url.url}assets/img/advance-slider.png`} />;
     }

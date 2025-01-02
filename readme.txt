@@ -3,8 +3,8 @@ Contributors: themehunk
 Author URI: : http://www.themehunk.com/
 Tags: gutenberg, blocks, gutenberg blocks, editor, block
 Requires PHP: 5.6
-Tested up to: 6.4
-Stable tag: 1.2.7
+Tested up to: 6.7
+Stable tag: 1.2.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,29 +56,17 @@ Just upload the `unlimited-blocks.zip` to the `/wp-content/plugins/` directory, 
 
 == Changelog ==
 
-= Version 1.2.7=
-* Add: Rating Block added.
+= Version 1.2.8 =
 
-= Version 1.2.6=
-* Fixed: Google map responsive issue fixed.
-* Fixed: Column undefine issue fixed.
+    * Fix: All previous bug fix. 
+    * New: WooCommerce product slider added.
+    * Fix: WordPress 6.7 comfartable.
 
-= Version 1.2.5=
-* Fixed: Service Color issue fixed.
-* Fixed: Service image issue fixed.
+= Version 1.1.0 =
 
-= Version 1.2.4 =
-* Fixed: Product slider block improve.
-* FIX: WordPress 6.2 Compatibility Testing & Fixes
-
-= Version 1.2.3 =
-* column Responsive  
-
-= Version 1.2.2 =
-* Fix: 3 Post Layout issue fixed. 
-
-= Version 1.2.1 =
-* Add new :google map block added. 
+    * Fix: All previous bug fix. 
+    * New: WooCommerce product slider added.
+    * Fix: WordPress 5.9 comfartable.
 
 = Version 1.2.0 =
 
@@ -86,9 +74,30 @@ Just upload the `unlimited-blocks.zip` to the `/wp-content/plugins/` directory, 
     * Fix: product slider add to cart width and height issue. 
     * Add new : product slider add to cart hide and show. 
 
-= Version 1.2.7 =
+= Version 1.2.1 =
+* Add new :google map block added. 
 
-    * Add: Star Rating Block added.
+= Version 1.2.2 =
+* Fix: 3 Post Layout issue fixed. 
+
+= Version 1.2.3 =
+* column Responsive  
+
+= Version 1.2.4 =
+* Fixed: Product slider block improve.
+* FIX: WordPress 6.2 Compatibility Testing & Fixes
+
+= Version 1.2.5=
+* Fixed: Service Color issue fixed.
+* Fixed: Service image issue fixed.
+
+= Version 1.2.6=
+* Fixed: Google map responsive issue fixed.
+* Fixed: Column undefine issue fixed.
+
+= Version 1.2.7=
+* Add: Rating Block added.
+
 
 == Upgrade Notice ==
 
