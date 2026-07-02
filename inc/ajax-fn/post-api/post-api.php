@@ -26,7 +26,7 @@ if (!function_exists('unlimited_blocks_post_apis_result')) {
         // first time initillize
         $firstTimeInit = isset($request_params['initialize']) && intval($request_params['initialize']) ? true : false;
         // number of post 
-        $numberOfPost = isset($request_params['numberOfPosts']) && intval($request_params['numberOfPosts']) ? intval($request_params['numberOfPosts']) : false;
+        $numberOfPost = isset($request_params['numberOfPosts']) && intval($request_params['numberOfPosts']) ? min(intval($request_params['numberOfPosts']), 100) : false;
         //post category
         $postCategories = isset($request_params['postCategories']) && $request_params['postCategories'] != '' ? sanitize_text_field($request_params['postCategories']) : false;
         //featured image

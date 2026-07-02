@@ -4,6 +4,7 @@
       fns.bind();
     },
     _ajaxFunction: function (data_, datatyle_ = false) {
+      data_["nonce"] = unlimited_blocks_ajax_url.nonce;
       let ajaxObj = {
         method: "POST",
         url: unlimited_blocks_ajax_url.admin_ajax,

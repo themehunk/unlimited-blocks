@@ -47,7 +47,7 @@ if (!function_exists('unlimited_blocks_two_column_block')) {
                 $blockBgColor = "background-image:" . $attr['meta_style'][0]['blockBgColor']['gradient'] . ";";
             }
             $postalign   = isset($attr['align']) ? $attr["align"] : '';
-            $postHtml = "<div class='ubl-two-col-container wp-block-group align".$postalign."' style='" . $blockBgColor . "'>";
+            $postHtml = "<div class='ubl-two-col-container wp-block-group align".esc_attr($postalign)."' style='" . esc_attr($blockBgColor) . "'>";
             // loader
             $postHtml .= "<div class='ubl-block-loader linear-bubble'>";
             $postHtml .= "<div><span></span></div>";
@@ -56,7 +56,7 @@ if (!function_exists('unlimited_blocks_two_column_block')) {
 
             if (count($innerITem) > 0 || (isset($attr['title'][0]["enable"]))) {
                 $borderStyle = isset($attr['meta_style'][0]['underLine']) && $attr['meta_style'][0]['underLine'] && isset($attr['meta_style'][0]['underLineColor']) && $attr['meta_style'][0]['underLineColor'] ? "border-color:" . $attr['meta_style'][0]['underLineColor'] . ";" : '';
-                $postHtml .= "<div class='navigation_' style='" . $borderStyle . "'>";
+                $postHtml .= "<div class='navigation_' style='" . esc_attr($borderStyle) . "'>";
                 if (isset($attr['title'][0]['enable']) && $attr['title'][0]['enable'] && isset($attr['title'][0]['value']) && $attr['title'][0]['value'] != '') {
                     $titleAttrs = $attr['title'][0];
                     $titleHeadingStyle = isset($titleAttrs['bgColor']) && $titleAttrs['bgColor'] ? "background-color:" . $titleAttrs['bgColor'] . ";" : '';
@@ -64,8 +64,8 @@ if (!function_exists('unlimited_blocks_two_column_block')) {
                     $titleHeadingStyle .= isset($titleAttrs['fontSize']) && intval($titleAttrs['fontSize']) ? "font-size:" . $titleAttrs['fontSize'] . "px;" : '';
 
                     $postHtml .= '<div class="nav-heading">';
-                    $postHtml .= '<h4 style="' . $titleHeadingStyle . '">';
-                    $postHtml .= __($titleAttrs['value'], "unlimited-blocks");
+                    $postHtml .= '<h4 style="' . esc_attr($titleHeadingStyle) . '">';
+                    $postHtml .= esc_html($titleAttrs['value']);
                     $postHtml .= '</h4></div>';
                 }
                 if (count($innerITem) > 0) {
@@ -75,19 +75,23 @@ if (!function_exists('unlimited_blocks_two_column_block')) {
                     // linear items
                     $postHtml .= "<div class='ubl-block-nav-items nav-linear-items'>";
                     $postHtml .= "<ul>";
-                    $postHtml .= '<li class="cat-item"><a style="' . $navItemStyle . '" href="#" data-cateSlug="all">' . __('all', "unlimited-blocks") . '</a></li>';
+                    $postHtml .= '<li class="cat-item"><a style="' . esc_attr($navItemStyle) . '" href="#" data-cateSlug="all">' . __('all', "unlimited-blocks") . '</a></li>';
                     foreach ($innerITem as $innerITem_value) {
-                        $postHtml .= '<li class="cat-item"><a style="' . $navItemStyle . '" href="#" data-cateSlug="' . $innerITem_value . '">' . get_category_by_slug($innerITem_value)->name . '</a></li>';
+                        $cateObj_ = get_category_by_slug($innerITem_value);
+                        $cateName_ = $cateObj_ ? $cateObj_->name : $innerITem_value;
+                        $postHtml .= '<li class="cat-item"><a style="' . esc_attr($navItemStyle) . '" href="#" data-cateSlug="' . esc_attr($innerITem_value) . '">' . esc_html($cateName_) . '</a></li>';
                     }
                     $postHtml .= "</ul>";
                     $postHtml .= "</div>";
                     // dropdown items
                     if (!empty($outerItem)) {
                         $postHtml .= "<div class='ubl-block-nav-items nav-drop-items'>";
-                        $postHtml .= "<span style='" . $navItemStyle . "' class='more-opener'>" . __("More", "unlimited-blocks") . "<i class='fas fa-chevron-down'></i></span>";
+                        $postHtml .= "<span style='" . esc_attr($navItemStyle) . "' class='more-opener'>" . __("More", "unlimited-blocks") . "<i class='fas fa-chevron-down'></i></span>";
                         $postHtml .= "<ul>";
                         foreach ($outerItem as $outerItem_value) {
-                            $postHtml .= '<li class="cat-item"><a style="' . $navItemStyle . '" href="#" data-cateSlug="' . $outerItem_value . '">' . get_category_by_slug($outerItem_value)->name . '</a></li>';
+                            $cateObj_ = get_category_by_slug($outerItem_value);
+                            $cateName_ = $cateObj_ ? $cateObj_->name : $outerItem_value;
+                            $postHtml .= '<li class="cat-item"><a style="' . esc_attr($navItemStyle) . '" href="#" data-cateSlug="' . esc_attr($outerItem_value) . '">' . esc_html($cateName_) . '</a></li>';
                         }
                         $postHtml .= "</ul>";
                         $postHtml .= "</div>";
@@ -98,7 +102,7 @@ if (!function_exists('unlimited_blocks_two_column_block')) {
             }
             // category navigation
             $layoutPosition = isset($attr['meta_style'][0]["layoutPosition"]) && $attr['meta_style'][0]["layoutPosition"] ? $attr['meta_style'][0]["layoutPosition"] : '';
-            $postHtml .= "<div class='ubl-two-post-wrapper' data-setting='" . $postSetting . "' data-currentpage='" . $currentPage . "'><div class='ubl-post-two-column column-layout-" . $layoutPosition . "'>";
+            $postHtml .= "<div class='ubl-two-post-wrapper' data-setting='" . esc_attr($postSetting) . "' data-currentpage='" . esc_attr($currentPage) . "'><div class='ubl-post-two-column column-layout-" . esc_attr($layoutPosition) . "'>";
             $postHtmlCl1 = '<div class="column-one">';
             $postHtmlCl2 = '<div class="column-two">';
 
@@ -139,10 +143,10 @@ if (!function_exists('unlimited_blocks_two_column_block')) {
                 $nextPrevStyle .= isset($attr['meta_style'][0]['npColor']) && $attr['meta_style'][0]['npColor'] ? "color:" . $attr['meta_style'][0]['npColor'] . ";" : '';
                 $nextPrevStyle .= isset($attr['meta_style'][0]['npBgColor']) && $attr['meta_style'][0]['npBgColor'] ? "background-color:" . $attr['meta_style'][0]['npBgColor'] . ";" : '';
                 $postHtml .= "<div class='ubl-two-post-wrapper-next-prev " . $keepDisable . "'>
-                            <div style='" . $nextPrevStyle . "' class='ubl-post-NP-btn disable prev'>
+                            <div style='" . esc_attr($nextPrevStyle) . "' class='ubl-post-NP-btn disable prev'>
                                 <i class='fas fa-chevron-left'></i>
                             </div>
-                            <div style='" . $nextPrevStyle . "' class='ubl-post-NP-btn next'>
+                            <div style='" . esc_attr($nextPrevStyle) . "' class='ubl-post-NP-btn next'>
                                 <i class='fas fa-chevron-right'></i>
                             </div>
                         </div>";

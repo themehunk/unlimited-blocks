@@ -28,7 +28,7 @@ if (!function_exists('unlimited_blocks_section_five_post')) {
             if ($query->have_posts()) {
                 $postAuthor = isset($attr['author'][0]['enable']) && $attr['author'][0]['enable']  ? true : false;
                 $postAuthor2 = isset($attr['author2'][0]['enable']) && $attr['author2'][0]['enable']  ? true : false;
-                $postHtml = "<div class='ubl-section-post ubl-image-section post-layout-4 wp-block-group align".$postalign."' id='ubl-section-post'>";
+                $postHtml = "<div class='ubl-section-post ubl-image-section post-layout-4 wp-block-group align".esc_attr($postalign)."' id='ubl-section-post'>";
                 // loader
                 $postHtml .= "<div class='ubl-block-loader linear-bubble'>";
                 $postHtml .= "<div><span></span></div>";
@@ -43,9 +43,9 @@ if (!function_exists('unlimited_blocks_section_five_post')) {
                     // title block
                     $headingBlockStyle = isset($attr['title'][0]['align']) && $attr['title'][0]['align'] ? "justify-content:" . $attr['title'][0]['align'] . ";" : '';
                     $headingBlockStyle .= isset($attr['title'][0]['backgroundColor']) && $attr['title'][0]['backgroundColor'] ? "border-color:" . $attr['title'][0]['backgroundColor'] . ";" : '';
-                    $postHtml .= '<div style="' . $headingBlockStyle . '" class="ubl-block-post-title" id="ubl-block-post-title">';
-                    $postHtml .= '<h4 style="' . $titleHeadingStyle . '">';
-                    $postHtml .= __($attr['title'][0]['value'], "unlimited-blocks");
+                    $postHtml .= '<div style="' . esc_attr($headingBlockStyle) . '" class="ubl-block-post-title" id="ubl-block-post-title">';
+                    $postHtml .= '<h4 style="' . esc_attr($titleHeadingStyle) . '">';
+                    $postHtml .= esc_html($attr['title'][0]['value']);
                     $postHtml .= '</h4>';
                     $postHtml .= "</div>";
                 }
@@ -53,7 +53,7 @@ if (!function_exists('unlimited_blocks_section_five_post')) {
                 $contentPlaced = isset($attr['layout'][0]['contentPlace']) && $attr['layout'][0]['contentPlace'] ? $attr['layout'][0]['contentPlace'] : '';
                 $contentLayoutType = isset($attr['layout'][0]['type']) && intval($attr['layout'][0]['type']) ? intval($attr['layout'][0]['type']) : '';
 
-                $postHtml .= "<div class='column-count parent-column-two count-3 post-five-layout-" . $contentLayoutType . " content-align-" . $contentAlign . " content-placed-" . $contentPlaced . "'  data-setting='" . $postSetting . "' data-currentpage='" . $currentPage . "'>";
+                $postHtml .= "<div class='column-count parent-column-two count-3 post-five-layout-" . esc_attr($contentLayoutType) . " content-align-" . esc_attr($contentAlign) . " content-placed-" . esc_attr($contentPlaced) . "'  data-setting='" . esc_attr($postSetting) . "' data-currentpage='" . esc_attr($currentPage) . "'>";
                 $checkFirst = true;
 
                 $layout_ = isset($attr['layout'][0]) ? $attr['layout'][0] : false;
@@ -115,10 +115,10 @@ if (!function_exists('unlimited_blocks_section_five_post')) {
                     $nextPrevStyle .= isset($attr['meta_style'][0]['npBgColor']) && $attr['meta_style'][0]['npBgColor'] ? "background-color:" . $attr['meta_style'][0]['npBgColor'] . ";" : '';
                     $keepDisable = $totalPosts <= $numberOfpost ? "disable" : '';
                     $postHtml .= "<div class='ubl-two-post-wrapper-next-prev " . $keepDisable . "'>
-                            <div data-section='five-post' style='" . $nextPrevStyle . "' class='ubl-image-section-np disable prev'>
+                            <div data-section='five-post' style='" . esc_attr($nextPrevStyle) . "' class='ubl-image-section-np disable prev'>
                                 <i class='fas fa-chevron-left'></i>
                             </div>
-                            <div data-section='five-post' style='" . $nextPrevStyle . "' class='ubl-image-section-np next'>
+                            <div data-section='five-post' style='" . esc_attr($nextPrevStyle) . "' class='ubl-image-section-np next'>
                                 <i class='fas fa-chevron-right'></i>
                             </div>
                         </div>";

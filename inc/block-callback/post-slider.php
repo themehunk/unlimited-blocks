@@ -60,7 +60,7 @@ if (!function_exists('unlimited_blocks_render_post_slider')) {
                 $styleAdd = wp_json_encode($addStyles);
                 // add style -----------------------------------------------------------_+++++++++++++++++++++++++++++++++++
 
-                $postHtml .= "<div class='ubl-post-slider-wrapper wp-block-group {$attr['wrapper_id']} align{$attr['align']}' ubl-block-style='{$styleAdd}'>"; //------------------------------------------------------------+++++++wrapper+++++++++
+                $postHtml .= "<div class='ubl-post-slider-wrapper wp-block-group " . esc_attr($attr['wrapper_id']) . " align" . esc_attr($attr['align']) . "' ubl-block-style='" . esc_attr($styleAdd) . "'>"; //------------------------------------------------------------+++++++wrapper+++++++++
                 // slider wrapper 
                 $sliderSetting = [];
                 if ($sliderAttr['sliderEffect'] !== 'slideEffect') {
@@ -69,10 +69,10 @@ if (!function_exists('unlimited_blocks_render_post_slider')) {
                 if ($sliderAttr['triggerActive'] == 'both' || $sliderAttr['triggerActive'] == 'arrows') {
                     $sliderSetting['arrows'] = true;
                     $styleLeftRight = "font-size:{$sliderAttr['leftRightTrigger']['fontSize']}px;color:{$sliderAttr['leftRightTrigger']['color']};";
-                    $postHtml .= "<div class='ubl-slick-slider-arrow prev_' style='{$styleLeftRight}'>
+                    $postHtml .= "<div class='ubl-slick-slider-arrow prev_' style='" . esc_attr($styleLeftRight) . "'>
                                     <i class='fas fa-chevron-circle-left'></i>
                             </div>
-                            <div class='ubl-slick-slider-arrow next_' style='{$styleLeftRight}'>
+                            <div class='ubl-slick-slider-arrow next_' style='" . esc_attr($styleLeftRight) . "'>
                                         <i class='fas fa-chevron-circle-right'></i>
                             </div>";
                 }
@@ -135,7 +135,7 @@ if (!function_exists('unlimited_blocks_render_post_slider')) {
                 // infinite true/false infinite loop
                 $sliderSetting = json_encode($sliderSetting);
 
-                $postHtml .= "<div data-slider='{$sliderSetting}' class='ubl-slick-slider-init ubl-slick-slider-block'>";
+                $postHtml .= "<div data-slider='" . esc_attr($sliderSetting) . "' class='ubl-slick-slider-init ubl-slick-slider-block'>";
                 // ubl-slick-slider-block
                 while ($query->have_posts()) {
                     $query->the_post();
@@ -151,13 +151,14 @@ if (!function_exists('unlimited_blocks_render_post_slider')) {
                         <div class='slider-post-content'>"; // div 22, 
 
                     // $postHtml .= " <div class={`post-wrapper content-align-${sliderSetting . contentAlign}`}>
-                    $postHtml .= " <div class='post-wrapper content-align-{$sliderAttr["contentAlign"]}'>
+                    $postHtml .= " <div class='post-wrapper content-align-" . esc_attr($sliderAttr["contentAlign"]) . "'>
                         <div class='post-content'>"; // div 33
-                    // title 
+                    // title
                     if (isset($attr['heading']['tag']) && $attr['heading']['tag'] && isset($attr['heading']['color'])) {
-                        $postHtml .= "<" . $attr['heading']['tag'] . " style='color:" . $attr['heading']['color'] . "' class='post-heading'>";
-                        $postHtml .= "<a href='" . esc_url(get_the_permalink()) . "'>" . get_the_title() . "</a>";
-                        $postHtml .= "</" . $attr['heading']['tag'] . ">";
+                        $headingTag = unlimited_blocks_sanitize_heading_tag($attr['heading']['tag']);
+                        $postHtml .= "<" . $headingTag . " style='color:" . esc_attr($attr['heading']['color']) . "' class='post-heading'>";
+                        $postHtml .= "<a href='" . esc_url(get_the_permalink()) . "'>" . esc_html(get_the_title()) . "</a>";
+                        $postHtml .= "</" . $headingTag . ">";
                     }
                     // category
                     if ($metashowCate) {
@@ -186,8 +187,8 @@ if (!function_exists('unlimited_blocks_render_post_slider')) {
                             $countCate = 0;
                             foreach ($category_ as $cateValue) {
                                 if (isset($cate_[0]['count']) && intval($cate_[0]['count']) && $cate_[0]['count'] == $countCate) break;
-                                $postHtml .= '<span style="' . $catestyle . '">';
-                                $postHtml .= "<a href='" . esc_url(get_category_link($cateValue['term_id'])) . "'>" . $cateValue['name'] . "</a>";
+                                $postHtml .= '<span style="' . esc_attr($catestyle) . '">';
+                                $postHtml .= "<a href='" . esc_url(get_category_link($cateValue['term_id'])) . "'>" . esc_html($cateValue['name']) . "</a>";
                                 $postHtml .= '</span>';
                                 $countCate++;
                             }
@@ -197,9 +198,9 @@ if (!function_exists('unlimited_blocks_render_post_slider')) {
                     // post meta
                     $postHtml .= '<div class="post-meta-all">';
                     if ($postAuthor) {
-                        $postHtml .= "<p style='color:" . $metaStyleColor . ";font-size:" . $metaStyleFontSize . "px;' class='_post-author'>";
+                        $postHtml .= "<p style='color:" . esc_attr($metaStyleColor) . ";font-size:" . esc_attr($metaStyleFontSize) . "px;' class='_post-author'>";
                         $postHtml .= "<a target='_blank' href='" . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . "'>";
-                        $postHtml .=  get_the_author();
+                        $postHtml .=  esc_html(get_the_author());
                         $postHtml .= "</a></p>";
                     }
 
@@ -208,9 +209,9 @@ if (!function_exists('unlimited_blocks_render_post_slider')) {
                         $dateYear =   get_the_date('Y');
                         $dateMonth =   get_the_date('m');
                         $dateDay =   get_the_date('j');
-                        $postHtml .= "<p style='color:" . $metaStyleColor . ";font-size:" . $metaStyleFontSize . "px;' class='_post-date'>";
+                        $postHtml .= "<p style='color:" . esc_attr($metaStyleColor) . ";font-size:" . esc_attr($metaStyleFontSize) . "px;' class='_post-date'>";
                         $postHtml .= "<a target='_blank' href='" . esc_url(get_day_link($dateYear, $dateMonth, $dateDay)) . "'>";
-                        $postHtml .=  get_the_date();
+                        $postHtml .=  esc_html(get_the_date());
                         $postHtml .= "</a></p>";
                     }
                     if ($postDateModify) {
@@ -218,9 +219,9 @@ if (!function_exists('unlimited_blocks_render_post_slider')) {
                         $dateYear =   get_the_modified_date('Y');
                         $dateMonth =   get_the_modified_date('m');
                         $dateDay =   get_the_modified_date('j');
-                        $postHtml .= "<p style='color:" . $metaStyleColor . ";font-size:" . $metaStyleFontSize . "px;' class='_post-date-last-modified'>";
+                        $postHtml .= "<p style='color:" . esc_attr($metaStyleColor) . ";font-size:" . esc_attr($metaStyleFontSize) . "px;' class='_post-date-last-modified'>";
                         $postHtml .= __('Modified : ', "unlimited-blocks") . "<a target='_blank' href='" . esc_url(get_day_link($dateYear, $dateMonth, $dateDay)) . "'>";
-                        $postHtml .=  get_the_modified_date();
+                        $postHtml .=  esc_html(get_the_modified_date());
                         $postHtml .= "</a></p>";
                     }
                     $postHtml .= '</div>';
@@ -235,8 +236,8 @@ if (!function_exists('unlimited_blocks_render_post_slider')) {
                             $postExcerpt = implode(" ", $postExcerpt);
                         }
                         $excerptFs = isset($attr['excerpt']['fontSize']) && intval($attr['excerpt']['fontSize']) ? intval($attr['excerpt']['fontSize']) : false;
-                        $postHtml .= "<p style='color:" . $postExcerptColor . ";font-size:" . $excerptFs . "px;' class='_post-excerpt'>";
-                        $postHtml .= $postExcerpt;
+                        $postHtml .= "<p style='color:" . esc_attr($postExcerptColor) . ";font-size:" . esc_attr($excerptFs) . "px;' class='_post-excerpt'>";
+                        $postHtml .= esc_html($postExcerpt);
                         $postHtml .= "</p>";
                     }
                     // tags
@@ -250,8 +251,8 @@ if (!function_exists('unlimited_blocks_render_post_slider')) {
                             $tagCount = 0;
                             foreach ($tags as $tagValue) {
                                 if (isset($attr['showTag']['count']) && is_numeric($attr['showTag']['count']) && $attr['showTag']['count'] == $tagCount) break;
-                                $postHtml .= '<span style="' . $Tagstyle . '">';
-                                $postHtml .= "<a href='" . esc_url(get_category_link($tagValue->term_id)) . "'>" . $tagValue->name . "</a>";
+                                $postHtml .= '<span style="' . esc_attr($Tagstyle) . '">';
+                                $postHtml .= "<a href='" . esc_url(get_category_link($tagValue->term_id)) . "'>" . esc_html($tagValue->name) . "</a>";
                                 $postHtml .= '</span>';
                                 $tagCount++;
                             }

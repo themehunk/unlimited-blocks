@@ -51,6 +51,15 @@ if (!function_exists('unlimited_blocks_array_sanitize')) {
         return !empty($returnArray) ? $returnArray : false;
     }
 }
+// whitelist a heading tag so it can't be used to inject arbitrary HTML elements/attributes
+if (!function_exists('unlimited_blocks_sanitize_heading_tag')) {
+    function unlimited_blocks_sanitize_heading_tag($tag)
+    {
+        $allowed = array('h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p');
+        $tag = is_string($tag) ? strtolower($tag) : '';
+        return in_array($tag, $allowed, true) ? $tag : 'h2';
+    }
+}
 // block call back function
 include "block-callback/post-slider.php";
 include "block-callback/post-list-layout-c.php";

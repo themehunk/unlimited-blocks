@@ -10,6 +10,7 @@ if (!function_exists('unlimited_blocks_product_one')) {
         if (!class_exists('WooCommerce')) {
             return '<p>' . __('Active Woocommerce Plugin.', 'unlimited-blocks') . ' </p>';
         }
+        $attr = unlimited_blocks_array_sanitize($attr);
         $postClass = new Th_Simple_Product();
         $cate = [];
         $options = [];
@@ -206,7 +207,7 @@ if (!function_exists('unlimited_blocks_product_one')) {
         $styleAdd = wp_json_encode($filteredAddStyles);
 
         if ($products_) {
-            return sprintf("<div ubl-block-style='%s' class='ul-blocks-simple-product %s wp-block-group align".$postalign."'>%s</div>", $styleAdd, $attr['wrapper_id'], $products_);
+            return sprintf("<div ubl-block-style='%s' class='ul-blocks-simple-product %s wp-block-group align".esc_attr($postalign)."'>%s</div>", esc_attr($styleAdd), esc_attr($attr['wrapper_id']), $products_);
         }
         // return $products_;
         // return "<h1>product ff aadded. </h1>";

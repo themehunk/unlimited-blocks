@@ -1,4 +1,5 @@
 <?php
+if (!defined('ABSPATH')) exit;
 
 /**
  * for porduct ------------------- ddd ------------------ woocommerce ------------------------
@@ -17,7 +18,7 @@ if (!function_exists('unlimited_blocks_product_api_result')) {
         // first time initillize
         $firstTimeInit = isset($request_params['initialize']) && intval($request_params['initialize']) ? true : false;
         // number of post 
-        $numberOfPost = isset($request_params['numberOfPosts']) && intval($request_params['numberOfPosts']) ? intval($request_params['numberOfPosts']) : false;
+        $numberOfPost = isset($request_params['numberOfPosts']) && intval($request_params['numberOfPosts']) ? min(intval($request_params['numberOfPosts']), 100) : false;
         //post category
         $product_cate = isset($request_params['product_cate']) && $request_params['product_cate'] != '' ? sanitize_text_field($request_params['product_cate']) : false;
         //product layout
@@ -242,7 +243,7 @@ class Th_Simple_Product
         // print_r($dataSetting);
         // print_r($options);
         $productHtml = '';
-        $productHtml .= "<div class='elemento-owl-slider-common-secript' data-setting='" . $dataSetting . "'>";
+        $productHtml .= "<div class='elemento-owl-slider-common-secript' data-setting='" . esc_attr($dataSetting) . "'>";
         if (isset($availNextPrevious)) {
             $arrowType = '-alt'; //1
 
@@ -328,14 +329,14 @@ class Th_Simple_Product
         $productHtml = '<div class="elemento-product-simple-inner-wrap">'; //inner rap
         // quick view 
         if (function_exists('th_elemento_addon_quickView_enable')) {
-            $productHtml .= '<a href="#" data-product="' . $productId . '" class="elemento-addons-quickview-simple">' . __('Quick View') . '</a>';
+            $productHtml .= '<a href="#" data-product="' . esc_attr($productId) . '" class="elemento-addons-quickview-simple">' . __('Quick View') . '</a>';
         }
         $productHtml .= $ps_sale;
-        $productHtml .= '<a class="img_" href="' . get_permalink($productId) . '" target="_blank">
+        $productHtml .= '<a class="img_" href="' . esc_url(get_permalink($productId)) . '" target="_blank">
                                     ' . $product->get_image(array(195)) . '
                                     </a>';
 
-        $productHtml .= '<a class="elemento-addons-product-title" href="' . get_permalink($productId) . '" target="_blank">' . $product->get_name() . '</a>';
+        $productHtml .= '<a class="elemento-addons-product-title" href="' . esc_url(get_permalink($productId)) . '" target="_blank">' . esc_html($product->get_name()) . '</a>';
         $productHtml .= $ratingHtml ? '<div class="elemento-addons-rating">' . $ratingHtml . '</div>' : '';
         // add to cart 
         $productHtml .=  $price;
@@ -379,7 +380,7 @@ class Th_Simple_Product
     function elemento_addons_compare($productId)
     {
         if (intval($productId) && shortcode_exists('th_compare')) {
-            $html = '<button class="th-product-compare-btn button" data-th-product-id="' . $productId . '">';
+            $html = '<button class="th-product-compare-btn button" data-th-product-id="' . esc_attr($productId) . '">';
             $html .= '<i class="fas fa-exchange-alt"></i>';
             $html .= '<span>' . __('Compare', 'th-elemento') . '</span>';
             $html .= '</button>';

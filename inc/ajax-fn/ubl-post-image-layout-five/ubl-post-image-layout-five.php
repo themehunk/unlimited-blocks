@@ -3,6 +3,7 @@ if (!defined('ABSPATH')) exit;
 if (!function_exists('unlimited_blocks_post_image_five_post')) {
     function unlimited_blocks_post_image_five_post()
     {
+        check_ajax_referer('unlimited_blocks_nonce', 'nonce');
         if (isset($_POST['attr']) && is_array($_POST['attr'])) {
             $attr = unlimited_blocks_array_sanitize($_POST['attr']);
             if (isset($attr['numberOfPosts']) && intval($attr['numberOfPosts'])) {

@@ -25,7 +25,7 @@ if (!function_exists('unlimited_blocks_section_block')) {
             if ($query->have_posts()) {
                 $postAuthor = isset($attr['author']['enable']) && $attr['author']['enable']  ? true : false;
                 $postAuthor2 = isset($attr['author2']['enable']) && $attr['author2']['enable']  ? true : false;
-                $postHtml = "<div class='ubl-section-post post-layout-1-5 wp-block-group align".$postalign."' id='ubl-section-post'>";
+                $postHtml = "<div class='ubl-section-post post-layout-1-5 wp-block-group align".esc_attr($postalign)."' id='ubl-section-post'>";
                 // post title
                 if (isset($attr['title']['enable']) && $attr['title']['enable'] && isset($attr['title']['value']) && $attr['title']['value'] != '') {
                     $titleHeadingStyle = isset($attr['title']['backgroundColor']) && $attr['title']['backgroundColor'] ? "background-color:" . $attr['title']['backgroundColor'] . ";" : '';
@@ -35,9 +35,9 @@ if (!function_exists('unlimited_blocks_section_block')) {
                     // title block
                     $headingBlockStyle = isset($attr['title']['align']) && $attr['title']['align'] ? "justify-content:" . $attr['title']['align'] . ";" : '';
                     $headingBlockStyle .= isset($attr['title']['backgroundColor']) && $attr['title']['backgroundColor'] ? "border-color:" . $attr['title']['backgroundColor'] . ";" : '';
-                    $postHtml .= '<div style="' . $headingBlockStyle . '" class="ubl-block-post-title" id="ubl-block-post-title">';
-                    $postHtml .= '<h4 style="' . $titleHeadingStyle . '">';
-                    $postHtml .= __($attr['title']['value'], "unlimited-blocks");
+                    $postHtml .= '<div style="' . esc_attr($headingBlockStyle) . '" class="ubl-block-post-title" id="ubl-block-post-title">';
+                    $postHtml .= '<h4 style="' . esc_attr($titleHeadingStyle) . '">';
+                    $postHtml .= esc_html($attr['title']['value']);
                     $postHtml .= '</h4>';
                     $postHtml .= "</div>";
                 }

@@ -107,7 +107,7 @@ if (!function_exists('unlimited_blocks_script')) {
 		wp_enqueue_style('google-font', 'https://fonts.googleapis.com/css2?family=Catamaran:wght@400;600;700&display=swap', false);
 		wp_enqueue_script('custom-query', UNLIMITED_BLOCKS . 'src/custom-query.js', array('jquery'), 2);
 		wp_enqueue_script('custom-query-2', UNLIMITED_BLOCKS . 'assets/js/ubl-custom.js', array('jquery'), 2);
-		wp_localize_script('custom-query', 'unlimited_blocks_ajax_url', array('admin_ajax' => admin_url('admin-ajax.php')));
+		wp_localize_script('custom-query', 'unlimited_blocks_ajax_url', array('admin_ajax' => admin_url('admin-ajax.php'), 'nonce' => wp_create_nonce('unlimited_blocks_nonce')));
 	}
 	function unlimited_blocks_script_only_front()
 	{

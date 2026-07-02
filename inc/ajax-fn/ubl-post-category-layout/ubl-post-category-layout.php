@@ -3,6 +3,7 @@ if (!defined('ABSPATH')) exit;
 if (!function_exists('unlimited_blocks_post_tc')) {
     function unlimited_blocks_post_tc()
     {
+        check_ajax_referer('unlimited_blocks_nonce', 'nonce');
         if (isset($_POST['attr']) && is_array($_POST['attr'])) {
             $attr = unlimited_blocks_array_sanitize($_POST['attr']);
             if (isset($attr['numberOfPosts']) && intval($attr['numberOfPosts'])) {
@@ -28,6 +29,7 @@ if (!function_exists('unlimited_blocks_post_tc')) {
 if (!function_exists('unlimited_blocks_choose_cate')) {
     function unlimited_blocks_choose_cate()
     {
+        check_ajax_referer('unlimited_blocks_nonce', 'nonce');
         if (isset($_POST['attr']) && is_array($_POST['attr'])) {
             $attr = unlimited_blocks_array_sanitize($_POST['attr']);
             if (isset($attr['numberOfPosts']) && intval($attr['numberOfPosts'])) {

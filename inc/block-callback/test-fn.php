@@ -1,4 +1,5 @@
 <?php
+if (!defined('ABSPATH')) exit;
 if (!function_exists('unlimited_blocks_test_block')) {
     function unlimited_blocks_test_block($attr)
     {

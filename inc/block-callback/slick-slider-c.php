@@ -4,10 +4,7 @@ if (!defined('ABSPATH')) exit;
 if (!function_exists('unlimited_blocks_owl_slider')) {
     function unlimited_blocks_owl_slider($attr)
     {
-        // echo "<pre>";
-        // print_r($attr);
-        // echo "</pre>";
-        // return;
+        $attr = unlimited_blocks_array_sanitize($attr);
         $html = "";
         $wrapperAlignment = $attr['wrapper']['alignment'];
         $contentSpacing = $attr['wrapper']['spacing'];
@@ -39,7 +36,7 @@ if (!function_exists('unlimited_blocks_owl_slider')) {
         if ($button1['width']) {
             $buttonStyle1 .= "padding-left:{$button1['width']}px;padding-right:{$button1['width']}px;";
         }
-        // btn 1 bg 
+        // btn 1 bg
         if ($button1Bg['backgroundColorType'] == "color") {
             $buttonStyle1 .= "background-color:{$button1Bg['backgroundColor']};";
         } else if ($button1Bg['backgroundColorType'] == "gradient") {
@@ -62,7 +59,7 @@ if (!function_exists('unlimited_blocks_owl_slider')) {
         if ($button2['width']) {
             $buttonStyle2 .= "padding-left:{$button2['width']}px;padding-right:{$button2['width']}px;";
         }
-        // btn 2 bg 
+        // btn 2 bg
         if ($button2Bg['backgroundColorType'] == "color") {
             $buttonStyle2 .= "background-color:{$button2Bg['backgroundColor']};";
         } else if ($button2Bg['backgroundColorType'] == "gradient") {
@@ -72,8 +69,8 @@ if (!function_exists('unlimited_blocks_owl_slider')) {
         // add style -----------------------------------------------------------_+++++++++++++++++++++++++++++++++++
         $addStyles = [];
         $WrapperID = '.' . $attr['wrapper_id'];
-        // box style 
-        // height // width 
+        // box style
+        // height // width
         $addStyles[] = [
             'selector' =>  "{$WrapperID} .ubl-slider-content-wrapper",
             'css' => "height:{$sliderAttr['dimension']['custom_height']}px;"
@@ -83,7 +80,7 @@ if (!function_exists('unlimited_blocks_owl_slider')) {
             'css' => "width:{$sliderAttr['dimension']['custom_width']}%;"
         ];
 
-        // nav dots size and active color 
+        // nav dots size and active color
         if ($sliderAttr['triggerActive'] == 'both' || $sliderAttr['triggerActive'] == 'dots') {
             $addStyles[] = [
                 'selector' =>  "{$WrapperID} .ubl-slick-slider-block ul.slick-dots[data-class=ubl-slick-slider-dots] li.custonLi_ span",
@@ -98,8 +95,8 @@ if (!function_exists('unlimited_blocks_owl_slider')) {
         $styleAdd = wp_json_encode($addStyles);
         // add style -----------------------------------------------------------_+++++++++++++++++++++++++++++++++++
 
-        $html .= "<div class='ubl-slick-slider-block-wrap {$attr['wrapper_id']} align{$attr['align']}' ubl-block-style='{$styleAdd}'>"; //------------------------------------------------------------+++++++wrapper+++++++++
-        // slider wrapper 
+        $html .= "<div class='ubl-slick-slider-block-wrap " . esc_attr($attr['wrapper_id']) . " align" . esc_attr($attr['align']) . "' ubl-block-style='" . esc_attr($styleAdd) . "'>"; //------------------------------------------------------------+++++++wrapper+++++++++
+        // slider wrapper
         $sliderSetting = [];
         if ($sliderAttr['sliderEffect'] !== 'slideEffect') {
             $sliderSetting['fade'] = true;
@@ -107,10 +104,10 @@ if (!function_exists('unlimited_blocks_owl_slider')) {
         if ($sliderAttr['triggerActive'] == 'both' || $sliderAttr['triggerActive'] == 'arrows') {
             $sliderSetting['arrows'] = true;
             $styleLeftRight = "font-size:{$sliderAttr['leftRightTrigger']['fontSize']}px;color:{$sliderAttr['leftRightTrigger']['color']};";
-            $html .= "<div class='ubl-slick-slider-arrow prev_' style='{$styleLeftRight}'>
+            $html .= "<div class='ubl-slick-slider-arrow prev_' style='" . esc_attr($styleLeftRight) . "'>
                             <i class='fas fa-chevron-circle-left'></i>
                     </div>
-                    <div class='ubl-slick-slider-arrow next_' style='{$styleLeftRight}'>
+                    <div class='ubl-slick-slider-arrow next_' style='" . esc_attr($styleLeftRight) . "'>
                                 <i class='fas fa-chevron-circle-right'></i>
                     </div>";
         }
@@ -124,13 +121,13 @@ if (!function_exists('unlimited_blocks_owl_slider')) {
 
         // arrows (left right) true/false
         // autoplay true/false
-        // autoplaySpeed 2000 
+        // autoplaySpeed 2000
         // dots true/false
         // fade true/false in false slide active
         // infinite true/false infinite loop
         $sliderSetting = json_encode($sliderSetting);
 
-        $html .= "<div data-slider='{$sliderSetting}' class='ubl-slick-slider-init ubl-slick-slider-block'>";
+        $html .= "<div data-slider='" . esc_attr($sliderSetting) . "' class='ubl-slick-slider-init ubl-slick-slider-block'>";
         // ubl-slick-slider-block
         foreach ($attr['slides'] as $slide_key => $value) {
             $overlayColor = false;
@@ -148,51 +145,52 @@ if (!function_exists('unlimited_blocks_owl_slider')) {
             }
 
             $html .= '<div class="ubl-slider-wrapper">';
-            // slides 
-            // background image 
+            // slides
+            // background image
             $html .= '<div class="ubl-slider-container">
             <div class="ubl-slider-content-wrapper">';
             // ubl-slider-content-wrapper
             // ---------start----------
             if ($overlayColor && $containerBg['backgroundImage']) {
-                $html .= "<div class='ubl-slider-image-container' style='background-size:{$containerBg['backgroundImageSize']};background-image:url({$containerBg['backgroundImage']});'>";
+                $bgImageStyle = "background-size:{$containerBg['backgroundImageSize']};background-image:url(" . esc_url($containerBg['backgroundImage']) . ");";
+                $html .= "<div class='ubl-slider-image-container' style='" . esc_attr($bgImageStyle) . "'>";
                 $html .= '</div>';
             }
             // ---------end----------
-            // overlay color 
-            $html .= "<div class='ubl-slider-overlay-color' style='{$overlayColor}'></div>";
-            // overlay color 
-            $html .= "<div class='ubl-slider-text {$wrapperAlignment}'>";
-            $html .= "<div style='grid-gap:{$contentSpacing}px;'>";
-            // ubl-slider-text 
-            $html .= "<h1 style='{$titleStyle}'>{$value['title']['text']}</h1>";
-            $html .= "<h2 style='{$descriptionStyle}'>{$value['text']['text']}</h2>";
+            // overlay color
+            $html .= "<div class='ubl-slider-overlay-color' style='" . esc_attr($overlayColor) . "'></div>";
+            // overlay color
+            $html .= "<div class='ubl-slider-text " . esc_attr($wrapperAlignment) . "'>";
+            $html .= "<div style='grid-gap:" . intval($contentSpacing) . "px;'>";
+            // ubl-slider-text
+            $html .= "<h1 style='" . esc_attr($titleStyle) . "'>" . esc_html($value['title']['text']) . "</h1>";
+            $html .= "<h2 style='" . esc_attr($descriptionStyle) . "'>" . esc_html($value['text']['text']) . "</h2>";
             $html .= '<div class="button-container">';
-            // button 
+            // button
             if ($value['buttoneOne']['enable']) {
                 $target1_ = $value['buttoneOne']['target'] ? 'target="_blank"' : "";
-                $html .= "<a {$target1_} style='{$buttonStyle1}' href='{$value['buttoneOne']['link']}'>{$value['buttoneOne']['text']}</a>";
+                $html .= "<a {$target1_} style='" . esc_attr($buttonStyle1) . "' href='" . esc_url($value['buttoneOne']['link']) . "'>" . esc_html($value['buttoneOne']['text']) . "</a>";
             }
             if ($value['buttoneTwo']['enable']) {
                 $target2_ = $value['buttoneTwo']['target'] ? 'target="_blank"' : "";
-                $html .= "<a {$target2_} style='{$buttonStyle2}' href='{$value['buttoneTwo']['link']}'>{$value['buttoneTwo']['text']}</a>";
+                $html .= "<a {$target2_} style='" . esc_attr($buttonStyle2) . "' href='" . esc_url($value['buttoneTwo']['link']) . "'>" . esc_html($value['buttoneTwo']['text']) . "</a>";
             }
-            // button 
+            // button
             $html .= '</div>';
-            // ubl-slider-text 
+            // ubl-slider-text
             $html .= '</div>';
             $html .= '</div>';
             // ubl-slider-content-wrapper
             $html .= "</div>";
             $html .= "</div>";
             // ---------------------------------
-            // slides 
+            // slides
             $html .= '</div>';
             // echo 'slide' . $slide_key;
         }
         // ubl-slick-slider-block
         $html .= "</div>";
-        // slider wrapper 
+        // slider wrapper
         $html .= "</div>";
         return $html;
     }

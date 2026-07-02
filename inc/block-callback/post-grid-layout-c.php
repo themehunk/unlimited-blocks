@@ -38,7 +38,7 @@ if (!function_exists('unlimited_blocks_post_grid_block')) {
                 }
 
                 $postalign   = isset($attr['align']) ? $attr["align"] : '';
-                $postHtml .= '<div class="ubl-block-post ubl-image-section wp-block-group align'.$postalign.'" id="ubl-block-post" style="' . $blockBgColor . '">';
+                $postHtml .= '<div class="ubl-block-post ubl-image-section wp-block-group align'.esc_attr($postalign).'" id="ubl-block-post" style="' . esc_attr($blockBgColor) . '">';
                 // post title
                 // loader
                 $postHtml .= "<div class='ubl-block-loader linear-bubble'>";
@@ -53,14 +53,14 @@ if (!function_exists('unlimited_blocks_post_grid_block')) {
                     // title block
                     $headingBlockStyle = isset($attr['title'][0]['align']) && $attr['title'][0]['align'] ? "justify-content:" . $attr['title'][0]['align'] . ";" : '';
                     $headingBlockStyle .= isset($attr['title'][0]['backgroundColor']) && $attr['title'][0]['backgroundColor'] ? "border-color:" . $attr['title'][0]['backgroundColor'] . ";" : '';
-                    $postHtml .= '<div style="' . $headingBlockStyle . '" class="ubl-block-post-title" id="ubl-block-post-title">';
-                    $postHtml .= '<h4 style="' . $titleHeadingStyle . '">';
-                    $postHtml .= __($attr['title'][0]['value'], "unlimited-blocks");
+                    $postHtml .= '<div style="' . esc_attr($headingBlockStyle) . '" class="ubl-block-post-title" id="ubl-block-post-title">';
+                    $postHtml .= '<h4 style="' . esc_attr($titleHeadingStyle) . '">';
+                    $postHtml .= esc_html($attr['title'][0]['value']);
                     $postHtml .= '</h4>';
                     $postHtml .= "</div>";
                 }
                 $gridColumn = isset($attr['numberOfColumn']) && intval($attr['numberOfColumn']) ? $attr['numberOfColumn'] : '';
-                $postHtml .= "<div class='grid-layout-section column-count column-count-" . $gridColumn . " " . $metaLeftBorder . "' data-setting='" . $postSetting . "' data-currentpage='" . $currentPage . "'>";
+                $postHtml .= "<div class='grid-layout-section column-count column-count-" . esc_attr($gridColumn) . " " . esc_attr($metaLeftBorder) . "' data-setting='" . esc_attr($postSetting) . "' data-currentpage='" . esc_attr($currentPage) . "'>";
                 $postChecker = false;
                 $showCate_ = isset($attr['showCate']) ? $attr["showCate"] : false;
                 $heading_ = isset($attr['heading']) ? $attr["heading"] : false;
@@ -91,20 +91,20 @@ if (!function_exists('unlimited_blocks_post_grid_block')) {
                             if ($it == 1) {
                                 $disabled_ = "disable";
                             }
-                            $paginationLink .= '<div class="ubl-image-section-np ' . $disabled_ . ' pagination" data-page="' . $it . '" style="' . $nextPrevStyle . '">' . $it . '</div>';
+                            $paginationLink .= '<div class="ubl-image-section-np ' . $disabled_ . ' pagination" data-page="' . intval($it) . '" style="' . esc_attr($nextPrevStyle) . '">' . intval($it) . '</div>';
                         }
                         if ($pagesOfPost >= 4) {
                             $paginationLink .= '<div class="dots pagination" ><span>...</span></div>';
-                            $paginationLink .= '<div class="ubl-image-section-np pagination" data-page="' . $pagesOfPost . '" style="' . $nextPrevStyle . '">' . $pagesOfPost . '</div>';
+                            $paginationLink .= '<div class="ubl-image-section-np pagination" data-page="' . intval($pagesOfPost) . '" style="' . esc_attr($nextPrevStyle) . '">' . intval($pagesOfPost) . '</div>';
                         }
                         $paginationLink .= '</section>';
                     }
                     $postHtml .= "<div class='ubl-two-post-wrapper-next-prev'>
-                                <div data-section='grid-post' style='" . $nextPrevStyle . "' class='ubl-image-section-np disable prev'>
+                                <div data-section='grid-post' style='" . esc_attr($nextPrevStyle) . "' class='ubl-image-section-np disable prev'>
                                     <i class='fas fa-chevron-left'></i>
                                 </div>";
                     $postHtml .= $paginationLink;
-                    $postHtml .= "<div data-section='grid-post' style='" . $nextPrevStyle . "' class='ubl-image-section-np next'>
+                    $postHtml .= "<div data-section='grid-post' style='" . esc_attr($nextPrevStyle) . "' class='ubl-image-section-np next'>
                                     <i class='fas fa-chevron-right'></i>
                                 </div>
                             </div>";
