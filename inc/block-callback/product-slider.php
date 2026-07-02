@@ -39,11 +39,11 @@ unlimited_blocks_register_block_fn('ubl-product',  [
                 "borderWidthLink" => true,
                 "borderStyle" => "solid",
                 "borderWidth" => 0,
-                "borderColor" => "#f8c045",
+                "borderColor" => "#eeeeee",
                 "borderRadiusLink" => true,
-                "borderRadius" => 0,
-                'boxShadowColor' => '#4b58ff40',
-                'boxShadowColorHover' => '#4b58ff40',
+                "borderRadius" => 12,
+                'boxShadowColor' => '#00000000',
+                'boxShadowColorHover' => '#00000000',
             ]
         ],
         "addToCart" => [
@@ -51,14 +51,14 @@ unlimited_blocks_register_block_fn('ubl-product',  [
             "default" => [
                 "enable" => true,
                 "Color" => "#20c9ae",
-                "bgColor" => "#89767603",
-                "ColorHover" => "#20c9ae",
-                "bgColorHover" => "#89767603",
+                "bgColor" => "#20c9ae00",
+                "ColorHover" => "#ffffff",
+                "bgColorHover" => "#20c9ae",
                 "borderWidth" => "1px",
                 "borderWidthLink" => true,
                 "borderStyle" => "solid",
                 "borderColor" => "#20c9ae",
-                "borderRadius" => "5px",
+                "borderRadius" => "8px",
                 "borderRadiusLink" => true,
                 "paddingV" => '26',
                 "paddingH" => '120',
@@ -68,7 +68,7 @@ unlimited_blocks_register_block_fn('ubl-product',  [
             "type" => "object",
             "default" => [
                 'color' => "#3b3b3b",
-                'colorHover' => "#3b3b3b",
+                'colorHover' => "#20c9ae",
                 'fontSize' => 14
             ]
         ],
@@ -84,7 +84,7 @@ unlimited_blocks_register_block_fn('ubl-product',  [
             "type" => "object",
             "default" => [
                 'color' => "#20c9ae",
-                'discountColor' => "#d3ced2",
+                'discountColor' => "#9a9a9a",
                 'fontSize' => 14
             ]
         ],
@@ -92,7 +92,7 @@ unlimited_blocks_register_block_fn('ubl-product',  [
             "type" => "object",
             "default" => [
                 'color' => "#fff",
-                'bgColor' => "#000",
+                'bgColor' => "#e6462e",
                 'fontSize' => 12
             ]
         ],
@@ -100,7 +100,7 @@ unlimited_blocks_register_block_fn('ubl-product',  [
             "type" => "object",
             "default" => [
                 'color' => "#555555",
-                'colorHover' => "#555555",
+                'colorHover' => "#20c9ae",
                 'fontSize' => 14
             ]
         ],

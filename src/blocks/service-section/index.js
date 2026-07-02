@@ -97,7 +97,7 @@ const attrSave = {
       width: 79,
       backgroundColor: {
         type: "color",
-        color: "#EEF6F9",
+        color: "#ffffff",
         gradient:
           "radial-gradient(rgb(6, 147, 227) 38%, rgb(155, 81, 224) 80%)",
       },

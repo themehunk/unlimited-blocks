@@ -2,16 +2,22 @@
 .pricing-table-top {
   background-color: #22bbf6;
   /* color: white; */
-  padding: 16px;
+  padding: 20px 18px 26px;
   /* border-radius: 12px 12px 0 0; */
 }
 .pricing-table-wrapper {
   text-align: center;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 14px;
   overflow: hidden;
   max-width: 400px;
   margin: auto;
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
+  }
   p,
   h3 {
     margin: 0;
@@ -84,6 +90,8 @@
     }
     &.inline_ {
       width: fit-content;
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
       > p {
         padding: 0;
       }
@@ -95,7 +103,8 @@
       align-items: center;
       flex-direction: column;
       border-radius: 50%;
-      background-color: green;
+      background-color: #5f5f5f;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16);
     }
   }
   .link_button {
@@ -117,6 +126,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+        }
       }
     }
   }

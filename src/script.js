@@ -21,3 +21,4 @@ import "./blocks/column-wrapper/script";
 import "./blocks/column-blocks-column/script";
 // woocommerce block
 import "./blocks/product-slider/script";
+import "./blocks/rating/script";

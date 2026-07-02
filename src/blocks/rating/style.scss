@@ -1,7 +1,15 @@
-.wp-block-themehunk-rating .th-star-rating {
+.wp-block-unlimited-blocks-th-rating .th-star-rating {
     display: flex;
     align-items: center;
 }
-.wp-block-themehunk-rating  .thb-rating{
+.wp-block-unlimited-blocks-th-rating .th-star-rating > div {
+    display: flex;
+    align-items: center;
+}
+.wp-block-unlimited-blocks-th-rating .th-star-rating svg {
+    display: inline-block;
+    vertical-align: middle;
+}
+.wp-block-unlimited-blocks-th-rating  .thb-rating{
 margin-top: 10px;
 }

@@ -57,7 +57,7 @@ const attrS = {
   },
   descriptionColor: {
     type: "string",
-    default: "grey",
+    default: "rgba(255,255,255,0.72)",
   },
   descriptionFontSize: {
     type: "number",
@@ -76,7 +76,7 @@ const attrS = {
         color: "white",
         textAlign: "center",
         fontFamily: "",
-        margin: "",
+        margin: 10,
         backgroundColor: {
           type: "color",
           color: "#2B2B2B",
@@ -160,7 +160,7 @@ const attrS = {
     type: "object",
     default: {
       type: "color",
-      color: "#5f5f5f",
+      color: "rgba(255,255,255,0.12)",
       gradient: "radial-gradient(rgb(6, 147, 227) 38%, rgb(155, 81, 224) 80%)",
     },
   },
@@ -169,6 +169,8 @@ const attrS = {
   },
   priceInline: { type: "boolean", default: true },
   pricePadding: { type: "number", default: 0 },
+  priceSpaceV: { type: "number", default: 14 },
+  priceSpaceH: { type: "number", default: 22 },
   priceBorder: { type: "boolean", default: false },
   priceBorderWidth: {
     type: "number",

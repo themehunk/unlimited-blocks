@@ -1,10 +1,10 @@
-====== Gutenberg Blocks - Unlimited blocks For Gutenberg ========
+====== Unlimited Addons For Gutenberg Blocks ========
 Contributors: themehunk
 Author URI: : http://www.themehunk.com/
 Tags: gutenberg, blocks, gutenberg blocks, editor, block
-Requires PHP: 5.6
-Tested up to: 6.7
-Stable tag: 1.2.8
+Requires PHP: 7.0
+Tested up to: 7.0
+Stable tag: 1.2.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,11 @@ Just upload the `unlimited-blocks.zip` to the `/wp-content/plugins/` directory, 
 
 
 == Changelog ==
+
+= Version 1.2.9 =
+* Security: Fixed reflected/stored XSS in AJAX post & product blocks, added nonce checks.
+* Fix: Rating block not displaying correctly on frontend.
+* Improved: Default design for Product Slider, Service Section, Pricing Box, and Rating blocks.
 
 = Version 1.2.8 =
 
